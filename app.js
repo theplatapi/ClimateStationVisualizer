@@ -6,6 +6,7 @@ require('cesium/Source/Widgets/widgets.css');
 var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
 BuildModuleUrl.setBaseUrl('./');
 
+//TODO: Make a helper function to return these as part of a Cesium object.
 var BingMapsApi = require('cesium/Source/Core/BingMapsApi');
 BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
 var Viewer = require('cesium/Source/Widgets/Viewer/Viewer');
@@ -45,19 +46,19 @@ var viewer = new Viewer('cesiumContainer', {
 
 viewer.scene.debugShowFramesPerSecond = true;
 
-GeoJsonDataSource.load('./climateData/stationLocations.json').then(function (stationLocations) {
+GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
   var stationColorScale = d3.scale.linear().domain([-10, 20, 60]).range(['blue', 'red']);
 
-  $.getJSON('./climateData/stationTemps.json', function (stationTemperatures) {
+  $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
     var opaque = new Color(0, 0, 0, 0.1);
     var shapes = require('./lib/whiteShapes.png');
 
-    var setStationColor = function (station) {
-      var getColor = new CallbackProperty(function (time, result) {
+    var setStationAppearance = function (station) {
+      var getColor = new CallbackProperty(function getColor(time, result) {
         return station.color.clone(result);
       }, false);
 
-      var getHeight = new CallbackProperty(function () {
+      var getHeight = new CallbackProperty(function getHeight() {
         return station.height;
       }, false);
 
@@ -77,12 +78,12 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function (sta
     for (var i = 0; i < stations.length; i++) {
       stations[i].color = opaque;
       stations[i].height = 25;
-      setStationColor(stations[i]);
+      setStationAppearance(stations[i]);
     }
 
     viewer.dataSources.add(stationLocations);
 
-    viewer.clock.onTick.addEventListener(function (clock) {
+    viewer.clock.onTick.addEventListener(function onClockTick(clock) {
       var timelineTime = JulianDate.toDate(clock.currentTime);
 
       for (var i = 0; i < stations.length; i++) {
