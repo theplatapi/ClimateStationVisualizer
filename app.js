@@ -67,8 +67,7 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function (sta
         imageSubRegion: new BoundingRectangle(0, 0, 27, 27),
         horizontalOrigin: HorizontalOrigin.CENTER,
         verticalOrigin: VerticalOrigin.CENTER,
-        //height: getHeight,
-        //heightReference: HeightReference.RELATIVE_TO_GROUND,
+        height: getHeight,
         scaleByDistance: new NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
       });
     };
@@ -77,7 +76,7 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function (sta
 
     for (var i = 0; i < stations.length; i++) {
       stations[i].color = opaque;
-      stations[i].height = 1;
+      stations[i].height = 25;
       setStationColor(stations[i]);
     }
 
@@ -92,10 +91,9 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function (sta
 
         if (temperature && temperature < 999) {
           stations[i].color = Color.fromCssColorString(stationColorScale(temperature));
-          stations[i].height = 1;
+          stations[i].height = 25;
         }
         else {
-          stations[i].color = opaque;
           stations[i].height = 0;
         }
       }
