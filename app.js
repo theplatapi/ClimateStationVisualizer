@@ -53,6 +53,9 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function load
     var opaque = new Color(0, 0, 0, 0.1);
     var shapes = require('./lib/whiteShapes.png');
 
+    //TODO: Test if managing the billboard collection manually can improve things.
+    //If most billboards in a collection need to be updated, it may be more efficient to clear the collection with
+    //BillboardCollection#removeAll and add new billboards instead of modifying each one.
     var setStationAppearance = function (station) {
       var getColor = new CallbackProperty(function getColor(time, result) {
         return station.color.clone(result);
@@ -82,20 +85,26 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function load
     }
 
     viewer.dataSources.add(stationLocations);
+    var lastTick;
 
+    //TODO: 40% of the time spent here. Optimize!
     viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-      var timelineTime = JulianDate.toDate(clock.currentTime);
+      if (!clock.currentTime.equals(lastTick)) {
+        lastTick = clock.currentTime;
+        var timelineTime = JulianDate.toDate(clock.currentTime);
 
-      for (var i = 0; i < stations.length; i++) {
-        var stationId = stations[i]._properties.stationId;
-        var temperature = _.get(stationTemperatures, [stationId, timelineTime.getFullYear(), timelineTime.getMonth() + 1]);
+        for (var i = 0; i < stations.length; i++) {
+          var stationId = stations[i]._properties.stationId;
+          var temperature = _.get(stationTemperatures, [stationId, timelineTime.getFullYear(), timelineTime.getMonth() + 1]);
 
-        if (temperature && temperature < 999) {
-          stations[i].color = Color.fromCssColorString(stationColorScale(temperature));
-          stations[i].height = 25;
-        }
-        else {
-          stations[i].height = 0;
+          if (temperature < 999) {
+            //TODO: Takes 5%. Optimize.
+            stations[i].color = Color.fromCssColorString(stationColorScale(temperature));
+            stations[i].height = 25;
+          }
+          else {
+            stations[i].height = 0;
+          }
         }
       }
     });
