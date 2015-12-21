@@ -47,7 +47,8 @@ var viewer = new Viewer('cesiumContainer', {
 viewer.scene.debugShowFramesPerSecond = true;
 
 GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-  var stationColorScale = d3.scale.linear().domain([-10, 20, 60]).range(['blue', 'red']);
+  //TODO: Base on lowest, highest, and average for 1960s
+  var stationColorScale = d3.scale.linear().domain([-30, 20, 80]).range(['blue', 'red']);
 
   $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
     var opaque = new Color(0, 0, 0, 0.1);
@@ -87,7 +88,7 @@ GeoJsonDataSource.load('./climateData/stationLocations.json').then(function load
     viewer.dataSources.add(stationLocations);
     var lastTick;
 
-    //TODO: 40% of the time spent here. Optimize!
+    //TODO: 35% of the time spent here. Optimize!
     viewer.clock.onTick.addEventListener(function onClockTick(clock) {
       if (!clock.currentTime.equals(lastTick)) {
         lastTick = clock.currentTime;
