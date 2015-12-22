@@ -105,7 +105,6 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
 
 $(document).keydown(function onKeydown(event) {
   if (event.keyCode === 32) {
-    console.log('space');
     viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
   }
 });
