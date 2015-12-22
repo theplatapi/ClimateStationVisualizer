@@ -12,10 +12,8 @@ Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgE
 var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
   homeButton: false,
-  infoBox: true,
   sceneModePicker: false,
   navigationHelpButton: false,
-  geocoder: false,
   baseLayerPicker: false,
   clock: new Cesium.Clock({
     startTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
@@ -103,6 +101,13 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
       }
     });
   });
+});
+
+$(document).keydown(function onKeydown(event) {
+  if (event.keyCode === 32) {
+    console.log('space');
+    viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
+  }
 });
 
 function getModules() {
