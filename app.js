@@ -3,6 +3,7 @@ var $ = require("jquery");
 var d3 = require("d3");
 
 require('cesium/Source/Widgets/widgets.css');
+require('./app.css');
 var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
 BuildModuleUrl.setBaseUrl('./');
 
@@ -14,6 +15,7 @@ var GeoJsonDataSource = require('cesium/Source/DataSources/GeoJsonDataSource');
 var Clock = require('cesium/Source/Core/Clock');
 var JulianDate = require('cesium/Source/Core/JulianDate');
 var ClockRange = require('cesium/Source/Core/ClockRange');
+//TODO: Fix warnings that this causes.
 var ClockStep = require('cesium/Source/core/ClockStep');
 var EntityCollection = require('cesium/Source/DataSources/EntityCollection');
 var Color = require('cesium/Source/Core/Color');
@@ -45,62 +47,71 @@ var viewer = new Viewer('cesiumContainer', {
 });
 
 viewer.scene.debugShowFramesPerSecond = true;
+//TODO: Base on lowest, highest, and average for 1960s
+var hexColorGenerator = d3.scale.linear().domain([-30, 20, 80]).range(['blue', 'red']);
+var shapes = require('./lib/whiteShapes.png');
 
-GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-  //TODO: Base on lowest, highest, and average for 1960s
-  var stationColorScale = d3.scale.linear().domain([-30, 20, 80]).range(['blue', 'red']);
+var stationColorScale = function stationColorScale(temperature) {
+  var color = hexColorGenerator(temperature);
+  var red = parseInt(color.substring(1, 3), 16);
+  var green = parseInt(color.substring(3, 5), 16);
+  var blue = parseInt(color.substring(5, 7), 16);
 
-  $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
-    var opaque = new Color(0, 0, 0, 0.1);
-    var shapes = require('./lib/whiteShapes.png');
+  return Color.fromBytes(red, green, blue);
+};
 
-    //TODO: Test if managing the billboard collection manually can improve things.
-    //If most billboards in a collection need to be updated, it may be more efficient to clear the collection with
-    //BillboardCollection#removeAll and add new billboards instead of modifying each one.
-    var setStationAppearance = function (station) {
-      var getColor = new CallbackProperty(function getColor(time, result) {
-        return station.color.clone(result);
-      }, false);
+var setStationAppearance = function (station) {
+  var getColor = new CallbackProperty(function getColor(time, result) {
+    return station.color.clone(result);
+  }, false);
 
-      var getHeight = new CallbackProperty(function getHeight() {
-        return station.height;
-      }, false);
+  var getHeight = new CallbackProperty(function getHeight() {
+    return station.height;
+  }, false);
 
-      _.extend(station.billboard, {
-        color: getColor,
-        image: shapes,
-        imageSubRegion: new BoundingRectangle(0, 0, 27, 27),
-        horizontalOrigin: HorizontalOrigin.CENTER,
-        verticalOrigin: VerticalOrigin.CENTER,
-        height: getHeight,
-        scaleByDistance: new NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
-      });
-    };
+  _.extend(station.billboard, {
+    color: getColor,
+    image: shapes,
+    imageSubRegion: new BoundingRectangle(0, 0, 27, 27),
+    horizontalOrigin: HorizontalOrigin.CENTER,
+    verticalOrigin: VerticalOrigin.CENTER,
+    height: getHeight,
+    scaleByDistance: new NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
+  });
+};
 
+//TODO: Test if managing the billboard collection manually can improve things.
+//If most billboards in a collection need to be updated, it may be more efficient to clear the collection with
+//BillboardCollection#removeAll and add new billboards instead of modifying each one.
+
+$.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
+  GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
     var stations = stationLocations.entities.values;
+    //Setting this to an arbitrary date so it can be compared in onClockTick on first pass
+    var lastTime = new Date();
 
     for (var i = 0; i < stations.length; i++) {
-      stations[i].color = opaque;
-      stations[i].height = 25;
+      //Setting initial stations properties. These will be quickly overwritten bu onClockTick
+      stations[i].color = Color.ALICEBLUE;
+      stations[i].height = 0;
       setStationAppearance(stations[i]);
     }
 
     viewer.dataSources.add(stationLocations);
-    var lastTick;
 
-    //TODO: 35% of the time spent here. Optimize!
+    //TODO: ~35% of the time spent here. Optimize!
     viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-      if (!clock.currentTime.equals(lastTick)) {
-        lastTick = clock.currentTime;
-        var timelineTime = JulianDate.toDate(clock.currentTime);
+      var timelineTime = JulianDate.toDate(clock.currentTime);
+
+      if (timelineTime.getMonth() !== lastTime.getMonth() || timelineTime.getFullYear() !== lastTime.getFullYear()) {
+        lastTime = timelineTime;
 
         for (var i = 0; i < stations.length; i++) {
           var stationId = stations[i]._properties.stationId;
           var temperature = _.get(stationTemperatures, [stationId, timelineTime.getFullYear(), timelineTime.getMonth() + 1]);
 
           if (temperature < 999) {
-            //TODO: Takes 5%. Optimize.
-            stations[i].color = Color.fromCssColorString(stationColorScale(temperature));
+            stations[i].color = stationColorScale(temperature);
             stations[i].height = 25;
           }
           else {
