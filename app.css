@@ -1,0 +1,8 @@
+.cesium-animation-shuttleRingPausePointer, .cesium-animation-shuttleRingPointer, .cesium-animation-shuttleRingSwoosh,
+.cesium-animation-shuttleRingBack, .cesium-animation-buttonDisabled {
+  display: none;
+}
+
+.cesium-animation-knobOuter {
+  pointer-events: none;
+}
