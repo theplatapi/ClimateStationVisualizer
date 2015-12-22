@@ -1,32 +1,15 @@
+require('cesium/Source/Widgets/widgets.css');
+require('./app.css');
+
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+var Cesium = getModules();
 
-require('cesium/Source/Widgets/widgets.css');
-require('./app.css');
-var BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
-BuildModuleUrl.setBaseUrl('./');
+Cesium.BuildModuleUrl.setBaseUrl('./');
+Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
 
-//TODO: Make a helper function to return these as part of a Cesium object.
-var BingMapsApi = require('cesium/Source/Core/BingMapsApi');
-BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
-var Viewer = require('cesium/Source/Widgets/Viewer/Viewer');
-var GeoJsonDataSource = require('cesium/Source/DataSources/GeoJsonDataSource');
-var Clock = require('cesium/Source/Core/Clock');
-var JulianDate = require('cesium/Source/Core/JulianDate');
-var ClockRange = require('cesium/Source/Core/ClockRange');
-//TODO: Fix warnings that this causes.
-var ClockStep = require('cesium/Source/core/ClockStep');
-var EntityCollection = require('cesium/Source/DataSources/EntityCollection');
-var Color = require('cesium/Source/Core/Color');
-var CallbackProperty = require('cesium/Source/DataSources/CallbackProperty');
-var BoundingRectangle = require('cesium/Source/Core/BoundingRectangle');
-var HorizontalOrigin = require('cesium/Source/Scene/HorizontalOrigin');
-var VerticalOrigin = require('cesium/Source/Scene/VerticalOrigin');
-var HeightReference = require('cesium/Source/Scene/HeightReference');
-var NearFarScalar = require('cesium/Source/Core/NearFarScalar');
-
-var viewer = new Viewer('cesiumContainer', {
+var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
   homeButton: false,
   infoBox: true,
@@ -34,14 +17,13 @@ var viewer = new Viewer('cesiumContainer', {
   navigationHelpButton: false,
   geocoder: false,
   baseLayerPicker: false,
-  clock: new Clock({
-    startTime: JulianDate.fromIso8601('1880-01-01'),
-    currentTime: JulianDate.fromIso8601('1880-01-01'),
-    stopTime: JulianDate.fromIso8601("2013-12-01"),
-    clockRange: ClockRange.CLAMPED,
+  clock: new Cesium.Clock({
+    startTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
+    currentTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
+    stopTime: Cesium.JulianDate.fromIso8601("2013-12-01"),
+    clockRange: Cesium.ClockRange.CLAMPED,
     canAnimate: false,
     shouldAnimate: false,
-    clockStep: ClockStep.SYSTEM_CLOCK_MULTIPLIER,
     multiplier: 41472000
   })
 });
@@ -57,26 +39,26 @@ var stationColorScale = function stationColorScale(temperature) {
   var green = parseInt(color.substring(3, 5), 16);
   var blue = parseInt(color.substring(5, 7), 16);
 
-  return Color.fromBytes(red, green, blue);
+  return Cesium.Color.fromBytes(red, green, blue);
 };
 
 var setStationAppearance = function (station) {
-  var getColor = new CallbackProperty(function getColor(time, result) {
+  var getColor = new Cesium.CallbackProperty(function getColor(time, result) {
     return station.color.clone(result);
   }, false);
 
-  var getHeight = new CallbackProperty(function getHeight() {
+  var getHeight = new Cesium.CallbackProperty(function getHeight() {
     return station.height;
   }, false);
 
   _.extend(station.billboard, {
     color: getColor,
     image: shapes,
-    imageSubRegion: new BoundingRectangle(0, 0, 27, 27),
-    horizontalOrigin: HorizontalOrigin.CENTER,
-    verticalOrigin: VerticalOrigin.CENTER,
+    imageSubRegion: new Cesium.BoundingRectangle(0, 0, 27, 27),
+    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+    verticalOrigin: Cesium.VerticalOrigin.CENTER,
     height: getHeight,
-    scaleByDistance: new NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
+    scaleByDistance: new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
   });
 };
 
@@ -85,14 +67,14 @@ var setStationAppearance = function (station) {
 //BillboardCollection#removeAll and add new billboards instead of modifying each one.
 
 $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
-  GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
+  Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
     var stations = stationLocations.entities.values;
     //Setting this to an arbitrary date so it can be compared in onClockTick on first pass
     var lastTime = new Date();
 
     for (var i = 0; i < stations.length; i++) {
       //Setting initial stations properties. These will be quickly overwritten bu onClockTick
-      stations[i].color = Color.ALICEBLUE;
+      stations[i].color = Cesium.Color.ALICEBLUE;
       stations[i].height = 0;
       setStationAppearance(stations[i]);
     }
@@ -101,7 +83,7 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
 
     //TODO: ~35% of the time spent here. Optimize!
     viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-      var timelineTime = JulianDate.toDate(clock.currentTime);
+      var timelineTime = Cesium.JulianDate.toDate(clock.currentTime);
 
       if (timelineTime.getMonth() !== lastTime.getMonth() || timelineTime.getFullYear() !== lastTime.getFullYear()) {
         lastTime = timelineTime;
@@ -122,3 +104,23 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
     });
   });
 });
+
+function getModules() {
+  return {
+    BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
+    BingMapsApi: require('cesium/Source/Core/BingMapsApi'),
+    Viewer: require('cesium/Source/Widgets/Viewer/Viewer'),
+    GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
+    Clock: require('cesium/Source/Core/Clock'),
+    JulianDate: require('cesium/Source/Core/JulianDate'),
+    ClockRange: require('cesium/Source/Core/ClockRange'),
+    EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
+    Color: require('cesium/Source/Core/Color'),
+    CallbackProperty: require('cesium/Source/DataSources/CallbackProperty'),
+    BoundingRectangle: require('cesium/Source/Core/BoundingRectangle'),
+    HorizontalOrigin: require('cesium/Source/Scene/HorizontalOrigin'),
+    VerticalOrigin: require('cesium/Source/Scene/VerticalOrigin'),
+    HeightReference: require('cesium/Source/Scene/HeightReference'),
+    NearFarScalar: require('cesium/Source/Core/NearFarScalar')
+  };
+}
