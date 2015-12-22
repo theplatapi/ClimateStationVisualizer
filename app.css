@@ -1,9 +1,13 @@
 .cesium-animation-shuttleRingPausePointer, .cesium-animation-shuttleRingPointer, .cesium-animation-shuttleRingSwoosh,
 .cesium-animation-shuttleRingBack, .cesium-animation-buttonDisabled, .cesium-animation-svgText:nth-of-type(3),
-.cesium-animation-knobOuter {
+.cesium-animation-knobOuter, .cesium-animation-buttonMain {
   display: none;
 }
 
 .cesium-animation-knobOuter {
   pointer-events: none;
+}
+
+.cesium-animation-buttonGlow {
+  opacity: 0.7;
 }
