@@ -31,13 +31,17 @@ viewer.scene.debugShowFramesPerSecond = true;
 var hexColorGenerator = d3.scale.linear().domain([-30, 20, 80]).range(['blue', 'red']);
 var shapes = require('./lib/whiteShapes.png');
 
-var stationColorScale = function stationColorScale(temperature) {
+var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   var color = hexColorGenerator(temperature);
-  var red = parseInt(color.substring(1, 3), 16);
-  var green = parseInt(color.substring(3, 5), 16);
-  var blue = parseInt(color.substring(5, 7), 16);
+  var red = parseInt(color.substring(1, 3), 16) / 255;
+  var green = parseInt(color.substring(3, 5), 16) / 255;
+  var blue = parseInt(color.substring(5, 7), 16) / 255;
 
-  return Cesium.Color.fromBytes(red, green, blue);
+  cesiumColor.red = red;
+  cesiumColor.green = green;
+  cesiumColor.blue = blue;
+
+  return cesiumColor;
 };
 
 var setStationAppearance = function (station) {
@@ -68,7 +72,7 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
 
     for (var i = 0; i < stations.length; i++) {
       //Setting initial stations properties. These will be quickly overwritten bu onClockTick
-      stations[i].color = Cesium.Color.ALICEBLUE;
+      stations[i].color = new Cesium.Color();
       stations[i].height = 0;
       setStationAppearance(stations[i]);
     }
@@ -87,7 +91,7 @@ $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTe
           var temperature = _.get(stationTemperatures, [stationId, timelineTime.getFullYear(), timelineTime.getMonth() + 1]);
 
           if (temperature < 999) {
-            stations[i].color = stationColorScale(temperature);
+            stations[i].color = stationColorScale(temperature, stations[i].color);
             stations[i].height = 25;
           }
           else {
