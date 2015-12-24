@@ -52,7 +52,7 @@ var setStationAppearance = function (station) {
   _.extend(station.billboard, {
     color: getColor,
     image: shapes,
-    imageSubRegion: new Cesium.BoundingRectangle(0, 0, 27, 27),
+    //imageSubRegion: new Cesium.BoundingRectangle(0, 0, 27, 27),
     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
     verticalOrigin: Cesium.VerticalOrigin.CENTER,
     height: getHeight,
