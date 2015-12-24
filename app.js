@@ -51,18 +51,14 @@ var setStationAppearance = function (station) {
 
   _.extend(station.billboard, {
     color: getColor,
+    //TODO: Test if a canvas render is faster than an image
     image: shapes,
-    //imageSubRegion: new Cesium.BoundingRectangle(0, 0, 27, 27),
     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
     verticalOrigin: Cesium.VerticalOrigin.CENTER,
     height: getHeight,
     scaleByDistance: new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
   });
 };
-
-//TODO: Test if managing the billboard collection manually can improve things.
-//If most billboards in a collection need to be updated, it may be more efficient to clear the collection with
-//BillboardCollection#removeAll and add new billboards instead of modifying each one.
 
 $.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
   Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
