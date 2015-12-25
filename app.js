@@ -40,26 +40,26 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   cesiumColor.red = red;
   cesiumColor.green = green;
   cesiumColor.blue = blue;
+  cesiumColor.alpha = 1;
 
   return cesiumColor;
 };
 
 var setStationAppearance = function (station) {
   var getColor = new Cesium.CallbackProperty(function getColor(time, result) {
-    return station.color.clone(result);
-  }, false);
+    result.red = station.color.red;
+    result.green = station.color.green;
+    result.blue = station.color.blue;
+    result.alpha = station.color.alpha;
 
-  var getHeight = new Cesium.CallbackProperty(function getHeight() {
-    return station.height;
+    return result;
   }, false);
 
   _.extend(station.billboard, {
     color: getColor,
-    //TODO: Test if a canvas render is faster than an image
     image: shapes,
     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
     verticalOrigin: Cesium.VerticalOrigin.CENTER,
-    height: getHeight,
     scaleByDistance: new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
   });
 };
@@ -69,14 +69,12 @@ $.getJSON('./climateData/stationTemps.json')
     Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
       var stations = stationLocations.entities.values;
       //Setting this to an arbitrary date so it can be compared in onClockTick on first pass
-      //var GregorianDate = function(year, month, day, hour, minute, second, millisecond, isLeapSecond) {
       var timelineTime = new Cesium.GregorianDate();
       var lastTime = new Cesium.GregorianDate();
 
       for (var i = 0; i < stations.length; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
-        stations[i].color = new Cesium.Color();
-        stations[i].height = 0;
+        stations[i].color = new Cesium.Color(0, 0, 0, 0);
         setStationAppearance(stations[i]);
       }
 
@@ -91,17 +89,15 @@ $.getJSON('./climateData/stationTemps.json')
           lastTime.year = timelineTime.year;
           lastTime.month = timelineTime.month;
 
-          //TODO: Big optimization - only update visible stations
           for (var i = 0; i < stations.length; i++) {
             var stationId = stations[i]._properties.stationId;
             var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
             if (temperature < 999) {
               stations[i].color = stationColorScale(temperature, stations[i].color);
-              stations[i].height = 25;
             }
             else {
-              stations[i].height = 0;
+              stations[i].color.alpha = 0;
             }
           }
         }
@@ -135,7 +131,6 @@ function getModules() {
     BoundingRectangle: require('cesium/Source/Core/BoundingRectangle'),
     HorizontalOrigin: require('cesium/Source/Scene/HorizontalOrigin'),
     VerticalOrigin: require('cesium/Source/Scene/VerticalOrigin'),
-    HeightReference: require('cesium/Source/Scene/HeightReference'),
     NearFarScalar: require('cesium/Source/Core/NearFarScalar')
   };
 }
