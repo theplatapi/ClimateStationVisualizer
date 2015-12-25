@@ -74,7 +74,7 @@ $.getJSON('./climateData/stationTemps.json')
       var lastTime = new Cesium.GregorianDate();
 
       for (var i = 0; i < stations.length; i++) {
-        //Setting initial stations properties. These will be quickly overwritten bu onClockTick
+        //Setting initial stations properties. These will be quickly overwritten by onClockTick
         stations[i].color = new Cesium.Color();
         stations[i].height = 0;
         setStationAppearance(stations[i]);
@@ -88,8 +88,10 @@ $.getJSON('./climateData/stationTemps.json')
 
         if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
           //Deep copy
-          _.extend(lastTime, timelineTime);
+          lastTime.year = timelineTime.year;
+          lastTime.month = timelineTime.month;
 
+          //TODO: Big optimization - only update visible stations
           for (var i = 0; i < stations.length; i++) {
             var stationId = stations[i]._properties.stationId;
             var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
