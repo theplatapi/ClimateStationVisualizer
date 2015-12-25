@@ -11,3 +11,17 @@
 .cesium-animation-buttonGlow {
   opacity: 0.7;
 }
+
+button.cesium-infoBox-camera {
+  display: none;
+}
+
+.cesium-infoBox, .cesium-infoBox-title {
+  background: #5a5a5a;
+  opacity: 0.9;
+}
+
+.cesium-infoBox-defaultTable {
+  border-color: #5a5a5a;
+  padding: 0;
+}
