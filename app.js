@@ -64,45 +64,53 @@ var setStationAppearance = function (station) {
   });
 };
 
-$.getJSON('./climateData/stationTemps.json', function loadTemperatures(stationTemperatures) {
-  Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-    var stations = stationLocations.entities.values;
-    //Setting this to an arbitrary date so it can be compared in onClockTick on first pass
-    var lastTime = new Date();
+$.getJSON('./climateData/stationTemps.json')
+  .done(function loadTemperatures(stationTemperatures) {
+    Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
+      var stations = stationLocations.entities.values;
+      //Setting this to an arbitrary date so it can be compared in onClockTick on first pass
+      //var GregorianDate = function(year, month, day, hour, minute, second, millisecond, isLeapSecond) {
+      var timelineTime = new Cesium.GregorianDate();
+      var lastTime = new Cesium.GregorianDate();
 
-    for (var i = 0; i < stations.length; i++) {
-      //Setting initial stations properties. These will be quickly overwritten bu onClockTick
-      stations[i].color = new Cesium.Color();
-      stations[i].height = 0;
-      setStationAppearance(stations[i]);
-    }
+      for (var i = 0; i < stations.length; i++) {
+        //Setting initial stations properties. These will be quickly overwritten bu onClockTick
+        stations[i].color = new Cesium.Color();
+        stations[i].height = 0;
+        setStationAppearance(stations[i]);
+      }
 
-    viewer.dataSources.add(stationLocations);
+      viewer.dataSources.add(stationLocations);
 
-    //TODO: ~35% of the time spent here. Optimize!
-    viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-      var timelineTime = Cesium.JulianDate.toDate(clock.currentTime);
+      //TODO: ~35% of the time spent here. Optimize!
+      viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+        timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
-      if (timelineTime.getMonth() !== lastTime.getMonth() || timelineTime.getFullYear() !== lastTime.getFullYear()) {
-        lastTime = timelineTime;
+        if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
+          //Deep copy
+          _.extend(lastTime, timelineTime);
 
-        for (var i = 0; i < stations.length; i++) {
-          var stationId = stations[i]._properties.stationId;
-          var temperature = _.get(stationTemperatures, [stationId, timelineTime.getFullYear(), timelineTime.getMonth() + 1]);
+          for (var i = 0; i < stations.length; i++) {
+            var stationId = stations[i]._properties.stationId;
+            var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
-          if (temperature < 999) {
-            stations[i].color = stationColorScale(temperature, stations[i].color);
-            stations[i].height = 25;
-          }
-          else {
-            stations[i].height = 0;
+            if (temperature < 999) {
+              stations[i].color = stationColorScale(temperature, stations[i].color);
+              stations[i].height = 25;
+            }
+            else {
+              stations[i].height = 0;
+            }
           }
         }
-      }
+      });
     });
+  })
+  .fail(function (data, textStatus, error) {
+    console.log('Failed loading temperatures: ' + textStatus + ' error: ' +  error);
   });
-});
 
+//plays/pauses the animation on spacebar press
 $(document).keydown(function onKeydown(event) {
   if (event.keyCode === 32) {
     viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
@@ -117,6 +125,7 @@ function getModules() {
     GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
     Clock: require('cesium/Source/Core/Clock'),
     JulianDate: require('cesium/Source/Core/JulianDate'),
+    GregorianDate: require('cesium/Source/Core/GregorianDate'),
     ClockRange: require('cesium/Source/Core/ClockRange'),
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
     Color: require('cesium/Source/Core/Color'),
