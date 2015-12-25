@@ -28,7 +28,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 
 viewer.scene.debugShowFramesPerSecond = true;
 //TODO: Base on lowest, highest, and average for 1960s
-var hexColorGenerator = d3.scale.linear().domain([-30, 20, 80]).range(['blue', 'red']);
+var hexColorGenerator = d3.scale.linear().domain([-30, 20, 45]).range(['blue', 'orange', 'red']);
 var circle = require('./lib/whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
@@ -89,6 +89,7 @@ $.getJSON('./climateData/stationTemps.json')
 
               if (temperature < 999) {
                 stations[i].color = stationColorScale(temperature, stations[i].color);
+                stations[i]._properties.temperature = temperature;
               }
               else {
                 stations[i].color.alpha = 0;
