@@ -63,19 +63,28 @@ var setStationAppearance = function (station) {
 $.getJSON('./climateData/stationTemps.json')
   .done(function loadTemperatures(stationTemperatures) {
     Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-      var stations = stationLocations.entities.values;
+      var stationEntity = stationLocations.entities.values;
       var timelineTime = new Cesium.GregorianDate();
       var lastTime = new Cesium.GregorianDate();
 
-      for (var i = 0; i < stations.length; i++) {
+      for (var i = 0; i < stationEntity.length; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
-        stations[i].color = new Cesium.Color(0, 0, 0, 0);
-        setStationAppearance(stations[i]);
+        stationEntity[i].color = new Cesium.Color(0, 0, 0, 0);
+        setStationAppearance(stationEntity[i]);
+        stationEntity[i].selectable = false;
       }
 
       viewer.dataSources.add(stationLocations).then(function () {
         //TODO: ~35% of the time spent here. Optimize!
         viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+          if (_.get(viewer, 'selectedEntity.selectable') === false) {
+            viewer._selectionIndicator.viewModel.showSelection = false;
+            //viewer._infoBox.viewModel.showInfo = false;
+          }
+          else {
+            viewer._selectionIndicator.viewModel.showSelection = true;
+            //viewer._infoBox.viewModel.showInfo = true;
+          }
           timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
           if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
@@ -83,16 +92,18 @@ $.getJSON('./climateData/stationTemps.json')
             lastTime.year = timelineTime.year;
             lastTime.month = timelineTime.month;
 
-            for (var i = 0; i < stations.length; i++) {
-              var stationId = stations[i]._properties.stationId;
+            for (var i = 0; i < stationEntity.length; i++) {
+              var stationId = stationEntity[i]._properties.stationId;
               var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
               if (temperature < 999) {
-                stations[i].color = stationColorScale(temperature, stations[i].color);
-                stations[i]._properties.temperature = temperature;
+                stationEntity[i].color = stationColorScale(temperature, stationEntity[i].color);
+                stationEntity[i]._properties.temperature = temperature;
+                stationEntity[i].selectable = true;
               }
               else {
-                stations[i].color.alpha = 0;
+                stationEntity[i].color.alpha = 0;
+                stationEntity[i].selectable = false;
               }
             }
           }
@@ -101,7 +112,7 @@ $.getJSON('./climateData/stationTemps.json')
     });
   })
   .fail(function (data, textStatus, error) {
-    console.log('Failed loading temperatures: ' + textStatus + ' error: ' +  error);
+    console.log('Failed loading temperatures: ' + textStatus + ' error: ' + error);
   });
 
 //plays/pauses the animation on spacebar press
