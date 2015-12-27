@@ -12,7 +12,7 @@
   opacity: 0.7;
 }
 
-button.cesium-infoBox-camera {
+button.cesium-infoBox-camera, .cesium-infoBox-title {
   display: none;
 }
 
