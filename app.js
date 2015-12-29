@@ -66,6 +66,7 @@ $.getJSON('./climateData/stationTemps.json')
       var stationEntity = stationLocations.entities.values;
       var timelineTime = new Cesium.GregorianDate();
       var lastTime = new Cesium.GregorianDate();
+      var $infoBox = $('.cesium-viewer-infoBoxContainer');
 
       for (var i = 0; i < stationEntity.length; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
@@ -77,13 +78,14 @@ $.getJSON('./climateData/stationTemps.json')
       viewer.dataSources.add(stationLocations).then(function () {
         //TODO: ~35% of the time spent here. Optimize!
         viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+          //TODO: Set the infoBox alpha to the current station alpha. No if check required.
           if (_.get(viewer, 'selectedEntity.selectable') === false) {
             viewer._selectionIndicator.viewModel.showSelection = false;
-            //viewer._infoBox.viewModel.showInfo = false;
+            $infoBox.hide();
           }
           else {
             viewer._selectionIndicator.viewModel.showSelection = true;
-            //viewer._infoBox.viewModel.showInfo = true;
+            $infoBox.show();
           }
           timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
