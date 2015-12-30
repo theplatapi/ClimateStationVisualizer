@@ -37,7 +37,6 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   cesiumColor.red = parseInt(color.substring(1, 3), 16) / 255;
   cesiumColor.green = parseInt(color.substring(3, 5), 16) / 255;
   cesiumColor.blue = parseInt(color.substring(5, 7), 16) / 255;
-  cesiumColor.alpha = 1;
 
   return cesiumColor;
 };
@@ -47,7 +46,6 @@ var setStationAppearance = function (station) {
     result.red = station.color.red;
     result.green = station.color.green;
     result.blue = station.color.blue;
-    result.alpha = station.color.alpha;
 
     return result;
   }, false);
@@ -70,47 +68,43 @@ $.getJSON('./climateData/stationTemps.json')
 
       for (var i = 0; i < stationEntities.length; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
-        stationEntities[i].color = new Cesium.Color(0, 0, 0, 1);
-        setStationAppearance(stationEntities[i]);
+        stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
         stationEntities[i].selectable = false;
+        setStationAppearance(stationEntities[i]);
       }
 
-      viewer.dataSources.add(stationLocations).then(function afterDataAdded() {
-        //TODO: ~35% of the time spent here. Optimize!
-        viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-          if (_.get(viewer, 'selectedEntity.selectable') === false) {
-            viewer._selectionIndicator.viewModel.showSelection = false;
-            $infoBox.hide();
-          }
-          else {
-            viewer._selectionIndicator.viewModel.showSelection = true;
-            $infoBox.show();
-          }
-          timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
+      viewer.dataSources.add(stationLocations);
 
-          if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
-            //Deep copy
-            lastTime.year = timelineTime.year;
-            lastTime.month = timelineTime.month;
+      viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+        if (_.get(viewer, 'selectedEntity.selectable') === false) {
+          $infoBox.fadeOut();
+        }
+        else {
+          $infoBox.fadeIn();
+        }
+        timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
-            //TODO: Alpha not being set when running. Point must be initially visible. Starting out alpha doesn't work.
-            //Looks like a cesium bug. Somehow show all points and then go to initial start
-            for (var i = 0; i < stationEntities.length; i++) {
-              var stationId = stationEntities[i]._properties.stationId;
-              var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
+        if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
+          //Deep copy
+          lastTime.year = timelineTime.year;
+          lastTime.month = timelineTime.month;
 
-              if (temperature < 999) {
-                stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
-                stationEntities[i]._properties.temperature = temperature;
-                stationEntities[i].selectable = true;
-              }
-              else {
-                stationEntities[i].color.alpha = 0;
-                stationEntities[i].selectable = false;
-              }
+          for (var i = 0; i < stationEntities.length; i++) {
+            var stationId = stationEntities[i]._properties.stationId;
+            var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
+
+            if (temperature < 999) {
+              stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
+              stationEntities[i].selectable = true;
+              stationEntities[i]._properties.temperature = temperature;
+              stationEntities[i].show = true;
+            }
+            else {
+              stationEntities[i].selectable = false;
+              stationEntities[i].show = false;
             }
           }
-        });
+        }
       });
     });
   })
