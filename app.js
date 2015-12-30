@@ -63,22 +63,21 @@ var setStationAppearance = function (station) {
 $.getJSON('./climateData/stationTemps.json')
   .done(function loadTemperatures(stationTemperatures) {
     Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-      var stationEntity = stationLocations.entities.values;
+      var stationEntities = stationLocations.entities.values;
       var timelineTime = new Cesium.GregorianDate();
       var lastTime = new Cesium.GregorianDate();
       var $infoBox = $('.cesium-viewer-infoBoxContainer');
 
-      for (var i = 0; i < stationEntity.length; i++) {
+      for (var i = 0; i < stationEntities.length; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
-        stationEntity[i].color = new Cesium.Color(0, 0, 0, 0);
-        setStationAppearance(stationEntity[i]);
-        stationEntity[i].selectable = false;
+        stationEntities[i].color = new Cesium.Color(0, 0, 0, 1);
+        setStationAppearance(stationEntities[i]);
+        stationEntities[i].selectable = false;
       }
 
-      viewer.dataSources.add(stationLocations).then(function () {
+      viewer.dataSources.add(stationLocations).then(function afterDataAdded() {
         //TODO: ~35% of the time spent here. Optimize!
         viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-          //TODO: Set the infoBox alpha to the current station alpha. No if check required.
           if (_.get(viewer, 'selectedEntity.selectable') === false) {
             viewer._selectionIndicator.viewModel.showSelection = false;
             $infoBox.hide();
@@ -94,18 +93,20 @@ $.getJSON('./climateData/stationTemps.json')
             lastTime.year = timelineTime.year;
             lastTime.month = timelineTime.month;
 
-            for (var i = 0; i < stationEntity.length; i++) {
-              var stationId = stationEntity[i]._properties.stationId;
+            //TODO: Alpha not being set when running. Point must be initially visible. Starting out alpha doesn't work.
+            //Looks like a cesium bug. Somehow show all points and then go to initial start
+            for (var i = 0; i < stationEntities.length; i++) {
+              var stationId = stationEntities[i]._properties.stationId;
               var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
               if (temperature < 999) {
-                stationEntity[i].color = stationColorScale(temperature, stationEntity[i].color);
-                stationEntity[i]._properties.temperature = temperature;
-                stationEntity[i].selectable = true;
+                stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
+                stationEntities[i]._properties.temperature = temperature;
+                stationEntities[i].selectable = true;
               }
               else {
-                stationEntity[i].color.alpha = 0;
-                stationEntity[i].selectable = false;
+                stationEntities[i].color.alpha = 0;
+                stationEntities[i].selectable = false;
               }
             }
           }
