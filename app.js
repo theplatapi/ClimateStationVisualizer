@@ -28,6 +28,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 
 viewer.scene.debugShowFramesPerSecond = true;
 //TODO: Base on lowest, highest, and average for 1960s
+//TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear().domain([-30, 20, 45]).range(['blue', 'orange', 'red']);
 var circle = require('./lib/whiteShapes.png');
 
@@ -37,6 +38,10 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   cesiumColor.red = parseInt(color.substring(1, 3), 16) / 255;
   cesiumColor.green = parseInt(color.substring(3, 5), 16) / 255;
   cesiumColor.blue = parseInt(color.substring(5, 7), 16) / 255;
+
+  //cesiumColor.red = temperature % 255;
+  //cesiumColor.green = Math.random();
+  //cesiumColor.blue = Math.random();
 
   return cesiumColor;
 };
@@ -62,11 +67,12 @@ $.getJSON('./climateData/stationTemps.json')
   .done(function loadTemperatures(stationTemperatures) {
     Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
       var stationEntities = stationLocations.entities.values;
-      var timelineTime = new Cesium.GregorianDate();
-      var lastTime = new Cesium.GregorianDate();
+      var stationEntitiesLength = stationEntities.length;
+      var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+      var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
       var $infoBox = $('.cesium-viewer-infoBoxContainer');
 
-      for (var i = 0; i < stationEntities.length; i++) {
+      for (var i = 0; i < stationEntitiesLength; i++) {
         //Setting initial stations properties. These will be quickly overwritten by onClockTick
         stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
         stationEntities[i].selectable = false;
@@ -89,15 +95,15 @@ $.getJSON('./climateData/stationTemps.json')
           lastTime.year = timelineTime.year;
           lastTime.month = timelineTime.month;
 
-          for (var i = 0; i < stationEntities.length; i++) {
+          for (var i = 0; i < stationEntitiesLength; i++) {
             var stationId = stationEntities[i]._properties.stationId;
             var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
             if (temperature < 999) {
               stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
-              stationEntities[i].selectable = true;
               stationEntities[i]._properties.temperature = temperature;
               stationEntities[i].show = true;
+              stationEntities[i].selectable = true;
             }
             else {
               stationEntities[i].selectable = false;
