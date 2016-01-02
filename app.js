@@ -63,60 +63,54 @@ var setStationAppearance = function (station) {
   });
 };
 
-$.getJSON('./climateData/stationTemps.json')
-  .done(function loadTemperatures(stationTemperatures) {
-    Cesium.GeoJsonDataSource.load('./climateData/stationLocations.json').then(function loadStations(stationLocations) {
-      var stationEntities = stationLocations.entities.values;
-      var stationEntitiesLength = stationEntities.length;
-      var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
-      var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
-      var $infoBox = $('.cesium-viewer-infoBoxContainer');
+function populateGlobe(stationTemperatures, stationLocations) {
+  var stationEntities = stationLocations.entities.values;
+  var stationEntitiesLength = stationEntities.length;
+  var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+  var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+  var $infoBox = $('.cesium-viewer-infoBoxContainer');
+
+  for (var i = 0; i < stationEntitiesLength; i++) {
+    //Setting initial stations properties. These will be quickly overwritten by onClockTick
+    stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
+    stationEntities[i].selectable = false;
+    setStationAppearance(stationEntities[i]);
+  }
+
+  viewer.dataSources.add(stationLocations);
+
+  viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+    if (_.get(viewer, 'selectedEntity.selectable') === false) {
+      $infoBox.fadeOut();
+    }
+    else {
+      $infoBox.fadeIn();
+    }
+    timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
+
+    if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
+      //Deep copy
+      lastTime.year = timelineTime.year;
+      lastTime.month = timelineTime.month;
 
       for (var i = 0; i < stationEntitiesLength; i++) {
-        //Setting initial stations properties. These will be quickly overwritten by onClockTick
-        stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
-        stationEntities[i].selectable = false;
-        setStationAppearance(stationEntities[i]);
-      }
+        var stationId = stationEntities[i]._properties.stationId;
+        var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
 
-      viewer.dataSources.add(stationLocations);
-
-      viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-        if (_.get(viewer, 'selectedEntity.selectable') === false) {
-          $infoBox.fadeOut();
+        if (temperature < 999) {
+          stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
+          stationEntities[i]._properties.temperature = temperature;
+          stationEntities[i].show = true;
+          stationEntities[i].selectable = true;
         }
         else {
-          $infoBox.fadeIn();
+          stationEntities[i].selectable = false;
+          stationEntities[i].show = false;
         }
-        timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
-
-        if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
-          //Deep copy
-          lastTime.year = timelineTime.year;
-          lastTime.month = timelineTime.month;
-
-          for (var i = 0; i < stationEntitiesLength; i++) {
-            var stationId = stationEntities[i]._properties.stationId;
-            var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
-
-            if (temperature < 999) {
-              stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
-              stationEntities[i]._properties.temperature = temperature;
-              stationEntities[i].show = true;
-              stationEntities[i].selectable = true;
-            }
-            else {
-              stationEntities[i].selectable = false;
-              stationEntities[i].show = false;
-            }
-          }
-        }
-      });
-    });
-  })
-  .fail(function (data, textStatus, error) {
-    console.log('Failed loading temperatures: ' + textStatus + ' error: ' + error);
+      }
+    }
   });
+}
 
 //plays/pauses the animation on spacebar press
 $(document).keydown(function onKeydown(event) {
@@ -141,3 +135,16 @@ function getModules() {
     NearFarScalar: require('cesium/Source/Core/NearFarScalar')
   };
 }
+
+//main
+(function () {
+  $.when($.getJSON('./climateData/stationTemps.json'), $.getJSON('./climateData/stationLocations.json'))
+    .done(function (stationTemperatures, stationLocationsGeoJson) {
+      Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
+        populateGlobe(stationTemperatures[0], stationLocations);
+      });
+    })
+    .fail(function (data, textStatus, error) {
+      console.log('Failed loading data: ' + textStatus + ' ' + error);
+    })
+})();
