@@ -113,7 +113,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
 }
 
 //plays/pauses the animation on spacebar press
-$(document).keydown(function onKeydown(event) {
+$(document).on('keydown', function onKeydown(event) {
   if (event.keyCode === 32) {
     viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
   }
