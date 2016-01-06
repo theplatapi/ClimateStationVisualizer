@@ -173,9 +173,9 @@ function setupEventListeners() {
     selectable: false,
     rectangle: {
       coordinates: getSelectorLocation,
-      material: Cesium.Color.RED.withAlpha(0.5),
+      material: Cesium.Color.BLACK.withAlpha(0.5),
       outline: true,
-      outlineColor: Cesium.Color.RED
+      outlineColor: Cesium.Color.BLACK
     }
   });
 }
