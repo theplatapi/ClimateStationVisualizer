@@ -27,6 +27,12 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 viewer.scene.debugShowFramesPerSecond = true;
+//Disable some unneeded camera operations
+viewer.scene.screenSpaceCameraController.enableTranslate = false;
+viewer.scene.screenSpaceCameraController.enableTilt = false;
+viewer.scene.screenSpaceCameraController.enableLook = false;
+
+
 //TODO: Base on lowest, highest, and average for 1960s
 //TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear().domain([-30, 20, 45]).range(['blue', 'orange', 'red']);
@@ -112,12 +118,67 @@ function populateGlobe(stationTemperatures, stationLocations) {
   });
 }
 
-//plays/pauses the animation on spacebar press
-$(document).on('keydown', function onKeydown(event) {
-  if (event.keyCode === 32) {
-    viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
-  }
-});
+function setupEventListeners() {
+  var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  var rectangleSelector = new Cesium.Rectangle(0, 0, .1, .1);
+  var cartesian = new Cesium.Cartesian3();
+  var cartographic = new Cesium.Cartographic();
+  var firstPoint = new Cesium.Cartographic(-0.1, -0.1);
+  var firstPointSet = false;
+  var mouseDown = false;
+
+  $(document).on('keydown', function onKeydown(event) {
+    if (event.keyCode === 32) {
+      viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
+    }
+  });
+
+  handler.setInputAction(function (movement) {
+    if (!mouseDown || !movement) {
+      return;
+    }
+
+    cartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
+    cartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, cartographic);
+
+    if (!firstPointSet) {
+      Cesium.Cartographic.clone(cartographic, firstPoint);
+      firstPointSet = true;
+    }
+    else {
+      rectangleSelector.east = Math.max(cartographic.longitude, firstPoint.longitude);
+      rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
+      rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
+      rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
+    }
+  }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
+
+  handler.setInputAction(function () {
+    mouseDown = true;
+  }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
+
+  handler.setInputAction(function () {
+    mouseDown = false;
+    firstPointSet = false;
+  }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
+
+
+  var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
+    return Cesium.Rectangle.clone(rectangleSelector, result);
+  }, false);
+
+
+  viewer.entities.add({
+    name: 'Selection Region',
+    selectable: false,
+    rectangle: {
+      coordinates: getSelectorLocation,
+      material: Cesium.Color.RED.withAlpha(0.5),
+      outline: true,
+      outlineColor: Cesium.Color.RED
+    }
+  });
+}
 
 function getModules() {
   return {
@@ -132,7 +193,15 @@ function getModules() {
     Color: require('cesium/Source/Core/Color'),
     CallbackProperty: require('cesium/Source/DataSources/CallbackProperty'),
     VerticalOrigin: require('cesium/Source/Scene/VerticalOrigin'),
-    NearFarScalar: require('cesium/Source/Core/NearFarScalar')
+    NearFarScalar: require('cesium/Source/Core/NearFarScalar'),
+    Rectangle: require('cesium/Source/Core/Rectangle'),
+    ScreenSpaceEventHandler: require('cesium/Source/Core/ScreenSpaceEventHandler'),
+    ScreenSpaceEventType: require('cesium/Source/Core/ScreenSpaceEventType'),
+    KeyboardEventModifier: require('cesium/Source/Core/KeyboardEventModifier'),
+    Cartesian3: require('cesium/Source/Core/Cartesian3'),
+    Cartographic: require('cesium/Source/Core/Cartographic'),
+    Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
+    Math: require('cesium/Source/Core/Math')
   };
 }
 
@@ -142,6 +211,7 @@ function getModules() {
     .done(function (stationTemperatures, stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
         populateGlobe(stationTemperatures[0], stationLocations);
+        setupEventListeners();
       });
     })
     .fail(function (data, textStatus, error) {
