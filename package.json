@@ -1,7 +1,7 @@
 {
-  "name": "cesium-webpack-tutorial",
+  "name": "weather-stations",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shows 6000+ weather stations from 1800s to 2009",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --display-error-details",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cesium": "AnalyticalGraphicsInc/cesium#1.15",
+    "cesium": "cesium-1.17.0.tgz",
     "css-loader": "^0.14.1",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.2",
