@@ -31,6 +31,7 @@ viewer.scene.debugShowFramesPerSecond = true;
 viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
+viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
 
 //TODO: Base on lowest, highest, and average for 1960s
@@ -74,24 +75,16 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var stationEntitiesLength = stationEntities.length;
   var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
-  var $infoBox = $('.cesium-viewer-infoBoxContainer');
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
     stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
-    stationEntities[i].selectable = false;
     setStationAppearance(stationEntities[i]);
   }
 
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-    if (_.get(viewer, 'selectedEntity.selectable') === false) {
-      $infoBox.fadeOut();
-    }
-    else {
-      $infoBox.fadeIn();
-    }
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
     if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
@@ -107,10 +100,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
           stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
           stationEntities[i]._properties.temperature = temperature;
           stationEntities[i].show = true;
-          stationEntities[i].selectable = true;
         }
         else {
-          stationEntities[i].selectable = false;
           stationEntities[i].show = false;
         }
       }
