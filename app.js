@@ -117,7 +117,7 @@ function setupEventListeners() {
   var firstPoint = new Cesium.Cartographic(-0.1, -0.1);
   var firstPointSet = false;
   var mouseDown = false;
-  var selectionRegion;
+  var selector;
 
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
@@ -142,7 +142,7 @@ function setupEventListeners() {
       rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
       rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
       rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
-      selectionRegion.show = true;
+      selector.show = true;
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
 
@@ -157,7 +157,7 @@ function setupEventListeners() {
 
   //Hide the selector by clicking anywhere
   handler.setInputAction(function () {
-    selectionRegion.show = false;
+    selector.show = false;
     firstPointSet = false;
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -167,8 +167,8 @@ function setupEventListeners() {
   }, false);
 
 
-  selectionRegion = viewer.entities.add({
-    name: 'Selection Region',
+  selector = viewer.entities.add({
+    name: 'Selector',
     selectable: false,
     rectangle: {
       coordinates: getSelectorLocation,
