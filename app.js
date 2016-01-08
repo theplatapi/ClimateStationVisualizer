@@ -111,10 +111,10 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
 function setupEventListeners() {
   var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-  var rectangleSelector = new Cesium.Rectangle(0, 0, .1, .1);
+  var rectangleSelector = new Cesium.Rectangle();
   var cartesian = new Cesium.Cartesian3();
   var cartographic = new Cesium.Cartographic();
-  var firstPoint = new Cesium.Cartographic(-0.1, -0.1);
+  var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
   var mouseDown = false;
   var selector;
@@ -169,6 +169,7 @@ function setupEventListeners() {
   selector = viewer.entities.add({
     name: 'Selector',
     selectable: false,
+    show: false,
     rectangle: {
       coordinates: getSelectorLocation,
       material: Cesium.Color.BLACK.withAlpha(0.5),
