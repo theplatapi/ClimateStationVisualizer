@@ -158,7 +158,6 @@ function setupEventListeners() {
   //Hide the selector by clicking anywhere
   handler.setInputAction(function () {
     selector.show = false;
-    firstPointSet = false;
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 
