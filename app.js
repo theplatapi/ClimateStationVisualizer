@@ -117,6 +117,7 @@ function setupEventListeners() {
   var firstPoint = new Cesium.Cartographic(-0.1, -0.1);
   var firstPointSet = false;
   var mouseDown = false;
+  var selectionRegion;
 
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
@@ -141,6 +142,7 @@ function setupEventListeners() {
       rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
       rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
       rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
+      selectionRegion.show = true;
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
 
@@ -153,13 +155,19 @@ function setupEventListeners() {
     firstPointSet = false;
   }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
 
+  //Hide the selector by clicking anywhere
+  handler.setInputAction(function () {
+    selectionRegion.show = false;
+    firstPointSet = false;
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
     return Cesium.Rectangle.clone(rectangleSelector, result);
   }, false);
 
 
-  viewer.entities.add({
+  selectionRegion = viewer.entities.add({
     name: 'Selection Region',
     selectable: false,
     rectangle: {
