@@ -25,6 +25,8 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     multiplier: 41472000
   })
 });
+var selectedStations = new Cesium.EntityCollection();
+var selector;
 
 viewer.scene.debugShowFramesPerSecond = true;
 //Disable some unneeded camera operations
@@ -75,10 +77,13 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var stationEntitiesLength = stationEntities.length;
   var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+  var stationCartographic = new Cesium.Cartographic();
+  var selectorRectangle = new Cesium.Rectangle();
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
     stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
+    stationEntities[i].show = false;
     setStationAppearance(stationEntities[i]);
   }
 
@@ -91,20 +96,34 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Deep copy
       lastTime.year = timelineTime.year;
       lastTime.month = timelineTime.month;
+      //Stop the callbacks since we can be adding and removing a lot of items
+      selectedStations.suspendEvents();
 
       for (var i = 0; i < stationEntitiesLength; i++) {
         var stationId = stationEntities[i]._properties.stationId;
         var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
+        var wasShowing = stationEntities[i].show;
 
         if (temperature < 999) {
           stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
           stationEntities[i]._properties.temperature = temperature;
           stationEntities[i].show = true;
+
+          //Add to the selection group if under selector
+          if (selector.show && !wasShowing
+            && stationSelected(stationEntities[i],
+              selector.rectangle.coordinates.getValue(null, selectorRectangle), stationCartographic)) {
+            selectedStations.add(stationEntities[i]);
+          }
         }
         else {
           stationEntities[i].show = false;
+          selectedStations.remove(stationEntities[i]);
         }
       }
+
+      //Done updating so we can fire the callbacks again
+      selectedStations.resumeEvents();
     }
   });
 }
@@ -120,10 +139,6 @@ function setupEventListeners(stationLocations) {
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
   var mouseDown = false;
-  var selector;
-
-  //test
-  var selectCount = 0;
 
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
@@ -152,17 +167,23 @@ function setupEventListeners(stationLocations) {
         rectangleSelector.north = Math.max(mouseCartographic.latitude, firstPoint.latitude);
         rectangleSelector.south = Math.min(mouseCartographic.latitude, firstPoint.latitude);
         selector.show = true;
+        //Suspending and resuming events during batch update
+        selectedStations.suspendEvents();
 
         for (var i = 0; i < stationEntitiesLength; i++) {
           if (stationEntities[i].show) {
             if (stationSelected(stationEntities[i], rectangleSelector, stationCartographic)) {
-              selectCount++;
+              if (!selectedStations.contains(stationEntities[i])) {
+                selectedStations.add(stationEntities[i]);
+              }
+            }
+            else {
+              selectedStations.remove(stationEntities[i]);
             }
           }
         }
 
-        console.log('Selecting', selectCount);
-        selectCount = 0;
+        selectedStations.resumeEvents();
       }
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
@@ -179,8 +200,18 @@ function setupEventListeners(stationLocations) {
   //Hide the selector by clicking anywhere
   handler.setInputAction(function () {
     selector.show = false;
+    selectedStations.removeAll();
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
+  //Update histogram of temperatures whenever an item is added or removed from selection
+  selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
+    //TODO: Update a histogram
+
+    console.log('added', added.length);
+    console.log('removed', removed.length);
+    console.log('changed', changed.length);
+    console.log('');
+  });
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
     return Cesium.Rectangle.clone(rectangleSelector, result);
@@ -228,7 +259,8 @@ function getModules() {
     Cartesian3: require('cesium/Source/Core/Cartesian3'),
     Cartographic: require('cesium/Source/Core/Cartographic'),
     Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
-    Math: require('cesium/Source/Core/Math')
+    Math: require('cesium/Source/Core/Math'),
+    EntityCollection: require('cesium/Source/DataSources/EntityCollection')
   };
 }
 
