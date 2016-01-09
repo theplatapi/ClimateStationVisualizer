@@ -109,15 +109,21 @@ function populateGlobe(stationTemperatures, stationLocations) {
   });
 }
 
-function setupEventListeners() {
+function setupEventListeners(stationLocations) {
+  var stationEntities = stationLocations.entities.values;
+  var stationEntitiesLength = stationEntities.length;
   var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
   var rectangleSelector = new Cesium.Rectangle();
-  var cartesian = new Cesium.Cartesian3();
-  var cartographic = new Cesium.Cartographic();
+  var mouseCartesian = new Cesium.Cartesian3();
+  var mouseCartographic = new Cesium.Cartographic();
+  var stationCartographic = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
   var mouseDown = false;
   var selector;
+
+  //test
+  var selectCount = 0;
 
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
@@ -131,21 +137,32 @@ function setupEventListeners() {
       return;
     }
 
-    cartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
+    mouseCartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, mouseCartesian);
 
-    if (cartesian) {
-      cartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, cartographic);
+    if (mouseCartesian) {
+      mouseCartographic = Cesium.Cartographic.fromCartesian(mouseCartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
 
       if (!firstPointSet) {
-        Cesium.Cartographic.clone(cartographic, firstPoint);
+        Cesium.Cartographic.clone(mouseCartographic, firstPoint);
         firstPointSet = true;
       }
       else {
-        rectangleSelector.east = Math.max(cartographic.longitude, firstPoint.longitude);
-        rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
-        rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
-        rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
+        rectangleSelector.east = Math.max(mouseCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.west = Math.min(mouseCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.north = Math.max(mouseCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.south = Math.min(mouseCartographic.latitude, firstPoint.latitude);
         selector.show = true;
+
+        for (var i = 0; i < stationEntitiesLength; i++) {
+          if (stationEntities[i].show) {
+            if (stationSelected(stationEntities[i], rectangleSelector, stationCartographic)) {
+              selectCount++;
+            }
+          }
+        }
+
+        console.log('Selecting', selectCount);
+        selectCount = 0;
       }
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
@@ -183,6 +200,13 @@ function setupEventListeners() {
   });
 }
 
+function stationSelected(station, selector, stationCartographic) {
+  stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
+
+  return stationCartographic.longitude > selector.west && stationCartographic.longitude < selector.east
+    && stationCartographic.latitude < selector.north && stationCartographic.latitude > selector.south;
+}
+
 function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
@@ -214,7 +238,7 @@ function getModules() {
     .done(function (stationTemperatures, stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
         populateGlobe(stationTemperatures[0], stationLocations);
-        setupEventListeners();
+        setupEventListeners(stationLocations);
       });
     })
     .fail(function (data, textStatus, error) {
