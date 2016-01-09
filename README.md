@@ -38,15 +38,21 @@
          [] Find something cheaper than the rectangle mapped to the sphere
       [x] Have shape variable depending on mouse click and drag
       [] Output info about visible stations under the selection shape
-         [] 1st impl: Loop through all points checking for visibility
-         [] 2nd impl: If 1 is slow (it will be) then create quadtree with outline in comments and library
-             [] Convert cartographic with one decimal place to positive x, y
-                 * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
-                 * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-             [] If 1 and 2 can be done, build quadtree when reading in points
-             [] Query with the plane being drawn
-             [] Output # of stations selected
-             [] If slow, Figure out how to only query extend part of the plane. So only incrementally add/remove results.
+         [x] 1st impl: Loop through all points checking for visibility
+         [x] Incrementally update selected set while time is ticking
+         [] Show a sample histogram
+         [] Decide between quadtree or EntityCollection of visible points
+           [] Have entity collection of visible stations. Only iterate through them on mouse drag. This excludes culled
+              values on the other side of the globe, not just stations with missing temperatures
+           [] Create quadtree with provided library
+               * https://github.com/timohausmann/quadtree-js/
+               [] Convert cartographic with one decimal place to positive x, y
+                   * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
+                   * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
+               [] Build quadtree when reading in points
+               [] Query in stationSelected function
+               [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
+                  using start and end mouse positions from movement
          [] Show how many points are selected
       [] Show a histogram of the temperatures from selected stations
       [] Update the histogram as time progresses
@@ -74,6 +80,8 @@
       [] Web worker to load json weather and location files
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
+14) [] Update npm dependencies
+       [] See if newer versions will provide any speed enhancements
 
 Build steps
 1) npm pack in cesiumjs fork
