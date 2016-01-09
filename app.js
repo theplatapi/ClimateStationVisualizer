@@ -125,24 +125,28 @@ function setupEventListeners() {
     }
   });
 
+  //Draw the selector while the user drags the mouse while holding shift
   handler.setInputAction(function (movement) {
-    if (!mouseDown || !movement) {
+    if (!mouseDown) {
       return;
     }
 
     cartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
-    cartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, cartographic);
 
-    if (!firstPointSet) {
-      Cesium.Cartographic.clone(cartographic, firstPoint);
-      firstPointSet = true;
-    }
-    else {
-      rectangleSelector.east = Math.max(cartographic.longitude, firstPoint.longitude);
-      rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
-      rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
-      rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
-      selector.show = true;
+    if (cartesian) {
+      cartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, cartographic);
+
+      if (!firstPointSet) {
+        Cesium.Cartographic.clone(cartographic, firstPoint);
+        firstPointSet = true;
+      }
+      else {
+        rectangleSelector.east = Math.max(cartographic.longitude, firstPoint.longitude);
+        rectangleSelector.west = Math.min(cartographic.longitude, firstPoint.longitude);
+        rectangleSelector.north = Math.max(cartographic.latitude, firstPoint.latitude);
+        rectangleSelector.south = Math.min(cartographic.latitude, firstPoint.latitude);
+        selector.show = true;
+      }
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
 
