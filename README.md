@@ -38,11 +38,24 @@
          [] Find something cheaper than the rectangle mapped to the sphere
       [x] Have shape variable depending on mouse click and drag
       [] Output info about visible stations under the selection shape
-      [] Shows a histogram of the temperatures from selected stations
+         [] 1st impl: Loop through all points checking for visibility
+         [] 2nd impl: If 1 is slow (it will be) then create quadtree with outline in comments and library
+             [] Convert cartographic with one decimal place to positive x, y
+                 * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
+                 * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
+             [] If 1 and 2 can be done, build quadtree when reading in points
+             [] Query with the plane being drawn
+             [] Output # of stations selected
+             [] If slow, Figure out how to only query extend part of the plane. So only incrementally add/remove results.
+         [] Show how many points are selected
+      [] Show a histogram of the temperatures from selected stations
+      [] Update the histogram as time progresses
 11) [] Improve station colors - look at other visualizations
 12) [] Performance v2
       [] Hide entities that are not currently visible.
-         [] Use Occluder
+         [] Check if stations on other side of the globe get their colors updated
+         [] Check if hidden stations get their color updated
+         [] Use Occluder to hide points if they aren't already hidden or if updating.
       [] Reduce garbage collection
          [] See if entity.show=false makes Cesium allocate a new "node"
          [] Save and analyze a timeline
