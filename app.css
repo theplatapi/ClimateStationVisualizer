@@ -43,10 +43,11 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   margin-top: -0.5em;
 }
 
-/*#histogram {*/
-  /*position: absolute;*/
-  /*z-index: 1;*/
-/*}*/
+#histogram {
+  position: absolute;
+  top: 0;
+  padding: 5px;
+}
 
 .bar rect {
   fill: steelblue;
@@ -59,11 +60,11 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
 
 .axis path, .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #fff;
   shape-rendering: crispEdges;
 }
 
-.label {
+text {
   font: 10px sans-serif;
-  fill: #777;
+  fill: #fff;
 }

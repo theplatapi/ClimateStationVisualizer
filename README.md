@@ -40,7 +40,8 @@
       [] Output info about visible stations under the selection shape
          [x] 1st impl: Loop through all points checking for visibility
          [x] Incrementally update selected set while time is ticking
-         [] Show a sample histogram
+         [x] Show a sample histogram
+         [] Profile it
          [] Decide between quadtree or EntityCollection of visible points
            [] Have entity collection of visible stations. Only iterate through them on mouse drag. This excludes culled
               values on the other side of the globe, not just stations with missing temperatures
@@ -56,7 +57,9 @@
          [] Show how many points are selected
       [] Show a histogram of the temperatures from selected stations
       [] Update the histogram as time progresses
-11) [] Improve station colors - look at other visualizations
+11) [] Improve station colors
+        [] Find out actual domain of temperatures
+        [] Get an accurate range of colors climate visualizations use
 12) [] Performance v2
       [] Hide entities that are not currently visible.
          [] Check if stations on other side of the globe get their colors updated
