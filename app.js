@@ -4,7 +4,6 @@ require('./app.css');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
-var plotly = require("plotly.js");
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
@@ -205,29 +204,10 @@ function setupEventListeners(stationLocations) {
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   //Update histogram of temperatures whenever an item is added or removed from selection
-  var data = [
-    {
-      type: 'histogram'
-    }
-  ];
-
-  var layout = {
-    autosize: false,
-    width: 400,
-    height: 400,
-    margin: {
-      l: 0,
-      r: 0,
-      b: 0,
-      t: 0,
-      pad: 0
-    },
-    showlegend: false
-  };
-
   selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
-    data[0].x = _.pluck(collection.values, 'properties.temperature');
-    plotly.newPlot('histogram', data, layout, {showLink: false});
+    //All temperatures
+    //data[0].x = _.pluck(collection.values, 'properties.temperature');
+    createHistogram(_.pluck(collection.values, 'properties.temperature'));
   });
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
@@ -246,6 +226,103 @@ function setupEventListeners(stationLocations) {
       outlineColor: Cesium.Color.BLACK
     }
   });
+}
+
+//function updateHistogram(temperatures) {
+//  var svg = d3.select("#histogram").transition();
+//
+//  var data = d3.layout.histogram()
+//    .bins(x.ticks(5))(temperatures);
+//
+//  var y = d3.scale.linear()
+//    .domain([0, d3.max(data, function (d) {
+//      return d.y;
+//    })])
+//    .range([height, 0]);
+//
+//  svg.select(".bar")
+//    .duration(750)
+//    .attr("transform", function (d) {
+//      return "translate(" + x(d.x) + "," + y(d.y) + ")";
+//    });
+//}
+
+function createHistogram(temperatures) {
+  var margin = {top: 10, right: 30, bottom: 40, left: 55};
+  var width = 300 - margin.left - margin.right;
+  var height = 200 - margin.top - margin.bottom;
+
+  var x = d3.scale.linear()
+    .domain([-20, 40])
+    .range([0, width]);
+
+  var histogram = d3.layout.histogram()
+    .bins(x.ticks(5))(temperatures);
+
+  var numBins = histogram.length;
+
+  var y = d3.scale.linear()
+    .domain([0, d3.max(histogram, function (d) {
+      return d.y;
+    })])
+    .range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .ticks(5)
+    .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .ticks(5)
+    .outerTickSize(0)
+    .orient("left");
+
+  var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var bar = svg.selectAll(".bar")
+    .data(histogram)
+    .enter().append("g")
+    .attr("class", "bar")
+    .attr("transform", function (d) {
+      return "translate(" + x(d.x) + "," + y(d.y) + ")";
+    });
+
+  bar.append("rect")
+    .attr("x", 1)
+    .attr("width", width / numBins - 1)
+    .attr("height", function (d) {
+      return height - y(d.y);
+    });
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+  svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width / 2 + 40)
+    .attr("y", height + margin.bottom - 5)
+    .text("Temperature (°C)");
+
+  svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", -margin.left)
+    .attr("x", -height / 10)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("Weather stations selected");
 }
 
 function stationSelected(station, selector, stationCartographic) {
@@ -289,6 +366,7 @@ function getModules() {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
         populateGlobe(stationTemperatures[0], stationLocations);
         setupEventListeners(stationLocations);
+        //createHistogram();
       });
     })
     .fail(function (data, textStatus, error) {
