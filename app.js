@@ -4,6 +4,7 @@ require('./app.css');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+var plotly = require("plotly.js");
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
@@ -100,13 +101,13 @@ function populateGlobe(stationTemperatures, stationLocations) {
       selectedStations.suspendEvents();
 
       for (var i = 0; i < stationEntitiesLength; i++) {
-        var stationId = stationEntities[i]._properties.stationId;
+        var stationId = stationEntities[i].properties.stationId;
         var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
         var wasShowing = stationEntities[i].show;
 
         if (temperature < 999) {
           stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
-          stationEntities[i]._properties.temperature = temperature;
+          stationEntities[i].properties.temperature = temperature;
           stationEntities[i].show = true;
 
           //Add to the selection group if under selector
@@ -204,13 +205,29 @@ function setupEventListeners(stationLocations) {
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   //Update histogram of temperatures whenever an item is added or removed from selection
-  selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
-    //TODO: Update a histogram
+  var data = [
+    {
+      type: 'histogram'
+    }
+  ];
 
-    console.log('added', added.length);
-    console.log('removed', removed.length);
-    console.log('changed', changed.length);
-    console.log('');
+  var layout = {
+    autosize: false,
+    width: 400,
+    height: 400,
+    margin: {
+      l: 0,
+      r: 0,
+      b: 0,
+      t: 0,
+      pad: 0
+    },
+    showlegend: false
+  };
+
+  selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
+    data[0].x = _.pluck(collection.values, 'properties.temperature');
+    plotly.newPlot('histogram', data, layout, {showLink: false});
   });
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
@@ -232,6 +249,7 @@ function setupEventListeners(stationLocations) {
 }
 
 function stationSelected(station, selector, stationCartographic) {
+  //TODO: Switch away from underscore property
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
   return stationCartographic.longitude > selector.west && stationCartographic.longitude < selector.east
