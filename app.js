@@ -102,7 +102,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
       for (var i = 0; i < stationEntitiesLength; i++) {
         var stationId = stationEntities[i].properties.stationId;
-        var temperature = _.get(stationTemperatures, [stationId, timelineTime.year, timelineTime.month]);
+        var temperature = stationTemperatures[stationId][timelineTime.year]
+          && stationTemperatures[stationId][timelineTime.year][timelineTime.month];
         var wasShowing = stationEntities[i].show;
 
         if (temperature < 999) {
@@ -290,7 +291,7 @@ function createHistogram() {
     .attr("transform", "rotate(-90)")
     .text("Weather stations selected");
 
-  updateHistogram = function (temperatures) {
+  updateHistogram = function updateHistogram(temperatures) {
     var histogram = d3.layout.histogram()
       .bins(x.ticks(5))(temperatures);
 
