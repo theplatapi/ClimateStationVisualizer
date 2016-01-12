@@ -108,7 +108,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           && stationTemperatures[stationId][timelineTime.year][timelineTime.month];
         var wasShowing = stationEntities[i].show;
 
-        if (!culledStations.contains(stationEntities[i]) && temperature < 999) {
+        if (temperature < 999 && !culledStations.contains(stationEntities[i])) {
           stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
           stationEntities[i].properties.temperature = temperature;
           stationEntities[i].show = true;
