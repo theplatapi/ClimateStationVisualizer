@@ -28,6 +28,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 var selectedStations = new Cesium.EntityCollection();
 var selector;
 var $histogram = $('#histogram').hide();
+var updateHistogram;
 
 viewer.scene.debugShowFramesPerSecond = true;
 //Disable some unneeded camera operations
@@ -49,10 +50,6 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   cesiumColor.green = parseInt(color.substring(3, 5), 16) / 255;
   cesiumColor.blue = parseInt(color.substring(5, 7), 16) / 255;
 
-  //cesiumColor.red = temperature % 255;
-  //cesiumColor.green = Math.random();
-  //cesiumColor.blue = Math.random();
-
   return cesiumColor;
 };
 
@@ -61,6 +58,13 @@ var setStationAppearance = function (station) {
     result.red = station.color.red;
     result.green = station.color.green;
     result.blue = station.color.blue;
+
+    if (station.properties.stationId === 501943260000) {
+      console.log('Australia');
+    }
+    else if (station.properties.stationId === 425724510000) {
+      console.log('Dodge');
+    }
 
     return result;
   }, false);
@@ -133,7 +137,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
 function setupEventListeners(stationLocations) {
   var stationEntities = stationLocations.entities.values;
   var stationEntitiesLength = stationEntities.length;
-  var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
   var rectangleSelector = new Cesium.Rectangle();
   var mouseCartesian = new Cesium.Cartesian3();
   var mouseCartographic = new Cesium.Cartographic();
@@ -149,7 +153,7 @@ function setupEventListeners(stationLocations) {
   });
 
   //Draw the selector while the user drags the mouse while holding shift
-  handler.setInputAction(function (movement) {
+  screenSpaceEventHandler.setInputAction(function (movement) {
     if (!mouseDown) {
       return;
     }
@@ -190,18 +194,18 @@ function setupEventListeners(stationLocations) {
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
 
-  handler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function () {
     mouseDown = true;
     $histogram.fadeIn(100);
   }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
 
-  handler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function () {
     mouseDown = false;
     firstPointSet = false;
   }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
 
   //Hide the selector by clicking anywhere
-  handler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function () {
     selector.show = false;
     selectedStations.removeAll();
     $histogram.fadeOut();
@@ -209,13 +213,13 @@ function setupEventListeners(stationLocations) {
 
   //Update histogram of temperatures whenever an item is added or removed from selection
   selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
+    //TODO: Try making more efficient with just added and removed
     updateHistogram(_.pluck(collection.values, 'properties.temperature'));
   });
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
     return Cesium.Rectangle.clone(rectangleSelector, result);
   }, false);
-
 
   selector = viewer.entities.add({
     name: 'Selector',
@@ -228,10 +232,45 @@ function setupEventListeners(stationLocations) {
       outlineColor: Cesium.Color.BLACK
     }
   });
+
+  //TODO: Create new EntityCollection of culled stations. Clear it whenever camera movement starts and fill when starts.
+  //TODO: Trigger camera onStop after points are loaded
+  var camera = viewer.camera;
+  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 1);
+
+  //Clear all culled points so we can see everything when navigating. Then trigger an onTick event to redraw everything
+  //camera.moveStart.addEventListener(function () {
+  //  for (var i = 0; i < stationEntitiesLength; i++) {
+  //    stationEntities[i].show = true;
+  //  }
+  //});
+
+  //Hide points not in camera frustum
+  camera.moveEnd.addEventListener(function () {
+    var cullingVolume = camera.frustum.computeCullingVolume(camera.position, camera.direction, camera.up);
+    var ellipsoid = viewer.scene.globe.ellipsoid;
+    //TODO: Reuse one of the above ones
+    var cart3 = new Cesium.Cartesian3();
+
+    for (var i = 0; i < stationEntitiesLength; i++) {
+      var stationPosition = stationEntities[i]._position._value;
+      //TODO: Pre-compute this and store in entity?
+      var stationNormal = ellipsoid.geocentricSurfaceNormal(stationPosition, cart3);
+      var dotProduct = Cesium.Cartesian3.dot(stationNormal, viewer.camera.direction);
+
+      if (Math.sign(dotProduct) === -1) {
+        //visible, test if in camera frustum
+        boundingSphere.center = stationPosition;
+        stationEntities[i].show = cullingVolume.computeVisibility(boundingSphere) !== Cesium.Intersect.OUTSIDE;
+      }
+      else {
+        stationEntities[i].show = false;
+      }
+    }
+  });
 }
 
-var updateHistogram;
-
+//TODO: Make updateHistogram closure env smaller
 function createHistogram() {
   var margin = {top: 10, right: 30, bottom: 40, left: 55};
   var width = 300 - margin.left - margin.right;
@@ -358,7 +397,9 @@ function getModules() {
     Cartographic: require('cesium/Source/Core/Cartographic'),
     Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
     Math: require('cesium/Source/Core/Math'),
-    EntityCollection: require('cesium/Source/DataSources/EntityCollection')
+    EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
+    Intersect: require('cesium/Source/Core/Intersect'),
+    BoundingSphere: require('cesium/Source/Core/BoundingSphere')
   };
 }
 
