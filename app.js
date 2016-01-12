@@ -55,7 +55,7 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   return cesiumColor;
 };
 
-var setStationAppearance = function (station) {
+var setStationAppearance = function setStationAppearance(station) {
   var getColor = new Cesium.CallbackProperty(function getColor(time, result) {
     result.red = station.color.red;
     result.green = station.color.green;
@@ -151,7 +151,7 @@ function setupEventListeners(stationLocations) {
   });
 
   //Draw the selector while the user drags the mouse while holding shift
-  screenSpaceEventHandler.setInputAction(function (movement) {
+  screenSpaceEventHandler.setInputAction(function drawSelector(movement) {
     if (!mouseDown) {
       return;
     }
@@ -192,25 +192,25 @@ function setupEventListeners(stationLocations) {
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
 
-  screenSpaceEventHandler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function startClickShift() {
     mouseDown = true;
     $histogram.fadeIn(100);
   }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
 
-  screenSpaceEventHandler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function endClickShift() {
     mouseDown = false;
     firstPointSet = false;
   }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
 
   //Hide the selector by clicking anywhere
-  screenSpaceEventHandler.setInputAction(function () {
+  screenSpaceEventHandler.setInputAction(function hideSelector() {
     selector.show = false;
     selectedStations.removeAll();
     $histogram.fadeOut();
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   //Update histogram of temperatures whenever an item is added or removed from selection
-  selectedStations.collectionChanged.addEventListener(function (collection, added, removed, changed) {
+  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
     //TODO: Try making more efficient with just added and removed
     updateHistogram(_.pluck(collection.values, 'properties.temperature'));
   });
@@ -235,7 +235,7 @@ function setupEventListeners(stationLocations) {
   var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
 
   //Cull points on the other side of the globe or not in the camera frustum
-  camera.moveEnd.addEventListener(function () {
+  camera.moveEnd.addEventListener(function moveEndListener() {
     var cullingVolume = camera.frustum.computeCullingVolume(camera.position, camera.direction, camera.up);
 
     for (var i = 0; i < stationEntitiesLength; i++) {
@@ -394,7 +394,7 @@ function getModules() {
 }
 
 //main
-(function () {
+(function main() {
   $.when($.getJSON('./climateData/stationTemps.json'), $.getJSON('./climateData/stationLocations.json'))
     .done(function (stationTemperatures, stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
