@@ -244,7 +244,7 @@ function setupEventListeners(stationLocations) {
       var dotProduct = Cesium.Cartesian3.dot(stationNormal, viewer.camera.direction);
       boundingSphere.center = stationPosition;
 
-      if (Math.sign(dotProduct) === 1 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
+      if (dotProduct > 0 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
         if (!culledStations.contains(stationEntities[i])) {
           culledStations.add(stationEntities[i]);
         }
