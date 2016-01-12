@@ -26,9 +26,11 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   })
 });
 var selectedStations = new Cesium.EntityCollection();
+var culledStations = new Cesium.EntityCollection();
 var selector;
 var $histogram = $('#histogram').hide();
 var updateHistogram;
+var redraw = false;
 
 viewer.scene.debugShowFramesPerSecond = true;
 //Disable some unneeded camera operations
@@ -59,13 +61,6 @@ var setStationAppearance = function (station) {
     result.green = station.color.green;
     result.blue = station.color.blue;
 
-    if (station.properties.stationId === 501943260000) {
-      console.log('Australia');
-    }
-    else if (station.properties.stationId === 425724510000) {
-      console.log('Dodge');
-    }
-
     return result;
   }, false);
 
@@ -89,6 +84,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
     stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
     stationEntities[i].show = false;
+    stationEntities[i].normal = viewer.scene.globe.ellipsoid
+      .geocentricSurfaceNormal(stationEntities[i]._position._value, new Cesium.Cartesian3());
     setStationAppearance(stationEntities[i]);
   }
 
@@ -97,10 +94,11 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
-    if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
+    if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year || redraw) {
       //Deep copy
       lastTime.year = timelineTime.year;
       lastTime.month = timelineTime.month;
+      redraw = false;
       //Stop the callbacks since we can be adding and removing a lot of items
       selectedStations.suspendEvents();
 
@@ -110,7 +108,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           && stationTemperatures[stationId][timelineTime.year][timelineTime.month];
         var wasShowing = stationEntities[i].show;
 
-        if (temperature < 999) {
+        if (!culledStations.contains(stationEntities[i]) && temperature < 999) {
           stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
           stationEntities[i].properties.temperature = temperature;
           stationEntities[i].show = true;
@@ -139,7 +137,7 @@ function setupEventListeners(stationLocations) {
   var stationEntitiesLength = stationEntities.length;
   var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
   var rectangleSelector = new Cesium.Rectangle();
-  var mouseCartesian = new Cesium.Cartesian3();
+  var cartesian = new Cesium.Cartesian3();
   var mouseCartographic = new Cesium.Cartographic();
   var stationCartographic = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
@@ -158,10 +156,10 @@ function setupEventListeners(stationLocations) {
       return;
     }
 
-    mouseCartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, mouseCartesian);
+    cartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
 
-    if (mouseCartesian) {
-      mouseCartographic = Cesium.Cartographic.fromCartesian(mouseCartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
+    if (cartesian) {
+      mouseCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
 
       if (!firstPointSet) {
         Cesium.Cartographic.clone(mouseCartographic, firstPoint);
@@ -233,41 +231,33 @@ function setupEventListeners(stationLocations) {
     }
   });
 
-  //TODO: Create new EntityCollection of culled stations. Clear it whenever camera movement starts and fill when starts.
-  //TODO: Trigger camera onStop after points are loaded
   var camera = viewer.camera;
-  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 1);
+  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
 
-  //Clear all culled points so we can see everything when navigating. Then trigger an onTick event to redraw everything
-  //camera.moveStart.addEventListener(function () {
-  //  for (var i = 0; i < stationEntitiesLength; i++) {
-  //    stationEntities[i].show = true;
-  //  }
-  //});
-
-  //Hide points not in camera frustum
+  //Cull points on the other side of the globe or not in the camera frustum
   camera.moveEnd.addEventListener(function () {
     var cullingVolume = camera.frustum.computeCullingVolume(camera.position, camera.direction, camera.up);
-    var ellipsoid = viewer.scene.globe.ellipsoid;
-    //TODO: Reuse one of the above ones
-    var cart3 = new Cesium.Cartesian3();
 
     for (var i = 0; i < stationEntitiesLength; i++) {
       var stationPosition = stationEntities[i]._position._value;
-      //TODO: Pre-compute this and store in entity?
-      var stationNormal = ellipsoid.geocentricSurfaceNormal(stationPosition, cart3);
+      var stationNormal = stationEntities[i].normal;
       var dotProduct = Cesium.Cartesian3.dot(stationNormal, viewer.camera.direction);
+      boundingSphere.center = stationPosition;
 
-      if (Math.sign(dotProduct) === -1) {
-        //visible, test if in camera frustum
-        boundingSphere.center = stationPosition;
-        stationEntities[i].show = cullingVolume.computeVisibility(boundingSphere) !== Cesium.Intersect.OUTSIDE;
+      if (Math.sign(dotProduct) === 1 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
+        if (!culledStations.contains(stationEntities[i])) {
+          culledStations.add(stationEntities[i]);
+        }
       }
       else {
-        stationEntities[i].show = false;
+        culledStations.remove(stationEntities[i]);
       }
     }
+    redraw = true;
   });
+
+  //Raise the event so we can do initial culling
+  camera.moveEnd.raiseEvent();
 }
 
 //TODO: Make updateHistogram closure env smaller
