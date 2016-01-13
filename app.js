@@ -212,7 +212,7 @@ function setupEventListeners(stationLocations) {
   //Update histogram of temperatures whenever an item is added or removed from selection
   selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
     //TODO: Try making more efficient with just added and removed
-    updateHistogram(_.pluck(collection.values, 'properties.temperature'));
+    updateHistogram(_.map(collection.values, 'properties.temperature'));
   });
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
