@@ -12,6 +12,10 @@
   opacity: 0.7;
 }
 
+.cesium-animation-svgText {
+  font-size: 16px;
+}
+
 button.cesium-infoBox-camera, .cesium-infoBox-title {
   display: none;
 }

@@ -25,6 +25,14 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     multiplier: 31104000
   })
 });
+
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+viewer._animation._viewModel._dateFormatter = function(date) {
+  var gregorianDate = Cesium.JulianDate.toGregorianDate(date);
+  return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
+};
+viewer._animation._viewModel._timeFormatter = function () {};
+
 var selectedStations = new Cesium.EntityCollection();
 var visibleStations = new Cesium.EntityCollection();
 var selector;
@@ -339,7 +347,7 @@ function createHistogram() {
     svg.selectAll(".bar")
       .data(histogram)
       .transition()
-      .duration(200)
+      .duration(100)
       .attr("transform", function (d) {
         return "translate(" + x(d.x) + "," + y(d.y) + ")";
       });
@@ -347,7 +355,7 @@ function createHistogram() {
     svg.selectAll("rect")
       .data(histogram)
       .transition()
-      .duration(200)
+      .duration(100)
       .attr("height", function (d) {
         return height - y(d.y);
       });
