@@ -26,7 +26,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   })
 });
 var selectedStations = new Cesium.EntityCollection();
-var culledStations = new Cesium.EntityCollection();
+var visibleStations = new Cesium.EntityCollection();
 var selector;
 var $histogram = $('#histogram').hide();
 var updateHistogram;
@@ -102,27 +102,27 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Stop the callbacks since we can be adding and removing a lot of items
       selectedStations.suspendEvents();
 
-      for (var i = 0; i < stationEntitiesLength; i++) {
-        var stationId = stationEntities[i].properties.stationId;
+      for (var i = 0; i < visibleStations.values.length; i++) {
+        var stationEntity = visibleStations.values[i];
+        var stationId = stationEntity.properties.stationId;
         var temperature = stationTemperatures[stationId][timelineTime.year]
           && stationTemperatures[stationId][timelineTime.year][timelineTime.month];
-        var wasShowing = stationEntities[i].show;
+        var wasShowing = stationEntity.show;
 
-        if (temperature < 999 && !culledStations.contains(stationEntities[i])) {
-          stationEntities[i].color = stationColorScale(temperature, stationEntities[i].color);
-          stationEntities[i].properties.temperature = temperature;
-          stationEntities[i].show = true;
+        if (temperature < 999) {
+          stationEntity.color = stationColorScale(temperature, stationEntity.color);
+          stationEntity.properties.temperature = temperature;
+          stationEntity.show = true;
 
           //Add to the selection group if under selector
           if (selector.show && !wasShowing
-            && stationSelected(stationEntities[i],
-              selector.rectangle.coordinates.getValue(null, selectorRectangle), stationCartographic)) {
-            selectedStations.add(stationEntities[i]);
+            && stationSelected(stationEntity, selector.rectangle.coordinates.getValue(null, selectorRectangle), stationCartographic)) {
+            selectedStations.add(stationEntity);
           }
         }
         else {
-          stationEntities[i].show = false;
-          selectedStations.remove(stationEntities[i]);
+          stationEntity.show = false;
+          selectedStations.remove(stationEntity);
         }
       }
 
@@ -245,12 +245,11 @@ function setupEventListeners(stationLocations) {
       boundingSphere.center = stationPosition;
 
       if (dotProduct > 0 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
-        if (!culledStations.contains(stationEntities[i])) {
-          culledStations.add(stationEntities[i]);
-        }
+        visibleStations.remove(stationEntities[i]);
+        stationEntities[i].show = false;
       }
-      else {
-        culledStations.remove(stationEntities[i]);
+      else if (!visibleStations.contains(stationEntities[i])) {
+        visibleStations.add(stationEntities[i]);
       }
     }
     redraw = true;
