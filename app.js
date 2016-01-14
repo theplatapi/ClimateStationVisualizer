@@ -118,7 +118,9 @@ function populateGlobe(stationTemperatures, stationLocations) {
           //Add to the selection group if under selector
           if (selector.show && !wasShowing
             && stationSelected(stationEntity, selector.rectangle.coordinates.getValue(null, selectorRectangle), stationCartographic)) {
-            selectedStations.add(stationEntity);
+            if (!selectedStations.contains(stationEntity)) {
+              selectedStations.add(stationEntity);
+            }
           }
         }
         else {
