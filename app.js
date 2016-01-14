@@ -22,7 +22,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     clockRange: Cesium.ClockRange.CLAMPED,
     canAnimate: false,
     shouldAnimate: false,
-    multiplier: 41472000
+    multiplier: 31104000
   })
 });
 var selectedStations = new Cesium.EntityCollection();
@@ -283,7 +283,7 @@ function createHistogram() {
 
   //Temporary to create bars
   var tempHistogram = d3.layout.histogram()
-    .bins(x.ticks(5))([]);
+    .bins(x.ticks(5))(d3.range(10).map(d3.random.bates(10)));
   var numBins = tempHistogram.length;
 
   //Create elements, but with no data
@@ -339,6 +339,7 @@ function createHistogram() {
     svg.selectAll(".bar")
       .data(histogram)
       .transition()
+      .duration(200)
       .attr("transform", function (d) {
         return "translate(" + x(d.x) + "," + y(d.y) + ")";
       });
@@ -346,12 +347,14 @@ function createHistogram() {
     svg.selectAll("rect")
       .data(histogram)
       .transition()
+      .duration(200)
       .attr("height", function (d) {
         return height - y(d.y);
       });
 
     svg.select(".y.axis")
       .transition()
+      .duration(200)
       .call(yAxis);
   }
 }
