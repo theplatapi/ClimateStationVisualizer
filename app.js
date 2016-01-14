@@ -26,13 +26,6 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   })
 });
 
-var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-viewer._animation._viewModel._dateFormatter = function(date) {
-  var gregorianDate = Cesium.JulianDate.toGregorianDate(date);
-  return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
-};
-viewer._animation._viewModel._timeFormatter = function () {};
-
 var selectedStations = new Cesium.EntityCollection();
 var visibleStations = new Cesium.EntityCollection();
 var selector;
@@ -182,16 +175,14 @@ function setupEventListeners(stationLocations) {
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
 
-        for (var i = 0; i < stationEntitiesLength; i++) {
-          if (stationEntities[i].show) {
-            if (stationSelected(stationEntities[i], rectangleSelector, stationCartographic)) {
-              if (!selectedStations.contains(stationEntities[i])) {
-                selectedStations.add(stationEntities[i]);
-              }
-            }
-            else {
-              selectedStations.remove(stationEntities[i]);
-            }
+        for (var i = 0; i < visibleStations.values.length; i++) {
+          var stationEntity = visibleStations.values[i];
+
+          if (!stationSelected(stationEntities[i], rectangleSelector, stationCartographic)) {
+            selectedStations.remove(stationEntity);
+          }
+          else if (!selectedStations.contains(stationEntity)) {
+            selectedStations.add(stationEntity);
           }
         }
 
@@ -238,6 +229,16 @@ function setupEventListeners(stationLocations) {
       outlineColor: Cesium.Color.BLACK
     }
   });
+
+  //Customize the date output and remove the time output on the time animation widget
+  var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+  viewer._animation._viewModel._dateFormatter = function (date) {
+    gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
+    return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
+  };
+  viewer._animation._viewModel._timeFormatter = function () {
+  };
 
   var camera = viewer.camera;
   var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
@@ -368,7 +369,6 @@ function createHistogram() {
 }
 
 function stationSelected(station, selector, stationCartographic) {
-  //TODO: Switch away from underscore property
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
   return stationCartographic.longitude > selector.west && stationCartographic.longitude < selector.east
