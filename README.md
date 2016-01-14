@@ -32,46 +32,45 @@
       [] Add location info for stations missing it
          [x] Rerun geolocator to generate file of missing stations
          [] Add 100+ missing stations
-10) [] Add brushing and linking
-      [] Draw a shape to represent the selection
+10) [x] Add brushing and linking
+      [x] Draw a shape to represent the selection
          [x] Draw a rectangle
-         [] Find something cheaper than the rectangle mapped to the sphere
       [x] Have shape variable depending on mouse click and drag
-      [] Output info about visible stations under the selection shape
+      [x] Output info about visible stations under the selection shape
          [x] 1st impl: Loop through all points checking for visibility
          [x] Incrementally update selected set while time is ticking
          [x] Show a sample histogram
-         [] Profile it
-         [] Decide between quadtree or EntityCollection of visible points
-           [] Have entity collection of visible stations. Only iterate through them on mouse drag. This excludes culled
-              values on the other side of the globe, not just stations with missing temperatures
-           [] Create quadtree with provided library
-               * https://github.com/timohausmann/quadtree-js/
-               [] Convert cartographic with one decimal place to positive x, y
-                   * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
-                   * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-               [] Build quadtree when reading in points
-               [] Query in stationSelected function
-               [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
-                  using start and end mouse positions from movement
-         [] Show how many points are selected
-      [] Show a histogram of the temperatures from selected stations
-      [] Update the histogram as time progresses
+         [x] Profile it
+         [x] Entity collection of non-culled stations
+      [x] Show a histogram of the temperatures from selected stations
+      [x] Update the histogram as time progresses
 11) [] Improve station colors
         [] Find out actual domain of temperatures
         [] Get an accurate range of colors climate visualizations use
 12) [] Performance v2
-      [] Hide entities that are not currently visible.
-         [] Check if stations on other side of the globe get their colors updated
-         [] Check if hidden stations get their color updated
-         [] Use Occluder to hide points if they aren't already hidden or if updating.
+      [x] Hide entities that are not currently visible.
+         [x] Check if stations on other side of the globe get their colors updated
+         [x] Check if hidden stations get their color updated
+         [x] Use Occluder to hide points if they aren't already hidden or if updating.
       [] Reduce garbage collection
-         [] See if entity.show=false makes Cesium allocate a new "node"
-         [] Save and analyze a timeline
+        [] See if SVG time element is cause for node leaks
+        [] See if entity.show=false makes Cesium allocate a new "node"
+        [] See if D3 color strings are the cause
+        [] Save and analyze a timeline
+      [] Improve histogram selector
+        [] Make drag shape a fixed rectangle that can draw much easier
+        [] Disable it's selection, so nothing appears when clicked on exiting
       [] Improve speed of D3 coloring
          [] Stop outputting strings for color
-      [] Try removing unnecessary billboard properties
-      [] Analyze all >1000ms processes
+      [] Create quadtree for showing points on camera move
+         * https://github.com/timohausmann/quadtree-js/
+         [] Convert cartographic with one decimal place to positive x, y
+             * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
+             * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
+         [] Build quadtree when reading in points
+         [] Query in stationSelected function
+         [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
+            using start and end mouse positions from movement
 12) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
@@ -79,16 +78,17 @@
       [x] Prevent changing the scale of the timeline
       [] Show loading wheel while getting files
       [] Prevent timeline from being zoomed in on
+      [x] Remove day from date display
+      [x] Remove time display
 13) [] Fix UI hangs on file load
       [] Web worker to load json weather and location files
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-14) [] Update npm dependencies
-       [] See if newer versions will provide any speed enhancements
+14) [x] Update npm dependencies
 
 Build steps
 1) npm pack in cesiumjs fork
 2) Copy .tgz to webpack project
-3) Delete cesium folder in node_modules (TODO: Find way to clear npm cache)
+3) Delete cesium folder in node_modules
 4) Run npm install in webpack project
 5) npm run in webpack project
