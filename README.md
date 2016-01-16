@@ -44,47 +44,47 @@
          [x] Entity collection of non-culled stations
       [x] Show a histogram of the temperatures from selected stations
       [x] Update the histogram as time progresses
-11) [] Improve station colors
-        [] Find out actual domain of temperatures
-        [] Get an accurate range of colors climate visualizations use
-12) [] Performance v2
-      [x] Hide entities that are not currently visible.
-         [x] Check if stations on other side of the globe get their colors updated
-         [x] Check if hidden stations get their color updated
-         [x] Use Occluder to hide points if they aren't already hidden or if updating.
-      [] Reduce garbage collection
+11) [] Add a spatial data structure
+       [] Add a quad tree, and query it with the view frustrum.
+       [] From that set, then eliminate points on the other side of the globe, if necessary
+       [] quadtree
+           * https://github.com/timohausmann/quadtree-js/
+           [] Convert cartographic with one decimal place to positive x, y
+               * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
+               * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
+           [] Build quadtree when reading in points
+           [] Query in stationSelected function
+           [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
+              using start and end mouse positions from movement
+       [] Query it as the camera moves
+12) [] Find memory leak
+        [] Test cesium no additions, running
+        [] Test cesium no additions, running at our speed
+        [] Slowly add features on and see when the memory leak starts
+
+        Ideas:
         [] See if SVG time element is cause for node leaks
         [] See if entity.show=false makes Cesium allocate a new "node"
         [] See if D3 color strings are the cause
-        [] Save and analyze a timeline
-      [] Improve histogram selector
+13) [] Improve station colors
+        [] Find out actual domain of temperatures
+        [] Get an accurate range of colors climate visualizations use
+14) [] Improve histogram selector
         [] Make drag shape a fixed rectangle that can draw much easier
-        [] Disable it's selection, so nothing appears when clicked on exiting
-      [] Improve speed of D3 coloring
-         [] Stop outputting strings for color
-      [] Create quadtree for showing points on camera move
-         * https://github.com/timohausmann/quadtree-js/
-         [] Convert cartographic with one decimal place to positive x, y
-             * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
-             * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-         [] Build quadtree when reading in points
-         [] Query in stationSelected function
-         [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
-            using start and end mouse positions from movement
+        [] Disable its selection, so nothing appears when clicked on exiting
 12) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
       [x] Hide x213879124 since it's distracting
       [x] Prevent changing the scale of the timeline
-      [] Show loading wheel while getting files
-      [] Prevent timeline from being zoomed in on
       [x] Remove day from date display
       [x] Remove time display
+      [] Show loading wheel while getting files
+      [] Prevent timeline from being zoomed in on
 13) [] Fix UI hangs on file load
-      [] Web worker to load json weather and location files
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-14) [x] Update npm dependencies
+      [] Web worker to load json weather and location files
 
 Build steps
 1) npm pack in cesiumjs fork
