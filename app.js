@@ -289,12 +289,9 @@ function setupEventListeners(stationLocations) {
     var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
     var remaining = (spatialSelector.width - spatialSelector.x * 2) / 2;
 
-    //TODO: Why is this and other points near 3600 not appearing?
-    console.log(stationLocations.entities.getById("504916290000"));
-
     if (remaining > 0) {
       spatialSelector.width = remaining;
-      spatialSelector.x = 3600 - remaining;
+      spatialSelector.x = 3600 - remaining + spatialSelector.width / 2;
       eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
       console.log('spatialSelectorRemaining', spatialSelector);
     }
