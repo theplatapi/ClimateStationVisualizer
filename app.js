@@ -287,6 +287,7 @@ function setupEventListeners(stationLocations) {
     //console.log('spatialSelector', spatialSelector);
 
     var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
+    //Handles frustum crossing anti-meridianLab
     var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
     var remainingRight = (spatialSelector.width - (3600 - spatialSelector.x)) / 2;
 

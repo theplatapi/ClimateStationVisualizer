@@ -51,7 +51,7 @@
            [x] Convert cartographic with one decimal place to positive x, y
                * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
                * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-           [] Figure out what to do at "end" of grid. Area near Japan/Alaska where 120 longitude is. 2 queries?
+           [] Fix anti-meridian queries
               [x] Handle crossing to left
               [] Handle crossing to right
        [] Query it as the camera moves
