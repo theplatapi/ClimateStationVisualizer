@@ -5,14 +5,16 @@ module.exports = (function () {
 
   function makeKeysFn(shift) {
     return function (obj) {
-      var sx = obj.x >> shift,
-        sy = obj.y >> shift,
-        ex = (obj.x + obj.width) >> shift,
-        ey = (obj.y + obj.height) >> shift,
-        x, y, keys = [];
+      var startX = (obj.x - obj.width / 2) >> shift;
+      var startY = (obj.y - obj.height / 2) >> shift;
+      var endX = (obj.x + obj.width / 2) >> shift;
+      var endY = (obj.y + obj.height / 2) >> shift;
+      var x;
+      var y;
+      var keys = [];
 
-      for (y = sy; y <= ey; y++) {
-        for (x = sx; x <= ex; x++) {
+      for (y = startY; y <= endY; y++) {
+        for (x = startX; x <= endX; x++) {
           keys.push(x + ":" + y);
         }
       }
