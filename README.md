@@ -46,14 +46,18 @@
       [x] Update the histogram as time progresses
 11) [] Add a spatial data structure
        [x] Add a spatial hash, and query it with the view frustum.
-       [] spatial hash
+       [] Spatial hash
            * https://github.com/timohausmann/quadtree-js/
            [x] Convert cartographic with one decimal place to positive x, y
                * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
                * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-           [] Query in stationSelected function
            [] Figure out what to do at "end" of grid. Area near Japan/Alaska where 120 longitude is. 2 queries?
+              [x] Handle crossing to left
+              [] Handle crossing to right
        [] Query it as the camera moves
+          [] Don't do it every frame. Figure out good move delta to do queries.
+          [] Initialize delta high so it does initial render
+       [] Use spatial hash for selector
 12) [] Find memory leak
         [] Test cesium no additions, running
         [] Test cesium no additions, running at our speed
