@@ -79,12 +79,14 @@
       [x] Prevent changing the scale of the timeline
       [x] Remove day from date display
       [x] Remove time display
+      [] Prevent time display flashing - add it earlier?
       [] Show loading wheel while getting files
       [] Prevent timeline from being zoomed in on
 13) [] Fix UI hangs on file load
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
+14) [] Rewrite in ES6 to future proof it
 
 Build steps
 1) npm pack in cesiumjs fork
