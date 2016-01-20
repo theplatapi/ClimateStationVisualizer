@@ -4,6 +4,7 @@ require('./app.css');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+var SpatialHash = require('./spatialHash.js');
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
@@ -85,8 +86,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
     stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
     stationEntities[i].show = false;
-    stationEntities[i].normal = viewer.scene.globe.ellipsoid
-      .geocentricSurfaceNormal(stationEntities[i]._position._value, new Cesium.Cartesian3());
     setStationAppearance(stationEntities[i]);
   }
 
@@ -151,7 +150,6 @@ function setupEventListeners(stationLocations) {
   var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
 
   var camera = viewer.camera;
-  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
 
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
@@ -255,12 +253,22 @@ function setupEventListeners(stationLocations) {
     return Math.round((Cesium.CesiumMath.toDegrees(latitude) + 90) * 10);
   };
 
+  //Build spatial hash
+  var spatialHash = new SpatialHash(4);
 
-  //TODO: Use spatial hashing to query subset of points for visibility
-  //1) Get size of the frustum on earth's surface - width & height
-  //2) Get center (x, y) of the frustum
-  //3) Feed into spacial hash
-  //Cull points on the other side of the globe or not in the camera frustum
+  for (var i = 0; i < stationEntitiesLength; i++) {
+    var position = Cesium.Cartographic.fromCartesian(stationEntities[i]._position._value);
+    var entry = {
+      x: convertLongitude(position.longitude),
+      y: convertLatitude(position.latitude),
+      width: 30 / 111111, //30 meters
+      height: 30 / 111111,
+      id: stationEntities[i].id
+    };
+
+    spatialHash.insert(entry);
+  }
+
   var spatialSelector = {
     x: 0,
     y: 0,
@@ -269,43 +277,33 @@ function setupEventListeners(stationLocations) {
   };
 
   camera.moveEnd.addEventListener(function moveEndListener() {
-    var cullingVolume = camera.frustum.computeCullingVolume(camera.position, camera.direction, camera.up);
     var frustumHeight = 2 * camera.positionCartographic.height * Math.tan(camera.frustum.fov * 0.5) / 111111;
     var frustumWidth = frustumHeight * camera.frustum.aspectRatio;
 
-    spatialSelector.x = camera.positionCartographic.longitude;
-    spatialSelector.y = camera.positionCartographic.latitude;
-    spatialSelector.width = frustumWidth;
-    spatialSelector.height= frustumHeight;
+    spatialSelector.x = convertLongitude(camera.positionCartographic.longitude);
+    spatialSelector.y = convertLatitude(camera.positionCartographic.latitude);
+    spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
+    spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
+    //console.log('spatialSelector', spatialSelector);
 
-    //console.log('Frustum height in meters', frustumHeight);
-    //console.log('Frustum height in latitude', frustumHeight);
-    //console.log('Frustum width in longitude', frustumWidth);
-    //console.log('Input distance', camera.positionCartographic.height);
-    //console.log('Extrapolated distance', frustumHeight * 0.5 / Math.tan(camera.frustum.fov * 0.5));
+    var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
+    var toHideIds = _.chain(stationEntities).map('id').difference(eligibleEntityIds).value();
 
-    //TODO: Get x, y, (center) width, and height of current view.
-    //console.log('Raw camera position', camera.position);
-    //console.log('Camera position', convertLongitude(camera.positionCartographic.longitude), convertLatitude(camera.positionCartographic.latitude));
-    //console.log('distance', camera.positionCartographic.height);
-    //console.log('fov', Cesium.CesiumMath.toDegrees(camera.frustum.fov));
-    //console.log('Culling planes', cullingVolume.planes);
-    //console.log('');
+    //console.log('Selected', eligibleEntityIds.length);
+    for (var i = 0; i < eligibleEntityIds.length; i++) {
+      var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
 
-    for (var i = 0; i < stationEntitiesLength; i++) {
-      var stationPosition = stationEntities[i]._position._value;
-      var stationNormal = stationEntities[i].normal;
-      var dotProduct = Cesium.Cartesian3.dot(stationNormal, viewer.camera.direction);
-
-      boundingSphere.center = stationPosition;
-
-      if (dotProduct > 0 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
-        visibleStations.remove(stationEntities[i]);
-        stationEntities[i].show = false;
+      if (!visibleStations.contains(stationEntity)) {
+        visibleStations.add(stationEntity);
       }
-      else if (!visibleStations.contains(stationEntities[i])) {
-        visibleStations.add(stationEntities[i]);
-      }
+    }
+
+    //Hide stations not in spatial query
+    for (var j = 0; j < toHideIds.length; j++) {
+      var stationEntity2 = stationLocations.entities.getById(toHideIds[j]);
+
+      stationEntity2.show = false;
+      visibleStations.remove(stationEntity2);
     }
 
     redraw = true;
