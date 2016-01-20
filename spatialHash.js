@@ -13,7 +13,7 @@ module.exports = (function () {
 
       for (y = sy; y <= ey; y++) {
         for (x = sx; x <= ex; x++) {
-          keys.push("" + x + ":" + y);
+          keys.push(x + ":" + y);
         }
       }
 
