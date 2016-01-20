@@ -147,6 +147,12 @@ function setupEventListeners(stationLocations) {
   var firstPointSet = false;
   var mouseDown = false;
 
+  var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+
+  var camera = viewer.camera;
+  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
+
   $(document).on('keydown', function onKeydown(event) {
     if (event.keyCode === 32) {
       viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
@@ -233,26 +239,64 @@ function setupEventListeners(stationLocations) {
   });
 
   //Customize the date output and remove the time output on the time animation widget
-  var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   viewer._animation._viewModel._dateFormatter = function (date) {
     gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
     return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
   };
+
   viewer._animation._viewModel._timeFormatter = function () {
   };
 
-  var camera = viewer.camera;
-  var boundingSphere = new Cesium.BoundingSphere(Cesium.Cartesian3.ZERO, 0.5);
+  var convertLongitude = function (longitude) {
+    return Math.round((Cesium.CesiumMath.toDegrees(longitude) + 180) * 10);
+  };
 
+  var convertLatitude = function (latitude) {
+    return Math.round((Cesium.CesiumMath.toDegrees(latitude) + 90) * 10);
+  };
+
+
+  //TODO: Use spatial hashing to query subset of points for visibility
+  //1) Get size of the frustum on earth's surface - width & height
+  //2) Get center (x, y) of the frustum
+  //3) Feed into spacial hash
   //Cull points on the other side of the globe or not in the camera frustum
+  var spatialSelector = {
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+  };
+
   camera.moveEnd.addEventListener(function moveEndListener() {
     var cullingVolume = camera.frustum.computeCullingVolume(camera.position, camera.direction, camera.up);
+    var frustumHeight = 2 * camera.positionCartographic.height * Math.tan(camera.frustum.fov * 0.5) / 111111;
+    var frustumWidth = frustumHeight * camera.frustum.aspectRatio;
+
+    spatialSelector.x = camera.positionCartographic.longitude;
+    spatialSelector.y = camera.positionCartographic.latitude;
+    spatialSelector.width = frustumWidth;
+    spatialSelector.height= frustumHeight;
+
+    //console.log('Frustum height in meters', frustumHeight);
+    //console.log('Frustum height in latitude', frustumHeight);
+    //console.log('Frustum width in longitude', frustumWidth);
+    //console.log('Input distance', camera.positionCartographic.height);
+    //console.log('Extrapolated distance', frustumHeight * 0.5 / Math.tan(camera.frustum.fov * 0.5));
+
+    //TODO: Get x, y, (center) width, and height of current view.
+    //console.log('Raw camera position', camera.position);
+    //console.log('Camera position', convertLongitude(camera.positionCartographic.longitude), convertLatitude(camera.positionCartographic.latitude));
+    //console.log('distance', camera.positionCartographic.height);
+    //console.log('fov', Cesium.CesiumMath.toDegrees(camera.frustum.fov));
+    //console.log('Culling planes', cullingVolume.planes);
+    //console.log('');
 
     for (var i = 0; i < stationEntitiesLength; i++) {
       var stationPosition = stationEntities[i]._position._value;
       var stationNormal = stationEntities[i].normal;
       var dotProduct = Cesium.Cartesian3.dot(stationNormal, viewer.camera.direction);
+
       boundingSphere.center = stationPosition;
 
       if (dotProduct > 0 || cullingVolume.computeVisibility(boundingSphere) === Cesium.Intersect.OUTSIDE) {
@@ -263,6 +307,7 @@ function setupEventListeners(stationLocations) {
         visibleStations.add(stationEntities[i]);
       }
     }
+
     redraw = true;
   });
 
@@ -398,10 +443,11 @@ function getModules() {
     Cartesian3: require('cesium/Source/Core/Cartesian3'),
     Cartographic: require('cesium/Source/Core/Cartographic'),
     Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
-    Math: require('cesium/Source/Core/Math'),
+    CesiumMath: require('cesium/Source/Core/Math'),
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
     Intersect: require('cesium/Source/Core/Intersect'),
-    BoundingSphere: require('cesium/Source/Core/BoundingSphere')
+    BoundingSphere: require('cesium/Source/Core/BoundingSphere'),
+    OrthographicFrustum: require('cesium/Source/Scene/OrthographicFrustum')
   };
 }
 
