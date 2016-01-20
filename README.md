@@ -45,9 +45,9 @@
       [x] Show a histogram of the temperatures from selected stations
       [x] Update the histogram as time progresses
 11) [] Add a spatial data structure
-       [] Add a quad tree, and query it with the view frustrum.
+       [] Add a quad tree, and query it with the view frustum.
        [] From that set, then eliminate points on the other side of the globe, if necessary
-       [] quadtree
+       [] quadtree or spatial hash
            * https://github.com/timohausmann/quadtree-js/
            [] Convert cartographic with one decimal place to positive x, y
                * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
