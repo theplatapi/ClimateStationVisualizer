@@ -45,17 +45,14 @@
       [x] Show a histogram of the temperatures from selected stations
       [x] Update the histogram as time progresses
 11) [] Add a spatial data structure
-       [] Add a quad tree, and query it with the view frustum.
-       [] From that set, then eliminate points on the other side of the globe, if necessary
-       [] quadtree or spatial hash
+       [x] Add a spatial hash, and query it with the view frustum.
+       [] spatial hash
            * https://github.com/timohausmann/quadtree-js/
-           [] Convert cartographic with one decimal place to positive x, y
+           [x] Convert cartographic with one decimal place to positive x, y
                * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
                * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-           [] Build quadtree when reading in points
            [] Query in stationSelected function
-           [] If slow, Figure out how to only query extend part of the tree. So only query newly selected areas
-              using start and end mouse positions from movement
+           [] Figure out what to do at "end" of grid. Area near Japan/Alaska where 120 longitude is. 2 queries?
        [] Query it as the camera moves
 12) [] Find memory leak
         [] Test cesium no additions, running
@@ -87,6 +84,8 @@
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
 14) [] Rewrite in ES6 to future proof it
+       [] Convert into modules. Especially all of the event listeners
+       [] Replace var with let
 
 Build steps
 1) npm pack in cesiumjs fork
