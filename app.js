@@ -284,12 +284,30 @@ function setupEventListeners(stationLocations) {
     spatialSelector.y = convertLatitude(camera.positionCartographic.latitude);
     spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
     spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
-    //console.log('spatialSelector', spatialSelector);
+    console.log('spatialSelector', spatialSelector);
 
     var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
+    var remaining = (spatialSelector.width - spatialSelector.x * 2) / 2;
+
+    //TODO: Why is this and other points near 3600 not appearing?
+    console.log(stationLocations.entities.getById("504916290000"));
+
+    if (remaining > 0) {
+      spatialSelector.width = remaining;
+      spatialSelector.x = 3600 - remaining;
+      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
+      console.log('spatialSelectorRemaining', spatialSelector);
+    }
+    //TODO: Fix going from 3600 to 0
+    //else if (spatialSelector.x + spatialSelector.width > 3600) {
+    //  spatialSelector.x = (spatialSelector.x + spatialSelector.width - 3600) / 2;
+    //  eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
+    //  console.log('spatialSelectorRemaining2', spatialSelector);
+    //}
+
     var toHideIds = _.chain(stationEntities).map('id').difference(eligibleEntityIds).value();
 
-    //console.log('Selected', eligibleEntityIds.length);
+    console.log('Selected', eligibleEntityIds.length);
     for (var i = 0; i < eligibleEntityIds.length; i++) {
       var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
 
