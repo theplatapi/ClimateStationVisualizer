@@ -9,9 +9,9 @@
       * Change colors on blue to red scale
 4) [x] Have time range set to full width on default
 5) [x] Get temperatures showing for all months
-6) [] Skip by month
+6) [x] Skip by month
       * [x] Make time speed optimal to see changes in data
-      * [] Change to better skybox that isn't so dizzy
+      * [0] Change to better skybox that isn't so dizzy
 7) [x] Use circles for stations to speed up adding/removing
 8) [x] Performance v1
       [x] Profile while time is marching
@@ -46,18 +46,18 @@
       [x] Update the histogram as time progresses
 11) [] Add a spatial data structure
        [x] Add a spatial hash, and query it with the view frustum.
-       [] Spatial hash
+       [x] Spatial hash
            * https://github.com/timohausmann/quadtree-js/
            [x] Convert cartographic with one decimal place to positive x, y
                * Longitude (x) -180.0 to 180.0. ((x + 180) * 10)
                * Latitude (y) -90.0 to 90.0.    ((y + 90) * 10)
-           [] Fix anti-meridian queries
+           [x] Fix anti-meridian queries
               [x] Handle crossing to left
-              [] Handle crossing to right
-       [] Query it as the camera moves
-          [] Don't do it every frame. Figure out good move delta to do queries.
-          [] Initialize delta high so it does initial render
-       [] Use spatial hash for selector
+              [x] Handle crossing to right
+       [x] Query it as the camera moves
+       [x] Use spatial hash for selector
+       [0] Return the whole entity so we can chain a loop together
+          [x] Research if loop chaining is actually faster
 12) [] Find memory leak
         [] Test cesium no additions, running
         [] Test cesium no additions, running at our speed
@@ -70,9 +70,12 @@
 13) [] Improve station colors
         [] Find out actual domain of temperatures
         [] Get an accurate range of colors climate visualizations use
-14) [] Improve histogram selector
-        [] Make drag shape a fixed rectangle that can draw much easier
-        [] Disable its selection, so nothing appears when clicked on exiting
+14) [] Improve histogram
+        [] Selector
+          [] Make drag shape a fixed rectangle that can draw much easier
+          [] Disable its selection, so nothing appears when clicked on exiting
+        [] Improve first draw time
+        [] Pass clicks through to Cesium
 12) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
@@ -87,7 +90,8 @@
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
-14) [] Rewrite in ES6 to future proof it
+14) [] Limit camera zoom and speed - stop unreasonable values
+15) [] Rewrite in ES6 to future proof it
        [] Convert into modules.
           [] Make event listeners modules
           [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
