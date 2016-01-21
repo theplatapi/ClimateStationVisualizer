@@ -33,6 +33,8 @@ var selector;
 var $histogram = $('#histogram').hide();
 var updateHistogram;
 var redraw = false;
+var spatialHash;
+var cameraMoving = false;
 
 viewer.scene.debugShowFramesPerSecond = true;
 //Disable some unneeded camera operations
@@ -40,6 +42,8 @@ viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+//Makes Cesium check more often if the camera stopped moving.
+viewer.scene.cameraEventWaitTime = 200;
 
 
 //TODO: Base on lowest, highest, and average for 1960s
@@ -81,6 +85,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   var stationCartographic = new Cesium.Cartographic();
   var selectorRectangle = new Cesium.Rectangle();
+  var spatialSelector = {x: 0, y: 0, width: 0, height: 0};
+  var throttledUpdateStations = _.throttle(updateVisibleStations, 200);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
@@ -93,6 +99,10 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
+
+    if (cameraMoving) {
+      throttledUpdateStations(stationLocations, spatialSelector);
+    }
 
     if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year || redraw) {
       //Deep copy
@@ -151,16 +161,7 @@ function setupEventListeners(stationLocations) {
   var camera = viewer.camera;
 
   //SECTION - Build spatial hash
-  var convertLongitude = function (longitude) {
-    return Math.round((Cesium.CesiumMath.toDegrees(longitude) + 180) * 10);
-  };
-
-  var convertLatitude = function (latitude) {
-    return Math.round((Cesium.CesiumMath.toDegrees(latitude) + 90) * 10);
-  };
-
-  //Build spatial hash
-  var spatialHash = new SpatialHash(4);
+  spatialHash = new SpatialHash(4);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     var position = Cesium.Cartographic.fromCartesian(stationEntities[i]._position._value);
@@ -286,45 +287,66 @@ function setupEventListeners(stationLocations) {
   };
 
   //SECTION - camera movement callbacks
-  camera.moveEnd.addEventListener(function moveEndListener() {
-    var frustumHeight = 2 * camera.positionCartographic.height * Math.tan(camera.frustum.fov * 0.5) / 111111;
-    var frustumWidth = frustumHeight * camera.frustum.aspectRatio;
-
-    spatialSelector.x = convertLongitude(camera.positionCartographic.longitude);
-    spatialSelector.y = convertLatitude(camera.positionCartographic.latitude);
-    spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
-    spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
-
-    var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
-    //Handles frustum crossing anti-meridian
-    var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
-    var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
-
-    if (remainingLeft > 0) {
-      spatialSelector.width = remainingLeft;
-      spatialSelector.x = 3600 - remainingLeft / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
-    }
-    else if (remainingRight > 0) {
-      spatialSelector.width = remainingRight;
-      spatialSelector.x = remainingRight / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
-    }
-
-    visibleStations.removeAll();
-    for (var i = 0; i < eligibleEntityIds.length; i++) {
-      var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
-
-      if (!visibleStations.contains(stationEntity)) {
-        visibleStations.add(stationEntity);
-      }
-    }
-
-    redraw = true;
+  camera.moveStart.addEventListener(function () {
+    cameraMoving = true;
   });
 
-  //Raise the event so we can do initial culling
-  camera.moveEnd.raiseEvent();
+  camera.moveEnd.addEventListener(function () {
+    cameraMoving = false;
+  });
+
+  //Initial drawing of points
+  updateVisibleStations(stationLocations, spatialSelector);
+}
+
+function updateVisibleStations(stationLocations, spatialSelector) {
+  var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
+  var frustumWidth = frustumHeight * viewer.camera.frustum.aspectRatio;
+
+  spatialSelector.x = convertLongitude(viewer.camera.positionCartographic.longitude);
+  spatialSelector.y = convertLatitude(viewer.camera.positionCartographic.latitude);
+  spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
+  spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
+
+  var eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').uniq().value();
+  //Handles frustum crossing anti-meridian
+  var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
+  var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
+
+  if (remainingLeft > 0) {
+    spatialSelector.width = remainingLeft;
+    spatialSelector.x = 3600 - remainingLeft / 2;
+    eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').union(eligibleEntityIds).value();
+  }
+  else if (remainingRight > 0) {
+    spatialSelector.width = remainingRight;
+    spatialSelector.x = remainingRight / 2;
+    eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').union(eligibleEntityIds).value();
+  }
+
+  var toHideIds = _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).value();
+
+  visibleStations.removeAll();
+  for (var i = 0; i < eligibleEntityIds.length; i++) {
+    var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
+    visibleStations.add(stationEntity);
+  }
+
+  //Hide stations not in spatial query
+  for (var j = 0; j < toHideIds.length; j++) {
+    var stationEntity2 = stationLocations.entities.getById(toHideIds[j]);
+    stationEntity2.show = false;
+  }
+
+  redraw = true;
+}
+
+function convertLongitude(longitude) {
+  return Math.round((Cesium.CesiumMath.toDegrees(longitude) + 180) * 10);
+}
+
+function convertLatitude(latitude) {
+  return Math.round((Cesium.CesiumMath.toDegrees(latitude) + 90) * 10);
 }
 
 //TODO: Make updateHistogram closure env smaller
