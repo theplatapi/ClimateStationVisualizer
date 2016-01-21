@@ -151,100 +151,7 @@ function setupEventListeners(stationLocations) {
 
   var camera = viewer.camera;
 
-  $(document).on('keydown', function onKeydown(event) {
-    if (event.keyCode === 32) {
-      viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
-    }
-  });
-
-  //Draw the selector while the user drags the mouse while holding shift
-  screenSpaceEventHandler.setInputAction(function drawSelector(movement) {
-    if (!mouseDown) {
-      return;
-    }
-
-    cartesian = viewer.camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
-
-    if (cartesian) {
-      mouseCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
-
-      if (!firstPointSet) {
-        Cesium.Cartographic.clone(mouseCartographic, firstPoint);
-        firstPointSet = true;
-      }
-      else {
-        rectangleSelector.east = Math.max(mouseCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.west = Math.min(mouseCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.north = Math.max(mouseCartographic.latitude, firstPoint.latitude);
-        rectangleSelector.south = Math.min(mouseCartographic.latitude, firstPoint.latitude);
-        selector.show = true;
-        //Suspending and resuming events during batch update
-        selectedStations.suspendEvents();
-
-        for (var i = 0; i < visibleStations.values.length; i++) {
-          var stationEntity = visibleStations.values[i];
-
-          if (!stationSelected(stationEntities[i], rectangleSelector, stationCartographic)) {
-            selectedStations.remove(stationEntity);
-          }
-          else if (!selectedStations.contains(stationEntity)) {
-            selectedStations.add(stationEntity);
-          }
-        }
-
-        selectedStations.resumeEvents();
-      }
-    }
-  }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
-
-  screenSpaceEventHandler.setInputAction(function startClickShift() {
-    mouseDown = true;
-    $histogram.fadeIn(100);
-  }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
-
-  screenSpaceEventHandler.setInputAction(function endClickShift() {
-    mouseDown = false;
-    firstPointSet = false;
-  }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
-
-  //Hide the selector by clicking anywhere
-  screenSpaceEventHandler.setInputAction(function hideSelector() {
-    selector.show = false;
-    selectedStations.removeAll();
-    $histogram.fadeOut();
-  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-  //Update histogram of temperatures whenever an item is added or removed from selection
-  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
-    //TODO: Try making more efficient with just added and removed
-    updateHistogram(_.map(collection.values, 'properties.temperature'));
-  });
-
-  var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
-    return Cesium.Rectangle.clone(rectangleSelector, result);
-  }, false);
-
-  selector = viewer.entities.add({
-    name: 'Selector',
-    selectable: false,
-    show: false,
-    rectangle: {
-      coordinates: getSelectorLocation,
-      material: Cesium.Color.BLACK.withAlpha(0.5),
-      outline: true,
-      outlineColor: Cesium.Color.BLACK
-    }
-  });
-
-  //Customize the date output and remove the time output on the time animation widget
-  viewer._animation._viewModel._dateFormatter = function (date) {
-    gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
-    return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
-  };
-
-  viewer._animation._viewModel._timeFormatter = function () {
-  };
-
+  //SECTION - Build spatial hash
   var convertLongitude = function (longitude) {
     return Math.round((Cesium.CesiumMath.toDegrees(longitude) + 180) * 10);
   };
@@ -277,6 +184,117 @@ function setupEventListeners(stationLocations) {
     height: 0
   };
 
+  //SECTION - keyboard and mouse listeners
+  $(document).on('keydown', function onKeydown(event) {
+    if (event.keyCode === 32) {
+      viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
+    }
+  });
+
+  //Draw the selector while the user drags the mouse while holding shift
+  screenSpaceEventHandler.setInputAction(function drawSelector(movement) {
+    if (!mouseDown) {
+      return;
+    }
+
+    cartesian = camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
+
+    if (cartesian) {
+      mouseCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
+
+      if (!firstPointSet) {
+        Cesium.Cartographic.clone(mouseCartographic, firstPoint);
+        firstPointSet = true;
+      }
+      else {
+        rectangleSelector.east = Math.max(mouseCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.west = Math.min(mouseCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.north = Math.max(mouseCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.south = Math.min(mouseCartographic.latitude, firstPoint.latitude);
+        selector.show = true;
+        //Suspending and resuming events during batch update
+        selectedStations.suspendEvents();
+
+        //Get stations under selector
+        var center = Cesium.Rectangle.center(rectangleSelector);
+        //console.log(center);
+        spatialSelector.x = convertLongitude(center.longitude);
+        spatialSelector.y = convertLatitude(center.latitude);
+        spatialSelector.width = convertLongitude(rectangleSelector.width);
+        spatialSelector.height = convertLatitude(rectangleSelector.height);
+        var selectedItems = _.map(spatialHash.retrieve(spatialSelector), 'id');
+
+        for (var i = 0; i < selectedItems.length; i++) {
+          var stationEntity = stationLocations.entities.getById(selectedItems[i]);
+
+          if (stationEntity.show) {
+            stationCartographic = Cesium.Cartographic.fromCartesian(stationEntity._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
+
+            if (!Cesium.Rectangle.contains(rectangleSelector, stationCartographic)) {
+              selectedStations.remove(stationEntity);
+            }
+            else if (!selectedStations.contains(stationEntity)) {
+              selectedStations.add(stationEntity);
+            }
+          }
+        }
+
+        selectedStations.resumeEvents();
+      }
+    }
+  }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
+
+  screenSpaceEventHandler.setInputAction(function startClickShift() {
+    mouseDown = true;
+    $histogram.fadeIn(100);
+  }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
+
+  screenSpaceEventHandler.setInputAction(function endClickShift() {
+    mouseDown = false;
+    firstPointSet = false;
+  }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
+
+  //Hide the selector by clicking anywhere
+  screenSpaceEventHandler.setInputAction(function hideSelector() {
+    selector.show = false;
+    selectedStations.removeAll();
+    $histogram.fadeOut();
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
+    return Cesium.Rectangle.clone(rectangleSelector, result);
+  }, false);
+
+  selector = viewer.entities.add({
+    name: 'Selector',
+    selectable: false,
+    show: false,
+    rectangle: {
+      coordinates: getSelectorLocation,
+      material: Cesium.Color.BLACK.withAlpha(0.5),
+      outline: true,
+      outlineColor: Cesium.Color.BLACK
+    }
+  });
+
+  //SECTION - bridge between selector and histogram
+  //Update histogram of temperatures whenever an item is added or removed from selection
+  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
+    //TODO: Try making more efficient with just added and removed
+    updateHistogram(_.map(collection.values, 'properties.temperature'));
+  });
+
+  //SECTION - time format callbacks
+  //Customize the date output and remove the time output on the time animation widget
+  viewer._animation._viewModel._dateFormatter = function (date) {
+    gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
+    return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
+  };
+
+  viewer._animation._viewModel._timeFormatter = function () {
+  };
+
+  //SECTION - camera movement callbacks
   camera.moveEnd.addEventListener(function moveEndListener() {
     var frustumHeight = 2 * camera.positionCartographic.height * Math.tan(camera.frustum.fov * 0.5) / 111111;
     var frustumWidth = frustumHeight * camera.frustum.aspectRatio;
@@ -431,8 +449,7 @@ function createHistogram() {
 function stationSelected(station, selector, stationCartographic) {
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
-  return stationCartographic.longitude > selector.west && stationCartographic.longitude < selector.east
-    && stationCartographic.latitude < selector.north && stationCartographic.latitude > selector.south;
+  return Cesium.Rectangle.contains(selector, stationCartographic);
 }
 
 function getModules() {
