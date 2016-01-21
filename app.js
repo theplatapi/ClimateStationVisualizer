@@ -115,8 +115,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           stationEntity.show = true;
 
           //Add to the selection group if under selector
-          if (selector.show && !wasShowing
-            && stationSelected(stationEntity, selector.rectangle.coordinates.getValue(null, selectorRectangle), stationCartographic)) {
+          if (selector.show && !wasShowing && stationSelected(stationEntity, selector, selectorRectangle, stationCartographic)) {
             if (!selectedStations.contains(stationEntity)) {
               selectedStations.add(stationEntity);
             }
@@ -428,10 +427,11 @@ function createHistogram() {
   }
 }
 
-function stationSelected(station, selector, stationCartographic) {
+function stationSelected(station, selector, selectorRectangle, stationCartographic) {
+  selectorRectangle = selector.rectangle.coordinates.getValue(null, selectorRectangle);
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
-  return Cesium.Rectangle.contains(selector, stationCartographic);
+  return Cesium.Rectangle.contains(selectorRectangle, stationCartographic);
 }
 
 function getModules() {
