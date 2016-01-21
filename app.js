@@ -141,7 +141,7 @@ function setupEventListeners(stationLocations) {
   var rectangleSelector = new Cesium.Rectangle();
   var cartesian = new Cesium.Cartesian3();
   var mouseCartographic = new Cesium.Cartographic();
-  var stationCartographic = new Cesium.Cartographic();
+  var center = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
   var mouseDown = false;
@@ -175,7 +175,6 @@ function setupEventListeners(stationLocations) {
 
     spatialHash.insert(entry);
   }
-  console.log('Buckets created:', spatialHash.getNumBuckets());
 
   var spatialSelector = {
     x: 0,
@@ -214,28 +213,23 @@ function setupEventListeners(stationLocations) {
         selector.show = true;
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
+        selectedStations.removeAll();
 
         //Get stations under selector
-        var center = Cesium.Rectangle.center(rectangleSelector);
-        //console.log(center);
+        center = Cesium.Rectangle.center(rectangleSelector, center);
         spatialSelector.x = convertLongitude(center.longitude);
         spatialSelector.y = convertLatitude(center.latitude);
-        spatialSelector.width = convertLongitude(rectangleSelector.width);
-        spatialSelector.height = convertLatitude(rectangleSelector.height);
+        spatialSelector.width = convertLongitude(rectangleSelector.width) - 1800;
+        spatialSelector.height = convertLatitude(rectangleSelector.height) - 900;
         var selectedItems = _.map(spatialHash.retrieve(spatialSelector), 'id');
 
         for (var i = 0; i < selectedItems.length; i++) {
           var stationEntity = stationLocations.entities.getById(selectedItems[i]);
 
-          if (stationEntity.show) {
-            stationCartographic = Cesium.Cartographic.fromCartesian(stationEntity._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
-
-            if (!Cesium.Rectangle.contains(rectangleSelector, stationCartographic)) {
-              selectedStations.remove(stationEntity);
-            }
-            else if (!selectedStations.contains(stationEntity)) {
-              selectedStations.add(stationEntity);
-            }
+          if (stationEntity.show && !selectedStations.contains(stationEntity)) {
+            selectedStations.add(stationEntity);
+          }
+          else {
           }
         }
 
@@ -320,9 +314,9 @@ function setupEventListeners(stationLocations) {
       eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
     }
 
+    //TODO: Take difference of previous set
     var toHideIds = _.chain(stationEntities).map('id').difference(eligibleEntityIds).value();
 
-    console.log('Selected', eligibleEntityIds.length);
     for (var i = 0; i < eligibleEntityIds.length; i++) {
       var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
 
