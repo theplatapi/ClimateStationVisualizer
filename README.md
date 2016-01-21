@@ -88,7 +88,9 @@
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
 14) [] Rewrite in ES6 to future proof it
-       [] Convert into modules. Especially all of the event listeners
+       [] Convert into modules.
+          [] Make event listeners modules
+          [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        [] Replace var with let
 
 Build steps
