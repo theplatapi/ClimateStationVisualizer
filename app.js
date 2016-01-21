@@ -229,8 +229,6 @@ function setupEventListeners(stationLocations) {
           if (stationEntity.show && !selectedStations.contains(stationEntity)) {
             selectedStations.add(stationEntity);
           }
-          else {
-          }
         }
 
         selectedStations.resumeEvents();
@@ -298,7 +296,7 @@ function setupEventListeners(stationLocations) {
     spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
     spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
 
-    var eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').uniq().value();
+    var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
     //Handles frustum crossing anti-meridian
     var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
     var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
@@ -306,18 +304,21 @@ function setupEventListeners(stationLocations) {
     if (remainingLeft > 0) {
       spatialSelector.width = remainingLeft;
       spatialSelector.x = 3600 - remainingLeft / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').difference(eligibleEntityIds).value();
+      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
     }
     else if (remainingRight > 0) {
       spatialSelector.width = remainingRight;
       spatialSelector.x = remainingRight / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').difference(eligibleEntityIds).value();
+      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
     }
 
     visibleStations.removeAll();
     for (var i = 0; i < eligibleEntityIds.length; i++) {
       var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
-      visibleStations.add(stationEntity);
+
+      if (!visibleStations.contains(stationEntity)) {
+        visibleStations.add(stationEntity);
+      }
     }
 
     redraw = true;
