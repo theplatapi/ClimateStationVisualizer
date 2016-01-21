@@ -298,7 +298,7 @@ function setupEventListeners(stationLocations) {
     spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
     spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
 
-    var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
+    var eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').uniq().value();
     //Handles frustum crossing anti-meridian
     var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
     var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
@@ -306,31 +306,18 @@ function setupEventListeners(stationLocations) {
     if (remainingLeft > 0) {
       spatialSelector.width = remainingLeft;
       spatialSelector.x = 3600 - remainingLeft / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
+      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').difference(eligibleEntityIds).value();
     }
     else if (remainingRight > 0) {
       spatialSelector.width = remainingRight;
       spatialSelector.x = remainingRight / 2;
-      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
+      eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').difference(eligibleEntityIds).value();
     }
 
-    //TODO: Take difference of previous set
-    var toHideIds = _.chain(stationEntities).map('id').difference(eligibleEntityIds).value();
-
+    visibleStations.removeAll();
     for (var i = 0; i < eligibleEntityIds.length; i++) {
       var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
-
-      if (!visibleStations.contains(stationEntity)) {
-        visibleStations.add(stationEntity);
-      }
-    }
-
-    //Hide stations not in spatial query
-    for (var j = 0; j < toHideIds.length; j++) {
-      var stationEntity2 = stationLocations.entities.getById(toHideIds[j]);
-
-      stationEntity2.show = false;
-      visibleStations.remove(stationEntity2);
+      visibleStations.add(stationEntity);
     }
 
     redraw = true;
