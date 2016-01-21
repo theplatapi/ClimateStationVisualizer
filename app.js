@@ -268,6 +268,7 @@ function setupEventListeners(stationLocations) {
 
     spatialHash.insert(entry);
   }
+  console.log('Buckets created:', spatialHash.getNumBuckets());
 
   var spatialSelector = {
     x: 0,
@@ -284,19 +285,17 @@ function setupEventListeners(stationLocations) {
     spatialSelector.y = convertLatitude(camera.positionCartographic.latitude);
     spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
     spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
-    //console.log('spatialSelector', spatialSelector);
 
     var eligibleEntityIds = _.map(spatialHash.retrieve(spatialSelector), 'id');
-    //Handles frustum crossing anti-meridianLab
+    //Handles frustum crossing anti-meridian
     var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
-    var remainingRight = (spatialSelector.width - (3600 - spatialSelector.x)) / 2;
+    var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
 
     if (remainingLeft > 0) {
       spatialSelector.width = remainingLeft;
-      spatialSelector.x = 3600 - remainingLeft + spatialSelector.width / 2;
+      spatialSelector.x = 3600 - remainingLeft / 2;
       eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').concat(eligibleEntityIds).value();
     }
-    //TODO: Fix it lagging behind. It draws only a handful of points though.
     else if (remainingRight > 0) {
       spatialSelector.width = remainingRight;
       spatialSelector.x = remainingRight / 2;
