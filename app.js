@@ -24,6 +24,9 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     canAnimate: false,
     shouldAnimate: false,
     multiplier: 31104000
+  }),
+  imageryProvider : new Cesium.TileMapServiceImageryProvider({
+    url: './Assets/Textures/NaturalEarthII'
   })
 });
 
@@ -48,7 +51,7 @@ viewer.scene.cameraEventWaitTime = 200;
 
 //TODO: Base on lowest, highest, and average for 1960s
 //TODO: Create a memory friendly version that doesn't rely on strings
-var hexColorGenerator = d3.scale.linear().domain([-30, 20, 45]).range(['blue', 'orange', 'red']);
+var hexColorGenerator = d3.scale.linear().domain([-30, 20, 30]).range(['blue', 'orange', 'red']);
 var circle = require('./lib/whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
@@ -482,7 +485,7 @@ function getModules() {
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
     Intersect: require('cesium/Source/Core/Intersect'),
     BoundingSphere: require('cesium/Source/Core/BoundingSphere'),
-    OrthographicFrustum: require('cesium/Source/Scene/OrthographicFrustum')
+    TileMapServiceImageryProvider: require('cesium/Source/Scene/TileMapServiceImageryProvider')
   };
 }
 
