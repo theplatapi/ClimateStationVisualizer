@@ -44,7 +44,7 @@
          [x] Entity collection of non-culled stations
       [x] Show a histogram of the temperatures from selected stations
       [x] Update the histogram as time progresses
-11) [] Add a spatial data structure
+11) [x] Add a spatial data structure
        [x] Add a spatial hash, and query it with the view frustum.
        [x] Spatial hash
            * https://github.com/timohausmann/quadtree-js/
@@ -58,15 +58,17 @@
        [x] Use spatial hash for selector
        [0] Return the whole entity so we can chain a loop together
           [x] Research if loop chaining is actually faster
-12) [] Find memory leak
-        [] Test cesium no additions, running
-        [] Test cesium no additions, running at our speed
-        [] Slowly add features on and see when the memory leak starts
+12) [] Research aggregating data into a heatmap
+       [] Precomputed
+         1. [] Figure out if tile can be switched depending on time. Create a demo.
+         2. [] Create a level 1 heatmap in Python for each year/month. Convert to one layer image in Web Mercator.
+         3. [] Create a few more levels and allow Cesium to query between them.
+         4. [] Change histogram to account for new temperatures. Need to load in new data so an interpolated range will still show something
+       [] Live
+         [] Use heatmap.js, but with values instead of positions?
 
-        Ideas:
-        [] See if SVG time element is cause for node leaks
-        [] See if entity.show=false makes Cesium allocate a new "node"
-        [] See if D3 color strings are the cause
+       [] Possible to pre-render map coloring like SolarGIS?
+          * http://solargis.info/imaps/#tl=GeoModel:t_yr_avg&loc=-29.180941,113.181152&c=24.65512,-51.350784
 13) [] Improve station colors
         [] Find out actual domain of temperatures
         [] Get an accurate range of colors climate visualizations use
@@ -76,7 +78,7 @@
           [] Disable its selection, so nothing appears when clicked on exiting
         [] Improve first draw time
         [] Pass clicks through to Cesium
-12) [] Change viewer clock
+15) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
       [x] Hide x213879124 since it's distracting
@@ -86,16 +88,43 @@
       [] Prevent time display flashing - add it earlier?
       [] Show loading wheel while getting files
       [] Prevent timeline from being zoomed in on
-13) [] Fix UI hangs on file load
+16) [] Fix UI hangs on file load
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
-14) [] Limit camera zoom and speed - stop unreasonable values
-15) [] Rewrite in ES6 to future proof it
+17) [] Limit camera zoom and speed - stop unreasonable values
+18) [] Rewrite in ES6 to future proof it
        [] Convert into modules.
           [] Make event listeners modules
           [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        [] Replace var with let
+19) [] Find memory leak
+        [] Test no skybox
+        [] Test other map providers
+            * http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=Imagery%20Layers%20Manipulation.html&label=Showcases
+
+            new Cesium.TileMapServiceImageryProvider({
+                url: require.toUrl('Assets/Textures/NaturalEarthII')
+            }));
+
+            Cesium.createOpenStreetMapImageryProvider({
+                url: '//stamen-tiles.a.ssl.fastly.net/watercolor/',
+                fileExtension: 'jpg',
+                credit: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.'
+            }));
+
+            new Cesium.BingMapsImageryProvider({
+                url: '//dev.virtualearth.net',
+                mapStyle: Cesium.BingMapsStyle.ROAD
+            }));
+        [] Test cesium no additions, running
+        [] Test cesium no additions, running at our speed
+        [] Slowly add features on and see when the memory leak starts
+
+        Ideas:
+        [] See if SVG time element is cause for node leaks
+        [] See if entity.show=false makes Cesium allocate a new "node"
+        [] See if D3 color strings are the cause
 
 Build steps
 1) npm pack in cesiumjs fork
