@@ -49,7 +49,7 @@ viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpace
 viewer.scene.cameraEventWaitTime = 200;
 
 
-//TODO: Base on lowest, highest, and average for 1960s
+//TODO: Base on lowest, highest, and average for 1960s (or what NASA uses by default)
 //TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear()
   .domain([-30, 13, 30])
@@ -92,7 +92,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var stationCartographic = new Cesium.Cartographic();
   var selectorRectangle = new Cesium.Rectangle();
   var spatialSelector = {x: 0, y: 0, width: 0, height: 0};
-  var throttledUpdateStations = _.throttle(updateVisibleStations, 200);
+  var throttledUpdateStations = _.throttle(updateVisibleStations, 300);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
@@ -167,7 +167,7 @@ function setupEventListeners(stationLocations) {
   var camera = viewer.camera;
 
   //SECTION - Build spatial hash
-  spatialHash = new SpatialHash(4);
+  spatialHash = new SpatialHash(6);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     var position = Cesium.Cartographic.fromCartesian(stationEntities[i]._position._value);
