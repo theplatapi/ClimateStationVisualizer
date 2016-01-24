@@ -66,6 +66,8 @@
          4. [] Change histogram to account for new temperatures. Need to load in new data so an interpolated range will still show something
        [] Live
          [] Use heatmap.js, but with values instead of positions?
+            [] When adding a position, add it T times, where T is the current temperature.
+               * Bad, since highest temperature currently is the most red
 
        [] Possible to pre-render map coloring like SolarGIS?
           * http://solargis.info/imaps/#tl=GeoModel:t_yr_avg&loc=-29.180941,113.181152&c=24.65512,-51.350784
@@ -78,6 +80,8 @@
           [] Disable its selection, so nothing appears when clicked on exiting
         [] Improve first draw time
         [] Pass clicks through to Cesium
+        [] Idea: Always show histogram and just highlight parts if subsection is chosen
+            * http://vis.stanford.edu/projects/immens/demo/brightkite/
 15) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
