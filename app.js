@@ -47,6 +47,7 @@ viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 //Makes Cesium check more often if the camera stopped moving.
 viewer.scene.cameraEventWaitTime = 200;
+viewer.imageryLayers.get(0).brightness = 0.7;
 
 
 //TODO: Base on lowest, highest, and average for 1960s (or what NASA uses by default)
