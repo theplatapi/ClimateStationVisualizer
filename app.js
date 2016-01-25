@@ -93,7 +93,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var stationCartographic = new Cesium.Cartographic();
   var selectorRectangle = new Cesium.Rectangle();
   var spatialSelector = {x: 0, y: 0, width: 0, height: 0};
-  var throttledUpdateStations = _.throttle(updateVisibleStations, 300);
+  var throttledUpdateStations = _.throttle(updateVisibleStations, 250);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
@@ -309,12 +309,11 @@ function setupEventListeners(stationLocations) {
 function updateVisibleStations(stationLocations, spatialSelector) {
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * viewer.camera.frustum.aspectRatio;
-  var padding = 50;
 
   spatialSelector.x = convertLongitude(viewer.camera.positionCartographic.longitude);
   spatialSelector.y = convertLatitude(viewer.camera.positionCartographic.latitude);
-  spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800) + padding;
-  spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900) + padding;
+  spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
+  spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
 
   var eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').uniq().value();
   //Handles frustum crossing anti-meridian
