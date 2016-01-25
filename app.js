@@ -53,9 +53,9 @@ viewer.imageryLayers.get(0).brightness = 0.7;
 //TODO: Base on lowest, highest, and average for 1960s (or what NASA uses by default)
 //TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear()
-  .domain([-30, 13, 30])
-  .range(['#0571b0', '#92c5de', '#f4a582', '#ca0020'])
-  .interpolate(d3.interpolateHcl);
+  .domain([-40, -16, -4, 10, 25, 32, 40])
+  .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
+  .interpolate(d3.interpolateHsl);
 var circle = require('./lib/whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
