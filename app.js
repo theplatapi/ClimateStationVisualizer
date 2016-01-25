@@ -168,7 +168,7 @@ function setupEventListeners(stationLocations) {
   var camera = viewer.camera;
 
   //SECTION - Build spatial hash
-  spatialHash = new SpatialHash(6);
+  spatialHash = new SpatialHash(5);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     var position = Cesium.Cartographic.fromCartesian(stationEntities[i]._position._value);
