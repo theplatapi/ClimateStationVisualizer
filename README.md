@@ -70,9 +70,9 @@
 
        [] Possible to pre-render map coloring like SolarGIS?
           * http://solargis.info/imaps/#tl=GeoModel:t_yr_avg&loc=-29.180941,113.181152&c=24.65512,-51.350784
-13) [] Improve station colors
-        [] Find out actual domain of temperatures
-        [] Get an accurate range of colors climate visualizations use
+13) [x] Improve station colors
+        [x] Find out actual domain of temperatures
+        [x] Get an accurate range of colors climate visualizations use
 14) [] Improve histogram
         [] Selector
           [] Make drag shape a fixed rectangle that can draw much easier
@@ -101,7 +101,9 @@
           [] Make event listeners modules
           [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        [] Replace var with let
-19) [] Find memory leak
+19) [] Performance v3
+       [] Replace color with SampledProperty. All of the color generation logic can be done beforehand.
+20) [] Find memory leak
         [] Test no skybox
         [] Test other map providers
             * http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=Imagery%20Layers%20Manipulation.html&label=Showcases
