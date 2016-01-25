@@ -22,16 +22,15 @@
       [x] Current temperature
       [x] City
       [x] Country
-      [] Station Name
       [x] Hide info box title
       [x] Improve look of side panel from colors to animation
       [x] Disable selection of invisible stations
-      [] Fix new stations sometimes not appearing
+      [x] Fix new stations sometimes not appearing
          * If timeline is started from pause, and then scrubbed no new stations
             become visible
-      [] Add location info for stations missing it
+      [x] Add location info for stations missing it
          [x] Rerun geolocator to generate file of missing stations
-         [] Add 100+ missing stations
+       [] Add station name to all entities without a location
 10) [x] Add brushing and linking
       [x] Draw a shape to represent the selection
          [x] Draw a rectangle
