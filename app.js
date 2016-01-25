@@ -269,7 +269,8 @@ function setupEventListeners(stationLocations) {
 
   selector = viewer.entities.add({
     name: 'Selector',
-    selectable: false,
+    //TODO: Make this work
+    allowPicking: false,
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
