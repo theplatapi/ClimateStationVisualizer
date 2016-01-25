@@ -27,7 +27,10 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   }),
   imageryProvider: new Cesium.TileMapServiceImageryProvider({
     url: './Assets/Textures/NaturalEarthII'
-  })
+  }),
+  //Saves GPU memory
+  scene3DOnly: true,
+  automaticallyTrackDataSourceClocks: false
 });
 
 var selectedStations = new Cesium.EntityCollection();
@@ -50,7 +53,6 @@ viewer.scene.cameraEventWaitTime = 200;
 viewer.imageryLayers.get(0).brightness = 0.7;
 
 
-//TODO: Base on lowest, highest, and average for 1960s (or what NASA uses by default)
 //TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
@@ -77,6 +79,7 @@ var setStationAppearance = function setStationAppearance(station) {
     return result;
   }, false);
 
+  //TODO: Use ReferenceProperty for the n-1 points.
   _.extend(station.billboard, {
     color: getColor,
     image: circle,
@@ -307,6 +310,7 @@ function setupEventListeners(stationLocations) {
 }
 
 function updateVisibleStations(stationLocations, spatialSelector) {
+  //Get the frustum height in degrees
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * viewer.camera.frustum.aspectRatio;
 
