@@ -114,6 +114,13 @@ function populateGlobe(stationTemperatures, stationLocations) {
       throttledUpdateStations(stationLocations, spatialSelector);
     }
 
+    if (_.get(viewer, 'selectedEntity.selectable') === false) {
+      $('.cesium-viewer-infoBoxContainer').hide();
+    }
+    else {
+      $('.cesium-viewer-infoBoxContainer').show();
+    }
+
     if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year || redraw) {
       //Deep copy
       lastTime.year = timelineTime.year;
@@ -267,6 +274,7 @@ function setupEventListeners(stationLocations) {
   }, false);
 
   selector = viewer.entities.add({
+    selectable: false,
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
