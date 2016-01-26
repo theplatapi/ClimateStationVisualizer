@@ -391,9 +391,9 @@ function createHistogram() {
     .orient("bottom");
 
   //Temporary to create bars
-  var histogramFactory = d3.layout.histogram()
+  var histogramFunc = d3.layout.histogram()
     .bins(x.ticks(5));
-  var tempHistogram = histogramFactory(d3.range(10).map(d3.random.bates(10)));
+  var tempHistogram = histogramFunc(d3.range(10).map(d3.random.bates(10)));
   var numBins = tempHistogram.length;
 
   //Create elements, but with no data
@@ -430,7 +430,7 @@ function createHistogram() {
     .text("Visible Weather Stations");
 
   updateHistogram = function updateHistogram(temperatures) {
-    var histogram = histogramFactory(temperatures);
+    var histogram = histogramFunc(temperatures);
 
     var y = d3.scale.linear()
       .domain([0, d3.max(histogram, function (d) {
@@ -449,8 +449,8 @@ function createHistogram() {
       .data(histogram)
       .transition()
       .duration(100)
-      .attr("transform", function (d) {
-        return "translate(" + x(d.x) + "," + y(d.y) + ")";
+      .attr("transform", function (d, i) {
+        return "translate(" + x(d.x).toFixed(4) + "," + y(d.y) + ")";
       });
 
     svg.selectAll("rect")
