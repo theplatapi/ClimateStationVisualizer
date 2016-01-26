@@ -427,7 +427,7 @@ function createHistogram() {
     .attr("x", -height / 10)
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
-    .text("Visible Weather Stations");
+    .text("Selected Weather Stations");
 
   updateHistogram = function updateHistogram(temperatures) {
     var histogram = histogramFunc(temperatures);
