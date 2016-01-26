@@ -36,7 +36,6 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 var selectedStations = new Cesium.EntityCollection();
 var visibleStations = new Cesium.EntityCollection();
 var selector;
-var $histogram = $('#histogram').hide();
 var updateHistogram;
 var redraw = false;
 var spatialHash;
@@ -108,6 +107,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+    visibleStations.suspendEvents();
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
     if (cameraMoving) {
@@ -150,6 +150,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Done updating so we can fire the callbacks again
       selectedStations.resumeEvents();
     }
+    visibleStations.resumeEvents();
   });
 }
 
@@ -248,7 +249,6 @@ function setupEventListeners(stationLocations) {
 
   screenSpaceEventHandler.setInputAction(function startClickShift() {
     mouseDown = true;
-    $histogram.fadeIn(100);
   }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
 
   screenSpaceEventHandler.setInputAction(function endClickShift() {
@@ -260,7 +260,6 @@ function setupEventListeners(stationLocations) {
   screenSpaceEventHandler.setInputAction(function hideSelector() {
     selector.show = false;
     selectedStations.removeAll();
-    $histogram.fadeOut();
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
@@ -283,8 +282,13 @@ function setupEventListeners(stationLocations) {
   //SECTION - bridge between selector and histogram
   //Update histogram of temperatures whenever an item is added or removed from selection
   selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
+    //TODO: draw histogram subset over current histogram. Color orange-ish.
+  });
+
+  visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
     //TODO: Try making more efficient with just added and removed
-    updateHistogram(_.map(collection.values, 'properties.temperature'));
+    console.log('Updating histogram');
+    updateHistogram(_.map(collection.values, 'properties.temperature'))
   });
 
   //SECTION - time format callbacks
@@ -311,6 +315,7 @@ function setupEventListeners(stationLocations) {
 }
 
 function updateVisibleStations(stationLocations, spatialSelector) {
+  visibleStations.suspendEvents();
   //Get the frustum height in degrees
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * viewer.camera.frustum.aspectRatio;
@@ -338,6 +343,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
 
   var toHideIds = _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).value();
 
+
   visibleStations.removeAll();
   for (var i = 0; i < eligibleEntityIds.length; i++) {
     var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
@@ -351,6 +357,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   }
 
   redraw = true;
+  visibleStations.resumeEvents();
 }
 
 function convertLongitude(longitude) {
@@ -384,8 +391,9 @@ function createHistogram() {
     .orient("bottom");
 
   //Temporary to create bars
-  var tempHistogram = d3.layout.histogram()
-    .bins(x.ticks(5))(d3.range(10).map(d3.random.bates(10)));
+  var histogramFactory = d3.layout.histogram()
+    .bins(x.ticks(5));
+  var tempHistogram = histogramFactory(d3.range(10).map(d3.random.bates(10)));
   var numBins = tempHistogram.length;
 
   //Create elements, but with no data
@@ -419,11 +427,10 @@ function createHistogram() {
     .attr("x", -height / 10)
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
-    .text("Weather stations selected");
+    .text("Visible Weather Stations");
 
   updateHistogram = function updateHistogram(temperatures) {
-    var histogram = d3.layout.histogram()
-      .bins(x.ticks(5))(temperatures);
+    var histogram = histogramFactory(temperatures);
 
     var y = d3.scale.linear()
       .domain([0, d3.max(histogram, function (d) {
@@ -502,9 +509,9 @@ function getModules() {
   $.when($.getJSON('./climateData/stationTemps.json'), $.getJSON('./climateData/stationLocations.json'))
     .done(function (stationTemperatures, stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
+        createHistogram();
         populateGlobe(stationTemperatures[0], stationLocations);
         setupEventListeners(stationLocations);
-        createHistogram();
       });
     })
     .fail(function (data, textStatus, error) {
