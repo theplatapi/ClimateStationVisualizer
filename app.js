@@ -281,14 +281,14 @@ function setupEventListeners(stationLocations) {
 
   //SECTION - bridge between selector and histogram
   //Update histogram of temperatures whenever an item is added or removed from selection
-  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection, added, removed, changed) {
+  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection) {
     //TODO: draw histogram subset over current histogram. Color orange-ish.
+    updateHistogram(_.map(collection.values, 'properties.temperature'))
   });
 
   visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
     //TODO: Try making more efficient with just added and removed
-    console.log('Updating histogram');
-    updateHistogram(_.map(collection.values, 'properties.temperature'))
+
   });
 
   //SECTION - time format callbacks
@@ -449,7 +449,7 @@ function createHistogram() {
       .data(histogram)
       .transition()
       .duration(100)
-      .attr("transform", function (d, i) {
+      .attr("transform", function (d) {
         return "translate(" + x(d.x).toFixed(4) + "," + y(d.y) + ")";
       });
 
