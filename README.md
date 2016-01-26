@@ -76,13 +76,14 @@
 14) [] Improve histogram
         [x] Improve first draw time
         [x] Fix gap in middle
-        [] Add shift-drag instruction sentience to empty histogram
-        [] Disable selector picking - Empty infobox appears when clicked
-        [] After questions are designed:
-          [] Pass clicks through to Cesium
-          [] Idea: Always show histogram and just highlight parts if subsection is chosen
-              * http://vis.stanford.edu/projects/immens/demo/brightkite/
-15) [] Change viewer clock
+        [x] Disable selector picking - Empty infobox appears when clicked
+            * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
+15) [] Design questions and determine future tools
+        [] Pass clicks through to Cesium
+                  -- or --
+        [] Always show histogram and just highlight parts if subsection is chosen
+            * http://vis.stanford.edu/projects/immens/demo/brightkite/
+16) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
       [x] Hide x213879124 since it's distracting
@@ -93,47 +94,32 @@
       [] Show loading wheel while getting files
       [] Prevent timeline from being zoomed in on
       [] Have timeline ticks only display month and year
-16) [] Limit camera controls
+17) [] Limit camera controls
        [] Limit zoom
        [] Limit speed
        [] Prevent tilting too high or low (y axis changes)
-17) [] Performance v3
+18) [] Performance v3
        [] Replace color with SampledProperty. All of the color generation logic can be done beforehand.
        [] Research using primitive instead of entity for disablePick and cull=false
        [] Use referenceProperty for station billboards
-18) [] Rewrite in ES6 to future proof it
+19) [] Rewrite in ES6 to future proof it
        [] Convert into modules.
           [] Make event listeners modules
           [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        [] Replace var with let
-19) [] Find memory leak
-        [] Test no skybox
-        [] Test other map providers
-            * http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=Imagery%20Layers%20Manipulation.html&label=Showcases
-
-            new Cesium.TileMapServiceImageryProvider({
-                url: require.toUrl('Assets/Textures/NaturalEarthII')
-            }));
-
-            Cesium.createOpenStreetMapImageryProvider({
-                url: '//stamen-tiles.a.ssl.fastly.net/watercolor/',
-                fileExtension: 'jpg',
-                credit: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.'
-            }));
-
-            new Cesium.BingMapsImageryProvider({
-                url: '//dev.virtualearth.net',
-                mapStyle: Cesium.BingMapsStyle.ROAD
-            }));
-        [] Test cesium no additions, running
-        [] Test cesium no additions, running at our speed
-        [] Slowly add features on and see when the memory leak starts
+20) [] Find memory leak
+        [] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
+           p - 1 step and compare to p step to see differences.
+        [] Test cesium no additions, running at our speed.
+        [] Add entities all white
+        [] Add randomly changing color entities
+        [] Add color depending on temperature
+        [] Show/hide entities if no temperature
 
         Ideas:
-        [] See if SVG time element is cause for node leaks
         [] See if entity.show=false makes Cesium allocate a new "node"
         [] See if D3 color strings are the cause
-20) [] Fix UI hangs on file load
+21) [] Fix UI hangs on file load
       [x] Set up GeoJsonDataSource from loaded json object
       [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       [] Web worker to load json weather and location files
