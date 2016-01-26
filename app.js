@@ -276,11 +276,14 @@ function setupEventListeners(stationLocations) {
     }
   });
 
+  var updateHistogramThrottled = _.throttle(function (collection) {
+    updateHistogram(_.map(collection.values, 'properties.temperature'));
+  }, 200);
+
   //SECTION - bridge between selector and histogram
   //Update histogram of temperatures whenever an item is added or removed from selection
   selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection) {
-    //TODO: draw histogram subset over current histogram. Color orange-ish.
-    updateHistogram(_.map(collection.values, 'properties.temperature'))
+    updateHistogramThrottled(collection);
   });
 
   visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
