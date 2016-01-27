@@ -23,7 +23,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     clockRange: Cesium.ClockRange.CLAMPED,
     canAnimate: false,
     shouldAnimate: false,
-    multiplier: 31104000
+    multiplier: 31622400 //Fast forward 1 year a second
   }),
   imageryProvider: new Cesium.TileMapServiceImageryProvider({
     url: './Assets/Textures/NaturalEarthII'
