@@ -83,6 +83,8 @@
                   -- or --
         [] Always show histogram and just highlight parts if subsection is chosen
             * http://vis.stanford.edu/projects/immens/demo/brightkite/
+        [] Second query if looking over north or south pole
+        [] Widen frustum query height when zoomed out on earth
 16) [] Change viewer clock
       [x] Disable play before data is loaded
       [x] Disable ability to change speedup
@@ -96,6 +98,8 @@
       [] Have timeline ticks only display month and year
 17) [] Limit camera controls
        [] Limit zoom
+          [] Regular mouse zoom
+          [] Zoom after search
        [] Limit speed
        [] Prevent tilting too high or low (y axis changes)
 18) [] Performance v3
@@ -108,6 +112,7 @@
           [] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        [] Replace var with let
 20) [] Find memory leak
+        * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
         [] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
            p - 1 step and compare to p step to see differences.
         [] Test cesium no additions, running at our speed.
