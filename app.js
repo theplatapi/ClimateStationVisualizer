@@ -51,6 +51,9 @@ viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpace
 viewer.scene.cameraEventWaitTime = 200;
 viewer.imageryLayers.get(0).brightness = 0.7;
 
+//SECTION - source modifications
+Cesium.Timeline.prototype.zoomTo = _.noop;
+
 
 //TODO: Create a memory friendly version that doesn't rely on strings
 var hexColorGenerator = d3.scale.linear()
@@ -306,8 +309,7 @@ function setupEventListeners(stationLocations) {
     return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
   };
 
-  viewer._animation._viewModel._timeFormatter = function () {
-  };
+  viewer._animation._viewModel._timeFormatter = _.noop;
 
   //SECTION - camera movement callbacks
   camera.moveStart.addEventListener(function () {
@@ -508,7 +510,8 @@ function getModules() {
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
     Intersect: require('cesium/Source/Core/Intersect'),
     BoundingSphere: require('cesium/Source/Core/BoundingSphere'),
-    TileMapServiceImageryProvider: require('cesium/Source/Scene/TileMapServiceImageryProvider')
+    TileMapServiceImageryProvider: require('cesium/Source/Scene/TileMapServiceImageryProvider'),
+    Timeline: require('cesium/Source/Widgets/Timeline/Timeline')
   };
 }
 

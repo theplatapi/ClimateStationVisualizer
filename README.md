@@ -73,7 +73,7 @@
 13) [x] Improve station colors
         [x] Find out actual domain of temperatures
         [x] Get an accurate range of colors climate visualizations use
-14) [] Improve histogram
+14) [x] Improve histogram
         [x] Improve first draw time
         [x] Fix gap in middle
         [x] Disable selector picking - Empty infobox appears when clicked
@@ -94,7 +94,7 @@
       [x] Remove time display
       [] Prevent time display flashing - add callback fixes earlier
       [] Show loading wheel while getting files
-      [] Prevent timeline from being zoomed in on
+      [x] Prevent timeline from being zoomed in on
       [] Have timeline ticks only display month and year
 17) [] Limit camera controls
        [] Limit zoom
