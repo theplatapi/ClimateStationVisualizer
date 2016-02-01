@@ -79,6 +79,7 @@
         [x] Disable selector picking - Empty infobox appears when clicked
             * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
 15) [] Design questions and determine future tools
+        [] Pick a cesium imagery provider with names for countries
         [] Pass clicks through to Cesium
                   -- or --
         [] Always show histogram and just highlight parts if subsection is chosen
