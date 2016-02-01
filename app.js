@@ -297,10 +297,10 @@ function setupEventListeners(stationLocations) {
     updateHistogramThrottled(collection);
   });
 
-  visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
+  //visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
     //TODO: Try making more efficient with just added and removed
 
-  });
+  //});
 
   //SECTION - time format callbacks
   //Customize the date output and remove the time output on the time animation widget
