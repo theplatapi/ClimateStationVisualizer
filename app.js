@@ -36,6 +36,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
 var selector;
+var rectangleSelector = new Cesium.Rectangle();
 var updateHistogram;
 var redraw = false;
 var spatialHash;
@@ -99,7 +100,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var timelineTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   var lastTime = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
   var stationCartographic = new Cesium.Cartographic();
-  var selectorRectangle = new Cesium.Rectangle();
   var spatialSelector = {x: 0, y: 0, width: 0, height: 0};
   var throttledUpdateStations = _.throttle(updateVisibleStations, 250);
 
@@ -148,7 +148,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           stationEntity.show = true;
 
           //Add to the selection group if under selector
-          if (selector.show && !wasShowing && stationSelected(stationEntity, selector, selectorRectangle, stationCartographic)) {
+          if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleSelector, stationCartographic)) {
             selectedStations.add(stationEntity);
           }
         }
@@ -169,7 +169,7 @@ function setupEventListeners(stationLocations) {
   var stationEntities = stationLocations.entities.values;
   var stationEntitiesLength = stationEntities.length;
   var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-  var rectangleSelector = new Cesium.Rectangle();
+
   var cartesian = new Cesium.Cartesian3();
   var tempCartographic = new Cesium.Cartographic();
   var center = new Cesium.Cartographic();
@@ -250,7 +250,7 @@ function setupEventListeners(stationLocations) {
           var stationEntity = stationLocations.entities.getById(selectedItems[i]);
 
           if (stationEntity.show && !selectedStations.contains(stationEntity)
-            && stationSelected(stationEntity, selector, rectangleSelector, tempCartographic)) {
+            && stationSelected(stationEntity, rectangleSelector, tempCartographic)) {
             selectedStations.add(stationEntity);
           }
         }
@@ -476,11 +476,11 @@ function createHistogram() {
   }
 }
 
-function stationSelected(station, selector, selectorRectangle, stationCartographic) {
-  selectorRectangle = selector.rectangle.coordinates.getValue(null, selectorRectangle);
+function stationSelected(station, rectangleSelector, stationCartographic) {
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
-  return Cesium.Rectangle.contains(selectorRectangle, stationCartographic);
+  return stationCartographic.longitude > rectangleSelector.west && stationCartographic.longitude < rectangleSelector.east
+    && stationCartographic.latitude < rectangleSelector.north && stationCartographic.latitude > rectangleSelector.south;
 }
 
 function getModules() {
