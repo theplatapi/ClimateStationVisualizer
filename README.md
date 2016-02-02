@@ -130,7 +130,11 @@
 21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-      * [ ] Web worker to load json weather and location files
+      * [ ] Have the JSON parsing done in anync. The loading is already done asynchronously
+            * [ ] http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
+            * [ ] https://www.npmjs.com/package/JSONStream
+            * [ ] Web worker to load json weather and location files
+                  * May not work since we need to stringify the result
 
 ##Build steps
 1. npm pack in cesiumjs fork
