@@ -80,7 +80,7 @@
 15. Design questions and determine future tools
        * [x] Pick a cesium imagery provider with names for countries
        * [ ] Update temperature in infobox
-       * [x] Cull out points for selector
+       * [x] Cull out points for histogram selector
        * [x] Pass clicks on histogram through to Cesium
                   -- or --
        * [ ] Always show histogram and just highlight parts if subsection is chosen
