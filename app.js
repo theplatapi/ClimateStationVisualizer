@@ -25,8 +25,8 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     shouldAnimate: false,
     multiplier: 31622400 //Fast forward 1 year a second
   }),
-  imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
-    url : '//services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer',
+  imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+    url: '//services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer',
     enablePickFeatures: false
   }),
   //Saves GPU memory
@@ -35,7 +35,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 var selectedStations = new Cesium.EntityCollection();
-var visibleStations = new Cesium.EntityCollection();
+var inFrustumStations = new Cesium.EntityCollection();
 var selector;
 var updateHistogram;
 var redraw = false;
@@ -114,7 +114,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-    visibleStations.suspendEvents();
+    inFrustumStations.suspendEvents();
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
     if (cameraMoving) {
@@ -136,8 +136,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Stop the callbacks since we can be adding and removing a lot of items
       selectedStations.suspendEvents();
 
-      for (var i = 0; i < visibleStations.values.length; i++) {
-        var stationEntity = visibleStations.values[i];
+      for (var i = 0; i < inFrustumStations.values.length; i++) {
+        var stationEntity = inFrustumStations.values[i];
         var stationId = stationEntity.properties.stationId;
         var temperature = stationTemperatures[stationId][timelineTime.year]
           && stationTemperatures[stationId][timelineTime.year][timelineTime.month];
@@ -150,9 +150,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
           //Add to the selection group if under selector
           if (selector.show && !wasShowing && stationSelected(stationEntity, selector, selectorRectangle, stationCartographic)) {
-            if (!selectedStations.contains(stationEntity)) {
-              selectedStations.add(stationEntity);
-            }
+            selectedStations.add(stationEntity);
           }
         }
         else {
@@ -164,7 +162,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Done updating so we can fire the callbacks again
       selectedStations.resumeEvents();
     }
-    visibleStations.resumeEvents();
+    inFrustumStations.resumeEvents();
   });
 }
 
@@ -174,7 +172,7 @@ function setupEventListeners(stationLocations) {
   var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
   var rectangleSelector = new Cesium.Rectangle();
   var cartesian = new Cesium.Cartesian3();
-  var mouseCartographic = new Cesium.Cartographic();
+  var tempCartographic = new Cesium.Cartographic();
   var center = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
@@ -186,7 +184,7 @@ function setupEventListeners(stationLocations) {
   var camera = viewer.camera;
 
   //SECTION - Build spatial hash
-  spatialHash = new SpatialHash(5);
+  spatialHash = new SpatialHash(4);
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     var position = Cesium.Cartographic.fromCartesian(stationEntities[i]._position._value);
@@ -224,17 +222,18 @@ function setupEventListeners(stationLocations) {
     cartesian = camera.pickEllipsoid(movement.endPosition, viewer.scene.globe.ellipsoid, cartesian);
 
     if (cartesian) {
-      mouseCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, mouseCartographic);
+      //mouse cartographic
+      tempCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, tempCartographic);
 
       if (!firstPointSet) {
-        Cesium.Cartographic.clone(mouseCartographic, firstPoint);
+        Cesium.Cartographic.clone(tempCartographic, firstPoint);
         firstPointSet = true;
       }
       else {
-        rectangleSelector.east = Math.max(mouseCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.west = Math.min(mouseCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.north = Math.max(mouseCartographic.latitude, firstPoint.latitude);
-        rectangleSelector.south = Math.min(mouseCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.east = Math.max(tempCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.west = Math.min(tempCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.north = Math.max(tempCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.south = Math.min(tempCartographic.latitude, firstPoint.latitude);
         selector.show = true;
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
@@ -251,7 +250,8 @@ function setupEventListeners(stationLocations) {
         for (var i = 0; i < selectedItems.length; i++) {
           var stationEntity = stationLocations.entities.getById(selectedItems[i]);
 
-          if (stationEntity.show && !selectedStations.contains(stationEntity)) {
+          if (stationEntity.show && !selectedStations.contains(stationEntity)
+            && stationSelected(stationEntity, selector, rectangleSelector, tempCartographic)) {
             selectedStations.add(stationEntity);
           }
         }
@@ -301,11 +301,6 @@ function setupEventListeners(stationLocations) {
     updateHistogramThrottled(collection);
   });
 
-  //visibleStations.collectionChanged.addEventListener(function visibleStationsChanged(collection) {
-    //TODO: Try making more efficient with just added and removed
-
-  //});
-
   //SECTION - time format callbacks
   //Customize the date output and remove the time output on the time animation widget
   viewer._animation._viewModel._dateFormatter = function (date) {
@@ -329,7 +324,7 @@ function setupEventListeners(stationLocations) {
 }
 
 function updateVisibleStations(stationLocations, spatialSelector) {
-  visibleStations.suspendEvents();
+  inFrustumStations.suspendEvents();
   //Get the frustum height in degrees
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * viewer.camera.frustum.aspectRatio;
@@ -358,10 +353,10 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   var toHideIds = _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).value();
 
 
-  visibleStations.removeAll();
+  inFrustumStations.removeAll();
   for (var i = 0; i < eligibleEntityIds.length; i++) {
     var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
-    visibleStations.add(stationEntity);
+    inFrustumStations.add(stationEntity);
   }
 
   //Hide stations not in spatial query
@@ -371,7 +366,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   }
 
   redraw = true;
-  visibleStations.resumeEvents();
+  inFrustumStations.resumeEvents();
 }
 
 function convertLongitude(longitude) {
