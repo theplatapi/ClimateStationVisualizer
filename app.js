@@ -8,7 +8,6 @@ var SpatialHash = require('./spatialHash.js');
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
-Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
 
 var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
@@ -487,7 +486,6 @@ function stationSelected(station, selector, selectorRectangle, stationCartograph
 function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
-    BingMapsApi: require('cesium/Source/Core/BingMapsApi'),
     ArcGisMapServerImageryProvider: require('cesium/Source/Scene/ArcGisMapServerImageryProvider'),
     Viewer: require('cesium/Source/Widgets/Viewer/Viewer'),
     GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
@@ -508,9 +506,6 @@ function getModules() {
     Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
     CesiumMath: require('cesium/Source/Core/Math'),
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
-    Intersect: require('cesium/Source/Core/Intersect'),
-    BoundingSphere: require('cesium/Source/Core/BoundingSphere'),
-    TileMapServiceImageryProvider: require('cesium/Source/Scene/TileMapServiceImageryProvider'),
     Timeline: require('cesium/Source/Widgets/Timeline/Timeline')
   };
 }
