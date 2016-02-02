@@ -8,6 +8,7 @@ var SpatialHash = require('./spatialHash.js');
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
+Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
 
 var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
@@ -50,15 +51,62 @@ viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 //Makes Cesium check more often if the camera stopped moving.
 viewer.imageryLayers.get(0).brightness = 0.7;
+
+
+//SECTION - source modifications
+Cesium.Timeline.prototype.zoomTo = _.noop;
 //Speed improvement -
 //https://cesiumjs.org/Cesium/Build/Documentation/ArcGisMapServerImageryProvider.html?classFilter=ArcGisMapServerImageryProvider#hasAlphaChannel
 Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop();
 
-//SECTION - source modifications
-Cesium.Timeline.prototype.zoomTo = _.noop;
+//---------------- TEMP ----------------
+d3.interpolateHsl = function d3_interpolateHsl(a, b) {
+  a = d3.hsl(a);
+  b = d3.hsl(b);
+  var ah = a.h,
+    as = a.s,
+    al = a.l,
+    bh = b.h - ah,
+    bs = b.s - as,
+    bl = b.l - al;
+  if (isNaN(bs)) bs = 0, as = isNaN(as) ? b.s : as;
+  if (isNaN(bh)) bh = 0, ah = isNaN(ah) ? b.h : ah;
+  else if (bh > 180) bh -= 360; else if (bh < -180) bh += 360; // shortest path
+  return function(t) {
+    return d3_hsl_rgb(ah + bh * t, as + bs * t, al + bl * t);
+  };
+};
 
+function d3_hsl_rgb(h, s, l) {
+  var m1,
+    m2;
 
-//TODO: Create a memory friendly version that doesn't rely on strings
+  /* Some simple corrections for h, s and l. */
+  h = isNaN(h) ? 0 : (h %= 360) < 0 ? h + 360 : h;
+  s = isNaN(s) ? 0 : s < 0 ? 0 : s > 1 ? 1 : s;
+  l = l < 0 ? 0 : l > 1 ? 1 : l;
+
+  /* From FvD 13.37, CSS Color Module Level 3 */
+  m2 = l <= 0.5 ? l * (1 + s) : l + s - l * s;
+  m1 = 2 * l - m2;
+
+  function v(h) {
+    if (h > 360) h -= 360;
+    else if (h < 0) h += 360;
+    if (h < 60) return m1 + (m2 - m1) * h / 60;
+    if (h < 180) return m2;
+    if (h < 240) return m1 + (m2 - m1) * (240 - h) / 60;
+    return m1;
+  }
+
+  function vv(h) {
+    return Math.round(v(h) * 255);
+  }
+
+  return new d3.rgb(vv(h + 120), vv(h), vv(h - 120));
+}
+//---------------- TEMP ----------------
+
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
   .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
@@ -68,9 +116,9 @@ var circle = require('./lib/whiteShapes.png');
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   var color = hexColorGenerator(temperature);
 
-  cesiumColor.red = parseInt(color.substring(1, 3), 16) / 255;
-  cesiumColor.green = parseInt(color.substring(3, 5), 16) / 255;
-  cesiumColor.blue = parseInt(color.substring(5, 7), 16) / 255;
+  cesiumColor.red = color.r / 255;
+  cesiumColor.green = color.g / 255;
+  cesiumColor.blue = color.b / 255;
 
   return cesiumColor;
 };
@@ -150,6 +198,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           //Add to the selection group if under selector
           if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleSelector, stationCartographic)) {
             selectedStations.add(stationEntity);
+            console.log('Testing');
           }
         }
         else {
@@ -483,6 +532,7 @@ function stationSelected(station, rectangleSelector, stationCartographic) {
 function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
+    BingMapsApi: require('cesium/Source/Core/BingMapsApi'),
     ArcGisMapServerImageryProvider: require('cesium/Source/Scene/ArcGisMapServerImageryProvider'),
     Viewer: require('cesium/Source/Widgets/Viewer/Viewer'),
     GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
