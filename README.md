@@ -78,10 +78,10 @@
        * [x] Disable selector picking - Empty infobox appears when clicked
             * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
 15. Design questions and determine future tools
-       * [ ] Pick a cesium imagery provider with names for countries, but low on memory
+       * [x] Pick a cesium imagery provider with names for countries
        * [ ] Update temperature in infobox
        * [x] Cull out points for selector
-       * [ ] Pass clicks on histogram through to Cesium
+       * [x] Pass clicks on histogram through to Cesium
                   -- or --
        * [ ] Always show histogram and just highlight parts if subsection is chosen
             * http://vis.stanford.edu/projects/immens/demo/brightkite/

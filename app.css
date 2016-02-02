@@ -51,6 +51,7 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   position: absolute;
   top: 0;
   padding: 5px;
+  pointer-events: none;
 }
 
 .bar rect {
