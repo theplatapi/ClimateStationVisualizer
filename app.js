@@ -27,8 +27,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   }),
   imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
     url : '//services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer',
-    enablePickFeatures: false,
-    maximumLevel: 2
+    enablePickFeatures: false
   }),
   //Saves GPU memory
   scene3DOnly: true,
@@ -51,6 +50,9 @@ viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 //Makes Cesium check more often if the camera stopped moving.
 viewer.imageryLayers.get(0).brightness = 0.7;
+//Speed improvement -
+//https://cesiumjs.org/Cesium/Build/Documentation/ArcGisMapServerImageryProvider.html?classFilter=ArcGisMapServerImageryProvider#hasAlphaChannel
+Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop();
 
 //SECTION - source modifications
 Cesium.Timeline.prototype.zoomTo = _.noop;
