@@ -168,7 +168,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
           //Add to the selection group if under selector
           if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleSelector, stationCartographic)) {
             selectedStations.add(stationEntity);
-            console.log('Testing');
           }
         }
         else {
