@@ -347,19 +347,16 @@ function updateVisibleStations(stationLocations, spatialSelector) {
     eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').union(eligibleEntityIds).value();
   }
 
-  var toHideIds = _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).value();
+  //Hide stations not in spatial query
+  _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).map(function (id) {
+    stationLocations.entities.getById(id).show = false;
+  });
 
 
   inFrustumStations.removeAll();
   for (var i = 0; i < eligibleEntityIds.length; i++) {
     var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
     inFrustumStations.add(stationEntity);
-  }
-
-  //Hide stations not in spatial query
-  for (var j = 0; j < toHideIds.length; j++) {
-    var stationEntity2 = stationLocations.entities.getById(toHideIds[j]);
-    stationEntity2.show = false;
   }
 
   inFrustumStations.resumeEvents();
