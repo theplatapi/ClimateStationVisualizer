@@ -38,7 +38,6 @@ var inFrustumStations = new Cesium.EntityCollection();
 var selector;
 var rectangleSelector = new Cesium.Rectangle();
 var updateHistogram;
-var redraw = false;
 var spatialHash;
 var cameraMoving = false;
 
@@ -127,11 +126,10 @@ function populateGlobe(stationTemperatures, stationLocations) {
       $('.cesium-viewer-infoBoxContainer').show();
     }
 
-    if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year || redraw) {
+    if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year) {
       //Deep copy
       lastTime.year = timelineTime.year;
       lastTime.month = timelineTime.month;
-      redraw = false;
       //Stop the callbacks since we can be adding and removing a lot of items
       selectedStations.suspendEvents();
 
@@ -364,7 +362,6 @@ function updateVisibleStations(stationLocations, spatialSelector) {
     stationEntity2.show = false;
   }
 
-  redraw = true;
   inFrustumStations.resumeEvents();
 }
 
