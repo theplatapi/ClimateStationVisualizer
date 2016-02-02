@@ -370,7 +370,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   //Hide stations not in spatial query
   _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).map(function (id) {
     stationLocations.entities.getById(id).show = false;
-  });
+  }).value();
 
 
   inFrustumStations.removeAll();
