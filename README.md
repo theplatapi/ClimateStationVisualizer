@@ -115,19 +115,19 @@
           * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
        * [ ] Replace var with let
 20. Find memory leak
-        * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
-        * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
-           p - 1 step and compare to p step to see differences.
-        * [ ] Test cesium no additions, running at our speed.
-        * [ ] Add entities all white
-        * [ ] Add randomly changing color entities
-        * [ ] Add color depending on temperature
-        * [ ] Show/hide entities if no temperature
+      * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
+      * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
+         p - 1 step and compare to p step to see differences.
+      * [ ] Test cesium no additions, running at our speed.
+      * [ ] Add entities all white
+      * [ ] Add randomly changing color entities
+      * [ ] Add color depending on temperature
+      * [ ] Show/hide entities if no temperature
 
-        Ideas:
-        * [ ] See if entity.show=false makes Cesium allocate a new "node"
-        * [ ] See if D3 color strings are the cause
-        21. Fix UI hangs on file load
+      Ideas:
+      * [ ] See if entity.show=false makes Cesium allocate a new "node"
+      * [ ] See if D3 color strings are the cause
+21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       * [ ] Web worker to load json weather and location files
