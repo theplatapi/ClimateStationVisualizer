@@ -80,8 +80,8 @@
 15. Design questions and determine future tools
        * [ ] Pick a cesium imagery provider with names for countries, but low on memory
        * [ ] Update temperature in infobox
-       * [ ] Cull out points for selector
-       * [ ] Pass clicks through to Cesium
+       * [x] Cull out points for selector
+       * [ ] Pass clicks on histogram through to Cesium
                   -- or --
        * [ ] Always show histogram and just highlight parts if subsection is chosen
             * http://vis.stanford.edu/projects/immens/demo/brightkite/
