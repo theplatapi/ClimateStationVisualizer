@@ -58,47 +58,46 @@
        * [ ] Return the whole entity so we can chain a loop together
           * [x] Research if loop chaining is actually faster
 12. Research aggregating data into a heatmap
-       * [ ] Precomputed
+       * Precomputed
          1. [ ] Figure out if tile can be switched depending on time. Create a demo.
          2. [ ] Create a level 1 heatmap in Python for each year/month. Convert to one layer image in Web Mercator.
          3. [ ] Create a few more levels and allow Cesium to query between them.
          4. [ ] Change histogram to account for new temperatures. Need to load in new data so an interpolated range will still show something
-       * [ ] Live
+       * Live
          * [ ] Use heatmap.js, but with values instead of positions?
             * [ ] When adding a position, add it T times, where T is the current temperature.
                * Bad, since highest temperature currently is the most red
-
        * [ ] Possible to pre-render map coloring like SolarGIS?
           * http://solargis.info/imaps/#tl=GeoModel:t_yr_avg&loc=-29.180941,113.181152&c=24.65512,-51.350784
 13. Improve station colors
-        * [x] Find out actual domain of temperatures
-        * [x] Get an accurate range of colors climate visualizations use
+       * [x] Find out actual domain of temperatures
+       * [x] Get an accurate range of colors climate visualizations use
 14. Improve histogram
-        * [x] Improve first draw time
-        * [x] Fix gap in middle
-        * [x] Disable selector picking - Empty infobox appears when clicked
+       * [x] Improve first draw time
+       * [x] Fix gap in middle
+       * [x] Disable selector picking - Empty infobox appears when clicked
             * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
 15. Design questions and determine future tools
-        * [ ] Pick a cesium imagery provider with names for countries, but low on memory
-        * [ ] Update temperature in infobox
-        * [ ] Cull out points for selector
-        * [ ] Pass clicks through to Cesium
+       * [ ] Pick a cesium imagery provider with names for countries, but low on memory
+       * [ ] Update temperature in infobox
+       * [ ] Cull out points for selector
+       * [ ] Pass clicks through to Cesium
                   -- or --
-        * [ ] Always show histogram and just highlight parts if subsection is chosen
+       * [ ] Always show histogram and just highlight parts if subsection is chosen
             * http://vis.stanford.edu/projects/immens/demo/brightkite/
-        * [ ] Second query if looking over north or south pole
-        * [ ] Widen frustum query height when zoomed out on earth
+       * [ ] Second query if looking over north or south pole
+       * [ ] Widen frustum query height when zoomed out on earth
 16. Change viewer clock
-      * [x] Disable play before data is loaded
-      * [x] Disable ability to change speedup
-      * [x] Hide x213879124 since it's distracting
-      * [x] Prevent changing the scale of the timeline
-      * [x] Remove day from date display
-      * [x] Remove time display
-      * [ ] Prevent time display flashing - add callback fixes earlier
-      * [ ] Show loading wheel while getting files
-      * [x] Prevent timeline from being zoomed in on
-      * [ ] Have timeline ticks only display month and year
+        * [x] Disable play before data is loaded
+        * [x] Disable ability to change speedup
+        * [x] Hide x213879124 since it's distracting
+        * [x] Prevent changing the scale of the timeline
+        * [x] Remove day from date display
+        * [x] Remove time display
+        * [ ] Prevent time display flashing - add callback fixes earlier
+        * [ ] Show loading wheel while getting files
+        * [x] Prevent timeline from being zoomed in on
+        * [ ] Have timeline ticks only display month and year
 17. Limit camera controls
        * [ ] Limit zoom
           * [ ] Regular mouse zoom
@@ -128,7 +127,7 @@
         Ideas:
         * [ ] See if entity.show=false makes Cesium allocate a new "node"
         * [ ] See if D3 color strings are the cause
-21. Fix UI hangs on file load
+        21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       * [ ] Web worker to load json weather and location files
