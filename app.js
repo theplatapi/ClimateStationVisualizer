@@ -59,7 +59,7 @@ Cesium.Timeline.prototype.zoomTo = _.noop;
 //https://cesiumjs.org/Cesium/Build/Documentation/ArcGisMapServerImageryProvider.html?classFilter=ArcGisMapServerImageryProvider#hasAlphaChannel
 Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop();
 
-//---------------- TEMP ----------------
+//Redoes the implementation so it doesn't return a string.
 d3.interpolateHsl = function d3_interpolateHsl(a, b) {
   a = d3.hsl(a);
   b = d3.hsl(b);
@@ -72,11 +72,10 @@ d3.interpolateHsl = function d3_interpolateHsl(a, b) {
   if (isNaN(bs)) bs = 0, as = isNaN(as) ? b.s : as;
   if (isNaN(bh)) bh = 0, ah = isNaN(ah) ? b.h : ah;
   else if (bh > 180) bh -= 360; else if (bh < -180) bh += 360; // shortest path
-  return function(t) {
+  return function (t) {
     return d3.hsl(ah + bh * t, as + bs * t, al + bl * t).rgb();
   };
 };
-//---------------- TEMP ----------------
 
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
