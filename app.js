@@ -26,7 +26,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     multiplier: 31622400 //Fast forward 1 year a second
   }),
   imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
-    url : '//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer',
+    url : '//services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer',
     enablePickFeatures: false,
     maximumLevel: 2
   }),
@@ -78,6 +78,7 @@ var setStationAppearance = function setStationAppearance(station) {
     result.red = station.color.red;
     result.green = station.color.green;
     result.blue = station.color.blue;
+    result.alpha = station.color.alpha;
 
     return result;
   }, false);
@@ -103,7 +104,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
-    stationEntities[i].color = new Cesium.Color(1, 1, 1, 1);
+    stationEntities[i].color = new Cesium.Color(1, 1, 1, 0.7);
     stationEntities[i].show = false;
     setStationAppearance(stationEntities[i]);
   }
