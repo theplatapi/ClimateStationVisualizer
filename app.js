@@ -105,7 +105,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
-    stationEntities[i].color = new Cesium.Color(1, 1, 1, 0.7);
+    stationEntities[i].color = new Cesium.Color(1, 1, 1, 0.6);
     stationEntities[i].show = false;
     setStationAppearance(stationEntities[i]);
   }
@@ -284,9 +284,9 @@ function setupEventListeners(stationLocations) {
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
-      material: Cesium.Color.fromCssColorString('#939393').withAlpha(0.5),
+      material: Cesium.Color.BLACK.withAlpha(0.5),
       outline: true,
-      outlineColor: Cesium.Color.WHITE
+      outlineColor: Cesium.Color.BLACK
     }
   });
 
