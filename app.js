@@ -351,7 +351,9 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   spatialSelector.width = Cesium.CesiumMath.clamp(Math.round(frustumWidth) * 10, 0, 1800);
   spatialSelector.height = Cesium.CesiumMath.clamp(Math.round(frustumHeight) * 10, 0, 900);
 
-  var eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').uniq().value();
+  var selectedIds = spatialHash.retrieve(spatialSelector);
+  var secondarySelectedIds;
+
   //Handles frustum crossing anti-meridian
   var remainingLeft = (spatialSelector.width - spatialSelector.x * 2) / 2;
   var remainingRight = (spatialSelector.width - ((3600 - spatialSelector.x) * 2)) / 2;
@@ -359,25 +361,27 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   if (remainingLeft > 0) {
     spatialSelector.width = remainingLeft;
     spatialSelector.x = 3600 - remainingLeft / 2;
-    eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').union(eligibleEntityIds).value();
+    secondarySelectedIds = spatialHash.retrieve(spatialSelector);
   }
   else if (remainingRight > 0) {
     spatialSelector.width = remainingRight;
     spatialSelector.x = remainingRight / 2;
-    eligibleEntityIds = _.chain(spatialHash.retrieve(spatialSelector)).map('id').union(eligibleEntityIds).value();
+    secondarySelectedIds = spatialHash.retrieve(spatialSelector);
   }
-
-  //Hide stations not in spatial query
-  _.chain(spatialHash.list).map('id').difference(eligibleEntityIds).map(function (id) {
-    stationLocations.entities.getById(id).show = false;
-  }).value();
-
 
   inFrustumStations.removeAll();
-  for (var i = 0; i < eligibleEntityIds.length; i++) {
-    var stationEntity = stationLocations.entities.getById(eligibleEntityIds[i]);
-    inFrustumStations.add(stationEntity);
-  }
+
+  //Add visible stations to designated entity collection and hide all other entities
+  _.chain(selectedIds)
+    .unionBy(secondarySelectedIds, 'id')
+    .map(function (selected) {
+      return inFrustumStations.add(stationLocations.entities.getById(selected.id));
+    })
+    .differenceBy(spatialHash.list, 'id')
+    .map(function (id) {
+      stationLocations.entities.getById(id).show = false;
+    })
+    .value();
 
   inFrustumStations.resumeEvents();
   redraw = true;
