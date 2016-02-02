@@ -132,7 +132,7 @@
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
       * [ ] Web worker to load json weather and location files
 
-Build steps
+##Build steps
 1. npm pack in cesiumjs fork
 2. Copy .tgz to webpack project
 3. Delete cesium folder in node_modules
