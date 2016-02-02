@@ -25,8 +25,10 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     shouldAnimate: false,
     multiplier: 31622400 //Fast forward 1 year a second
   }),
-  imageryProvider: new Cesium.TileMapServiceImageryProvider({
-    url: './Assets/Textures/NaturalEarthII'
+  imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+    url : '//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer',
+    enablePickFeatures: false,
+    maximumLevel: 2
   }),
   //Saves GPU memory
   scene3DOnly: true,
@@ -48,7 +50,6 @@ viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 //Makes Cesium check more often if the camera stopped moving.
-viewer.scene.cameraEventWaitTime = 200;
 viewer.imageryLayers.get(0).brightness = 0.7;
 
 //SECTION - source modifications
@@ -489,6 +490,7 @@ function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
     BingMapsApi: require('cesium/Source/Core/BingMapsApi'),
+    ArcGisMapServerImageryProvider: require('cesium/Source/Scene/ArcGisMapServerImageryProvider'),
     Viewer: require('cesium/Source/Widgets/Viewer/Viewer'),
     GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
     Clock: require('cesium/Source/Core/Clock'),
