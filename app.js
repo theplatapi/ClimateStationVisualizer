@@ -456,7 +456,7 @@ function createHistogram() {
     var histogram = histogramFunc(temperatures);
 
     var y = d3.scale.linear()
-      .domain([0, d3.max(histogram, function (d) {
+      .domain([0, d3.max(histogram, function getMax(d) {
         return d.y;
       })])
       .range([height, 0]);
@@ -472,7 +472,7 @@ function createHistogram() {
       .data(histogram)
       .transition()
       .duration(100)
-      .attr("transform", function (d) {
+      .attr("transform", function transformBar(d) {
         return "translate(" + x(d.x).toFixed(4) + "," + y(d.y) + ")";
       });
 
@@ -480,7 +480,7 @@ function createHistogram() {
       .data(histogram)
       .transition()
       .duration(100)
-      .attr("height", function (d) {
+      .attr("height", function rectHeight(d) {
         return height - y(d.y);
       });
 
