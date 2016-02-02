@@ -378,8 +378,8 @@ function updateVisibleStations(stationLocations, spatialSelector) {
       return inFrustumStations.add(stationLocations.entities.getById(selected.id));
     })
     .differenceBy(spatialHash.list, 'id')
-    .map(function (id) {
-      stationLocations.entities.getById(id).show = false;
+    .map(function (leftover) {
+      stationLocations.entities.getById(leftover.id).show = false;
     })
     .value();
 
