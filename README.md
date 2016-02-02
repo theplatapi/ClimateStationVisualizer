@@ -124,9 +124,9 @@
       * [ ] Add color depending on temperature
       * [ ] Show/hide entities if no temperature
 
-      Ideas:
-      * [ ] See if entity.show=false makes Cesium allocate a new "node"
-      * [ ] See if D3 color strings are the cause
+      * Ideas:
+        * [ ] See if entity.show=false makes Cesium allocate a new "node"
+        * [ ] See if D3 color strings are the cause
 21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
