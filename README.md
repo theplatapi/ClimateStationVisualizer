@@ -133,8 +133,8 @@
       * [ ] Web worker to load json weather and location files
 
 Build steps
-1) npm pack in cesiumjs fork
-2) Copy .tgz to webpack project
-3) Delete cesium folder in node_modules
-4) Run npm install in webpack project
-5) npm run in webpack project
+1. npm pack in cesiumjs fork
+2. Copy .tgz to webpack project
+3. Delete cesium folder in node_modules
+4. Run npm install in webpack project
+5. npm run in webpack project
