@@ -375,13 +375,17 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   _.chain(selectedIds)
     .unionBy(secondarySelectedIds, 'id')
     .map(function (selected) {
-      return inFrustumStations.add(stationLocations.entities.getById(selected.id));
-    })
-    .differenceBy(spatialHash.list, 'id')
-    .map(function (leftover) {
-      stationLocations.entities.getById(leftover.id).show = false;
+      inFrustumStations.add(stationLocations.entities.getById(selected.id));
     })
     .value();
+
+  //_.chain(spatialHash.list)
+  //  .map('id')
+  //  .difference(elegibleIds)
+  //  .map(function (id) {
+  //    stationLocations.entities.getById(id).show = false;
+  //  })
+  //  .value();
 
   inFrustumStations.resumeEvents();
   redraw = true;
