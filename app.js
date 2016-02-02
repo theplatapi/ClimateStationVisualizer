@@ -73,38 +73,9 @@ d3.interpolateHsl = function d3_interpolateHsl(a, b) {
   if (isNaN(bh)) bh = 0, ah = isNaN(ah) ? b.h : ah;
   else if (bh > 180) bh -= 360; else if (bh < -180) bh += 360; // shortest path
   return function(t) {
-    return d3_hsl_rgb(ah + bh * t, as + bs * t, al + bl * t);
+    return d3.hsl(ah + bh * t, as + bs * t, al + bl * t).rgb();
   };
 };
-
-function d3_hsl_rgb(h, s, l) {
-  var m1,
-    m2;
-
-  /* Some simple corrections for h, s and l. */
-  h = isNaN(h) ? 0 : (h %= 360) < 0 ? h + 360 : h;
-  s = isNaN(s) ? 0 : s < 0 ? 0 : s > 1 ? 1 : s;
-  l = l < 0 ? 0 : l > 1 ? 1 : l;
-
-  /* From FvD 13.37, CSS Color Module Level 3 */
-  m2 = l <= 0.5 ? l * (1 + s) : l + s - l * s;
-  m1 = 2 * l - m2;
-
-  function v(h) {
-    if (h > 360) h -= 360;
-    else if (h < 0) h += 360;
-    if (h < 60) return m1 + (m2 - m1) * h / 60;
-    if (h < 180) return m2;
-    if (h < 240) return m1 + (m2 - m1) * (240 - h) / 60;
-    return m1;
-  }
-
-  function vv(h) {
-    return Math.round(v(h) * 255);
-  }
-
-  return new d3.rgb(vv(h + 120), vv(h), vv(h - 120));
-}
 //---------------- TEMP ----------------
 
 var hexColorGenerator = d3.scale.linear()
