@@ -129,9 +129,11 @@
 21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-      * [ ] Have the JSON loading and parsing done in anync.
-            * [ ] http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
-            * [ ] https://www.npmjs.com/package/JSONStream
+      * [x] Have the JSON loading and parsing done in anync.
+            * http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
+      * Comprehensive solution:
+        * [ ] Recreate temperatures as separate files for each station. Then load them all in one by one and combine
+              them into one large object.
 
 ##Build steps
 1. npm pack in cesiumjs fork
