@@ -40,6 +40,7 @@ var selector;
 var redraw = false;
 var rectangleSelector = new Cesium.Rectangle();
 var updateHistogram;
+var updateHistogramThrottled;
 var spatialHash;
 var cameraMoving = false;
 
@@ -178,6 +179,11 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
       //Done updating so we can fire the callbacks again
       selectedStations.resumeEvents();
+
+      //Update the stations in case no entities were added or removed. Call is throttled so can't double call.
+      if (selector.show) {
+        updateHistogramThrottled(selectedStations);
+      }
     }
     inFrustumStations.resumeEvents();
   });
@@ -308,7 +314,7 @@ function setupEventListeners(stationLocations) {
     }
   });
 
-  var updateHistogramThrottled = _.throttle(function (collection) {
+  updateHistogramThrottled = _.throttle(function (collection) {
     updateHistogram(_.map(collection.values, 'properties.temperature'));
   }, 200);
 
