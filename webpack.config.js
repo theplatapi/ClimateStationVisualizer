@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -11,6 +12,9 @@ module.exports = {
     new HtmlPlugin({
       template: 'index.html',
       inject: true
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ],
   devServer: {
