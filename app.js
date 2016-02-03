@@ -555,14 +555,12 @@ function getModules() {
 
 function asyncLoadJson(filename, cb) {
   fetch(filename).then(function (response) {
-      response.json().then(function (data) {
-          cb(data);
-        })
-        .catch(function (err) {
-          console.log(filename, 'JSON', err)
-        });
+      return response.json();
+    })
+    .then(function (data) {
+      return cb(data);
     })
     .catch(function (err) {
-      console.log(filename, 'FETCH', err);
-    })
+      console.log(filename, err)
+    });
 }
