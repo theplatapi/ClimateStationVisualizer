@@ -554,7 +554,8 @@ function getModules() {
 })();
 
 function asyncLoadJson(filename, cb) {
-  fetch(filename).then(function (response) {
+  fetch(filename)
+    .then(function (response) {
       return response.json();
     })
     .then(function (data) {
