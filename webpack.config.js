@@ -16,6 +16,7 @@ module.exports = {
     devServer: {
         contentBase: './public',
     },
+    devtool: 'source-map',
     module: {
         unknownContextCritical: false,
         loaders: [
