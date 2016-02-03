@@ -79,14 +79,9 @@
             * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
 15. Design questions and determine future tools
        * [x] Pick a cesium imagery provider with names for countries
-       * [ ] Update temperature in infobox
        * [x] Cull out points for histogram selector
        * [x] Pass clicks on histogram through to Cesium
-                  -- or --
-       * [ ] Always show histogram and just highlight parts if subsection is chosen
-            * http://vis.stanford.edu/projects/immens/demo/brightkite/
-       * [ ] Second query if looking over north or south pole
-       * [ ] Widen frustum query height when zoomed out on earth
+       * [ ] Update temperature in infobox
 16. Change viewer clock
         * [x] Disable play before data is loaded
         * [x] Disable ability to change speedup
@@ -105,10 +100,14 @@
        * [ ] Limit speed
        * [ ] Prevent tilting too high or low (y axis changes)
 18. Performance v3
-       * Goal is to 1) Have above 30 fps with animation and selector and 2) no memory leaks
-       * [ ] Replace color with SampledProperty. All of the color generation logic can be done beforehand.
+       * Goal is to
+             1. Have above 30 fps with animation and selector and
+             2. no memory leaks
        * [ ] Research using primitive instead of entity for disablePick and cull=false
        * [ ] Use referenceProperty for station billboards
+       * [ ] Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
+             intersecting it onClockTick. Something about drawing it makes the frame rate plummet.
+       * [ ] Replace color with SampledProperty. All of the color generation logic can be done beforehand.
 19. Rewrite in ES6 to future proof it
        * [ ] Convert into modules.
           * [ ] Make event listeners modules
@@ -130,11 +129,9 @@
 21. Fix UI hangs on file load
       * [x] Set up GeoJsonDataSource from loaded json object
       * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-      * [ ] Have the JSON parsing done in anync. The loading is already done asynchronously
+      * [ ] Have the JSON loading and parsing done in anync.
             * [ ] http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
             * [ ] https://www.npmjs.com/package/JSONStream
-            * [ ] Web worker to load json weather and location files
-                  * May not work since we need to stringify the result
 
 ##Build steps
 1. npm pack in cesiumjs fork
