@@ -542,15 +542,27 @@ function getModules() {
 
 //main
 (function main() {
-  $.when($.getJSON('./climateData/stationTemps.json'), $.getJSON('./climateData/stationLocations.json'))
-    .done(function (stationTemperatures, stationLocationsGeoJson) {
-      Cesium.GeoJsonDataSource.load(stationLocationsGeoJson[0]).then(function loadStations(stationLocations) {
+  asyncLoadJson('./climateData/stationTemps.json', function (stationTemperatures) {
+    asyncLoadJson('./climateData/stationLocations.json', function (stationLocationsGeoJson) {
+      Cesium.GeoJsonDataSource.load(stationLocationsGeoJson).then(function loadStations(stationLocations) {
         createHistogram();
-        populateGlobe(stationTemperatures[0], stationLocations);
+        populateGlobe(stationTemperatures, stationLocations);
         setupEventListeners(stationLocations);
       });
-    })
-    .fail(function (data, textStatus, error) {
-      console.log('Failed loading data: ' + textStatus + ' ' + error);
-    })
+    });
+  });
 })();
+
+function asyncLoadJson(filename, cb) {
+  fetch(filename).then(function (response) {
+      response.json().then(function (data) {
+          cb(data);
+        })
+        .catch(function (err) {
+          console.log(filename, 'JSON', err)
+        });
+    })
+    .catch(function (err) {
+      console.log(filename, 'FETCH', err);
+    })
+}
