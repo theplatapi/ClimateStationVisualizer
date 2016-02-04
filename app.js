@@ -86,9 +86,11 @@ var dateFormatter = function (date) {
 };
 
 Cesium.Timeline.prototype.makeLabel = dateFormatter;
-//Cesium.AnimationViewModel.prototype._dateFormatter
-viewer._animation._viewModel._dateFormatter = dateFormatter;
-viewer._animation._viewModel._timeFormatter = _.noop;
+//Cesium.AnimationViewModel.prototype.dateFormatter
+viewer.animation.viewModel.dateFormatter = dateFormatter;
+viewer.animation.viewModel.timeFormatter = _.noop;
+
+$('.cesium-viewer-bottom').show().delay(15000).fadeOut();
 
 //SECTION - Color generation
 var hexColorGenerator = d3.scale.linear()
