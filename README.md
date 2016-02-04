@@ -1,7 +1,7 @@
 #Climate Station Visualizer
 
 ##How to install
-1. Install NPM `brew install npm`
+1. Install node.js `brew install node`
 2. Run `npm install`. This will take a few minutes and your fans will start running.
 3. Run `npm start`
 4. Go to `localhost:8080` in your browser to see the project.
