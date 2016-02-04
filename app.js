@@ -90,8 +90,6 @@ Cesium.Timeline.prototype.makeLabel = dateFormatter;
 viewer.animation.viewModel.dateFormatter = dateFormatter;
 viewer.animation.viewModel.timeFormatter = _.noop;
 
-$('.cesium-viewer-bottom').show().delay(15000).fadeOut();
-
 //SECTION - Color generation
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
@@ -564,6 +562,8 @@ function getModules() {
         createHistogram();
         populateGlobe(stationTemperatures, stationLocations);
         setupEventListeners(stationLocations);
+        $('#loadingData').show().delay(1000).fadeOut();
+        $('.cesium-viewer-bottom').show().delay(1000).fadeOut();
       });
     });
   });

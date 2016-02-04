@@ -73,3 +73,9 @@ text {
   font: 10px sans-serif;
   fill: #fff;
 }
+
+#loadingData {
+  position: absolute;
+  top: 30%;
+  left: 44%;
+}
