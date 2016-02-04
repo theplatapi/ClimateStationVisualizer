@@ -6,13 +6,17 @@
 3. Run `npm start`
 4. Go to `localhost:8080` in your browser to see the project.
 
-#How to navigate
+##How to navigate
 * Click and hold to turn the earth.
 * Scroll to zoom in or out
 * Holding shift, click and drag to select stations for the histogram
 * Press play to move the time forward
 * Spacebar also plays and pauses the animation
 * Dragging the timeline scrubber moves time forward as well
+
+##Questions
+* You can find the draft questions [here](https://docs.google.com/document/d/13_lcb0zYgEuUez09SDnoml5vgUxmCBTs_YBi7ZZVoD0/edit?usp=sharing).
+  The answers are at the bottom so don't scroll down too far.
 
 ##Below are my internal notes
 ###Tasks to complete
