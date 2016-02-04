@@ -78,6 +78,19 @@ d3.interpolateHsl = function d3_interpolateHsl(a, b) {
   };
 };
 
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+var dateFormatter = function (date) {
+  gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
+  return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
+};
+
+Cesium.Timeline.prototype.makeLabel = dateFormatter;
+//Cesium.AnimationViewModel.prototype._dateFormatter
+viewer._animation._viewModel._dateFormatter = dateFormatter;
+viewer._animation._viewModel._timeFormatter = _.noop;
+
+//SECTION - Color generation
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
   .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
@@ -213,8 +226,6 @@ function setupEventListeners(stationLocations) {
   var firstPointSet = false;
   var mouseDown = false;
 
-  var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
 
   var camera = viewer.camera;
 
@@ -335,15 +346,6 @@ function setupEventListeners(stationLocations) {
   selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection) {
     updateHistogramThrottled(collection);
   });
-
-  //SECTION - time format callbacks
-  //Customize the date output and remove the time output on the time animation widget
-  viewer._animation._viewModel._dateFormatter = function (date) {
-    gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
-    return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
-  };
-
-  viewer._animation._viewModel._timeFormatter = _.noop;
 
   //SECTION - camera movement callbacks
   camera.moveStart.addEventListener(function () {

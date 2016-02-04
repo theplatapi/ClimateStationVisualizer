@@ -91,8 +91,8 @@
         * [x] Prevent changing the scale of the timeline
         * [x] Remove day from date display
         * [x] Remove time display
-        * [ ] Prevent time display flashing - add callback fixes earlier
-        * [ ] Have timeline ticks only display month and year
+        * [x] Prevent time display flashing - add callback fixes earlier
+        * [x] Have timeline ticks only display month and year
         * [ ] Show loading wheel while getting files
         * [x] Prevent timeline from being zoomed in on
 17. Limit camera controls
