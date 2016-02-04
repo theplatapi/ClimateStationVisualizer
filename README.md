@@ -95,7 +95,7 @@
        * [x] Improve first draw time
        * [x] Fix gap in middle
        * [x] Disable selector picking - Empty infobox appears when clicked
-            * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
+             * No support in Cesium yet. If it's really bad we'll re-add logic to deselect things
 15. Design questions and determine future tools
        * [x] Pick a cesium imagery provider with names for countries
        * [x] Cull out points for histogram selector
