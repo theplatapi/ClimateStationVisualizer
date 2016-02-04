@@ -121,6 +121,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
   var stationCartographic = new Cesium.Cartographic();
   var spatialSelector = {x: 0, y: 0, width: 0, height: 0};
   var throttledUpdateStations = _.throttle(updateVisibleStations, 250);
+  var $infoBox = $('.cesium-viewer-infoBoxContainer');
+  var infoboxHidden = false;
 
   for (var i = 0; i < stationEntitiesLength; i++) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
@@ -140,10 +142,12 @@ function populateGlobe(stationTemperatures, stationLocations) {
     }
 
     if (_.get(viewer, 'selectedEntity.selectable') === false) {
-      $('.cesium-viewer-infoBoxContainer').hide();
+      $infoBox.hide();
+      infoboxHidden = true;
     }
-    else {
-      $('.cesium-viewer-infoBoxContainer').show();
+    else if (infoboxHidden) {
+      $infoBox.show();
+      infoboxHidden = false;
     }
 
     if (timelineTime.month !== lastTime.month || timelineTime.year !== lastTime.year || redraw) {
@@ -183,6 +187,14 @@ function populateGlobe(stationTemperatures, stationLocations) {
       //Update the stations in case no entities were added or removed. Call is throttled so can't double call.
       if (selector.show) {
         updateHistogramThrottled(selectedStations);
+      }
+
+      //Updated selected temperature
+      var selectedId = _.get(viewer, 'selectedEntity.properties.stationId');
+
+      if (selectedId) {
+        var selectedTemperature = stationTemperatures[selectedId][timelineTime.year][timelineTime.month];
+        $infoBox.find('.cesium-infoBox-iframe').contents().find('tr:last td').text(selectedTemperature);
       }
     }
     inFrustumStations.resumeEvents();

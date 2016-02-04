@@ -81,7 +81,7 @@
        * [x] Pick a cesium imagery provider with names for countries
        * [x] Cull out points for histogram selector
        * [x] Pass clicks on histogram through to Cesium
-       * [ ] Update temperature in infobox
+       * [x] Update temperature in infobox
 16. Change viewer clock
         * [x] Disable play before data is loaded
         * [x] Disable ability to change speedup
