@@ -93,7 +93,7 @@
         * [x] Remove time display
         * [x] Prevent time display flashing - add callback fixes earlier
         * [x] Have timeline ticks only display month and year
-        * [ ] Show loading wheel while getting files
+        * [x] Show loading wheel while getting files
         * [x] Prevent timeline from being zoomed in on
 17. Limit camera controls
        * [ ] Limit zoom
