@@ -82,6 +82,8 @@
        * [x] Cull out points for histogram selector
        * [x] Pass clicks on histogram through to Cesium
        * [x] Update temperature in infobox
+       * [x] See if we can dynamically change the framerate
+              * viewer.targetFrameRate = 5;
 16. Change viewer clock
         * [x] Disable play before data is loaded
         * [x] Disable ability to change speedup
@@ -90,9 +92,9 @@
         * [x] Remove day from date display
         * [x] Remove time display
         * [ ] Prevent time display flashing - add callback fixes earlier
+        * [ ] Have timeline ticks only display month and year
         * [ ] Show loading wheel while getting files
         * [x] Prevent timeline from being zoomed in on
-        * [ ] Have timeline ticks only display month and year
 17. Limit camera controls
        * [ ] Limit zoom
           * [ ] Regular mouse zoom
