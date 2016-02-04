@@ -1,6 +1,21 @@
 #Climate Station Visualizer
 
-##Tasks to complete
+##How to install
+1. Install NPM `brew install npm`
+2. Run `npm install`. This will take a few minutes and your fans will start running.
+3. Run `npm start`
+4. Go to `localhost:8080` in your browser to see the project.
+
+#How to navigate
+* Click and hold to turn the earth.
+* Scroll to zoom in or out
+* Holding shift, click and drag to select stations for the histogram
+* Press play to move the time forward
+* Spacebar also plays and pauses the animation
+* Dragging the timeline scrubber moves time forward as well
+
+##Below are my internal notes
+###Tasks to complete
 1. Get Cesium with webpack set up.
    * [x] Use minimized builds and compare
 2. Get conversation from Julian -> Gregorian time working
@@ -137,7 +152,12 @@
         * [ ] Recreate temperatures as separate files for each station. Then load them all in one by one and combine
               them into one large object.
 
-##Build steps
+###Questions
+1. What computer will this run on?
+2. Do we need initial loading to be non-blocking?
+   * Loading files as we need would free up memory, but may be too slow.
+
+###Build steps
 1. npm pack in cesiumjs fork
 2. Copy .tgz to webpack project
 3. Delete cesium folder in node_modules
