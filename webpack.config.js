@@ -24,7 +24,10 @@ module.exports = {
   module: {
     unknownContextCritical: false,
     loaders: [
-      {test: /\.css$/, loader: "style!css"},
+      {
+        test: /\.css$/,
+        loader: "style!css"
+      },
       {
         test: /\.(png|gif|jpg|jpeg)$/,
         loader: 'file-loader'
