@@ -102,7 +102,7 @@
        * [x] Pass clicks on histogram through to Cesium
        * [x] Update temperature in infobox
        * [x] See if we can dynamically change the framerate
-              * viewer.targetFrameRate = 5;
+          * viewer.targetFrameRate = 5;
 16. Change viewer clock
         * [x] Disable play before data is loaded
         * [x] Disable ability to change speedup
