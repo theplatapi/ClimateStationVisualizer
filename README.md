@@ -160,6 +160,11 @@
 1. What computer will this run on?
 2. Do we need initial loading to be non-blocking?
    * Loading files as we need would free up memory, but may be too slow.
+3. When to form a committee?
+4. Are frame rate choices appropriate? (30, 20, 10, 5)
+   * Yes
+   * Like 3 questions per frame rate set
+   * People can be subject to just 2 different framerates
 
 ###Build steps
 1. npm pack in cesiumjs fork
