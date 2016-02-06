@@ -4,7 +4,7 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -p --progress --config webpack.config.js",
+    "start": "webpack -p --progress",
     "dev": "webpack-dev-server -d --progress",
     "buildCesium": "bash ./postinstall.sh"
   },
