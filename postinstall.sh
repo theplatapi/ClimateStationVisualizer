@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -r public && mkdir public
+rm -rf public && mkdir public
 cd node_modules/cesium
 npm install
 gulp buildApps
