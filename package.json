@@ -4,10 +4,11 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --display-error-details",
+    "start": "webpack -p --config webpack.config.js",
+    "dev": "webpack-dev-server --progress --display-error-details",
     "postinstall": "bash ./postinstall.sh"
   },
-  "author": "",
+  "author": "Allen Korenevsky",
   "license": "MIT",
   "dependencies": {
     "cesium": "cesium-1.17.0.tgz",
@@ -15,7 +16,7 @@
     "d3": "^3.5.12",
     "exports-loader": "^0.6.2",
     "file-loader": "^0.8.5",
-    "grunt": "^0.4.5",
+    "gulp": "^3.9.0",
     "html-webpack-plugin": "^1.7.0",
     "imports-loader": "^0.6.5",
     "jquery": "^2.1.4",
@@ -23,5 +24,8 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
     "whatwg-fetch": "^0.11.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.14.1"
   }
 }
