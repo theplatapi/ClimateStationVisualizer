@@ -124,6 +124,7 @@
        * Goal is to
              1. Have above 30 fps with animation and selector and
              2. no memory leaks
+       * [ ] Draw all of the initial stations so first scroll is fast.
        * [ ] Research using primitive instead of entity for disablePick and cull=false
        * [ ] Use referenceProperty for station billboards
        * [ ] Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
