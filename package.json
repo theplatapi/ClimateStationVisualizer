@@ -4,8 +4,8 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -p --config webpack.config.js",
-    "dev": "webpack-dev-server --progress --display-error-details",
+    "start": "webpack -p --progress --config webpack.config.js",
+    "dev": "webpack-dev-server -d --progress",
     "postinstall": "bash ./postinstall.sh"
   },
   "author": "Allen Korenevsky",
