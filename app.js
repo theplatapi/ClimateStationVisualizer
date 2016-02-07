@@ -45,7 +45,7 @@ var updateHistogramThrottled;
 var spatialHash;
 var cameraMoving = false;
 
-viewer.scene.debugShowFramesPerSecond = true;
+viewer.scene.debugShowFramesPerSecond = config.debugShowFramesPerSecond;
 
 //Disable some unneeded camera operations
 viewer.scene.screenSpaceCameraController.enableTranslate = false;
