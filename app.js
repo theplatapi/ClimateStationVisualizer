@@ -5,6 +5,7 @@ var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
 var SpatialHash = require('./spatialHash.js');
+var config = require('config');
 var Cesium = getModules();
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
@@ -45,6 +46,7 @@ var spatialHash;
 var cameraMoving = false;
 
 viewer.scene.debugShowFramesPerSecond = true;
+
 //Disable some unneeded camera operations
 viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
@@ -556,8 +558,8 @@ function getModules() {
 
 //main
 (function main() {
-  asyncLoadJson('./climateData/stationTemps.json', function (stationTemperatures) {
-    asyncLoadJson('./climateData/stationLocations.json', function (stationLocationsGeoJson) {
+  asyncLoadJson(config.temperatures, function (stationTemperatures) {
+    asyncLoadJson(config.locations, function (stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson).then(function loadStations(stationLocations) {
         createHistogram();
         populateGlobe(stationTemperatures, stationLocations);

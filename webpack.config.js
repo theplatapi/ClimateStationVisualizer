@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 module.exports = {
   entry: "./app.js",
@@ -18,7 +19,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: './public',
+    contentBase: './public'
   },
   devtool: 'source-map',
   module: {
@@ -33,5 +34,10 @@ module.exports = {
         loader: 'file-loader'
       }
     ]
+  },
+  resolve: {
+    alias: {
+      config: path.join(__dirname, 'config', process.env.npm_lifecycle_event === 'start' ? 'development' : 'production')
+    }
   }
 };

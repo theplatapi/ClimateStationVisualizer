@@ -4,8 +4,8 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -p --progress",
-    "dev": "webpack-dev-server -d --progress",
+    "start": "webpack-dev-server -d --progress",
+    "deploy": "webpack -p --progress",
     "buildCesium": "bash ./postinstall.sh"
   },
   "author": "Allen Korenevsky",
@@ -21,6 +21,7 @@
     "imports-loader": "^0.6.5",
     "jquery": "^2.1.4",
     "lodash": "^4.2.0",
+    "path": "^0.12.7",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
     "whatwg-fetch": "^0.11.0"
