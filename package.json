@@ -6,12 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server -d --progress",
     "deploy": "webpack -p --progress",
-    "buildCesium": "bash ./postinstall.sh"
+    "postinstall": "bash ./postinstall.sh"
   },
   "author": "Allen Korenevsky",
   "license": "MIT",
   "dependencies": {
-    "cesium": "cesium-1.17.0.tgz",
+    "cesium": "^1.18.0",
     "css-loader": "^0.23.1",
     "d3": "^3.5.12",
     "exports-loader": "^0.6.2",

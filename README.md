@@ -166,10 +166,3 @@
     * Yes
     * Like 3 questions per frame rate set
     * People can be subject to just 2 different frame rates
-
-###Build steps
-1. npm pack in cesiumjs fork
-2. Copy .tgz to webpack project
-3. Delete cesium folder in node_modules
-4. Run npm install in webpack project
-5. npm run in webpack project
