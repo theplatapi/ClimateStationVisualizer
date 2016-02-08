@@ -47,11 +47,14 @@ var spatialHash;
 var cameraMoving = false;
 
 viewer.scene.debugShowFramesPerSecond = config.debugShowFramesPerSecond;
+//disable camera movement on start
+viewer.scene.screenSpaceCameraController.enableInputs = false;
 
 //Disable some unneeded camera operations
 viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
+viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
 //viewer.scene.screenSpaceCameraController.minimumZoomDistance = 90000;
 viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
@@ -570,6 +573,7 @@ function getModules() {
         setupEventListeners(stationLocations);
         $('#loadingData').show().delay(1000).fadeOut();
         $('.cesium-viewer-bottom').show().delay(1000).fadeOut();
+        viewer.scene.screenSpaceCameraController.enableInputs = true;
       });
     });
   });
