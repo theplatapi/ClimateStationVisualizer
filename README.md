@@ -124,7 +124,11 @@
 17. Limit camera controls
     * [ ] Limit zoom
         * [ ] Regular mouse zoom
+            * [ ] Zoom in
+                * Weird slowing down occurs
+            * [x] Zoom out
         * [ ] Zoom after search
+            * Not possible to configure without source modifications
     * [ ] Prevent tilting too high or low (y axis changes)
 18. Small tweaks
     * [ ] Prevent spaces in search from play/pause control
