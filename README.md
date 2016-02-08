@@ -1,10 +1,17 @@
 #Climate Station Visualizer
 
 ##How to install
-1. Install node.js `brew install node`
-2. Run `npm install`. This will take a few minutes and your fans will start running.
+1. Install node.js. For a Mac with Homebrew just run `brew install node`.
+2. Run `npm install`. If using Windows make sure that git bash is installed to run the postinstall script.
 3. Run `npm start`
-4. Go to `localhost:8080` in your browser to see the project.
+4. Go to `localhost:8080` in your browser to see the project. `http://localhost:8080/webpack-dev-server/` will
+   automatically recompile when code changes.
+
+##How to deploy
+* This assumes you were able to get it running locally.
+1. `npm run deploy`
+2. The `/public` directory has everything needed to run the site. Now find a server or service to deliver these files.
+   Recommended setup is using AWS S3. Just copy the folder's contents into a bucket and configure it.
 
 ##How to navigate
 * Click and hold to turn the earth.
@@ -123,22 +130,17 @@
 18. Small tweaks
     * [ ] Prevent spaces in search from play/pause control
     * [ ] Add station names to stations without city or country
-19. Rewrite in ES6 to future proof it
-    * [ ] Convert into modules.
-        * [ ] Make event listeners modules
-        * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
-    * [ ] Replace var with let
-20. Performance v3
+19. Performance v3
     * Goal is to
         1. Have above 30 fps with animation and selector and
         2. no memory leaks
-    * [ ] Draw all of the initial stations so first scroll is fast.
-    * [ ] Research using primitive instead of entity for disablePick and cull=false
+    * [ ] Find better way to hide non-visible stations
     * [ ] Use referenceProperty for station billboards
-    * [ ] Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
+    * [ ] Research using primitive instead of entity for disablePick and cull=false
+    * [ ] Speed up selector drawing
+        * Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
           intersecting it onClockTick. Something about drawing it makes the frame rate plummet.
-    * [ ] Replace color with SampledProperty. All of the color generation logic can be done beforehand.
-21. Find memory leak
+20. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
           p - 1 step and compare to p step to see differences.
@@ -151,6 +153,11 @@
     * Ideas:
         * [ ] See if entity.show=false makes Cesium allocate a new "node"
         * [x] See if D3 color strings are the cause
+21. Rewrite in ES6 to future proof it
+    * [ ] Convert into modules.
+        * [ ] Make event listeners modules
+        * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
+    * [ ] Replace var with let
 22. Fix UI hangs on file load
     * [x] Set up GeoJsonDataSource from loaded json object
     * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
