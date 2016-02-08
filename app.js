@@ -52,7 +52,6 @@ viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
-//Makes Cesium check more often if the camera stopped moving.
 viewer.imageryLayers.get(0).brightness = 0.7;
 
 
