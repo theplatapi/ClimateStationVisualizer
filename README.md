@@ -76,6 +76,7 @@
     * [ ] Return the whole entity so we can chain a loop together
         * [x] Research if loop chaining is actually faster
 12. Research aggregating data into a heatmap
+    * Note: I added opacity to the points so they blend together. This is a future work section.
     * Precomputed
         1. [ ] Figure out if tile can be switched depending on time. Create a demo.
         2. [ ] Create a level 1 heatmap in Python for each year/month. Convert to one layer image in Web Mercator.
@@ -88,8 +89,8 @@
     * [ ] Possible to pre-render map coloring like SolarGIS?
         * http://solargis.info/imaps/#tl=GeoModel:t_yr_avg&loc=-29.180941,113.181152&c=24.65512,-51.350784
 13. Improve station colors
-       * [x] Find out actual domain of temperatures
-       * [x] Get an accurate range of colors climate visualizations use
+    * [x] Find out actual domain of temperatures
+    * [x] Get an accurate range of colors climate visualizations use
 14. Improve histogram
     * [x] Improve first draw time
     * [x] Fix gap in middle
