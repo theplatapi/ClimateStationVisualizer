@@ -61,8 +61,21 @@ Cesium.Timeline.prototype.zoomTo = _.noop;
 //https://cesiumjs.org/Cesium/Build/Documentation/ArcGisMapServerImageryProvider.html?classFilter=ArcGisMapServerImageryProvider#hasAlphaChannel
 Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop();
 
-//Redoes the implementation so it doesn't return a string.
-d3.interpolateHsl = function d3_interpolateHsl(a, b) {
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
+var dateFormatter = function (date) {
+  gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
+  return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
+};
+
+Cesium.Timeline.prototype.makeLabel = dateFormatter;
+//Cesium.AnimationViewModel.prototype.dateFormatter
+viewer.animation.viewModel.dateFormatter = dateFormatter;
+viewer.animation.viewModel.timeFormatter = _.noop;
+
+//SECTION - Color generation
+//Redoes the D3 implementation so it doesn't return a string.
+function interpolateHsl(a, b) {
   a = d3.hsl(a);
   b = d3.hsl(b);
   var ah = a.h,
@@ -79,23 +92,11 @@ d3.interpolateHsl = function d3_interpolateHsl(a, b) {
   };
 };
 
-var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
-var dateFormatter = function (date) {
-  gregorianDate = Cesium.JulianDate.toGregorianDate(date, gregorianDate);
-  return monthNames[gregorianDate.month - 1] + ' ' + gregorianDate.year;
-};
 
-Cesium.Timeline.prototype.makeLabel = dateFormatter;
-//Cesium.AnimationViewModel.prototype.dateFormatter
-viewer.animation.viewModel.dateFormatter = dateFormatter;
-viewer.animation.viewModel.timeFormatter = _.noop;
-
-//SECTION - Color generation
 var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
   .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
-  .interpolate(d3.interpolateHsl);
+  .interpolate(interpolateHsl);
 var circle = require('./lib/whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
