@@ -125,11 +125,11 @@
     * [ ] Limit zoom
         * [ ] Regular mouse zoom
         * [ ] Zoom after search
-    * [ ] Limit speed
     * [ ] Prevent tilting too high or low (y axis changes)
 18. Small tweaks
     * [ ] Prevent spaces in search from play/pause control
     * [ ] Add station names to stations without city or country
+    * [ ] Stations selected count
 19. Performance v3
     * Goal is to
         1. Have above 30 fps with animation and selector and
