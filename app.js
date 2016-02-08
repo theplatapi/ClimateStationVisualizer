@@ -17,6 +17,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   sceneModePicker: false,
   navigationHelpButton: false,
   baseLayerPicker: false,
+  fullscreenButton: false,
   clock: new Cesium.Clock({
     startTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
     currentTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
@@ -51,6 +52,8 @@ viewer.scene.debugShowFramesPerSecond = config.debugShowFramesPerSecond;
 viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
+//viewer.scene.screenSpaceCameraController.minimumZoomDistance = 90000;
+viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 viewer.imageryLayers.get(0).brightness = 0.7;
 
@@ -149,6 +152,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
+    //console.log(viewer.camera.positionCartographic.height);
     inFrustumStations.suspendEvents();
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
