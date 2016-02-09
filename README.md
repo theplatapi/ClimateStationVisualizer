@@ -139,6 +139,7 @@
     * Get the selector drawing to stay above 30 fps
     * [ ] Use referenceProperty for station billboards
     * [ ] Find better way to hide non-visible stations
+        * This must be re-enabled to give selector on screen as much resources as possible
     * [ ] Speed up selector drawing
         * Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
           intersecting it onClockTick. Something about drawing it makes the frame rate plummet.
