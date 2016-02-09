@@ -135,6 +135,8 @@
     * [ ] Add station names to stations without city or country
     * [ ] Stations selected count
     * [x] Center loading wheel
+    * [ ] Make frustum width wide enough on all aspect ratios
+        * It's too narrow when window is taller than it is wide
 19. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Use referenceProperty for station billboards
