@@ -136,15 +136,14 @@
     * [ ] Stations selected count
     * [x] Center loading wheel
 19. Performance v3
-    * Goal is to
-        1. Have above 30 fps with animation and selector and
-        2. no memory leaks
-    * [ ] Find better way to hide non-visible stations
+    * Get the selector drawing to stay above 30 fps
     * [ ] Use referenceProperty for station billboards
-    * [ ] Research using primitive instead of entity for disablePick and cull=false
+    * [ ] Find better way to hide non-visible stations
     * [ ] Speed up selector drawing
         * Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
           intersecting it onClockTick. Something about drawing it makes the frame rate plummet.
+        * Try just drawing selector in sandcastle and see how frame rate is impacted.
+    * [ ] Research using primitive instead of entity for disablePick and cull=false
 20. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
