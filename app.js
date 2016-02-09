@@ -401,20 +401,20 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   inFrustumStations.removeAll();
 
   //Add visible stations to designated entity collection and hide all other entities
-  _.chain(selectedIds)
+  var inFrustum = _.chain(selectedIds)
     .unionBy(secondarySelectedIds, 'id')
     .map(function (selected) {
-      inFrustumStations.add(stationLocations.entities.getById(selected.id));
+      return inFrustumStations.add(stationLocations.entities.getById(selected.id)).id;
     })
     .value();
 
-  //_.chain(spatialHash.list)
-  //  .map('id')
-  //  .difference(elegibleIds)
-  //  .map(function (id) {
-  //    stationLocations.entities.getById(id).show = false;
-  //  })
-  //  .value();
+  _.chain(spatialHash.list)
+    .map('id')
+    .difference(inFrustum)
+    .map(function (id) {
+      stationLocations.entities.getById(id).show = false;
+    })
+    .value();
 
   inFrustumStations.resumeEvents();
   redraw = true;
