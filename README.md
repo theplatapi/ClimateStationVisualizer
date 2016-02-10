@@ -26,7 +26,7 @@
   The answers are at the bottom so don't scroll down too far.
 
 ##Below are my internal notes
-###Tasks to complete
+###Visualization
 1. Get Cesium with webpack set up.
    * [x] Use minimized builds and compare
 2. Get conversation from Julian -> Gregorian time working
@@ -173,6 +173,40 @@
     * Comprehensive solution:
         * [ ] Recreate temperatures as separate files for each station. Then load them all in one by one and combine
               them into one large object.
+
+
+###Gaze Tracker
+1. Decide if we will operate it remotely
+    * Pros
+      * Easier to operate
+      * More to write about in thesis
+      * Possible to include extra variables in output with API
+    * Cons
+      * Difficult to figure out how to open port on school PC
+      * Have to write controller program
+2. Plan how to get zoom and pan information from visualization
+    * Too expensive to store all in memory.
+    * Idea: Send out in chunks to localhost server. Frees up browser memory. The server can stream contents to disk.
+      * Con - We potentially have 2 localhosts running
+    * Figure out how to integrate with gaze data stream with ENABLE_SEND_GPI
+      * Con - No idea how flag works. Need more research
+
+
+###Experiment
+1. Plan out how question and latency order is determined
+    * We want each question to appear in the latency buckets evenly, yet randomization so there aren't any co-variables
+2. Plan out how latency will be switched
+    * Have app listen on websocket and send commands from my PC
+      * Con - requires a separate server running
+      * Con - Timing will be different between trials.
+      * Pro - User less likely to suspect that latency is being toggled
+    * Have user click button on screen to indicate which question they're on
+      * Pro - Timing will be more exact since user will press it when question is answered
+      * Con - Latency changing in response to button press may be obvious
+    * Have question form send out ping to app when question is answered
+      * Con - not sure if this is possible with an existing product
+      * Pro - timing exact and user less likely to suspect latency is being intentionally changed
+
 
 ###Questions
 1. What computer will this run on?
