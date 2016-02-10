@@ -130,11 +130,11 @@
     * [ ] Prevent tilting too high or low (y axis changes)
 18. Small tweaks
     * [x] Prevent spaces in search from play/pause control
-    * [ ] Stations selected count
-    * [ ] Make frustum width wide enough on all aspect ratios
+    * [x] Make frustum width wide enough on all aspect ratios
         * It's too narrow when window is taller than it is wide
     * [ ] Add station names to stations without city or country
     * [x] Center loading wheel
+    * [ ] Add latency to D3 transitions
 19. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Use referenceProperty for station billboards
