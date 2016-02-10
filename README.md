@@ -139,9 +139,9 @@
 19. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Speed up selector drawing
-        * Selector is slow as soon as it's drawn. It doesn't matter what size or if we're testing points for
-          intersecting it onClockTick. Something about drawing it makes the frame rate plummet.
-        * Try just drawing selector in sandcastle and see how frame rate is impacted.
+        * [x] Reduce opacity
+        * [ ] Experiment with wireframe rectangle to do selecting
+        * [ ] Draw out other styles that are cheaper to draw
     * [ ] Use referenceProperty for station billboards
     * [ ] Research using primitive instead of entity for disablePick and cull=false
 20. Find memory leak
