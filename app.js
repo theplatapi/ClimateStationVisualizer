@@ -340,9 +340,7 @@ function setupEventListeners(stationLocations) {
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
-      material: Cesium.Color.BLACK.withAlpha(0.5),
-      outline: true,
-      outlineColor: Cesium.Color.BLACK
+      material: Cesium.Color.fromCssColorString('#333333')//.withAlpha(0.8)
     }
   });
 
