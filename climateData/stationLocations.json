@@ -233,8 +233,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP K",
-        "stationId": 800999080010
+        "stationId": 800999080010,
+        "name": "Ship K"
       }
     },
     {
@@ -389,8 +389,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Manuela",
-        "stationId": 700898640009
+        "stationId": 700898640009,
+        "name": "Manuela"
       }
     },
     {
@@ -498,8 +498,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CASABLANCA",
-        "stationId": 130601550000
+        "stationId": 130601550000,
+        "name": "Casablanca"
       }
     },
     {
@@ -685,8 +685,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LAKES ENTRANC",
-        "stationId": 501959040000
+        "stationId": 501959040000,
+        "name": "Lakes Entranc"
       }
     },
     {
@@ -998,8 +998,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HEREHERETUE",
-        "stationId": 528919450000
+        "stationId": 528919450000,
+        "name": "Hereheretue"
       }
     },
     {
@@ -1108,8 +1108,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "JAN MAYEN",
-        "stationId": 634010010000
+        "stationId": 634010010000,
+        "name": "Jan Mayen"
       }
     },
     {
@@ -1122,8 +1122,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Linda",
-        "stationId": 700897690009
+        "stationId": 700897690009,
+        "name": "Linda"
       }
     },
     {
@@ -1230,8 +1230,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "EGEDESMINDE",
-        "stationId": 431042200000
+        "stationId": 431042200000,
+        "name": "Egedesminde"
       }
     },
     {
@@ -1244,8 +1244,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GODTHAB NUUK",
-        "stationId": 431042500000
+        "stationId": 431042500000,
+        "name": "Godthab Nuuk"
       }
     },
     {
@@ -1288,8 +1288,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ODESA",
-        "stationId": 650338370000
+        "stationId": 650338370000,
+        "name": "Odesa"
       }
     },
     {
@@ -1429,8 +1429,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AJACCIO",
-        "stationId": 615077610000
+        "stationId": 615077610000,
+        "name": "Ajaccio"
       }
     },
     {
@@ -1537,8 +1537,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Dome_C_II",
-        "stationId": 700898280009
+        "stationId": 700898280009,
+        "name": "Dome_C_Ii"
       }
     },
     {
@@ -1926,8 +1926,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ST. HELENA IS.",
-        "stationId": 147619010000
+        "stationId": 147619010000,
+        "name": "St. Helena Is."
       }
     },
     {
@@ -2335,8 +2335,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BERNADO O'HIGGINS",
-        "stationId": 700890590010
+        "stationId": 700890590010,
+        "name": "Bernado O'Higgins"
       }
     },
     {
@@ -2411,8 +2411,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TAKAROA",
-        "stationId": 528919430000
+        "stationId": 528919430000,
+        "name": "Takaroa"
       }
     },
     {
@@ -2925,8 +2925,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Great_Wall",
-        "stationId": 700890580008
+        "stationId": 700890580008,
+        "name": "Great_Wall"
       }
     },
     {
@@ -3144,8 +3144,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CABO SAN ANTO",
-        "stationId": 406783100000
+        "stationId": 406783100000,
+        "name": "Cabo San Anto"
       }
     },
     {
@@ -3249,8 +3249,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PESCADORES          CHINA",
-        "stationId": 205593450010
+        "stationId": 205593450010,
+        "name": "Pescadores China"
       }
     },
     {
@@ -4049,8 +4049,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HALLEY",
-        "stationId": 700890220008
+        "stationId": 700890220008,
+        "name": "Halley"
       }
     },
     {
@@ -4567,8 +4567,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LIHUE, KAUAI,",
-        "stationId": 425911650000
+        "stationId": 425911650000,
+        "name": "Lihue, Kauai,"
       }
     },
     {
@@ -4741,8 +4741,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FREEPORT,GRAN",
-        "stationId": 423780620000
+        "stationId": 423780620000,
+        "name": "Freeport,Gran"
       }
     },
     {
@@ -4755,8 +4755,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "USTICA",
-        "stationId": 623164000000
+        "stationId": 623164000000,
+        "name": "Ustica"
       }
     },
     {
@@ -5399,8 +5399,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AJAN",
-        "stationId": 222311680000
+        "stationId": 222311680000,
+        "name": "Ajan"
       }
     },
     {
@@ -5475,8 +5475,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PENANG/BAYAN",
-        "stationId": 505486010000
+        "stationId": 505486010000,
+        "name": "Penang/Bayan"
       }
     },
     {
@@ -5537,8 +5537,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PONTA DELGADA       AZORES",
-        "stationId": 636085120010
+        "stationId": 636085120010,
+        "name": "Ponta Delgada Azores"
       }
     },
     {
@@ -5597,8 +5597,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KANIN NOS",
-        "stationId": 638221650000
+        "stationId": 638221650000,
+        "name": "Kanin Nos"
       }
     },
     {
@@ -5675,8 +5675,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEWCASTLE",
-        "stationId": 501947740000
+        "stationId": 501947740000,
+        "name": "Newcastle"
       }
     },
     {
@@ -5878,8 +5878,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PASURUAN",
-        "stationId": 503969350010
+        "stationId": 503969350010,
+        "name": "Pasuruan"
       }
     },
     {
@@ -6313,8 +6313,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KOTA BHARU",
-        "stationId": 505486150000
+        "stationId": 505486150000,
+        "name": "Kota Bharu"
       }
     },
     {
@@ -6454,8 +6454,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TULEAR",
-        "stationId": 125671610000
+        "stationId": 125671610000,
+        "name": "Tulear"
       }
     },
     {
@@ -6625,8 +6625,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE HOOPER,",
-        "stationId": 403710930000
+        "stationId": 403710930000,
+        "name": "Cape Hooper,"
       }
     },
     {
@@ -6717,8 +6717,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Gill",
-        "stationId": 700893760009
+        "stationId": 700893760009,
+        "name": "Gill"
       }
     },
     {
@@ -6918,8 +6918,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOLODEZNAJA",
-        "stationId": 700895420000
+        "stationId": 700895420000,
+        "name": "Molodeznaja"
       }
     },
     {
@@ -7106,8 +7106,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEUMAYER",
-        "stationId": 700890020000
+        "stationId": 700890020000,
+        "name": "Neumayer"
       }
     },
     {
@@ -7183,8 +7183,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HOANG-SA/PATTLE/",
-        "stationId": 232488600010
+        "stationId": 232488600010,
+        "name": "Hoang-Sa/Pattle/"
       }
     },
     {
@@ -7366,8 +7366,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "APIA",
-        "stationId": 541917620000
+        "stationId": 541917620000,
+        "name": "Apia"
       }
     },
     {
@@ -7460,8 +7460,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP E",
-        "stationId": 800999050010
+        "stationId": 800999050010,
+        "name": "Ship E"
       }
     },
     {
@@ -7792,8 +7792,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LULEA FLYGPLATS SWEDEN",
-        "stationId": 645021830010
+        "stationId": 645021830010,
+        "name": "Lulea Flygplats Sweden"
       }
     },
     {
@@ -8119,8 +8119,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "METHONI",
-        "stationId": 618167340000
+        "stationId": 618167340000,
+        "name": "Methoni"
       }
     },
     {
@@ -8227,8 +8227,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE NATURALI",
-        "stationId": 501946000000
+        "stationId": 501946000000,
+        "name": "Cape Naturali"
       }
     },
     {
@@ -8400,8 +8400,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FT PIERCE",
-        "stationId": 425000832070
+        "stationId": 425000832070,
+        "name": "Ft Pierce"
       }
     },
     {
@@ -9042,8 +9042,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DJERBA              TUNISIA",
-        "stationId": 152607690010
+        "stationId": 152607690010,
+        "name": "Djerba Tunisia"
       }
     },
     {
@@ -9166,8 +9166,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPO CARBONAR",
-        "stationId": 623165640000
+        "stationId": 623165640000,
+        "name": "Capo Carbonar"
       }
     },
     {
@@ -9592,8 +9592,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TERMINI             ITALY",
-        "stationId": 623164100010
+        "stationId": 623164100010,
+        "name": "Termini Italy"
       }
     },
     {
@@ -10061,8 +10061,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE WILLOUGH",
-        "stationId": 501948220000
+        "stationId": 501948220000,
+        "name": "Cape Willough"
       }
     },
     {
@@ -10199,8 +10199,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "YALOVA",
-        "stationId": 649170620010
+        "stationId": 649170620010,
+        "name": "Yalova"
       }
     },
     {
@@ -10245,8 +10245,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SILE",
-        "stationId": 649170620030
+        "stationId": 649170620030,
+        "name": "Sile"
       }
     },
     {
@@ -10275,8 +10275,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MORUYA HEADS",
-        "stationId": 501949370000
+        "stationId": 501949370000,
+        "name": "Moruya Heads"
       }
     },
     {
@@ -10367,8 +10367,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BROOME AIRPOR",
-        "stationId": 501942030000
+        "stationId": 501942030000,
+        "name": "Broome Airpor"
       }
     },
     {
@@ -10381,8 +10381,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SYOWA",
-        "stationId": 700895320008
+        "stationId": 700895320008,
+        "name": "Syowa"
       }
     },
     {
@@ -10586,8 +10586,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CMS_VICE.DO.Marambio",
-        "stationId": 700890550000
+        "stationId": 700890550000,
+        "name": "Cms_Vice.Do.Marambio"
       }
     },
     {
@@ -10616,8 +10616,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CMS_VICE.DO.Marambio",
-        "stationId": 700890550008
+        "stationId": 700890550008,
+        "name": "Cms_Vice.Do.Marambio"
       }
     },
     {
@@ -10630,8 +10630,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TENIENTE MATIENZO (ANT SOUTH A",
-        "stationId": 700890550010
+        "stationId": 700890550010,
+        "name": "Teniente Matienzo (Ant South A"
       }
     },
     {
@@ -11008,8 +11008,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GALLE,SRI LANKA",
-        "stationId": 224434950010
+        "stationId": 224434950010,
+        "name": "Galle,Sri Lanka"
       }
     },
     {
@@ -11102,8 +11102,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BUSHEHR",
-        "stationId": 208408580000
+        "stationId": 208408580000,
+        "name": "Bushehr"
       }
     },
     {
@@ -11195,8 +11195,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HOPEDALE (AUT),NF",
-        "stationId": 403719000010
+        "stationId": 403719000010,
+        "name": "Hopedale (Aut),Nf"
       }
     },
     {
@@ -11475,8 +11475,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SINOP",
-        "stationId": 649170260000
+        "stationId": 649170260000,
+        "name": "Sinop"
       }
     },
     {
@@ -11568,8 +11568,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DJIBOUTI",
-        "stationId": 114631250000
+        "stationId": 114631250000,
+        "name": "Djibouti"
       }
     },
     {
@@ -11750,8 +11750,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NOUADHIBOU",
-        "stationId": 128614150000
+        "stationId": 128614150000,
+        "name": "Nouadhibou"
       }
     },
     {
@@ -11937,8 +11937,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ATHINAI (AIRP",
-        "stationId": 618167160000
+        "stationId": 618167160000,
+        "name": "Athinai (Airp"
       }
     },
     {
@@ -12246,8 +12246,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PEARLS AP           GRENADA",
-        "stationId": 409789580010
+        "stationId": 409789580010,
+        "name": "Pearls Ap Grenada"
       }
     },
     {
@@ -12466,8 +12466,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BARKING SANDS",
-        "stationId": 425911620010
+        "stationId": 425911620010,
+        "name": "Barking Sands"
       }
     },
     {
@@ -12671,8 +12671,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT DOUGLAS POST OFFICE",
-        "stationId": 501942850010
+        "stationId": 501942850010,
+        "name": "Port Douglas Post Office"
       }
     },
     {
@@ -13064,8 +13064,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MANGO",
-        "stationId": 151653520000
+        "stationId": 151653520000,
+        "name": "Mango"
       }
     },
     {
@@ -13171,8 +13171,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASCO",
-        "stationId": 509981350000
+        "stationId": 509981350000,
+        "name": "Basco"
       }
     },
     {
@@ -13277,8 +13277,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SVALBARD LUFT",
-        "stationId": 634010080000
+        "stationId": 634010080000,
+        "name": "Svalbard Luft"
       }
     },
     {
@@ -13542,8 +13542,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MYS VASIL'EVA",
-        "stationId": 222322170000
+        "stationId": 222322170000,
+        "name": "Mys Vasil'Eva"
       }
     },
     {
@@ -13996,8 +13996,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DAGUPAN",
-        "stationId": 509983250000
+        "stationId": 509983250000,
+        "name": "Dagupan"
       }
     },
     {
@@ -14151,8 +14151,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MESSINA",
-        "stationId": 623164200000
+        "stationId": 623164200000,
+        "name": "Messina"
       }
     },
     {
@@ -14290,8 +14290,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANTANDER",
-        "stationId": 643080230000
+        "stationId": 643080230000,
+        "name": "Santander"
       }
     },
     {
@@ -14410,8 +14410,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FARO/AEROPORT",
-        "stationId": 636085540000
+        "stationId": 636085540000,
+        "name": "Faro/Aeroport"
       }
     },
     {
@@ -14755,8 +14755,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MURUROA",
-        "stationId": 528919520000
+        "stationId": 528919520000,
+        "name": "Mururoa"
       }
     },
     {
@@ -14849,8 +14849,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAN CLEMENTE/ISLAND NAAS",
-        "stationId": 425722910010
+        "stationId": 425722910010,
+        "name": "San Clemente/Island Naas"
       }
     },
     {
@@ -14894,8 +14894,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAN NICHOLAS/ISLAND",
-        "stationId": 425722910020
+        "stationId": 425722910020,
+        "name": "San Nicholas/Island"
       }
     },
     {
@@ -15350,8 +15350,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DOUBLE ISLAND POINT LIGHTHOUSE",
-        "stationId": 501945640010
+        "stationId": 501945640010,
+        "name": "Double Island Point Lighthouse"
       }
     },
     {
@@ -15440,8 +15440,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP B",
-        "stationId": 800999020010
+        "stationId": 800999020010,
+        "name": "Ship B"
       }
     },
     {
@@ -15689,8 +15689,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAN ANDRES (I",
-        "stationId": 305800010000
+        "stationId": 305800010000,
+        "name": "San Andres (I"
       }
     },
     {
@@ -15844,8 +15844,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "JERVIS BAY",
-        "stationId": 501949400000
+        "stationId": 501949400000,
+        "name": "Jervis Bay"
       }
     },
     {
@@ -15954,8 +15954,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MATIENZO",
-        "stationId": 700889700007
+        "stationId": 700889700007,
+        "name": "Matienzo"
       }
     },
     {
@@ -16016,8 +16016,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "COATZACOALCOS",
-        "stationId": 414767410000
+        "stationId": 414767410000,
+        "name": "Coatzacoalcos"
       }
     },
     {
@@ -16285,8 +16285,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOSASO",
-        "stationId": 140632100000
+        "stationId": 140632100000,
+        "name": "Bosaso"
       }
     },
     {
@@ -16409,8 +16409,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANDY CAPE",
-        "stationId": 501943900000
+        "stationId": 501943900000,
+        "name": "Sandy Cape"
       }
     },
     {
@@ -16533,8 +16533,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MACENTA",
-        "stationId": 120618470000
+        "stationId": 120618470000,
+        "name": "Macenta"
       }
     },
     {
@@ -16847,8 +16847,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BANABA",
-        "stationId": 506915330000
+        "stationId": 506915330000,
+        "name": "Banaba"
       }
     },
     {
@@ -16861,8 +16861,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BILOELA DPI RESEARCH STATION",
-        "stationId": 501943760010
+        "stationId": 501943760010,
+        "name": "Biloela Dpi Research Station"
       }
     },
     {
@@ -16921,8 +16921,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MCMURDO",
-        "stationId": 700896640000
+        "stationId": 700896640000,
+        "name": "Mcmurdo"
       }
     },
     {
@@ -16967,8 +16967,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LA ROMANA DOMINICAN REPUBL",
-        "stationId": 407784790010
+        "stationId": 407784790010,
+        "name": "La Romana Dominican Republ"
       }
     },
     {
@@ -17091,8 +17091,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "WILLIS ISLAND",
-        "stationId": 526942990000
+        "stationId": 526942990000,
+        "name": "Willis Island"
       }
     },
     {
@@ -17168,8 +17168,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "UNDU POINT",
-        "stationId": 502916520000
+        "stationId": 502916520000,
+        "name": "Undu Point"
       }
     },
     {
@@ -17451,8 +17451,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GREEN CAPE LIGHTHOUSE",
-        "stationId": 501949340010
+        "stationId": 501949340010,
+        "name": "Green Cape Lighthouse"
       }
     },
     {
@@ -17543,8 +17543,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "N'ZEREKORE",
-        "stationId": 120618490000
+        "stationId": 120618490000,
+        "name": "N'Zerekore"
       }
     },
     {
@@ -17882,8 +17882,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ONO-I-LAU",
-        "stationId": 502916990000
+        "stationId": 502916990000,
+        "name": "Ono-I-Lau"
       }
     },
     {
@@ -17927,8 +17927,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NORFOLK ISLAN",
-        "stationId": 534949960000
+        "stationId": 534949960000,
+        "name": "Norfolk Islan"
       }
     },
     {
@@ -18036,8 +18036,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KUMKOY",
-        "stationId": 649170590030
+        "stationId": 649170590030,
+        "name": "Kumkoy"
       }
     },
     {
@@ -18082,8 +18082,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Zhongshan",
-        "stationId": 700895730008
+        "stationId": 700895730008,
+        "name": "Zhongshan"
       }
     },
     {
@@ -18813,8 +18813,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ST. BRANDON",
-        "stationId": 129619860000
+        "stationId": 129619860000,
+        "name": "St. Brandon"
       }
     },
     {
@@ -19263,8 +19263,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HUA HIN",
-        "stationId": 228484750000
+        "stationId": 228484750000,
+        "name": "Hua Hin"
       }
     },
     {
@@ -19673,8 +19673,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHRISTMAS ISL",
-        "stationId": 523969950000
+        "stationId": 523969950000,
+        "name": "Christmas Isl"
       }
     },
     {
@@ -19937,8 +19937,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MASBATE",
-        "stationId": 509985430000
+        "stationId": 509985430000,
+        "name": "Masbate"
       }
     },
     {
@@ -20200,8 +20200,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ACAPULCO,GRO.",
-        "stationId": 414768050000
+        "stationId": 414768050000,
+        "name": "Acapulco,Gro."
       }
     },
     {
@@ -20293,8 +20293,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TEGAL",
-        "stationId": 503967970000
+        "stationId": 503967970000,
+        "name": "Tegal"
       }
     },
     {
@@ -20371,8 +20371,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISLA JUAN FERNANDEZ",
-        "stationId": 304855850000
+        "stationId": 304855850000,
+        "name": "Isla Juan Fernandez"
       }
     },
     {
@@ -20385,8 +20385,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISLA JUAN FERNANDEZ",
-        "stationId": 304855850007
+        "stationId": 304855850007,
+        "name": "Isla Juan Fernandez"
       }
     },
     {
@@ -20730,8 +20730,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NOUMEA",
-        "stationId": 532915920000
+        "stationId": 532915920000,
+        "name": "Noumea"
       }
     },
     {
@@ -20760,8 +20760,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OSTROV KOTEL'",
-        "stationId": 222214320000
+        "stationId": 222214320000,
+        "name": "Ostrov Kotel'"
       }
     },
     {
@@ -21074,8 +21074,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Schwerdtfeger",
-        "stationId": 700898680009
+        "stationId": 700898680009,
+        "name": "Schwerdtfeger"
       }
     },
     {
@@ -21942,8 +21942,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISFJORD RADIO",
-        "stationId": 634010050010
+        "stationId": 634010050010,
+        "name": "Isfjord Radio"
       }
     },
     {
@@ -21956,8 +21956,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AKYAB",
-        "stationId": 216480620000
+        "stationId": 216480620000,
+        "name": "Akyab"
       }
     },
     {
@@ -22341,8 +22341,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "D_10",
-        "stationId": 700898320009
+        "stationId": 700898320009,
+        "name": "D_10"
       }
     },
     {
@@ -22794,8 +22794,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ONSLOW",
-        "stationId": 501943050000
+        "stationId": 501943050000,
+        "name": "Onslow"
       }
     },
     {
@@ -22870,8 +22870,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OKTIABR'SKAYA",
-        "stationId": 222325940010
+        "stationId": 222325940010,
+        "name": "Oktiabr'Skaya"
       }
     },
     {
@@ -23779,8 +23779,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BJORNOYA",
-        "stationId": 634010280000
+        "stationId": 634010280000,
+        "name": "Bjornoya"
       }
     },
     {
@@ -23936,8 +23936,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ROTHERA POINT",
-        "stationId": 700890620008
+        "stationId": 700890620008,
+        "name": "Rothera Point"
       }
     },
     {
@@ -24137,8 +24137,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DUMONT D'URVI",
-        "stationId": 700896420000
+        "stationId": 700896420000,
+        "name": "Dumont D'Urvi"
       }
     },
     {
@@ -24462,8 +24462,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE LEEUWIN",
-        "stationId": 501946010000
+        "stationId": 501946010000,
+        "name": "Cape Leeuwin"
       }
     },
     {
@@ -25185,8 +25185,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VOSTOK",
-        "stationId": 700896060008
+        "stationId": 700896060008,
+        "name": "Vostok"
       }
     },
     {
@@ -25231,8 +25231,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LENINGRADSKAYA",
-        "stationId": 700896060018
+        "stationId": 700896060018,
+        "name": "Leningradskaya"
       }
     },
     {
@@ -25307,8 +25307,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE NATURALI",
-        "stationId": 501946000007
+        "stationId": 501946000007,
+        "name": "Cape Naturali"
       }
     },
     {
@@ -25413,8 +25413,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NAURU COASTAL RADIO STATION",
-        "stationId": 506915300010
+        "stationId": 506915300010,
+        "name": "Nauru Coastal Radio Station"
       }
     },
     {
@@ -25443,8 +25443,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "UNGGI",
-        "stationId": 206470030010
+        "stationId": 206470030010,
+        "name": "Unggi"
       }
     },
     {
@@ -25723,8 +25723,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SCOTT BASE",
-        "stationId": 700896650010
+        "stationId": 700896650010,
+        "name": "Scott Base"
       }
     },
     {
@@ -25768,8 +25768,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SKIKDA",
-        "stationId": 101603550000
+        "stationId": 101603550000,
+        "name": "Skikda"
       }
     },
     {
@@ -25829,8 +25829,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SORONG/JEFMAN",
-        "stationId": 503975020000
+        "stationId": 503975020000,
+        "name": "Sorong/Jefman"
       }
     },
     {
@@ -25859,8 +25859,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LANCELIN",
-        "stationId": 501956060000
+        "stationId": 501956060000,
+        "name": "Lancelin"
       }
     },
     {
@@ -26042,8 +26042,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LAOAG",
-        "stationId": 509982230000
+        "stationId": 509982230000,
+        "name": "Laoag"
       }
     },
     {
@@ -26465,8 +26465,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PISCO",
-        "stationId": 309846910000
+        "stationId": 309846910000,
+        "name": "Pisco"
       }
     },
     {
@@ -26888,8 +26888,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE ST JAMES,BC",
-        "stationId": 403711010010
+        "stationId": 403711010010,
+        "name": "Cape St James,Bc"
       }
     },
     {
@@ -26934,8 +26934,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BENGKULU/",
-        "stationId": 503962530000
+        "stationId": 503962530000,
+        "name": "Bengkulu/"
       }
     },
     {
@@ -26948,8 +26948,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Larsen_Ice_Shelf",
-        "stationId": 700892620009
+        "stationId": 700892620009,
+        "name": "Larsen_Ice_Shelf"
       }
     },
     {
@@ -27212,8 +27212,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUNTA ARENAS",
-        "stationId": 304859340000
+        "stationId": 304859340000,
+        "name": "Punta Arenas"
       }
     },
     {
@@ -27478,8 +27478,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "APARRI",
-        "stationId": 509982320000
+        "stationId": 509982320000,
+        "name": "Aparri"
       }
     },
     {
@@ -27634,8 +27634,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SRINAGAR",
-        "stationId": 207420270000
+        "stationId": 207420270000,
+        "name": "Srinagar"
       }
     },
     {
@@ -28026,8 +28026,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KANTON ISLAND",
-        "stationId": 504917010000
+        "stationId": 504917010000,
+        "name": "Kanton Island"
       }
     },
     {
@@ -28135,8 +28135,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOUNT MORGAN",
-        "stationId": 501943740010
+        "stationId": 501943740010,
+        "name": "Mount Morgan"
       }
     },
     {
@@ -28338,8 +28338,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FINIKE",
-        "stationId": 649173750000
+        "stationId": 649173750000,
+        "name": "Finike"
       }
     },
     {
@@ -28647,8 +28647,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ZANZIBAR/KISA",
-        "stationId": 149638700000
+        "stationId": 149638700000,
+        "name": "Zanzibar/Kisa"
       }
     },
     {
@@ -28784,8 +28784,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HACIENDA YLAN",
-        "stationId": 414766920000
+        "stationId": 414766920000,
+        "name": "Hacienda Ylan"
       }
     },
     {
@@ -29090,8 +29090,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NIULAKITA",
-        "stationId": 518916480000
+        "stationId": 518916480000,
+        "name": "Niulakita"
       }
     },
     {
@@ -29167,8 +29167,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "USTKA",
-        "stationId": 635121150000
+        "stationId": 635121150000,
+        "name": "Ustka"
       }
     },
     {
@@ -29400,8 +29400,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PITTSWORTH POST OFFICE",
-        "stationId": 501945510010
+        "stationId": 501945510010,
+        "name": "Pittsworth Post Office"
       }
     },
     {
@@ -29429,8 +29429,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAMBOOYA POST OFFICE",
-        "stationId": 501945510020
+        "stationId": 501945510020,
+        "name": "Cambooya Post Office"
       }
     },
     {
@@ -29475,8 +29475,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARREE",
-        "stationId": 501944800000
+        "stationId": 501944800000,
+        "name": "Marree"
       }
     },
     {
@@ -29789,8 +29789,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAINTIRANO",
-        "stationId": 125670730000
+        "stationId": 125670730000,
+        "name": "Maintirano"
       }
     },
     {
@@ -29819,8 +29819,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CABO CARVOEIR",
-        "stationId": 636085300000
+        "stationId": 636085300000,
+        "name": "Cabo Carvoeir"
       }
     },
     {
@@ -29833,8 +29833,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TUMBES",
-        "stationId": 309843700000
+        "stationId": 309843700000,
+        "name": "Tumbes"
       }
     },
     {
@@ -30037,7 +30037,7 @@
       "properties": {
         "City": "Kuril'skiy rayon",
         "stationId": 222321650010,
-        "Station Name": "SYANA"
+        "name": "Syana"
       }
     },
     {
@@ -30415,8 +30415,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ARORAE",
-        "stationId": 504916290000
+        "stationId": 504916290000,
+        "name": "Arorae"
       }
     },
     {
@@ -30505,8 +30505,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RAOUL ISLAND,",
-        "stationId": 507939940000
+        "stationId": 507939940000,
+        "name": "Raoul Island,"
       }
     },
     {
@@ -30915,8 +30915,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HAO",
-        "stationId": 528919440000
+        "stationId": 528919440000,
+        "name": "Hao"
       }
     },
     {
@@ -30961,8 +30961,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUKA-PUKA, TUAMOTU IS.",
-        "stationId": 528919440010
+        "stationId": 528919440010,
+        "name": "Puka-Puka, Tuamotu Is."
       }
     },
     {
@@ -31118,8 +31118,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FEODOSIIA",
-        "stationId": 650339760000
+        "stationId": 650339760000,
+        "name": "Feodosiia"
       }
     },
     {
@@ -31367,8 +31367,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BERNADO O'HIGGINS",
-        "stationId": 700890590018
+        "stationId": 700890590018,
+        "name": "Bernado O'Higgins"
       }
     },
     {
@@ -31683,8 +31683,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ROSTOCK-WARNE",
-        "stationId": 617101700000
+        "stationId": 617101700000,
+        "name": "Rostock-Warne"
       }
     },
     {
@@ -31744,8 +31744,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE NELSON",
-        "stationId": 501948260000
+        "stationId": 501948260000,
+        "name": "Cape Nelson"
       }
     },
     {
@@ -31758,8 +31758,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAMOU",
-        "stationId": 120618200000
+        "stationId": 120618200000,
+        "name": "Mamou"
       }
     },
     {
@@ -31788,8 +31788,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SPLIT/MARJAN",
-        "stationId": 609144450000
+        "stationId": 609144450000,
+        "name": "Split/Marjan"
       }
     },
     {
@@ -32482,8 +32482,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FARADAY",
-        "stationId": 700890630008
+        "stationId": 700890630008,
+        "name": "Faraday"
       }
     },
     {
@@ -33048,8 +33048,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEWPORT",
-        "stationId": 425003560320
+        "stationId": 425003560320,
+        "name": "Newport"
       }
     },
     {
@@ -33094,8 +33094,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE BELGRANO",
-        "stationId": 700890340000
+        "stationId": 700890340000,
+        "name": "Base Belgrano"
       }
     },
     {
@@ -33388,8 +33388,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GABO ISLAND",
-        "stationId": 501949330000
+        "stationId": 501949330000,
+        "name": "Gabo Island"
       }
     },
     {
@@ -33402,8 +33402,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Terra_Nova_Bay",
-        "stationId": 700896620008
+        "stationId": 700896620008,
+        "name": "Terra_Nova_Bay"
       }
     },
     {
@@ -33416,8 +33416,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Terra_Nova_Bay",
-        "stationId": 700896620009
+        "stationId": 700896620009,
+        "name": "Terra_Nova_Bay"
       }
     },
     {
@@ -33510,8 +33510,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOPELIA                FRENCH",
-        "stationId": 528919300010
+        "stationId": 528919300010,
+        "name": "Mopelia French"
       }
     },
     {
@@ -33633,8 +33633,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NIAMTOUGOU",
-        "stationId": 151653550000
+        "stationId": 151653550000,
+        "name": "Niamtougou"
       }
     },
     {
@@ -33807,8 +33807,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT-GENTIL",
-        "stationId": 118645010010
+        "stationId": 118645010010,
+        "name": "Port-Gentil"
       }
     },
     {
@@ -34119,8 +34119,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CATANIA/FONTA",
-        "stationId": 623164600000
+        "stationId": 623164600000,
+        "name": "Catania/Fonta"
       }
     },
     {
@@ -34148,8 +34148,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PONZA",
-        "stationId": 623162800000
+        "stationId": 623162800000,
+        "name": "Ponza"
       }
     },
     {
@@ -34178,8 +34178,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HORTA (ACORES",
-        "stationId": 636085060000
+        "stationId": 636085060000,
+        "name": "Horta (Acores"
       }
     },
     {
@@ -34426,8 +34426,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ESPERANZ",
-        "stationId": 301889630000
+        "stationId": 301889630000,
+        "name": "Base Esperanz"
       }
     },
     {
@@ -34440,8 +34440,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ESPERANZ",
-        "stationId": 301889630008
+        "stationId": 301889630008,
+        "name": "Base Esperanz"
       }
     },
     {
@@ -34669,8 +34669,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOZCAADA",
-        "stationId": 649171120010
+        "stationId": 649171120010,
+        "name": "Bozcaada"
       }
     },
     {
@@ -34900,8 +34900,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TORRE OLEVOLA AERO",
-        "stationId": 623162800010
+        "stationId": 623162800010,
+        "name": "Torre Olevola Aero"
       }
     },
     {
@@ -35176,8 +35176,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LAHAINA, MAUI HAWAII",
-        "stationId": 425911890020
+        "stationId": 425911890020,
+        "name": "Lahaina, Maui Hawaii"
       }
     },
     {
@@ -35238,8 +35238,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HALLEY",
-        "stationId": 700890220000
+        "stationId": 700890220000,
+        "name": "Halley"
       }
     },
     {
@@ -35316,8 +35316,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SKAGEN",
-        "stationId": 612060410000
+        "stationId": 612060410000,
+        "name": "Skagen"
       }
     },
     {
@@ -35579,8 +35579,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KOROR, PALAU",
-        "stationId": 536914080000
+        "stationId": 536914080000,
+        "name": "Koror, Palau"
       }
     },
     {
@@ -35640,8 +35640,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Lettau",
-        "stationId": 700893770009
+        "stationId": 700893770009,
+        "name": "Lettau"
       }
     },
     {
@@ -35684,8 +35684,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TUBUAI",
-        "stationId": 528919540000
+        "stationId": 528919540000,
+        "name": "Tubuai"
       }
     },
     {
@@ -35919,8 +35919,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LOS ANGELES CALIFORNIA",
-        "stationId": 425722950000
+        "stationId": 425722950000,
+        "name": "Los Angeles California"
       }
     },
     {
@@ -36028,8 +36028,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "WHYALLA",
-        "stationId": 501946640000
+        "stationId": 501946640000,
+        "name": "Whyalla"
       }
     },
     {
@@ -36121,8 +36121,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KINDIA",
-        "stationId": 120618180000
+        "stationId": 120618180000,
+        "name": "Kindia"
       }
     },
     {
@@ -36469,8 +36469,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP I",
-        "stationId": 800999060010
+        "stationId": 800999060010,
+        "name": "Ship I"
       }
     },
     {
@@ -36734,8 +36734,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ICA",
-        "stationId": 222324110000
+        "stationId": 222324110000,
+        "name": "Ica"
       }
     },
     {
@@ -37016,8 +37016,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PAZAR RIZE",
-        "stationId": 649170400030
+        "stationId": 649170400030,
+        "name": "Pazar Rize"
       }
     },
     {
@@ -37263,8 +37263,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUNTA ANGELES",
-        "stationId": 304855430010
+        "stationId": 304855430010,
+        "name": "Punta Angeles"
       }
     },
     {
@@ -37403,8 +37403,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GUARDIAVECCHI",
-        "stationId": 623165060000
+        "stationId": 623165060000,
+        "name": "Guardiavecchi"
       }
     },
     {
@@ -37812,8 +37812,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SMOKY CAPE",
-        "stationId": 501947900000
+        "stationId": 501947900000,
+        "name": "Smoky Cape"
       }
     },
     {
@@ -37982,8 +37982,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BINTULU",
-        "stationId": 505964410000
+        "stationId": 505964410000,
+        "name": "Bintulu"
       }
     },
     {
@@ -38154,8 +38154,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORTO SANTO",
-        "stationId": 654085240000
+        "stationId": 654085240000,
+        "name": "Porto Santo"
       }
     },
     {
@@ -38311,8 +38311,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CROWN POINT A",
-        "stationId": 424789620000
+        "stationId": 424789620000,
+        "name": "Crown Point A"
       }
     },
     {
@@ -38543,8 +38543,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PITCAIRN",
-        "stationId": 537919600007
+        "stationId": 537919600007,
+        "name": "Pitcairn"
       }
     },
     {
@@ -38810,8 +38810,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOGADISCIO",
-        "stationId": 140632600000
+        "stationId": 140632600000,
+        "name": "Mogadiscio"
       }
     },
     {
@@ -38870,8 +38870,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HARRINGTON POST OFFICE",
-        "stationId": 501947840010
+        "stationId": 501947840010,
+        "name": "Harrington Post Office"
       }
     },
     {
@@ -39008,8 +39008,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PACHENA POINT,BC",
-        "stationId": 403714750020
+        "stationId": 403714750020,
+        "name": "Pachena Point,Bc"
       }
     },
     {
@@ -39163,8 +39163,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ONA II",
-        "stationId": 634012120000
+        "stationId": 634012120000,
+        "name": "Ona Ii"
       }
     },
     {
@@ -39239,8 +39239,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAKKAUR FYR",
-        "stationId": 634010920000
+        "stationId": 634010920000,
+        "name": "Makkaur Fyr"
       }
     },
     {
@@ -39315,8 +39315,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OODNADATTA AI",
-        "stationId": 501944760000
+        "stationId": 501944760000,
+        "name": "Oodnadatta Ai"
       }
     },
     {
@@ -39653,8 +39653,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SCIACCA AERO",
-        "stationId": 623164340010
+        "stationId": 623164340010,
+        "name": "Sciacca Aero"
       }
     },
     {
@@ -40155,8 +40155,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KRIBI",
-        "stationId": 107649710000
+        "stationId": 107649710000,
+        "name": "Kribi"
       }
     },
     {
@@ -40341,8 +40341,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Belgrano_I",
-        "stationId": 700899670008
+        "stationId": 700899670008,
+        "name": "Belgrano_I"
       }
     },
     {
@@ -40387,8 +40387,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TAGBILARAN",
-        "stationId": 509986440000
+        "stationId": 509986440000,
+        "name": "Tagbilaran"
       }
     },
     {
@@ -40449,8 +40449,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE MORETON",
-        "stationId": 501945940000
+        "stationId": 501945940000,
+        "name": "Cape Moreton"
       }
     },
     {
@@ -40670,8 +40670,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GC41",
-        "stationId": 700898130009
+        "stationId": 700898130009,
+        "name": "Gc41"
       }
     },
     {
@@ -41314,8 +41314,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "JURIEN",
-        "stationId": 501956000000
+        "stationId": 501956000000,
+        "name": "Jurien"
       }
     },
     {
@@ -41360,8 +41360,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Ferrell",
-        "stationId": 700898720009
+        "stationId": 700898720009,
+        "name": "Ferrell"
       }
     },
     {
@@ -41390,8 +41390,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LA CORUNA",
-        "stationId": 643080010000
+        "stationId": 643080010000,
+        "name": "La Coruna"
       }
     },
     {
@@ -41482,8 +41482,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SIGNY ISLAND",
-        "stationId": 147890420008
+        "stationId": 147890420008,
+        "name": "Signy Island"
       }
     },
     {
@@ -41921,8 +41921,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAWSON",
-        "stationId": 700895640008
+        "stationId": 700895640008,
+        "name": "Mawson"
       }
     },
     {
@@ -41967,8 +41967,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CASEY",
-        "stationId": 700896110000
+        "stationId": 700896110000,
+        "name": "Casey"
       }
     },
     {
@@ -42073,8 +42073,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOTANICAL GRDNS.    BERMUDA",
-        "stationId": 427780160010
+        "stationId": 427780160010,
+        "name": "Botanical Grdns. Bermuda"
       }
     },
     {
@@ -42119,8 +42119,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "INEBOLU",
-        "stationId": 649170240000
+        "stationId": 649170240000,
+        "name": "Inebolu"
       }
     },
     {
@@ -42180,8 +42180,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHIMBOTE",
-        "stationId": 309845310000
+        "stationId": 309845310000,
+        "name": "Chimbote"
       }
     },
     {
@@ -42589,8 +42589,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Campbell",
-        "stationId": 507939470008
+        "stationId": 507939470008,
+        "name": "Campbell"
       }
     },
     {
@@ -42651,8 +42651,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GJESVAR             NORWAY",
-        "stationId": 634010680010
+        "stationId": 634010680010,
+        "name": "Gjesvar Norway"
       }
     },
     {
@@ -42792,8 +42792,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAINE-SOROA",
-        "stationId": 133610960000
+        "stationId": 133610960000,
+        "name": "Maine-Soroa"
       }
     },
     {
@@ -42806,8 +42806,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARION ISLAND",
-        "stationId": 141689940000
+        "stationId": 141689940000,
+        "name": "Marion Island"
       }
     },
     {
@@ -42900,8 +42900,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KUALAPUU, MOLOKAI",
-        "stationId": 425911860010
+        "stationId": 425911860010,
+        "name": "Kualapuu, Molokai"
       }
     },
     {
@@ -43289,8 +43289,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAN JUAN",
-        "stationId": 309847210000
+        "stationId": 309847210000,
+        "name": "San Juan"
       }
     },
     {
@@ -43581,8 +43581,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ATAKPAME",
-        "stationId": 151653760000
+        "stationId": 151653760000,
+        "name": "Atakpame"
       }
     },
     {
@@ -43862,8 +43862,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AMUNDSEN-SCOT",
-        "stationId": 700890090008
+        "stationId": 700890090008,
+        "name": "Amundsen-Scot"
       }
     },
     {
@@ -43908,8 +43908,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE SAN MARTIN",
-        "stationId": 700890660008
+        "stationId": 700890660008,
+        "name": "Base San Martin"
       }
     },
     {
@@ -44157,8 +44157,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP C",
-        "stationId": 800999030010
+        "stationId": 800999030010,
+        "name": "Ship C"
       }
     },
     {
@@ -44202,8 +44202,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BIAK/MOKMER",
-        "stationId": 503975600000
+        "stationId": 503975600000,
+        "name": "Biak/Mokmer"
       }
     },
     {
@@ -44343,8 +44343,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SIMUSIR",
-        "stationId": 222321950000
+        "stationId": 222321950000,
+        "name": "Simusir"
       }
     },
     {
@@ -44388,8 +44388,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISOLA DI PALM",
-        "stationId": 623161290000
+        "stationId": 623161290000,
+        "name": "Isola Di Palm"
       }
     },
     {
@@ -44448,8 +44448,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LAMU",
-        "stationId": 122637720000
+        "stationId": 122637720000,
+        "name": "Lamu"
       }
     },
     {
@@ -44462,8 +44462,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BYRD STATION",
-        "stationId": 700891250008
+        "stationId": 700891250008,
+        "name": "Byrd Station"
       }
     },
     {
@@ -44476,8 +44476,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE SCHANCK LIGHTHOUSE",
-        "stationId": 501948530010
+        "stationId": 501948530010,
+        "name": "Cape Schanck Lighthouse"
       }
     },
     {
@@ -44538,8 +44538,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "POINT LONSDALE LIGHTHOUSE",
-        "stationId": 501948530020
+        "stationId": 501948530020,
+        "name": "Point Lonsdale Lighthouse"
       }
     },
     {
@@ -44629,8 +44629,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT LINCOLN",
-        "stationId": 501946600000
+        "stationId": 501946600000,
+        "name": "Port Lincoln"
       }
     },
     {
@@ -44834,8 +44834,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Almirante_Brown",
-        "stationId": 700889710007
+        "stationId": 700889710007,
+        "name": "Almirante_Brown"
       }
     },
     {
@@ -44971,8 +44971,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PITCAIRN",
-        "stationId": 537919600000
+        "stationId": 537919600000,
+        "name": "Pitcairn"
       }
     },
     {
@@ -45049,8 +45049,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CENTRO MET.AN, Marsh",
-        "stationId": 304890560008
+        "stationId": 304890560008,
+        "name": "Centro Met.An, Marsh"
       }
     },
     {
@@ -45205,8 +45205,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VILLA CISNERO",
-        "stationId": 169600960000
+        "stationId": 169600960000,
+        "name": "Villa Cisnero"
       }
     },
     {
@@ -45250,8 +45250,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE SABLE,NS",
-        "stationId": 403716030010
+        "stationId": 403716030010,
+        "name": "Cape Sable,Ns"
       }
     },
     {
@@ -45844,8 +45844,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FORT WILLIAM",
-        "stationId": 651030380000
+        "stationId": 651030380000,
+        "name": "Fort William"
       }
     },
     {
@@ -46073,8 +46073,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NELSON AERODR",
-        "stationId": 507935460000
+        "stationId": 507935460000,
+        "name": "Nelson Aerodr"
       }
     },
     {
@@ -46164,8 +46164,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOGO                DENMARK",
-        "stationId": 612061790010
+        "stationId": 612061790010,
+        "name": "Bogo Denmark"
       }
     },
     {
@@ -46416,8 +46416,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ORCADAS",
-        "stationId": 701889680000
+        "stationId": 701889680000,
+        "name": "Base Orcadas"
       }
     },
     {
@@ -46664,8 +46664,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MANINGRIDA",
-        "stationId": 501941420000
+        "stationId": 501941420000,
+        "name": "Maningrida"
       }
     },
     {
@@ -46737,8 +46737,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TAHITI-FAAA",
-        "stationId": 528919380000
+        "stationId": 528919380000,
+        "name": "Tahiti-Faaa"
       }
     },
     {
@@ -46767,8 +46767,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TAHITI-FAAA",
-        "stationId": 528919380007
+        "stationId": 528919380007,
+        "name": "Tahiti-Faaa"
       }
     },
     {
@@ -46781,8 +46781,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BIRNI-N'KONNI",
-        "stationId": 133610750000
+        "stationId": 133610750000,
+        "name": "Birni-N'Konni"
       }
     },
     {
@@ -46843,8 +46843,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MYS UELEN",
-        "stationId": 222253990000
+        "stationId": 222253990000,
+        "name": "Mys Uelen"
       }
     },
     {
@@ -46969,8 +46969,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BELMULLET",
-        "stationId": 621039760000
+        "stationId": 621039760000,
+        "name": "Belmullet"
       }
     },
     {
@@ -46983,8 +46983,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISLOTES EVANG",
-        "stationId": 304859300000
+        "stationId": 304859300000,
+        "name": "Islotes Evang"
       }
     },
     {
@@ -47060,8 +47060,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Jubany",
-        "stationId": 700890530008
+        "stationId": 700890530008,
+        "name": "Jubany"
       }
     },
     {
@@ -47090,8 +47090,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DECEPTION IS.    S ATLANTI",
-        "stationId": 700890530020
+        "stationId": 700890530020,
+        "name": "Deception Is. S Atlanti"
       }
     },
     {
@@ -47196,8 +47196,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Butler_Island",
-        "stationId": 700892660009
+        "stationId": 700892660009,
+        "name": "Butler_Island"
       }
     },
     {
@@ -47729,8 +47729,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HANA, MAUI HAWAII",
-        "stationId": 425911960010
+        "stationId": 425911960010,
+        "name": "Hana, Maui Hawaii"
       }
     },
     {
@@ -47822,8 +47822,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE HATTERAS AP",
-        "stationId": 425003114580
+        "stationId": 425003114580,
+        "name": "Cape Hatteras Ap"
       }
     },
     {
@@ -47976,8 +47976,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LOW HEAD",
-        "stationId": 501949650000
+        "stationId": 501949650000,
+        "name": "Low Head"
       }
     },
     {
@@ -48260,8 +48260,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TUKTOYAKTUK,NW",
-        "stationId": 403719570040
+        "stationId": 403719570040,
+        "name": "Tuktoyaktuk,Nw"
       }
     },
     {
@@ -48463,8 +48463,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HIHIFO",
-        "stationId": 540917530000
+        "stationId": 540917530000,
+        "name": "Hihifo"
       }
     },
     {
@@ -48682,8 +48682,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "YUDNAPINNA",
-        "stationId": 501956660010
+        "stationId": 501956660010,
+        "name": "Yudnapinna"
       }
     },
     {
@@ -48853,8 +48853,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SABANA DE LA",
-        "stationId": 407784670000
+        "stationId": 407784670000,
+        "name": "Sabana De La"
       }
     },
     {
@@ -49183,8 +49183,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MORONI/GRANDE-COMORE/",
-        "stationId": 111670010010
+        "stationId": 111670010010,
+        "name": "Moroni/Grande-Comore/"
       }
     },
     {
@@ -49197,8 +49197,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TARAWA",
-        "stationId": 504916100000
+        "stationId": 504916100000,
+        "name": "Tarawa"
       }
     },
     {
@@ -49211,8 +49211,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE COLUMBIN",
-        "stationId": 141687120000
+        "stationId": 141687120000,
+        "name": "Cape Columbin"
       }
     },
     {
@@ -49272,8 +49272,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SOUDA (AIRPOR",
-        "stationId": 618167460000
+        "stationId": 618167460000,
+        "name": "Souda (Airpor"
       }
     },
     {
@@ -49318,8 +49318,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OSTROV CHETYR",
-        "stationId": 222219650000
+        "stationId": 222219650000,
+        "name": "Ostrov Chetyr"
       }
     },
     {
@@ -49332,8 +49332,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Marilyn",
-        "stationId": 700898690009
+        "stationId": 700898690009,
+        "name": "Marilyn"
       }
     },
     {
@@ -49408,8 +49408,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DUMONT D'URVI",
-        "stationId": 700896420008
+        "stationId": 700896420008,
+        "name": "Dumont D'Urvi"
       }
     },
     {
@@ -49656,8 +49656,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MYS SMIDTA",
-        "stationId": 222251730000
+        "stationId": 222251730000,
+        "name": "Mys Smidta"
       }
     },
     {
@@ -49765,8 +49765,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NASSAU AIRPOR",
-        "stationId": 423780730000
+        "stationId": 423780730000,
+        "name": "Nassau Airpor"
       }
     },
     {
@@ -49968,8 +49968,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DZAOUDZI/PAMA",
-        "stationId": 163670050000
+        "stationId": 163670050000,
+        "name": "Dzaoudzi/Pama"
       }
     },
     {
@@ -50155,8 +50155,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BORA-BORA",
-        "stationId": 528919300000
+        "stationId": 528919300000,
+        "name": "Bora-Bora"
       }
     },
     {
@@ -50262,8 +50262,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUNTA MARINA",
-        "stationId": 623161460000
+        "stationId": 623161460000,
+        "name": "Punta Marina"
       }
     },
     {
@@ -50936,8 +50936,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OSTROV DIKSON",
-        "stationId": 222206740000
+        "stationId": 222206740000,
+        "name": "Ostrov Dikson"
       }
     },
     {
@@ -51407,8 +51407,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TOTEGEGIE, GAMBIER IS.",
-        "stationId": 528919480000
+        "stationId": 528919480000,
+        "name": "Totegegie, Gambier Is."
       }
     },
     {
@@ -51628,8 +51628,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AKCAKOCA",
-        "stationId": 649170700030
+        "stationId": 649170700030,
+        "name": "Akcakoca"
       }
     },
     {
@@ -51720,8 +51720,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANTA MARIA (",
-        "stationId": 636085150000
+        "stationId": 636085150000,
+        "name": "Santa Maria ("
       }
     },
     {
@@ -51750,8 +51750,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANDGATE",
-        "stationId": 501945780020
+        "stationId": 501945780020,
+        "name": "Sandgate"
       }
     },
     {
@@ -52457,8 +52457,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LIST/SYLT",
-        "stationId": 617100200000
+        "stationId": 617100200000,
+        "name": "List/Sylt"
       }
     },
     {
@@ -52835,8 +52835,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ORDU",
-        "stationId": 649170340030
+        "stationId": 649170340030,
+        "name": "Ordu"
       }
     },
     {
@@ -52895,8 +52895,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NOVOROSSISK         USSR",
-        "stationId": 638370040010
+        "stationId": 638370040010,
+        "name": "Novorossisk Ussr"
       }
     },
     {
@@ -53098,8 +53098,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LADY ELLIOT I",
-        "stationId": 501943880000
+        "stationId": 501943880000,
+        "name": "Lady Elliot I"
       }
     },
     {
@@ -53300,8 +53300,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE LEEUWIN",
-        "stationId": 501946010007
+        "stationId": 501946010007,
+        "name": "Cape Leeuwin"
       }
     },
     {
@@ -53472,7 +53472,7 @@
       "properties": {
         "City": "Mitsune",
         "stationId": 210476780000,
-        "Station Name": "HACHIJOJIMA"
+        "name": "Hachijojima"
       }
     },
     {
@@ -53549,8 +53549,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "STANLEY /UK/",
-        "stationId": 316888900010
+        "stationId": 316888900010,
+        "name": "Stanley /Uk/"
       }
     },
     {
@@ -53706,8 +53706,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Cape_Ross",
-        "stationId": 700896660009
+        "stationId": 700896660009,
+        "name": "Cape_Ross"
       }
     },
     {
@@ -53767,8 +53767,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEGRIL POINT LIGHTHOUSE JA",
-        "stationId": 413783870010
+        "stationId": 413783870010,
+        "name": "Negril Point Lighthouse Ja"
       }
     },
     {
@@ -53796,8 +53796,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TRUK,",
-        "stationId": 527913340000
+        "stationId": 527913340000,
+        "name": "Truk,"
       }
     },
     {
@@ -53985,8 +53985,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Possession_Island",
-        "stationId": 700898790009
+        "stationId": 700898790009,
+        "name": "Possession_Island"
       }
     },
     {
@@ -54015,8 +54015,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NOVOLAZAREVSK",
-        "stationId": 700895120000
+        "stationId": 700895120000,
+        "name": "Novolazarevsk"
       }
     },
     {
@@ -54029,8 +54029,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NOVOLAZAREVSK",
-        "stationId": 700895120008
+        "stationId": 700895120008,
+        "name": "Novolazarevsk"
       }
     },
     {
@@ -54184,8 +54184,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LEH",
-        "stationId": 207420340000
+        "stationId": 207420340000,
+        "name": "Leh"
       }
     },
     {
@@ -54325,8 +54325,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "XISHA DAO",
-        "stationId": 205599810000
+        "stationId": 205599810000,
+        "name": "Xisha Dao"
       }
     },
     {
@@ -54465,8 +54465,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NUKUALOFA TONGA ISLAND",
-        "stationId": 517917920010
+        "stationId": 517917920010,
+        "name": "Nukualofa Tonga Island"
       }
     },
     {
@@ -54479,8 +54479,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MYS ZELANIJA",
-        "stationId": 222203530000
+        "stationId": 222203530000,
+        "name": "Mys Zelanija"
       }
     },
     {
@@ -54650,8 +54650,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DAVIS",
-        "stationId": 700895710008
+        "stationId": 700895710008,
+        "name": "Davis"
       }
     },
     {
@@ -54680,8 +54680,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "POINT HICKS",
-        "stationId": 501949320000
+        "stationId": 501949320000,
+        "name": "Point Hicks"
       }
     },
     {
@@ -54771,8 +54771,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPO PALINURO",
-        "stationId": 623163100000
+        "stationId": 623163100000,
+        "name": "Capo Palinuro"
       }
     },
     {
@@ -55039,8 +55039,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BELLINGSHAUSE",
-        "stationId": 700890500008
+        "stationId": 700890500008,
+        "name": "Bellingshause"
       }
     },
     {
@@ -55069,8 +55069,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DERNA",
-        "stationId": 124620590000
+        "stationId": 124620590000,
+        "name": "Derna"
       }
     },
     {
@@ -55416,8 +55416,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ROSSLARE",
-        "stationId": 621039570000
+        "stationId": 621039570000,
+        "name": "Rosslare"
       }
     },
     {
@@ -56010,8 +56010,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RANONG",
-        "stationId": 228485320000
+        "stationId": 228485320000,
+        "name": "Ranong"
       }
     },
     {
@@ -56103,8 +56103,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RAPA",
-        "stationId": 528919580000
+        "stationId": 528919580000,
+        "name": "Rapa"
       }
     },
     {
@@ -56149,8 +56149,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RAPA",
-        "stationId": 528919580007
+        "stationId": 528919580007,
+        "name": "Rapa"
       }
     },
     {
@@ -56525,8 +56525,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ANNAS HOPE, ST. CROIX VIRG",
-        "stationId": 440785260010
+        "stationId": 440785260010,
+        "name": "Annas Hope, St. Croix Virg"
       }
     },
     {
@@ -56666,8 +56666,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VOSTOK",
-        "stationId": 700896060000
+        "stationId": 700896060000,
+        "name": "Vostok"
       }
     },
     {
@@ -56680,8 +56680,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CASA BLANCA,",
-        "stationId": 406783250000
+        "stationId": 406783250000,
+        "name": "Casa Blanca,"
       }
     },
     {
@@ -56930,8 +56930,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TORUNGEN FYR",
-        "stationId": 634014650000
+        "stationId": 634014650000,
+        "name": "Torungen Fyr"
       }
     },
     {
@@ -56976,8 +56976,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VARDO",
-        "stationId": 634010980000
+        "stationId": 634010980000,
+        "name": "Vardo"
       }
     },
     {
@@ -56990,8 +56990,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE BRUNY",
-        "stationId": 501949670000
+        "stationId": 501949670000,
+        "name": "Cape Bruny"
       }
     },
     {
@@ -57020,8 +57020,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Marble_Point",
-        "stationId": 700898660009
+        "stationId": 700898660009,
+        "name": "Marble_Point"
       }
     },
     {
@@ -57112,8 +57112,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MALIN HEAD",
-        "stationId": 621039800000
+        "stationId": 621039800000,
+        "name": "Malin Head"
       }
     },
     {
@@ -57286,8 +57286,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUNTA TORTUGA",
-        "stationId": 304854880010
+        "stationId": 304854880010,
+        "name": "Punta Tortuga"
       }
     },
     {
@@ -57380,8 +57380,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BEJAIA",
-        "stationId": 101604020000
+        "stationId": 101604020000,
+        "name": "Bejaia"
       }
     },
     {
@@ -57520,8 +57520,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BUSSELTON (BUSSELTON POST OFFI",
-        "stationId": 501946000010
+        "stationId": 501946000010,
+        "name": "Busselton (Busselton Post Offi"
       }
     },
     {
@@ -57830,8 +57830,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TRINCOMALEE",
-        "stationId": 224434180000
+        "stationId": 224434180000,
+        "name": "Trincomalee"
       }
     },
     {
@@ -57894,7 +57894,7 @@
       "properties": {
         "City": "Bab El Bhar",
         "stationId": 152607150000,
-        "Station Name": "TUNIS-CARTHAG"
+        "name": "Tunis-Carthag"
       }
     },
     {
@@ -58032,8 +58032,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LAS PALAMAS (GANDO) CANARY IS.",
-        "stationId": 159600300000
+        "stationId": 159600300000,
+        "name": "Las Palamas (Gando) Canary Is."
       }
     },
     {
@@ -58094,8 +58094,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AGADEZ",
-        "stationId": 133610240000
+        "stationId": 133610240000,
+        "name": "Agadez"
       }
     },
     {
@@ -58124,8 +58124,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOMBAY / COLA",
-        "stationId": 207430570000
+        "stationId": 207430570000,
+        "name": "Bombay / Cola"
       }
     },
     {
@@ -58154,8 +58154,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VILA, NEW HEBRIDES",
-        "stationId": 520915570010
+        "stationId": 520915570010,
+        "name": "Vila, New Hebrides"
       }
     },
     {
@@ -58344,8 +58344,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CASEY",
-        "stationId": 700896110008
+        "stationId": 700896110008,
+        "name": "Casey"
       }
     },
     {
@@ -58406,8 +58406,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISOLA DI PIANOSA",
-        "stationId": 623161970020
+        "stationId": 623161970020,
+        "name": "Isola Di Pianosa"
       }
     },
     {
@@ -58735,8 +58735,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE SAN MARTIN",
-        "stationId": 700890660000
+        "stationId": 700890660000,
+        "name": "Base San Martin"
       }
     },
     {
@@ -58968,8 +58968,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Theresa",
-        "stationId": 700213580009
+        "stationId": 700213580009,
+        "name": "Theresa"
       }
     },
     {
@@ -59504,8 +59504,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ILE EUROPA",
-        "stationId": 111619720000
+        "stationId": 111619720000,
+        "name": "Ile Europa"
       }
     },
     {
@@ -59518,8 +59518,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "S.A.N.A.E. ST",
-        "stationId": 700890010007
+        "stationId": 700890010007,
+        "name": "S.A.N.A.E. St"
       }
     },
     {
@@ -59548,8 +59548,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "UPERNAVIK",
-        "stationId": 431042100000
+        "stationId": 431042100000,
+        "name": "Upernavik"
       }
     },
     {
@@ -59748,8 +59748,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOMOTE M.O.",
-        "stationId": 508940440000
+        "stationId": 508940440000,
+        "name": "Momote M.O."
       }
     },
     {
@@ -59809,8 +59809,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MALDEN ISLAND",
-        "stationId": 504919020000
+        "stationId": 504919020000,
+        "name": "Malden Island"
       }
     },
     {
@@ -59823,8 +59823,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAGRES",
-        "stationId": 636085380000
+        "stationId": 636085380000,
+        "name": "Sagres"
       }
     },
     {
@@ -59917,8 +59917,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KWAJALEIN/BUC",
-        "stationId": 531913660000
+        "stationId": 531913660000,
+        "name": "Kwajalein/Buc"
       }
     },
     {
@@ -60482,8 +60482,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KINGSCOTE",
-        "stationId": 501948070000
+        "stationId": 501948070000,
+        "name": "Kingscote"
       }
     },
     {
@@ -60655,8 +60655,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SCOTT BASE",
-        "stationId": 700896650018
+        "stationId": 700896650018,
+        "name": "Scott Base"
       }
     },
     {
@@ -60717,8 +60717,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "STYKKISHOLMUR",
-        "stationId": 620040130000
+        "stationId": 620040130000,
+        "name": "Stykkisholmur"
       }
     },
     {
@@ -60731,8 +60731,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANTA BARBARA/FAA ARPT",
-        "stationId": 425746060010
+        "stationId": 425746060010,
+        "name": "Santa Barbara/Faa Arpt"
       }
     },
     {
@@ -60857,8 +60857,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LOBITO",
-        "stationId": 102663050010
+        "stationId": 102663050010,
+        "name": "Lobito"
       }
     },
     {
@@ -60887,8 +60887,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "WOOMERA AEROD",
-        "stationId": 501946590000
+        "stationId": 501946590000,
+        "name": "Woomera Aerod"
       }
     },
     {
@@ -61181,8 +61181,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PENRHYN",
-        "stationId": 525918000000
+        "stationId": 525918000000,
+        "name": "Penrhyn"
       }
     },
     {
@@ -61320,8 +61320,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BARROW/W. POS",
-        "stationId": 425700260000
+        "stationId": 425700260000,
+        "name": "Barrow/W. Pos"
       }
     },
     {
@@ -61998,8 +61998,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ANTALAHA",
-        "stationId": 125670250000
+        "stationId": 125670250000,
+        "name": "Antalaha"
       }
     },
     {
@@ -62263,8 +62263,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TOWNSVILLE AM",
-        "stationId": 501942940000
+        "stationId": 501942940000,
+        "name": "Townsville Am"
       }
     },
     {
@@ -62420,7 +62420,7 @@
       "properties": {
         "City": "Jerusalem",
         "stationId": 622401840000,
-        "Station Name": "JERUSALEM"
+        "name": "Jerusalem"
       }
     },
     {
@@ -62497,8 +62497,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHATHAM ISLAN",
-        "stationId": 507939870000
+        "stationId": 507939870000,
+        "name": "Chatham Islan"
       }
     },
     {
@@ -62527,8 +62527,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHATHAM ISLAN",
-        "stationId": 507939870007
+        "stationId": 507939870007,
+        "name": "Chatham Islan"
       }
     },
     {
@@ -62964,8 +62964,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PASNI",
-        "stationId": 219417590000
+        "stationId": 219417590000,
+        "name": "Pasni"
       }
     },
     {
@@ -63009,8 +63009,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANDAKAN",
-        "stationId": 505964910000
+        "stationId": 505964910000,
+        "name": "Sandakan"
       }
     },
     {
@@ -63132,8 +63132,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KARA",
-        "stationId": 151653570000
+        "stationId": 151653570000,
+        "name": "Kara"
       }
     },
     {
@@ -63269,8 +63269,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE ST. BLAIZE - VRT",
-        "stationId": 141689280010
+        "stationId": 141689280010,
+        "name": "Cape St. Blaize - Vrt"
       }
     },
     {
@@ -63283,8 +63283,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PROGRESO, YUC",
-        "stationId": 414765930000
+        "stationId": 414765930000,
+        "name": "Progreso, Yuc"
       }
     },
     {
@@ -63579,8 +63579,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP M",
-        "stationId": 800999100010
+        "stationId": 800999100010,
+        "name": "Ship M"
       }
     },
     {
@@ -63940,8 +63940,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MONTAGUE ISLAND LIGHTHOUSE",
-        "stationId": 501959350010
+        "stationId": 501959350010,
+        "name": "Montague Island Lighthouse"
       }
     },
     {
@@ -63984,8 +63984,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHERBOURG-MAUPERTUS",
-        "stationId": 615070390020
+        "stationId": 615070390020,
+        "name": "Cherbourg-Maupertus"
       }
     },
     {
@@ -64093,8 +64093,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TCHAOUROU DAHOMEY REP",
-        "stationId": 103653300010
+        "stationId": 103653300010,
+        "name": "Tchaourou Dahomey Rep"
       }
     },
     {
@@ -64296,8 +64296,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MANANJARY",
-        "stationId": 125671430000
+        "stationId": 125671430000,
+        "name": "Mananjary"
       }
     },
     {
@@ -64406,8 +64406,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SIGNY ISLAND",
-        "stationId": 147890420000
+        "stationId": 147890420000,
+        "name": "Signy Island"
       }
     },
     {
@@ -64436,8 +64436,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUERTO CABEZAS",
-        "stationId": 415787440020
+        "stationId": 415787440020,
+        "name": "Puerto Cabezas"
       }
     },
     {
@@ -64560,8 +64560,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SYOWA",
-        "stationId": 700895320000
+        "stationId": 700895320000,
+        "name": "Syowa"
       }
     },
     {
@@ -64778,8 +64778,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HONIARA/HENDE",
-        "stationId": 512915200000
+        "stationId": 512915200000,
+        "name": "Honiara/Hende"
       }
     },
     {
@@ -65012,8 +65012,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SABLE ISLAND,",
-        "stationId": 403716000000
+        "stationId": 403716000000,
+        "name": "Sable Island,"
       }
     },
     {
@@ -65154,8 +65154,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT SHEPSTON",
-        "stationId": 141685840000
+        "stationId": 141685840000,
+        "name": "Port Shepston"
       }
     },
     {
@@ -65229,8 +65229,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "STANLEY POST OFFICE",
-        "stationId": 501949520020
+        "stationId": 501949520020,
+        "name": "Stanley Post Office"
       }
     },
     {
@@ -65243,8 +65243,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BODRUM",
-        "stationId": 649172900000
+        "stationId": 649172900000,
+        "name": "Bodrum"
       }
     },
     {
@@ -65333,8 +65333,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FUNAFUTI",
-        "stationId": 518916430000
+        "stationId": 518916430000,
+        "name": "Funafuti"
       }
     },
     {
@@ -65643,8 +65643,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HELLISOY FYR",
-        "stationId": 634013060000
+        "stationId": 634013060000,
+        "name": "Hellisoy Fyr"
       }
     },
     {
@@ -65705,8 +65705,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP J",
-        "stationId": 800999070010
+        "stationId": 800999070010,
+        "name": "Ship J"
       }
     },
     {
@@ -65879,8 +65879,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SERGE-FROLOW",
-        "stationId": 168619760000
+        "stationId": 168619760000,
+        "name": "Serge-Frolow"
       }
     },
     {
@@ -66080,8 +66080,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT SAID/EL",
-        "stationId": 115623320000
+        "stationId": 115623320000,
+        "name": "Port Said/El"
       }
     },
     {
@@ -66268,8 +66268,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FERDER FYR",
-        "stationId": 634014820000
+        "stationId": 634014820000,
+        "name": "Ferder Fyr"
       }
     },
     {
@@ -66394,8 +66394,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FALALOP ISLAN",
-        "stationId": 527912030000
+        "stationId": 527912030000,
+        "name": "Falalop Islan"
       }
     },
     {
@@ -66613,8 +66613,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAWSON",
-        "stationId": 700895640000
+        "stationId": 700895640000,
+        "name": "Mawson"
       }
     },
     {
@@ -66675,8 +66675,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPRI",
-        "stationId": 623162940010
+        "stationId": 623162940010,
+        "name": "Capri"
       }
     },
     {
@@ -66905,8 +66905,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE BELGRANO",
-        "stationId": 700890340008
+        "stationId": 700890340008,
+        "name": "Base Belgrano"
       }
     },
     {
@@ -66919,8 +66919,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BELGRANO",
-        "stationId": 700890340010
+        "stationId": 700890340010,
+        "name": "Belgrano"
       }
     },
     {
@@ -67498,8 +67498,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SAN JULIAN AE",
-        "stationId": 301879090000
+        "stationId": 301879090000,
+        "name": "San Julian Ae"
       }
     },
     {
@@ -67528,8 +67528,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GUERNSEY AIRP",
-        "stationId": 651038940000
+        "stationId": 651038940000,
+        "name": "Guernsey Airp"
       }
     },
     {
@@ -68276,8 +68276,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AUKI",
-        "stationId": 512915070000
+        "stationId": 512915070000,
+        "name": "Auki"
       }
     },
     {
@@ -68368,8 +68368,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ARECIBO",
-        "stationId": 435785260130
+        "stationId": 435785260130,
+        "name": "Arecibo"
       }
     },
     {
@@ -68651,8 +68651,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DERBY",
-        "stationId": 501942050000
+        "stationId": 501942050000,
+        "name": "Derby"
       }
     },
     {
@@ -68665,8 +68665,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PROVINCETOWN",
-        "stationId": 425001966810
+        "stationId": 425001966810,
+        "name": "Provincetown"
       }
     },
     {
@@ -68710,8 +68710,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUNTA ARENAS",
-        "stationId": 304859340007
+        "stationId": 304859340007,
+        "name": "Punta Arenas"
       }
     },
     {
@@ -68816,8 +68816,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAJURO/MARSHA",
-        "stationId": 531913760000
+        "stationId": 531913760000,
+        "name": "Majuro/Marsha"
       }
     },
     {
@@ -69410,8 +69410,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HAMBANTOTA",
-        "stationId": 224434970000
+        "stationId": 224434970000,
+        "name": "Hambantota"
       }
     },
     {
@@ -69565,8 +69565,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NAIN,NFLD",
-        "stationId": 403719020000
+        "stationId": 403719020000,
+        "name": "Nain,Nfld"
       }
     },
     {
@@ -69579,8 +69579,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MPIKA",
-        "stationId": 155674770000
+        "stationId": 155674770000,
+        "name": "Mpika"
       }
     },
     {
@@ -69608,8 +69608,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NAIN                CANADA",
-        "stationId": 403719020010
+        "stationId": 403719020010,
+        "name": "Nain Canada"
       }
     },
     {
@@ -69638,8 +69638,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HEBRON              CANADA",
-        "stationId": 403719020020
+        "stationId": 403719020020,
+        "name": "Hebron Canada"
       }
     },
     {
@@ -69891,8 +69891,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KOLOBRZEG",
-        "stationId": 635121000000
+        "stationId": 635121000000,
+        "name": "Kolobrzeg"
       }
     },
     {
@@ -70016,8 +70016,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOLODEZNAJA",
-        "stationId": 700895420008
+        "stationId": 700895420008,
+        "name": "Molodeznaja"
       }
     },
     {
@@ -70551,8 +70551,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE SORELL (AWS)",
-        "stationId": 501949740010
+        "stationId": 501949740010,
+        "name": "Cape Sorell (Aws)"
       }
     },
     {
@@ -70612,8 +70612,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAATSUYKER IS",
-        "stationId": 501949620007
+        "stationId": 501949620007,
+        "name": "Maatsuyker Is"
       }
     },
     {
@@ -70674,8 +70674,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ANTALYA",
-        "stationId": 649173000000
+        "stationId": 649173000000,
+        "name": "Antalya"
       }
     },
     {
@@ -70767,8 +70767,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AGALEGA",
-        "stationId": 138619740000
+        "stationId": 138619740000,
+        "name": "Agalega"
       }
     },
     {
@@ -71001,8 +71001,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORTO AMELIA",
-        "stationId": 131672150000
+        "stationId": 131672150000,
+        "name": "Porto Amelia"
       }
     },
     {
@@ -71173,8 +71173,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAIRNS AIRPOR",
-        "stationId": 501942870000
+        "stationId": 501942870000,
+        "name": "Cairns Airpor"
       }
     },
     {
@@ -71233,8 +71233,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LIMASSOL            CYPRUS",
-        "stationId": 610176000010
+        "stationId": 610176000010,
+        "name": "Limassol Cyprus"
       }
     },
     {
@@ -71263,8 +71263,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Elaine",
-        "stationId": 700898730009
+        "stationId": 700898730009,
+        "name": "Elaine"
       }
     },
     {
@@ -71528,8 +71528,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CUYO",
-        "stationId": 509986300000
+        "stationId": 509986300000,
+        "name": "Cuyo"
       }
     },
     {
@@ -71729,8 +71729,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAATSUYKER IS",
-        "stationId": 501949620000
+        "stationId": 501949620000,
+        "name": "Maatsuyker Is"
       }
     },
     {
@@ -71758,8 +71758,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "TRINDADE (ILH",
-        "stationId": 303836500000
+        "stationId": 303836500000,
+        "name": "Trindade (Ilh"
       }
     },
     {
@@ -72040,8 +72040,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ANDENES",
-        "stationId": 634010100010
+        "stationId": 634010100010,
+        "name": "Andenes"
       }
     },
     {
@@ -72319,8 +72319,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "STANLEY /UK/",
-        "stationId": 316888900017
+        "stationId": 316888900017,
+        "name": "Stanley /Uk/"
       }
     },
     {
@@ -72333,8 +72333,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE PEMBROKE,FALKLAND ISL",
-        "stationId": 316888900020
+        "stationId": 316888900020,
+        "name": "Cape Pembroke,Falkland Isl"
       }
     },
     {
@@ -72347,8 +72347,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE PEMBROKE,FALKLAND ISL",
-        "stationId": 316888900027
+        "stationId": 316888900027,
+        "name": "Cape Pembroke,Falkland Isl"
       }
     },
     {
@@ -72456,8 +72456,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BATTLE HARBOUR LOR,NF",
-        "stationId": 403718170020
+        "stationId": 403718170020,
+        "name": "Battle Harbour Lor,Nf"
       }
     },
     {
@@ -72470,8 +72470,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BAHRAIN (INT.",
-        "stationId": 202411500000
+        "stationId": 202411500000,
+        "name": "Bahrain (Int."
       }
     },
     {
@@ -72514,8 +72514,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SULINA",
-        "stationId": 637153600000
+        "stationId": 637153600000,
+        "name": "Sulina"
       }
     },
     {
@@ -72713,8 +72713,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "COCOS ISLAND",
-        "stationId": 524969960000
+        "stationId": 524969960000,
+        "name": "Cocos Island"
       }
     },
     {
@@ -73180,8 +73180,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOLOKAI, MOLO",
-        "stationId": 425911860000
+        "stationId": 425911860000,
+        "name": "Molokai, Molo"
       }
     },
     {
@@ -73226,8 +73226,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SURIGAO",
-        "stationId": 509986530000
+        "stationId": 509986530000,
+        "name": "Surigao"
       }
     },
     {
@@ -73367,8 +73367,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MASIRAH",
-        "stationId": 218412880000
+        "stationId": 218412880000,
+        "name": "Masirah"
       }
     },
     {
@@ -73444,8 +73444,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PINE ISLET             AUSTRAL",
-        "stationId": 501943690010
+        "stationId": 501943690010,
+        "name": "Pine Islet Austral"
       }
     },
     {
@@ -73738,8 +73738,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "INVERCARGILL",
-        "stationId": 507938440000
+        "stationId": 507938440000,
+        "name": "Invercargill"
       }
     },
     {
@@ -73985,8 +73985,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARYVILLE HVRF",
-        "stationId": 501947740010
+        "stationId": 501947740010,
+        "name": "Maryville Hvrf"
       }
     },
     {
@@ -74078,8 +74078,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP D",
-        "stationId": 800999040010
+        "stationId": 800999040010,
+        "name": "Ship D"
       }
     },
     {
@@ -74248,8 +74248,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MYS ZOLOTOJ",
-        "stationId": 222318290000
+        "stationId": 222318290000,
+        "name": "Mys Zolotoj"
       }
     },
     {
@@ -74340,8 +74340,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GLADSTONE",
-        "stationId": 501943800000
+        "stationId": 501943800000,
+        "name": "Gladstone"
       }
     },
     {
@@ -74528,8 +74528,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "JOLO",
-        "stationId": 509988300010
+        "stationId": 509988300010,
+        "name": "Jolo"
       }
     },
     {
@@ -74558,8 +74558,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VESTMANNAEYJA",
-        "stationId": 620040480000
+        "stationId": 620040480000,
+        "name": "Vestmannaeyja"
       }
     },
     {
@@ -74586,8 +74586,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ARTURO P",
-        "stationId": 304890570008
+        "stationId": 304890570008,
+        "name": "Base Arturo P"
       }
     },
     {
@@ -74726,8 +74726,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ISLAS DEL CIS",
-        "stationId": 412785010000
+        "stationId": 412785010000,
+        "name": "Islas Del Cis"
       }
     },
     {
@@ -74756,8 +74756,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LATTAKIA",
-        "stationId": 647400220000
+        "stationId": 647400220000,
+        "name": "Lattakia"
       }
     },
     {
@@ -74930,8 +74930,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BATTLE HARBOUR,NF",
-        "stationId": 403718170030
+        "stationId": 403718170030,
+        "name": "Battle Harbour,Nf"
       }
     },
     {
@@ -75101,8 +75101,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEPTUNE ISLAN",
-        "stationId": 501948040000
+        "stationId": 501948040000,
+        "name": "Neptune Islan"
       }
     },
     {
@@ -75177,8 +75177,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CHAR. AMALIE, ST. THOMAS V",
-        "stationId": 440785430020
+        "stationId": 440785430020,
+        "name": "Char. Amalie, St. Thomas V"
       }
     },
     {
@@ -75444,8 +75444,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAMPECHE,CAMP",
-        "stationId": 414766950000
+        "stationId": 414766950000,
+        "name": "Campeche,Camp"
       }
     },
     {
@@ -75617,8 +75617,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RAOUL ISLAND,",
-        "stationId": 507939940007
+        "stationId": 507939940007,
+        "name": "Raoul Island,"
       }
     },
     {
@@ -76220,8 +76220,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AITUTAKI",
-        "stationId": 525918300000
+        "stationId": 525918300000,
+        "name": "Aitutaki"
       }
     },
     {
@@ -76234,8 +76234,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KUT-AL-HAI",
-        "stationId": 209406650000
+        "stationId": 209406650000,
+        "name": "Kut-Al-Hai"
       }
     },
     {
@@ -76564,8 +76564,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FUNCHAL",
-        "stationId": 654085220000
+        "stationId": 654085220000,
+        "name": "Funchal"
       }
     },
     {
@@ -76832,8 +76832,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARION ISLAND",
-        "stationId": 141689940007
+        "stationId": 141689940007,
+        "name": "Marion Island"
       }
     },
     {
@@ -76846,8 +76846,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARION ISLAND",
-        "stationId": 141689940008
+        "stationId": 141689940008,
+        "name": "Marion Island"
       }
     },
     {
@@ -76874,8 +76874,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MCMURDO",
-        "stationId": 700896640008
+        "stationId": 700896640008,
+        "name": "Mcmurdo"
       }
     },
     {
@@ -76951,8 +76951,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "RODRIGUES",
-        "stationId": 129619880000
+        "stationId": 129619880000,
+        "name": "Rodrigues"
       }
     },
     {
@@ -77279,8 +77279,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LUDERITZ(DIAZ",
-        "stationId": 132683000000
+        "stationId": 132683000000,
+        "name": "Luderitz(Diaz"
       }
     },
     {
@@ -77748,8 +77748,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KIRA KIRA",
-        "stationId": 512915270000
+        "stationId": 512915270000,
+        "name": "Kira Kira"
       }
     },
     {
@@ -77917,8 +77917,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AKUREYRI",
-        "stationId": 620040630000
+        "stationId": 620040630000,
+        "name": "Akureyri"
       }
     },
     {
@@ -77991,8 +77991,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GAYA",
-        "stationId": 133610990000
+        "stationId": 133610990000,
+        "name": "Gaya"
       }
     },
     {
@@ -78193,8 +78193,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CENTRO MET.AN, Marsh",
-        "stationId": 304890560000
+        "stationId": 304890560000,
+        "name": "Centro Met.An, Marsh"
       }
     },
     {
@@ -78285,8 +78285,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GUAYMAS SONORA MEXICO",
-        "stationId": 414762560010
+        "stationId": 414762560010,
+        "name": "Guaymas Sonora Mexico"
       }
     },
     {
@@ -78395,8 +78395,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAPE BORDA",
-        "stationId": 501948050000
+        "stationId": 501948050000,
+        "name": "Cape Borda"
       }
     },
     {
@@ -78888,8 +78888,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LOW ISLES",
-        "stationId": 501942850000
+        "stationId": 501942850000,
+        "name": "Low Isles"
       }
     },
     {
@@ -79266,8 +79266,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DAPAON",
-        "stationId": 151653510000
+        "stationId": 151653510000,
+        "name": "Dapaon"
       }
     },
     {
@@ -79310,8 +79310,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MINICOY",
-        "stationId": 207433690000
+        "stationId": 207433690000,
+        "name": "Minicoy"
       }
     },
     {
@@ -79356,8 +79356,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MIDWAY ISLAND",
-        "stationId": 425910660000
+        "stationId": 425910660000,
+        "name": "Midway Island"
       }
     },
     {
@@ -79370,8 +79370,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "AMINI DIVI",
-        "stationId": 207433110000
+        "stationId": 207433110000,
+        "name": "Amini Divi"
       }
     },
     {
@@ -79462,8 +79462,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOGADOR             MOROCCO",
-        "stationId": 130602200010
+        "stationId": 130602200010,
+        "name": "Mogador Morocco"
       }
     },
     {
@@ -79936,8 +79936,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FARADAY",
-        "stationId": 700890630000
+        "stationId": 700890630000,
+        "name": "Faraday"
       }
     },
     {
@@ -79966,8 +79966,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "S. MARIA DI L",
-        "stationId": 623163600000
+        "stationId": 623163600000,
+        "name": "S. Maria Di L"
       }
     },
     {
@@ -80028,8 +80028,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAMPBELL ISLA",
-        "stationId": 507939450000
+        "stationId": 507939450000,
+        "name": "Campbell Isla"
       }
     },
     {
@@ -80074,8 +80074,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "CAMPBELL ISLA",
-        "stationId": 507939450007
+        "stationId": 507939450007,
+        "name": "Campbell Isla"
       }
     },
     {
@@ -80493,8 +80493,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Cape_Philips",
-        "stationId": 700737908009
+        "stationId": 700737908009,
+        "name": "Cape_Philips"
       }
     },
     {
@@ -80584,8 +80584,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PORT BLAIR",
-        "stationId": 207433330000
+        "stationId": 207433330000,
+        "name": "Port Blair"
       }
     },
     {
@@ -80740,8 +80740,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Whitlock",
-        "stationId": 700898650009
+        "stationId": 700898650009,
+        "name": "Whitlock"
       }
     },
     {
@@ -81020,8 +81020,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BOWEN POST OFFICE",
-        "stationId": 501943660010
+        "stationId": 501943660010,
+        "name": "Bowen Post Office"
       }
     },
     {
@@ -81066,8 +81066,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DAVIS",
-        "stationId": 700895710000
+        "stationId": 700895710000,
+        "name": "Davis"
       }
     },
     {
@@ -81301,8 +81301,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GRIMSEY",
-        "stationId": 620040650000
+        "stationId": 620040650000,
+        "name": "Grimsey"
       }
     },
     {
@@ -81551,8 +81551,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "WONSAN",
-        "stationId": 206470550000
+        "stationId": 206470550000,
+        "name": "Wonsan"
       }
     },
     {
@@ -81581,8 +81581,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "OSTROV UEDINE",
-        "stationId": 222202740000
+        "stationId": 222202740000,
+        "name": "Ostrov Uedine"
       }
     },
     {
@@ -81675,8 +81675,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP A",
-        "stationId": 800999010010
+        "stationId": 800999010010,
+        "name": "Ship A"
       }
     },
     {
@@ -81860,8 +81860,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ORCADAS",
-        "stationId": 701889680008
+        "stationId": 701889680008,
+        "name": "Base Orcadas"
       }
     },
     {
@@ -81906,8 +81906,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PONAPE,",
-        "stationId": 527913480000
+        "stationId": 527913480000,
+        "name": "Ponape,"
       }
     },
     {
@@ -82267,8 +82267,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUKAPUKA",
-        "stationId": 525918110000
+        "stationId": 525918110000,
+        "name": "Pukapuka"
       }
     },
     {
@@ -82436,8 +82436,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FT BRAGG 5 N",
-        "stationId": 425000431610
+        "stationId": 425000431610,
+        "name": "Ft Bragg 5 N"
       }
     },
     {
@@ -82466,8 +82466,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHINGLE POINT",
-        "stationId": 403719680000
+        "stationId": 403719680000,
+        "name": "Shingle Point"
       }
     },
     {
@@ -82542,8 +82542,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KOMAKUK BEACH A,YT",
-        "stationId": 403719680020
+        "stationId": 403719680020,
+        "name": "Komakuk Beach A,Yt"
       }
     },
     {
@@ -82998,8 +82998,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MERGUI",
-        "stationId": 216481100000
+        "stationId": 216481100000,
+        "name": "Mergui"
       }
     },
     {
@@ -83136,8 +83136,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LORD HOWE ISL",
-        "stationId": 501949950000
+        "stationId": 501949950000,
+        "name": "Lord Howe Isl"
       }
     },
     {
@@ -83197,8 +83197,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "Pegasus_North",
-        "stationId": 700896670009
+        "stationId": 700896670009,
+        "name": "Pegasus_North"
       }
     },
     {
@@ -83332,8 +83332,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SOKODE",
-        "stationId": 151653610000
+        "stationId": 151653610000,
+        "name": "Sokode"
       }
     },
     {
@@ -83394,8 +83394,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BRONNOYSUND         NORWAY",
-        "stationId": 634011120010
+        "stationId": 634011120010,
+        "name": "Bronnoysund Norway"
       }
     },
     {
@@ -83566,8 +83566,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ILOILO",
-        "stationId": 509986370000
+        "stationId": 509986370000,
+        "name": "Iloilo"
       }
     },
     {
@@ -83862,8 +83862,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FARINA",
-        "stationId": 501944800010
+        "stationId": 501944800010,
+        "name": "Farina"
       }
     },
     {
@@ -84190,8 +84190,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SWANSEA",
-        "stationId": 501949810010
+        "stationId": 501949810010,
+        "name": "Swansea"
       }
     },
     {
@@ -84266,8 +84266,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GMO IM.E.T.",
-        "stationId": 222200460000
+        "stationId": 222200460000,
+        "name": "Gmo Im.E.T."
       }
     },
     {
@@ -84535,8 +84535,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GRIDINO",
-        "stationId": 638224220000
+        "stationId": 638224220000,
+        "name": "Gridino"
       }
     },
     {
@@ -84895,8 +84895,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ZONGULDAK",
-        "stationId": 649170220000
+        "stationId": 649170220000,
+        "name": "Zonguldak"
       }
     },
     {
@@ -85312,8 +85312,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MALYE KARMAKU",
-        "stationId": 222207440000
+        "stationId": 222207440000,
+        "name": "Malye Karmaku"
       }
     },
     {
@@ -85452,8 +85452,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DURBAN (LOUIS",
-        "stationId": 141685880000
+        "stationId": 141685880000,
+        "name": "Durban (Louis"
       }
     },
     {
@@ -85482,8 +85482,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "YAMBA",
-        "stationId": 501945890000
+        "stationId": 501945890000,
+        "name": "Yamba"
       }
     },
     {
@@ -85528,8 +85528,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "JAKOBSHAVN",
-        "stationId": 431042210000
+        "stationId": 431042210000,
+        "name": "Jakobshavn"
       }
     },
     {
@@ -85574,8 +85574,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PLAISANCE",
-        "stationId": 129619900000
+        "stationId": 129619900000,
+        "name": "Plaisance"
       }
     },
     {
@@ -85652,8 +85652,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ILE JUAN DE N",
-        "stationId": 111619700000
+        "stationId": 111619700000,
+        "name": "Ile Juan De N"
       }
     },
     {
@@ -85854,8 +85854,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "S.A.N.A.E. ST",
-        "stationId": 700890010000
+        "stationId": 700890010000,
+        "name": "S.A.N.A.E. St"
       }
     },
     {
@@ -86180,8 +86180,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "PUERTO LIMON",
-        "stationId": 405787670000
+        "stationId": 405787670000,
+        "name": "Puerto Limon"
       }
     },
     {
@@ -86819,8 +86819,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MASSAWA",
-        "stationId": 116630230000
+        "stationId": 116630230000,
+        "name": "Massawa"
       }
     },
     {
@@ -87226,8 +87226,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MOSHI",
-        "stationId": 149637900000
+        "stationId": 149637900000,
+        "name": "Moshi"
       }
     },
     {
@@ -87240,8 +87240,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MELILLA",
-        "stationId": 643603380000
+        "stationId": 643603380000,
+        "name": "Melilla"
       }
     },
     {
@@ -87302,8 +87302,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HOPA",
-        "stationId": 649170420010
+        "stationId": 649170420010,
+        "name": "Hopa"
       }
     },
     {
@@ -87773,8 +87773,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "INFANTA",
-        "stationId": 509984340000
+        "stationId": 509984340000,
+        "name": "Infanta"
       }
     },
     {
@@ -87898,8 +87898,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SANTO DOMINGO",
-        "stationId": 407784860000
+        "stationId": 407784860000,
+        "name": "Santo Domingo"
       }
     },
     {
@@ -88181,8 +88181,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "NEUMAYER",
-        "stationId": 700890020008
+        "stationId": 700890020008,
+        "name": "Neumayer"
       }
     },
     {
@@ -89258,8 +89258,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "VICTORIA POIN",
-        "stationId": 216481120000
+        "stationId": 216481120000,
+        "name": "Victoria Poin"
       }
     },
     {
@@ -89366,8 +89366,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LOME",
-        "stationId": 151653870000
+        "stationId": 151653870000,
+        "name": "Lome"
       }
     },
     {
@@ -89712,8 +89712,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BRINDISI",
-        "stationId": 623163200000
+        "stationId": 623163200000,
+        "name": "Brindisi"
       }
     },
     {
@@ -89974,8 +89974,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GUANAJA",
-        "stationId": 412787010000
+        "stationId": 412787010000,
+        "name": "Guanaja"
       }
     },
     {
@@ -90279,8 +90279,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ILES GLORIEUS",
-        "stationId": 111619680000
+        "stationId": 111619680000,
+        "name": "Iles Glorieus"
       }
     },
     {
@@ -90293,8 +90293,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LEARMONTH AIR",
-        "stationId": 501943020000
+        "stationId": 501943020000,
+        "name": "Learmonth Air"
       }
     },
     {
@@ -90526,8 +90526,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MAHON/SAN LUIS      BALEARIC I",
-        "stationId": 643083140000
+        "stationId": 643083140000,
+        "name": "Mahon/San Luis Balearic I"
       }
     },
     {
@@ -91014,8 +91014,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "ROTHERA POINT",
-        "stationId": 700890620000
+        "stationId": 700890620000,
+        "name": "Rothera Point"
       }
     },
     {
@@ -91059,8 +91059,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LUSAKA INTERN",
-        "stationId": 155676650000
+        "stationId": 155676650000,
+        "name": "Lusaka Intern"
       }
     },
     {
@@ -91073,8 +91073,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "LEBA",
-        "stationId": 635121200000
+        "stationId": 635121200000,
+        "name": "Leba"
       }
     },
     {
@@ -91509,8 +91509,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MIRNYJ",
-        "stationId": 700895920000
+        "stationId": 700895920000,
+        "name": "Mirnyj"
       }
     },
     {
@@ -91555,8 +91555,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "SHIP P",
-        "stationId": 800999120010
+        "stationId": 800999120010,
+        "name": "Ship P"
       }
     },
     {
@@ -91709,8 +91709,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "KAP TOBIN",
-        "stationId": 431043390010
+        "stationId": 431043390010,
+        "name": "Kap Tobin"
       }
     },
     {
@@ -92086,8 +92086,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GIBRALTAR",
-        "stationId": 653084950000
+        "stationId": 653084950000,
+        "name": "Gibraltar"
       }
     },
     {
@@ -92100,8 +92100,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "GIBRALTAR           GIBRALTAR",
-        "stationId": 653084950010
+        "stationId": 653084950010,
+        "name": "Gibraltar Gibraltar"
       }
     },
     {
@@ -92146,8 +92146,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "HURGHADA",
-        "stationId": 115624640010
+        "stationId": 115624640010,
+        "name": "Hurghada"
       }
     },
     {
@@ -92391,8 +92391,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "DAKAR/YOFF",
-        "stationId": 137616410000
+        "stationId": 137616410000,
+        "name": "Dakar/Yoff"
       }
     },
     {
@@ -92876,8 +92876,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "FANNING ISLAN",
-        "stationId": 504914870000
+        "stationId": 504914870000,
+        "name": "Fanning Islan"
       }
     },
     {
@@ -92938,8 +92938,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BASE ARTURO P",
-        "stationId": 304890570000
+        "stationId": 304890570000,
+        "name": "Base Arturo P"
       }
     },
     {
@@ -93000,8 +93000,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "BELLINGSHAUSE",
-        "stationId": 700890500000
+        "stationId": 700890500000,
+        "name": "Bellingshause"
       }
     },
     {
@@ -93312,8 +93312,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MIRNYJ",
-        "stationId": 700895920008
+        "stationId": 700895920008,
+        "name": "Mirnyj"
       }
     },
     {
@@ -93610,8 +93610,8 @@
       },
       "type": "Feature",
       "properties": {
-        "Station Name": "MARINA DI GIN",
-        "stationId": 623163250000
+        "stationId": 623163250000,
+        "name": "Marina Di Gin"
       }
     },
     {
