@@ -372,7 +372,6 @@ function setupEventListeners(stationLocations) {
 function updateVisibleStations(stationLocations, spatialSelector) {
   inFrustumStations.suspendEvents();
   //Get the frustum height in degrees
-  console.log("viewer.camera.frustum.aspectRatio", viewer.camera.frustum.aspectRatio);
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * Math.max(viewer.camera.frustum.aspectRatio, 2);
 
