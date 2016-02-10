@@ -149,6 +149,8 @@ function populateGlobe(stationTemperatures, stationLocations) {
     //Setting initial stations properties. These will be quickly overwritten by onClockTick
     stationEntities[i].color = new Cesium.Color(1, 1, 1, 0.6);
     stationEntities[i].show = false;
+    stationEntities[i].properties.station = stationEntities[i].properties.name;
+    delete stationEntities[i].properties.name;
     setStationAppearance(stationEntities[i]);
   }
 
