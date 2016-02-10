@@ -236,8 +236,6 @@ function setupEventListeners(stationLocations) {
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
   var mouseDown = false;
-
-
   var camera = viewer.camera;
 
   //SECTION - Build spatial hash
