@@ -80,8 +80,6 @@
         * [x] Handle crossing to right
     * [x] Query it as the camera moves
     * [x] Use spatial hash for selector
-    * [ ] Return the whole entity so we can chain a loop together
-        * [x] Research if loop chaining is actually faster
 12. Research aggregating data into a heatmap
     * Note: I added opacity to the points so they blend together. This is a future work section.
     * Precomputed
@@ -131,12 +129,12 @@
             * Not possible to configure without source modifications
     * [ ] Prevent tilting too high or low (y axis changes)
 18. Small tweaks
-    * [ ] Prevent spaces in search from play/pause control
-    * [ ] Add station names to stations without city or country
+    * [x] Prevent spaces in search from play/pause control
     * [ ] Stations selected count
-    * [x] Center loading wheel
     * [ ] Make frustum width wide enough on all aspect ratios
         * It's too narrow when window is taller than it is wide
+    * [ ] Add station names to stations without city or country
+    * [x] Center loading wheel
 19. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Use referenceProperty for station billboards
@@ -170,9 +168,6 @@
     * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
     * [x] Have the JSON loading and parsing done in anync.
         * http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
-    * Comprehensive solution:
-        * [ ] Recreate temperatures as separate files for each station. Then load them all in one by one and combine
-              them into one large object.
 
 
 ###Gaze Tracker

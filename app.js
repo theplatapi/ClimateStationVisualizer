@@ -263,7 +263,7 @@ function setupEventListeners(stationLocations) {
 
   //SECTION - keyboard and mouse listeners
   $(document).on('keydown', function onKeydown(event) {
-    if (event.keyCode === 32) {
+    if (event.keyCode === 32 && event.target.type !== 'search') {
       viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
     }
   });
