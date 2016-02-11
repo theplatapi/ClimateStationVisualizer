@@ -196,7 +196,10 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
           //Add to the selection group if under selector
           if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleSelector, stationCartographic)) {
-            selectedStations.add(stationEntity);
+            //Covers case where we zoom out of selection area
+            if (!selectedStations.contains(stationEntity)) {
+              selectedStations.add(stationEntity);
+            }
           }
         }
         else {
@@ -340,7 +343,8 @@ function setupEventListeners(stationLocations) {
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
-      material: Cesium.Color.fromCssColorString('#333333')//.withAlpha(0.8)
+      material : new Cesium.GridMaterialProperty(),
+      height: 100000
     }
   });
 
@@ -557,7 +561,8 @@ function getModules() {
     Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
     CesiumMath: require('cesium/Source/Core/Math'),
     EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
-    Timeline: require('cesium/Source/Widgets/Timeline/Timeline')
+    Timeline: require('cesium/Source/Widgets/Timeline/Timeline'),
+    GridMaterialProperty: require('cesium/Source/DataSources/GridMaterialProperty')
   };
 }
 
