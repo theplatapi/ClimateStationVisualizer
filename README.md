@@ -140,10 +140,9 @@
     * Get the selector drawing to stay above 30 fps
     * [ ] Speed up selector drawing
         * [x] Reduce opacity
-        * [ ] Experiment with wireframe rectangle to do selecting
-        * [ ] Draw out other styles that are cheaper to draw
+        * [x] Experiment with wireframe rectangle to do selecting
+        * [x] Draw out other styles that are cheaper to draw
     * [ ] Use referenceProperty for station billboards
-    * [ ] Research using primitive instead of entity for disablePick and cull=false
 20. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
