@@ -55,7 +55,7 @@ viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
-//viewer.scene.screenSpaceCameraController.minimumZoomDistance = 90000;
+viewer.scene.screenSpaceCameraController.minimumZoomDistance = 100100;
 viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 viewer.imageryLayers.get(0).brightness = 0.7;
@@ -96,7 +96,7 @@ function interpolateHsl(a, b) {
   return function (t) {
     return d3.hsl(ah + bh * t, as + bs * t, al + bl * t).rgb();
   };
-};
+}
 
 
 var hexColorGenerator = d3.scale.linear()
@@ -533,8 +533,8 @@ function createHistogram() {
 function stationSelected(station, rectangleSelector, stationCartographic) {
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
-  return stationCartographic.longitude > rectangleSelector.west && stationCartographic.longitude < rectangleSelector.east
-    && stationCartographic.latitude < rectangleSelector.north && stationCartographic.latitude > rectangleSelector.south;
+  return stationCartographic.longitude >= rectangleSelector.west && stationCartographic.longitude <= rectangleSelector.east
+    && stationCartographic.latitude <= rectangleSelector.north && stationCartographic.latitude >= rectangleSelector.south;
 }
 
 function getModules() {
