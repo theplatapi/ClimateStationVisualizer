@@ -115,6 +115,8 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   return cesiumColor;
 };
 
+var billboardScale = new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2);
+
 var setStationAppearance = function setStationAppearance(station) {
   var getColor = new Cesium.CallbackProperty(function getColor(time, result) {
     result.red = station.color.red;
@@ -125,12 +127,11 @@ var setStationAppearance = function setStationAppearance(station) {
     return result;
   }, false);
 
-  //TODO: Use ReferenceProperty for the n-1 points.
   _.extend(station.billboard, {
     color: getColor,
     image: circle,
     verticalOrigin: Cesium.VerticalOrigin.CENTER,
-    scaleByDistance: new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
+    scaleByDistance: billboardScale
   });
 };
 

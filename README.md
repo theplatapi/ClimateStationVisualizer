@@ -146,19 +146,22 @@
         * [x] Reduce opacity
         * [x] Experiment with wireframe rectangle to do selecting
         * [x] Draw out other styles that are cheaper to draw
-    * [ ] Use referenceProperty for station billboards
+        * [ ] Reach out to Cesium devs
 21. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Test out a question toggle in place of fps counter
     * Test out listening on a websocket
     * Test out responding to Google forms or another service (don't write one)
-22. Rewrite in ES6
+22. Fix minimum zoom bug
+    * Have camera.zoomTo respect
+23. Rewrite in ES6
     * This will make finding the memory leak much easier and "future proof" the project
     * [ ] Convert into modules.
         * [ ] Make event listeners modules
         * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
     * [ ] Replace var with let
-23. Find memory leak
+    * [ ] Add onClockTick into setupEventListeners
+24. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
           p - 1 step and compare to p step to see differences.
