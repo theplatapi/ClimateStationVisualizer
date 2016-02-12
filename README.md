@@ -146,13 +146,23 @@
         * [x] Reduce opacity
         * [x] Experiment with wireframe rectangle to do selecting
         * [x] Draw out other styles that are cheaper to draw
-        * [ ] Reach out to Cesium devs about opacity performance
+        * [x] Reach out to Cesium devs about opacity performance
 21. Design latency toggle
     * Change with viewer.targetFrameRate = x;
+    * Load order from file
     * [ ] Question toggle
       * Make it a number input with the incrementer always visible
       * If number % 3 === 0, then switch to next latency.
       * Latency order downloaded S3 bucket, which I will change after every trial
+      * Make it hard to mess up
+        * Only show editing of increment/decrement
+        * Display as a fraction
+        * Allow going back just in case they hit it twice.
+22. Log camera position to service
+    * [ ] Decide between loggly and papertrail
+        * Papertrail is chaper
+        * Loggly API: https://www.npmjs.com/package/loggly
+        * Papertrail API: https://www.npmjs.com/package/winston-papertrail
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
