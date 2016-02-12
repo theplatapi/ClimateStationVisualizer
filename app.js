@@ -58,6 +58,7 @@ viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
 viewer.scene.screenSpaceCameraController.minimumZoomDistance = 100100;
 viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+//Darken the earth so it's easier to see the stations
 viewer.imageryLayers.get(0).brightness = 0.7;
 
 
@@ -158,7 +159,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-    //console.log(viewer.camera.positionCartographic.height);
     inFrustumStations.suspendEvents();
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
