@@ -155,16 +155,20 @@
         * Papertrail API: https://www.npmjs.com/package/winston-papertrail
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
-    * Load order from file
-    * [ ] Question toggle
-      * Make it a number input with the incrementer always visible
-      * If number % 3 === 0, then switch to next latency.
-      * Latency order downloaded S3 bucket, which I will change after every trial
-        * Have file in config and copy to public on npm install
-      * Make it hard to mess up
-        * Only show editing of increment/decrement
-        * Display as a fraction
-        * Allow going back just in case they hit it twice.
+    * Version 1: Implement on screen question toggle
+      * Load order from file
+      * [ ] Question toggle
+        * Make it a number input with the incrementer always visible
+        * If number % 3 === 0, then switch to next latency.
+        * Latency order downloaded S3 bucket, which I will change after every trial
+          * Have file in config and copy to public on npm install
+        * Make it hard to mess up
+          * Only show editing of increment/decrement
+          * Display as a fraction
+          * Allow going back just in case they hit it twice.
+    * Version 2: Listen to a websocket for latency change
+      * Watch participant to see which questions they're on
+      * When they answer a question, manually send next latency to client
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
