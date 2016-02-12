@@ -153,7 +153,8 @@
     * Test out listening on a websocket
     * Test out responding to Google forms or another service (don't write one)
 22. Fix minimum zoom bug
-    * Have camera.zoomTo respect
+    * Have camera.zoomTo respect minimumZoomDistance
+    * Match scrolling behavior to default minimumZoomDistance
 23. Rewrite in ES6
     * This will make finding the memory leak much easier and "future proof" the project
     * [ ] Convert into modules.
