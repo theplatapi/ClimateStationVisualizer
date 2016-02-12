@@ -344,8 +344,11 @@ function setupEventListeners(stationLocations) {
     show: false,
     rectangle: {
       coordinates: getSelectorLocation,
-      material : new Cesium.GridMaterialProperty(),
-      height: 100000
+      height: 100000,
+      fill: false,
+      outline: true,
+      outlineColor: Cesium.Color.WHITE,
+      outlineWidth: 3
     }
   });
 

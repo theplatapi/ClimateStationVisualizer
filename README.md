@@ -146,12 +146,13 @@
         * [x] Reduce opacity
         * [x] Experiment with wireframe rectangle to do selecting
         * [x] Draw out other styles that are cheaper to draw
-        * [ ] Reach out to Cesium devs
+        * [ ] Reach out to Cesium devs about opacity performance
 21. Design latency toggle
     * Change with viewer.targetFrameRate = x;
-    * [ ] Test out a question toggle in place of fps counter
-    * [ ] Test out listening on a websocket
-    * [ ] Test out responding to Google forms or another service (don't write one)
+    * [ ] Question toggle
+      * Make it a number input with the incrementer always visible
+      * If number % 3 === 0, then switch to next latency.
+      * Latency order downloaded S3 bucket, which I will change after every trial
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
