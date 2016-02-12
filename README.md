@@ -147,6 +147,7 @@
         * [x] Experiment with wireframe rectangle to do selecting
         * [x] Draw out other styles that are cheaper to draw
         * [x] Reach out to Cesium devs about opacity performance
+        * [ ] Try replacing callbackProperty with static one after shift-click is released
 21. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Load order from file
