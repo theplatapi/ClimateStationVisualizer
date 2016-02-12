@@ -149,9 +149,9 @@
         * [ ] Reach out to Cesium devs
 21. Design latency toggle
     * Change with viewer.targetFrameRate = x;
-    * Test out a question toggle in place of fps counter
-    * Test out listening on a websocket
-    * Test out responding to Google forms or another service (don't write one)
+    * [ ] Test out a question toggle in place of fps counter
+    * [ ] Test out listening on a websocket
+    * [ ] Test out responding to Google forms or another service (don't write one)
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
