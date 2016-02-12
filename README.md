@@ -155,6 +155,7 @@
       * Make it a number input with the incrementer always visible
       * If number % 3 === 0, then switch to next latency.
       * Latency order downloaded S3 bucket, which I will change after every trial
+        * Have file in config and copy to public on npm install
       * Make it hard to mess up
         * Only show editing of increment/decrement
         * Display as a fraction
