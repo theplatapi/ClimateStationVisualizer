@@ -148,7 +148,12 @@
         * [x] Draw out other styles that are cheaper to draw
         * [x] Reach out to Cesium devs about opacity performance
         * [ ] Try replacing callbackProperty with static one after shift-click is released
-21. Design latency toggle
+21. Log camera position to service
+    * [ ] Decide between loggly and papertrail
+        * Papertrail is chaper
+        * Loggly API: https://www.npmjs.com/package/loggly
+        * Papertrail API: https://www.npmjs.com/package/winston-papertrail
+22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Load order from file
     * [ ] Question toggle
@@ -160,11 +165,6 @@
         * Only show editing of increment/decrement
         * Display as a fraction
         * Allow going back just in case they hit it twice.
-22. Log camera position to service
-    * [ ] Decide between loggly and papertrail
-        * Papertrail is chaper
-        * Loggly API: https://www.npmjs.com/package/loggly
-        * Papertrail API: https://www.npmjs.com/package/winston-papertrail
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
