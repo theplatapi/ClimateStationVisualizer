@@ -106,8 +106,7 @@
     * [x] Cull out points for histogram selector
     * [x] Pass clicks on histogram through to Cesium
     * [x] Update temperature in infobox
-    * [x] See if we can dynamically change the framerate
-        * viewer.targetFrameRate = 5;
+    * [x] See if we can dynamically change the frame rate
 16. Change viewer clock
     * [x] Disable play before data is loaded
     * [x] Disable ability to change speedup
@@ -128,7 +127,12 @@
         * [ ] Zoom after search
             * Not possible to configure without source modifications
     * [ ] Prevent tilting too high or low (y axis changes)
-18. Small tweaks
+18. Fix UI hangs on file load
+    * [x] Set up GeoJsonDataSource from loaded json object
+    * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
+    * [x] Have the JSON loading and parsing done in anync.
+        * http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
+19. Small tweaks
     * [x] Prevent spaces in search from play/pause control
     * [x] Make frustum width wide enough on all aspect ratios
         * It's too narrow when window is taller than it is wide
@@ -136,14 +140,25 @@
     * [x] Center loading wheel
     * [ ] Add latency to D3 transitions
         * Too difficult with little reward
-19. Performance v3
+20. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Speed up selector drawing
         * [x] Reduce opacity
         * [x] Experiment with wireframe rectangle to do selecting
         * [x] Draw out other styles that are cheaper to draw
     * [ ] Use referenceProperty for station billboards
-20. Find memory leak
+21. Design latency toggle
+    * Change with viewer.targetFrameRate = x;
+    * Test out a question toggle in place of fps counter
+    * Test out listening on a websocket
+    * Test out responding to Google forms or another service (don't write one)
+22. Rewrite in ES6
+    * This will make finding the memory leak much easier and "future proof" the project
+    * [ ] Convert into modules.
+        * [ ] Make event listeners modules
+        * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
+    * [ ] Replace var with let
+23. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
           p - 1 step and compare to p step to see differences.
@@ -156,16 +171,8 @@
     * Ideas:
         * [ ] See if entity.show=false makes Cesium allocate a new "node"
         * [x] See if D3 color strings are the cause
-21. Rewrite in ES6 to future proof it
-    * [ ] Convert into modules.
-        * [ ] Make event listeners modules
-        * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
-    * [ ] Replace var with let
-22. Fix UI hangs on file load
-    * [x] Set up GeoJsonDataSource from loaded json object
-    * [x] * http://stackoverflow.com/questions/19026331/call-multiple-json-data-files-in-one-getjson-request
-    * [x] Have the JSON loading and parsing done in anync.
-        * http://azimi.me/2015/07/30/non-blocking-async-json-parse.html
+
+
 
 
 ###Gaze Tracker
