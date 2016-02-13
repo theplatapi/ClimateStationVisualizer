@@ -66,7 +66,7 @@ viewer.imageryLayers.get(0).brightness = 0.7;
 Cesium.Timeline.prototype.zoomTo = _.noop;
 //Speed improvement -
 //https://cesiumjs.org/Cesium/Build/Documentation/ArcGisMapServerImageryProvider.html?classFilter=ArcGisMapServerImageryProvider#hasAlphaChannel
-Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop();
+Cesium.ArcGisMapServerImageryProvider.prototype.hasAlphaChannel = _.noop;
 
 var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var gregorianDate = new Cesium.GregorianDate(0, 0, 0, 0, 0, 0, 0, false);
