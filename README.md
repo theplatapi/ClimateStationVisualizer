@@ -153,6 +153,18 @@
         * Papertrail is chaper
         * Loggly API: https://www.npmjs.com/package/loggly
         * Papertrail API: https://www.npmjs.com/package/winston-papertrail
+    * [ ] Use local logging
+        * [x] Run node-js-logger on local laptop
+        * [x] Use ngrok to give it an IP address
+        * [x] Install loglevel
+        * [ ] Install serverSend (through npm somehow or bower)
+        * [ ] Send over camera position logs
+        * [ ] Setup ngrok config file
+            * [ ] Disable inspection
+            * [ ] See if we can use HTTP authentication
+            * [ ] Use ngrok https url
+        * [ ] Figure out how to update ngrok subdomain or pay for fixed or host logger on heroku
+            * Use lodash template to construct string and then provide console method to set it?
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Version 1: Implement on screen question toggle
@@ -167,6 +179,7 @@
           * Display as a fraction
           * Allow going back just in case they hit it twice.
     * Version 2: Listen to a websocket for latency change
+      * Connect to server on localhost with ngrok?
       * Watch participant to see which questions they're on
       * When they answer a question, manually send next latency to client
 22. Fix minimum zoom bug
@@ -179,6 +192,7 @@
         * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
     * [ ] Replace var with let
     * [ ] Add onClockTick into setupEventListeners
+    * [ ] Use new function declaration syntax
 24. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
