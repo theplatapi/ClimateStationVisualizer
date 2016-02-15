@@ -159,6 +159,8 @@
         * [x] Install serverSend (through npm somehow or bower)
         * [x] Send over camera position logs
         * [ ] See if ngrok or Heroku is cheaper (Heroku is free for 18 hours, $7 monthly for always on)
+            * Heroku will be easier, since we can make it the same origin
+            * Harder since it will have to serve client files and have a separate running server
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Version 1: Implement on screen question toggle
