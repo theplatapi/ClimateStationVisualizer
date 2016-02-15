@@ -167,22 +167,23 @@
               * Stuck with UI latency toggle, which pollutes gaze data
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
-    * Version 1: Implement on screen question toggle
-      * Load order from file
+    * [ ] Version 1: Implement on screen question toggle
+      * [ ] Load order from file
       * [ ] Question toggle
-        * Make it a number input with the incrementer always visible
-        * If number % 3 === 0, then switch to next latency.
-        * Latency order downloaded S3 bucket, which I will change after every trial
-          * Have file in config and copy to public on npm install
-        * Make it hard to mess up
-          * Only show editing of increment/decrement
-          * Display as a fraction
-          * Allow going back just in case they hit it twice.
-    * Version 2: Listen to a websocket for latency change
-      * Connect to server on localhost with ngrok?
-      * Watch participant to see which questions they're on
-      * When they answer a question, manually send next latency to client
-      * Combine with logging server. Convert log sending to a webhook
+        * [ ] Make it a number input with the incrementer always visible
+        * [ ] Latency order downloaded S3 bucket, which I will change after every trial
+          * [ ] Have file in config and copy to public on npm install
+        * [ ] Make it hard to mess up
+          * [ ] Only show editing of increment/decrement
+          * [ ] Display as a fraction
+          * [ ] Allow going back just in case they hit it twice.
+    * [ ] Version 2: Listen to a websocket for latency change
+        * [ ] Serve project in current state with an express server
+        * [ ] Create a websocket on the server and client, and have client listen for hard coded signal
+            * https://devcenter.heroku.com/articles/node-websockets
+            * http://ditrospecta.com/javascript/react/es6/webpack/heroku/2015/08/08/deploying-react-webpack-heroku.html
+        * [ ] Create simple admin interface to send latency to client
+        * [ ] Combine with logging server. On data, log to file/papertrail with Winston.
 22. Fix minimum zoom bug
     * Have camera.zoomTo respect minimumZoomDistance
     * Match scrolling behavior to default minimumZoomDistance
