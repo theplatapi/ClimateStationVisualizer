@@ -1,12 +1,16 @@
 require('cesium/Source/Widgets/widgets.css');
 require('./app.css');
+require('./serverSend.js');
 
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
 var config = require('config');
 var Cesium = getModules();
+
+loglevelServerSend(log, {url: 'http://localhost:8000/test5/log', prefix: ''});
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
 Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
@@ -235,7 +239,7 @@ function setupEventListeners(stationLocations) {
   var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
   var cartesian = new Cesium.Cartesian3();
-  var tempCartographic = new Cesium.Cartographic();
+  var scratchCartographic = new Cesium.Cartographic();
   var center = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
@@ -282,17 +286,17 @@ function setupEventListeners(stationLocations) {
 
     if (cartesian) {
       //mouse cartographic
-      tempCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, tempCartographic);
+      scratchCartographic = Cesium.Cartographic.fromCartesian(cartesian, Cesium.Ellipsoid.WGS84, scratchCartographic);
 
       if (!firstPointSet) {
-        Cesium.Cartographic.clone(tempCartographic, firstPoint);
+        Cesium.Cartographic.clone(scratchCartographic, firstPoint);
         firstPointSet = true;
       }
       else {
-        rectangleSelector.east = Math.max(tempCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.west = Math.min(tempCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.north = Math.max(tempCartographic.latitude, firstPoint.latitude);
-        rectangleSelector.south = Math.min(tempCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.east = Math.max(scratchCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.west = Math.min(scratchCartographic.longitude, firstPoint.longitude);
+        rectangleSelector.north = Math.max(scratchCartographic.latitude, firstPoint.latitude);
+        rectangleSelector.south = Math.min(scratchCartographic.latitude, firstPoint.latitude);
         selector.show = true;
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
@@ -310,7 +314,7 @@ function setupEventListeners(stationLocations) {
           var stationEntity = stationLocations.entities.getById(selectedItems[i]);
 
           if (stationEntity.show && !selectedStations.contains(stationEntity)
-            && stationSelected(stationEntity, rectangleSelector, tempCartographic)) {
+            && stationSelected(stationEntity, rectangleSelector, scratchCartographic)) {
             selectedStations.add(stationEntity);
           }
         }
@@ -362,13 +366,23 @@ function setupEventListeners(stationLocations) {
     updateHistogramThrottled(collection);
   });
 
+  var cameraPositionLog;
+  var previousLogged;
+
   //SECTION - camera movement callbacks
   camera.moveStart.addEventListener(function () {
     cameraMoving = true;
+    cameraPositionLog = setInterval(function () {
+      if (!Cesium.Cartographic.equals(previousLogged, camera.positionCartographic)) {
+        log.info(camera.positionCartographic);
+        previousLogged = Cesium.Cartographic.clone(camera.positionCartographic, scratchCartographic);
+      }
+    }, 200);
   });
 
   camera.moveEnd.addEventListener(function () {
     cameraMoving = false;
+    clearInterval(cameraPositionLog);
   });
 
   //Initial drawing of points

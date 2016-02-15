@@ -20,6 +20,7 @@
     "imports-loader": "^0.6.5",
     "jquery": "^2.1.4",
     "lodash": "^4.2.0",
+    "loglevel": "^1.4.0",
     "path": "^0.12.7",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
