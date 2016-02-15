@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --progress",
-    "deploy": "webpack -p --progress",
+    "build": "webpack -p --progress",
     "postinstall": "bash ./postinstall.sh"
   },
   "author": "Allen Korenevsky",
