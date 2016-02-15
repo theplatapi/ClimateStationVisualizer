@@ -44,7 +44,7 @@ var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
 var selector;
 var redraw = false;
-var rectangleSelector = new Cesium.Rectangle();
+var rectangleCoordinates = new Cesium.Rectangle();
 var updateHistogram;
 var updateHistogramThrottled;
 var spatialHash;
@@ -200,7 +200,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
           stationEntity.show = true;
 
           //Add to the selection group if under selector
-          if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleSelector, stationCartographic)) {
+          if (selector.show && !wasShowing && stationSelected(stationEntity, rectangleCoordinates, stationCartographic)) {
             //Covers case where we zoom out of selection area
             if (!selectedStations.contains(stationEntity)) {
               selectedStations.add(stationEntity);
@@ -293,28 +293,28 @@ function setupEventListeners(stationLocations) {
         firstPointSet = true;
       }
       else {
-        rectangleSelector.east = Math.max(scratchCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.west = Math.min(scratchCartographic.longitude, firstPoint.longitude);
-        rectangleSelector.north = Math.max(scratchCartographic.latitude, firstPoint.latitude);
-        rectangleSelector.south = Math.min(scratchCartographic.latitude, firstPoint.latitude);
+        rectangleCoordinates.east = Math.max(scratchCartographic.longitude, firstPoint.longitude);
+        rectangleCoordinates.west = Math.min(scratchCartographic.longitude, firstPoint.longitude);
+        rectangleCoordinates.north = Math.max(scratchCartographic.latitude, firstPoint.latitude);
+        rectangleCoordinates.south = Math.min(scratchCartographic.latitude, firstPoint.latitude);
         selector.show = true;
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
         selectedStations.removeAll();
 
         //Get stations under selector
-        center = Cesium.Rectangle.center(rectangleSelector, center);
+        center = Cesium.Rectangle.center(rectangleCoordinates, center);
         spatialSelector.x = convertLongitude(center.longitude);
         spatialSelector.y = convertLatitude(center.latitude);
-        spatialSelector.width = convertLongitude(rectangleSelector.width) - 1800;
-        spatialSelector.height = convertLatitude(rectangleSelector.height) - 900;
+        spatialSelector.width = convertLongitude(rectangleCoordinates.width) - 1800;
+        spatialSelector.height = convertLatitude(rectangleCoordinates.height) - 900;
         var selectedItems = _.map(spatialHash.retrieve(spatialSelector), 'id');
 
         for (var i = 0; i < selectedItems.length; i++) {
           var stationEntity = stationLocations.entities.getById(selectedItems[i]);
 
           if (stationEntity.show && !selectedStations.contains(stationEntity)
-            && stationSelected(stationEntity, rectangleSelector, scratchCartographic)) {
+            && stationSelected(stationEntity, rectangleCoordinates, scratchCartographic)) {
             selectedStations.add(stationEntity);
           }
         }
@@ -340,20 +340,32 @@ function setupEventListeners(stationLocations) {
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
-    return Cesium.Rectangle.clone(rectangleSelector, result);
+    return Cesium.Rectangle.clone(rectangleCoordinates, result);
   }, false);
 
-  selector = viewer.entities.add({
-    selectable: false,
-    show: false,
-    rectangle: {
-      coordinates: getSelectorLocation,
-      height: 100000,
+  var selectorRectangle = {
+    coordinates: getSelectorLocation,
+    height: 100000
+  };
+
+  if (config.fancySelector) {
+    _.extend(selectorRectangle, {
+      material: new Cesium.GridMaterialProperty()
+    })
+  }
+  else {
+    _.extend(selectorRectangle, {
       fill: false,
       outline: true,
       outlineColor: Cesium.Color.WHITE,
       outlineWidth: 3
-    }
+    })
+  }
+
+  selector = viewer.entities.add({
+    selectable: false,
+    show: false,
+    rectangle: selectorRectangle
   });
 
   updateHistogramThrottled = _.throttle(function (collection) {
