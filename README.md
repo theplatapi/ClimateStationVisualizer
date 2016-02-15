@@ -162,8 +162,8 @@
               * ngrok fixed subdomain costs $10 a month. Otherwise needs config every time.
             * Con Heroku
               * Will take time to set up initially
-              * Have to remember to shutdown Heroku dyno at night
-                * Worst case we spend $7. This can be shutdown at night as well to minimize cost.
+              * Have to remember to start up instance from sleep during experiment
+              * Have to take files off Heroku in case sleeping erases them
               * Stuck with UI latency toggle, which pollutes gaze data
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
