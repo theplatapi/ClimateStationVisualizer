@@ -159,7 +159,7 @@
               * Same origin so no CORS manipulation needed
               * Can be extended into server that sends latency switch signal
                 * Switch file logging to Winston and logging code becomes very small
-              * ngrok fixed subdomain costs $10 a month. Otherwise needs config every time.
+              * ngrok fixed subdomain costs $6 a month. Otherwise needs config every time.
             * Con Heroku
               * Will take time to set up initially
               * Have to remember to start up instance from sleep during experiment
