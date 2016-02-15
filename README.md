@@ -149,18 +149,22 @@
         * [x] Reach out to Cesium devs about opacity performance
         * [ ] Try replacing callbackProperty with static one after shift-click is released
 21. Log camera position to service
-    * [ ] Decide between loggly and papertrail
-        * Papertrail is chaper
-        * Loggly API: https://www.npmjs.com/package/loggly
-        * Papertrail API: https://www.npmjs.com/package/winston-papertrail
-    * [ ] Use local logging
+    * [ ] Use custom logging
         * [x] Run node-js-logger
         * [x] Install loglevel
         * [x] Install serverSend (through npm somehow or bower)
         * [x] Send over camera position logs
-        * [ ] See if ngrok or Heroku is cheaper (Heroku is free for 18 hours, $7 monthly for always on)
-            * Heroku will be easier, since we can make it the same origin
-            * Harder since it will have to serve client files and have a separate running server
+        * [ ] Decide on Heroku or nginx
+            * Pro Heroku
+              * Same origin so no CORS manipulation needed
+              * Can be extended into server that sends latency switch signal
+                * Switch file logging to Winston and logging code becomes very small
+              * ngrok fixed subdomain costs $10 a month. Otherwise needs config every time.
+            * Con Heroku
+              * Will take time to set up initially
+              * Have to remember to shutdown Heroku dyno at night
+                * Worst case we spend $7. This can be shutdown at night as well to minimize cost.
+              * Stuck with UI latency toggle, which pollutes gaze data
 22. Design latency toggle
     * Change with viewer.targetFrameRate = x;
     * Version 1: Implement on screen question toggle
