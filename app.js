@@ -42,11 +42,10 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 
 
 ws.onopen = function () {
-  //TODO: Customize in settings file?
-  ws.send('trial1');
   loglevelServerSend(log, {websocket: ws, prefix: ''});
 
   ws.onmessage = function (message) {
+    viewer.targetFrameRate = parseInt(message.data);
     console.log(message.data);
   };
 };
