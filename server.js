@@ -18,8 +18,7 @@ winston
     filename: 'trial1.log',
     json: false,
     formatter: function (options) {
-      console.log(options);
-      return options.timestamp + '; ' + options.message;
+      return new Date() + '; ' + options.message;
     }
   })
   .add(papertrail, {
