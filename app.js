@@ -5,7 +5,7 @@ require('./serverSend.js');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
-var ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
+var ws;
 var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
 var config = require('config');
@@ -40,6 +40,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 if (log) {
+  ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
   ws.onopen = function () {
     loglevelServerSend(log, {websocket: ws, prefix: ''});
 
