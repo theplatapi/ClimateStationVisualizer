@@ -169,8 +169,12 @@
         * [x] Create a websocket on the server and client, and have client listen for hard coded signal
             * https://devcenter.heroku.com/articles/node-websockets
             * http://ditrospecta.com/javascript/react/es6/webpack/heroku/2015/08/08/deploying-react-webpack-heroku.html
-        * [ ] Create simple admin interface to send latency to client
+        * [x] Create simple admin interface to send latency to client
         * [x] Combine with logging server. On data, log to file/papertrail with Winston.
+        * [x] Bump up the style a bit with bootstrap and cards
+        * [ ] Send POST data async
+        * [ ] Allow POST to be done before client is connected
+        * [ ] Show if client is connected
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
