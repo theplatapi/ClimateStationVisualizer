@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="admin.css">
+</head>
+<body>
+<div class="container">
+  <div class="col-md-6 col-md-push-3">
+    <div class="info-box">
+      <form class="form-horizontal" action="/admin" method="post">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Send Configuration</legend>
+
+          <!-- Multiple Radios -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="fps">Frames Per Second</label>
+            <div class="col-md-4">
+              <div class="radio">
+                <label for="radios-0">
+                  <input type="radio" name="fps" id="radios-0" value="30" checked="checked">
+                  30
+                </label>
+              </div>
+              <div class="radio">
+                <label for="radios-1">
+                  <input type="radio" name="fps" id="radios-1" value="20">
+                  20
+                </label>
+              </div>
+              <div class="radio">
+                <label for="radios-2">
+                  <input type="radio" name="fps" id="radios-2" value="10">
+                  10
+                </label>
+              </div>
+              <div class="radio">
+                <label for="radios-3">
+                  <input type="radio" name="fps" id="radios-3" value="5">
+                  5
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <input class="btn btn-primary" type="submit" value="Send">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
