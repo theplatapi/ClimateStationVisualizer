@@ -10,6 +10,8 @@ var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
 var config = require('config');
 var Cesium = getModules();
+var dataLoaded = false;
+var firstMessageLoaded = false;
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
 Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
@@ -39,13 +41,18 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   automaticallyTrackDataSourceClocks: false
 });
 
-if (log) {
+if (config.server) {
   ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
   ws.onopen = function () {
     loglevelServerSend(log, {websocket: ws, prefix: ''});
 
     ws.onmessage = function (message) {
+      if (dataLoaded && !firstMessageLoaded) {
+        enableVisualization();
+      }
+
       viewer.targetFrameRate = parseInt(message.data);
+      firstMessageLoaded = true;
     };
   };
 }
@@ -392,7 +399,7 @@ function setupEventListeners(stationLocations) {
   //SECTION - camera movement callbacks
   camera.moveStart.addEventListener(function () {
     cameraMoving = true;
-    if (config.log) {
+    if (config.server) {
       cameraPositionLog = setInterval(function () {
         if (!Cesium.Cartographic.equals(previousLogged, camera.positionCartographic)) {
           log.info(camera.positionCartographic);
@@ -404,7 +411,7 @@ function setupEventListeners(stationLocations) {
 
   camera.moveEnd.addEventListener(function () {
     cameraMoving = false;
-    if (config.log) {
+    if (config.server) {
       clearInterval(cameraPositionLog);
     }
   });
@@ -579,6 +586,12 @@ function stationSelected(station, rectangleSelector, stationCartographic) {
     && stationCartographic.latitude <= rectangleSelector.north && stationCartographic.latitude >= rectangleSelector.south;
 }
 
+function enableVisualization() {
+  $('#loadingData').show().delay(1000).fadeOut();
+  $('.cesium-viewer-bottom').show().delay(1000).fadeOut();
+  viewer.scene.screenSpaceCameraController.enableInputs = true;
+}
+
 function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
@@ -616,9 +629,11 @@ function getModules() {
         createHistogram();
         populateGlobe(stationTemperatures, stationLocations);
         setupEventListeners(stationLocations);
-        $('#loadingData').show().delay(1000).fadeOut();
-        $('.cesium-viewer-bottom').show().delay(1000).fadeOut();
-        viewer.scene.screenSpaceCameraController.enableInputs = true;
+        dataLoaded = true;
+
+        if (firstMessageLoaded || !config.server) {
+          enableVisualization();
+        }
       });
     });
   });

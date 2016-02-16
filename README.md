@@ -178,6 +178,8 @@
         * [x] Show if send was successful
         * [x] Have server log file name configured in admin panel
         * [x] Hide before all CSS is loaded
+        * [x] When log is enabled, wait for first fps change to hide loading wheel
+        * [ ] Deploy to Heroku
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
