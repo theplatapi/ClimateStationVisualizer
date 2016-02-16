@@ -164,24 +164,13 @@
               * Have to take files off Heroku in case sleeping erases them
               * Stuck with UI latency toggle, which pollutes gaze data
 22. Design latency toggle
-    * Change with viewer.targetFrameRate = x;
-    * [ ] Version 1: Implement on screen question toggle
-      * [ ] Load order from file
-      * [ ] Question toggle
-        * [ ] Make it a number input with the incrementer always visible
-        * [ ] Latency order downloaded S3 bucket, which I will change after every trial
-          * [ ] Have file in config and copy to public on npm install
-        * [ ] Make it hard to mess up
-          * [ ] Only show editing of increment/decrement
-          * [ ] Display as a fraction
-          * [ ] Allow going back just in case they hit it twice.
-    * [ ] Version 2: Listen to a websocket for latency change
+    * [ ] Listen to a websocket for latency change
         * [x] Serve project in current state with an express server
         * [x] Create a websocket on the server and client, and have client listen for hard coded signal
             * https://devcenter.heroku.com/articles/node-websockets
             * http://ditrospecta.com/javascript/react/es6/webpack/heroku/2015/08/08/deploying-react-webpack-heroku.html
         * [ ] Create simple admin interface to send latency to client
-        * [ ] Combine with logging server. On data, log to file/papertrail with Winston.
+        * [x] Combine with logging server. On data, log to file/papertrail with Winston.
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
