@@ -15,6 +15,7 @@
     "url": "https://github.com/theplatapi/ClimateStationVisualizer.git"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "cesium": "^1.18.0",
     "css-loader": "^0.23.1",
     "d3": "^3.5.12",
@@ -26,6 +27,7 @@
     "jquery": "^2.1.4",
     "lodash": "^4.2.0",
     "loglevel": "^1.4.0",
+    "multer": "^1.1.0",
     "path": "^0.12.7",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
