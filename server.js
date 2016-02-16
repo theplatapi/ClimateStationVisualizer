@@ -12,6 +12,9 @@ var winston = require('winston');
 var papertrail = require('winston-papertrail').Papertrail;
 var port = process.env.PORT || 8080;
 
+var webSocket;
+var clientConnected = false;
+
 var auth = basicAuth(function(user, pass) {
   return (user == "allen" && pass == "thesis");
 },'Admin Login');
@@ -29,6 +32,19 @@ app.get('/admin', function (req, res) {
   res.sendFile('/public/admin.html', {root: __dirname});
 });
 
+app.post('/admin', upload.array(), function (req, res) {
+  var fps = req.body.fps;
+
+  if (clientConnected) {
+    webSocket.send(fps);
+  }
+  else {
+    res.send('fail');
+  }
+
+  res.end();
+});
+
 winston
   .add(winston.transports.File, {
     name: 'fileLogger',
@@ -44,18 +60,14 @@ winston
   });
 
 wss.on("connection", function (ws) {
+  clientConnected = true;
+  webSocket = ws;
+
   ws.on("message", function (message) {
     winston.log('info', message);
   });
 
   ws.on("close", function () {
-    console.log("websocket connection closed");
-  });
-
-  app.post('/admin', upload.array(), function (req, res) {
-    var fps = req.body.fps;
-    ws.send(fps);
-    res.sendFile('/public/admin.html', {root: __dirname});
-    res.end();
+    clientConnected = false;
   });
 });

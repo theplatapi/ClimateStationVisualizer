@@ -173,8 +173,11 @@
         * [x] Combine with logging server. On data, log to file/papertrail with Winston.
         * [x] Bump up the style a bit with bootstrap and cards
         * [x] Send POST data async
-        * [ ] Allow POST to be done before client is connected
-        * [ ] Show if client is connected
+        * [x] Allow POST to be done before client is connected
+            * [x] Fix toastr style not appearing
+        * [x] Show if send was successful
+        * [ ] Hide before all CSS is loaded
+        * [ ] Show start loading wheel until first latency toggle comes in
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
