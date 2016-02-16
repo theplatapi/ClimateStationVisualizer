@@ -5,7 +5,6 @@ require('./serverSend.js');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
-//var WebSocket = require('ws');
 var ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
 var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
@@ -40,15 +39,17 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   automaticallyTrackDataSourceClocks: false
 });
 
+if (log) {
+  ws.onopen = function () {
+    loglevelServerSend(log, {websocket: ws, prefix: ''});
 
-ws.onopen = function () {
-  loglevelServerSend(log, {websocket: ws, prefix: ''});
-
-  ws.onmessage = function (message) {
-    viewer.targetFrameRate = parseInt(message.data);
-    console.log(message.data);
+    ws.onmessage = function (message) {
+      viewer.targetFrameRate = parseInt(message.data);
+      //TODO: Remove after testing
+      console.log(message.data);
+    };
   };
-};
+}
 
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
