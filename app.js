@@ -46,8 +46,6 @@ if (log) {
 
     ws.onmessage = function (message) {
       viewer.targetFrameRate = parseInt(message.data);
-      //TODO: Remove after testing
-      console.log(message.data);
     };
   };
 }
