@@ -17,6 +17,7 @@
   "dependencies": {
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
     "bootstrap-webpack": "0.0.5",
     "cesium": "^1.18.0",
     "css-loader": "^0.23.1",
