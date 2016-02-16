@@ -15,6 +15,7 @@
     "url": "https://github.com/theplatapi/ClimateStationVisualizer.git"
   },
   "dependencies": {
+    "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.15.0",
     "bootstrap-webpack": "0.0.5",
     "cesium": "^1.18.0",
