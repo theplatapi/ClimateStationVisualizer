@@ -118,7 +118,7 @@ var hexColorGenerator = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
   .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
   .interpolate(interpolateHsl);
-var circle = require('./lib/whiteShapes.png');
+var circle = require('./whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   var color = hexColorGenerator(temperature);

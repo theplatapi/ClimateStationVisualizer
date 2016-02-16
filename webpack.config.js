@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    main: "./app.js",
+    main: "./app/app.js",
     admin: "./admin/admin.js"
   },
   output: {
@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new HtmlPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'app/app.html',
       inject: true,
       chunks: ['main']
     }),
