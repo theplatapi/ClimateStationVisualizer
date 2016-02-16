@@ -7,6 +7,7 @@
  * @param {string} [options.url='http://localhost:8000/main/log'] Server url which would be used as a log server
  * @param {string|Function} [options.prefix=null] Prefix for all log messages. Either string or function wich should return string and accept log severity and message as parameters
  * @param {Bool} [options.callOriginal=false] If set to true - original loglevel method for logging would be called
+ * @param {string} [options.websocket] Send data over websocket instead of ajax
  * @example
  * loglevelServerSend(log,{url:'https://example.com/app/log',prefix: function(logSev,message) {
  *     return '[' + new Date().toISOString() + '] ' + logSev + ': ' + message + '\n'
@@ -53,18 +54,26 @@ loglevelServerSend = function (logger, options) {
 
     _isSending = true;
 
-    var msg = _sendQueue.shift(),
-      req = new XMLHttpRequest();
+    var msg = _sendQueue.shift();
 
-    req.open("POST", _url, true);
-    req.setRequestHeader('Content-Type', 'text/plain');
-    req.onreadystatechange = function () {
-      if (req.readyState == 4) {
-        _isSending = false;
-        setTimeout(_sendNextMessage, 0)
-      }
-    };
+    if (options.websocket) {
+      options.websocket.send(msg);
+      _isSending = false;
+      setTimeout(_sendNextMessage, 0);
+    }
+    else {
+      var req = new XMLHttpRequest();
 
-    req.send(msg)
+      req.open("POST", _url, true);
+      req.setRequestHeader('Content-Type', 'text/plain');
+      req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+          _isSending = false;
+          setTimeout(_sendNextMessage, 0);
+        }
+      };
+
+      req.send(msg);
+    }
   }
 };

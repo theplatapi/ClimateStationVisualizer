@@ -5,12 +5,12 @@ require('./serverSend.js');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+//var WebSocket = require('ws');
+var ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
 var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
 var config = require('config');
 var Cesium = getModules();
-
-loglevelServerSend(log, {url: 'http://localhost:8000/test5/log', prefix: ''});
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
 Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
@@ -39,6 +39,17 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   scene3DOnly: true,
   automaticallyTrackDataSourceClocks: false
 });
+
+
+ws.onopen = function () {
+  //TODO: Customize in settings file?
+  ws.send('trial1');
+  loglevelServerSend(log, {websocket: ws, prefix: ''});
+
+  ws.onmessage = function (message) {
+    console.log(message.data);
+  };
+};
 
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
@@ -120,8 +131,6 @@ var stationColorScale = function stationColorScale(temperature, cesiumColor) {
   return cesiumColor;
 };
 
-var billboardScale = new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2);
-
 var setStationAppearance = function setStationAppearance(station) {
   var getColor = new Cesium.CallbackProperty(function getColor(time, result) {
     result.red = station.color.red;
@@ -136,7 +145,7 @@ var setStationAppearance = function setStationAppearance(station) {
     color: getColor,
     image: circle,
     verticalOrigin: Cesium.VerticalOrigin.CENTER,
-    scaleByDistance: billboardScale
+    scaleByDistance: new Cesium.NearFarScalar(1.5e3, 1.5, 3e7, 0.2)
   });
 };
 

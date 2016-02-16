@@ -3,5 +3,5 @@ module.exports = {
   locations: './climateData/stationLocations.json',
   debugShowFramesPerSecond: true,
   fancySelector: false,
-  log: false
+  log: true
 };
