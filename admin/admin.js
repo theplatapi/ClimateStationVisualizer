@@ -29,14 +29,39 @@ toastr.options = {
 };
 
 $('#send-config').on('submit', function () {
-  $(this).ajaxSubmit(function (res) {
-    if (res === 'fail') {
-      toastr.error('No client connected. Did not send fps.');
-    }
-    else {
-      toastr.success('Sent fps to client.');
+  $(this).ajaxSubmit({
+    success: function (res) {
+      if (res === 'fail') {
+        toastr.error('No client connected. Did not send fps.');
+      }
+      else {
+        toastr.success('Sent fps to client.');
+      }
+    },
+    error: function (e) {
+      toastr.error('Server Error', e);
     }
   });
+
+  // return false to prevent normal browser submit and page navigation
+  return false;
+});
+
+$('#send-log-name').on('submit', function () {
+  $(this).ajaxSubmit({
+    success: function (res) {
+      if (res === 'fail') {
+        toastr.error('Failed to set log name.');
+      }
+      else {
+        toastr.success('Set log name.');
+      }
+    },
+    error: function (e) {
+      toastr.error('Server Error', e);
+    }
+  });
+
 
   // return false to prevent normal browser submit and page navigation
   return false;
