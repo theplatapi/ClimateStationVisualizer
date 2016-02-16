@@ -12,14 +12,14 @@ var papertrail = require('winston-papertrail').Papertrail;
 var port = process.env.PORT || 8080;
 
 app.use(express.static('public'));
-app.use('/admin', express.static('admin'));
+//app.use('/admin', express.static('admin'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 server.listen(port);
 console.log("http server listening on port %d", port);
 
 app.get('/admin', function (req, res) {
-  res.sendFile('/admin/admin.html', {root: __dirname});
+  res.sendFile('/public/admin.html', {root: __dirname});
 });
 
 winston
@@ -42,12 +42,13 @@ wss.on("connection", function (ws) {
   });
 
   ws.on("close", function () {
-    console.log("websocket connection close");
+    console.log("websocket connection closed");
   });
 
-  app.post('/admin', upload.array(), function(req, res){
+  app.post('/admin', upload.array(), function (req, res) {
     var fps = req.body.fps;
     ws.send(fps);
-    res.sendFile('/admin/admin.html', {root: __dirname});
+    res.sendFile('/public/admin.html', {root: __dirname});
+    res.end();
   });
 });

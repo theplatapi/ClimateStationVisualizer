@@ -172,7 +172,7 @@
         * [x] Create simple admin interface to send latency to client
         * [x] Combine with logging server. On data, log to file/papertrail with Winston.
         * [x] Bump up the style a bit with bootstrap and cards
-        * [ ] Send POST data async
+        * [x] Send POST data async
         * [ ] Allow POST to be done before client is connected
         * [ ] Show if client is connected
 23. Fix minimum zoom bug
