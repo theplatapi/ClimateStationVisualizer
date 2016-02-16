@@ -178,7 +178,7 @@
         * [x] Show if send was successful
         * [ ] Show start loading wheel until first latency toggle comes in
         * [ ] Have server log file name configured in admin panel
-        * [ ] Hide before all CSS is loaded
+        * [x] Hide before all CSS is loaded
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance

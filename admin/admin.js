@@ -1,9 +1,8 @@
 var $ = global.jQuery = require("jquery");
 
 //Fix FOUC
-$('html').hide();
 $(document).ready(function () {
-  $('html').show();
+  $('body').show();
 });
 
 require('bootstrap-webpack');
