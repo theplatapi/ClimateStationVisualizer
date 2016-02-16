@@ -4,6 +4,7 @@ var http = require("http");
 var server = http.createServer(app);
 var WebSocketServer = require("ws").Server;
 var wss = new WebSocketServer({server: server});
+var path = require('path');
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -19,7 +20,7 @@ var webSocket;
 var clientConnected = false;
 var fileSettings = {
   name: 'fileLogger',
-  filename: 'trial1.log',
+  filename: path.join(__dirname, 'trial1.log'),
   json: false,
   formatter: function (options) {
     return new Date() + '; ' + options.message;
@@ -60,7 +61,7 @@ app.post('/admin', upload.array(), function (req, res) {
     winston
       .remove('fileLogger')
       .info(logname)
-      .add(winston.transports.File, _.extend(fileSettings, {filename: logname}))
+      .add(winston.transports.File, _.extend(fileSettings, {filename: path.join(__dirname, logname)}))
   }
 
   res.end();
