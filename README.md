@@ -138,8 +138,6 @@
         * It's too narrow when window is taller than it is wide
     * [x] Add station names to stations without city or country
     * [x] Center loading wheel
-    * [ ] Add latency to D3 transitions
-        * Too difficult with little reward
 20. Performance v3
     * Get the selector drawing to stay above 30 fps
     * [ ] Speed up selector drawing
@@ -149,12 +147,12 @@
         * [x] Reach out to Cesium devs about opacity performance
         * [ ] Try replacing callbackProperty with static one after shift-click is released
 21. Log camera position to service
-    * [ ] Use custom logging
+    * [x] Use custom logging
         * [x] Run node-js-logger
         * [x] Install loglevel
         * [x] Install serverSend (through npm somehow or bower)
         * [x] Send over camera position logs
-        * [ ] Decide on Heroku or nginx
+        * [x] Decide on Heroku or nginx (Heroku)
             * Pro Heroku
               * Same origin so no CORS manipulation needed
               * Can be extended into server that sends latency switch signal
@@ -178,20 +176,25 @@
           * [ ] Display as a fraction
           * [ ] Allow going back just in case they hit it twice.
     * [ ] Version 2: Listen to a websocket for latency change
-        * [ ] Serve project in current state with an express server
-        * [ ] Create a websocket on the server and client, and have client listen for hard coded signal
+        * [x] Serve project in current state with an express server
+        * [x] Create a websocket on the server and client, and have client listen for hard coded signal
             * https://devcenter.heroku.com/articles/node-websockets
             * http://ditrospecta.com/javascript/react/es6/webpack/heroku/2015/08/08/deploying-react-webpack-heroku.html
         * [ ] Create simple admin interface to send latency to client
         * [ ] Combine with logging server. On data, log to file/papertrail with Winston.
-22. Fix minimum zoom bug
-    * Have camera.zoomTo respect minimumZoomDistance
-    * Match scrolling behavior to default minimumZoomDistance
-23. Add latency to d3 transitions
-    * See if previous stash was on to somthing
-    * Research more into how tweening is done, and write custom tweener to act in a stepwise fashion
-      * Perhaps functions must be monotonic
-24. Rewrite in ES6
+23. Fix minimum zoom bug
+    * [ ] Have camera.zoomTo respect minimumZoomDistance
+    * [ ] Match scrolling behavior to default minimumZoomDistance
+24. Add latency to d3 transitions
+    * [ ] See if previous stash was on to somthing
+    * [ ] Research more into how tweening is done, and write custom tweener to act in a stepwise fashion
+      * [ ] Perhaps functions must be monotonic
+25. Combine camera and gaze data
+    * [ ] Figure out raw timestamp for MiraMetrix
+    * [ ] Plot a 3D scatterplot
+    * [ ] Turn into a 3D heatmap
+    * [ ] Figure out how to get R^2 between trials
+26. Rewrite in ES6
     * This will make finding the memory leak much easier and "future proof" the project
     * [ ] Convert into modules.
         * [ ] Make event listeners modules
@@ -199,7 +202,7 @@
     * [ ] Replace var with let
     * [ ] Add onClockTick into setupEventListeners
     * [ ] Use new function declaration syntax
-25. Find memory leak
+27. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
           p - 1 step and compare to p step to see differences.
@@ -208,13 +211,9 @@
     * [ ] Add randomly changing color entities
     * [ ] Add color depending on temperature
     * [ ] Show/hide entities if no temperature
-
     * Ideas:
         * [ ] See if entity.show=false makes Cesium allocate a new "node"
         * [x] See if D3 color strings are the cause
-
-
-
 
 ###Gaze Tracker
 1. Decide if we will operate it remotely
@@ -225,33 +224,7 @@
     * Cons
       * Difficult to figure out how to open port on school PC
       * Have to write controller program
-2. Plan how to get zoom and pan information from visualization
-    * Too expensive to store all in memory.
-    * Idea: Send out in chunks to localhost server. Frees up browser memory. The server can stream contents to disk.
-      * Con - We potentially have 2 localhosts running
-    * Figure out how to integrate with gaze data stream with ENABLE_SEND_GPI
-      * Con - No idea how flag works. Need more research
-
-
-###Experiment
-1. Plan out how question and latency order is determined
-    * We want each question to appear in the latency buckets evenly, yet randomization so there aren't any co-variables
-2. Plan out how latency will be switched
-    * Have app listen on websocket and send commands from my PC
-      * Con - requires a separate server running
-      * Con - Timing will be different between trials.
-      * Pro - User less likely to suspect that latency is being toggled
-    * Have user click button on screen to indicate which question they're on
-      * Pro - Timing will be more exact since user will press it when question is answered
-      * Con - Latency changing in response to button press may be obvious
-    * Have question form send out ping to app when question is answered
-      * Con - not sure if this is possible with an existing product
-      * Pro - timing exact and user less likely to suspect latency is being intentionally changed
-
 
 ###Questions
-1. What computer will this run on?
-2. Are frame rate choices appropriate? (30, 20, 10, 5)
-    * Yes
-    * Like 3 questions per frame rate set
-    * People can be subject to just 2 different frame rates
+1. Is the experiment design appropriate?
+    * Having 3 question types, 4 of each and interchanging them.
