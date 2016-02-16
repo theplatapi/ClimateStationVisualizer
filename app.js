@@ -384,17 +384,21 @@ function setupEventListeners(stationLocations) {
   //SECTION - camera movement callbacks
   camera.moveStart.addEventListener(function () {
     cameraMoving = true;
-    cameraPositionLog = setInterval(function () {
-      if (!Cesium.Cartographic.equals(previousLogged, camera.positionCartographic)) {
-        log.info(camera.positionCartographic);
-        previousLogged = Cesium.Cartographic.clone(camera.positionCartographic, scratchCartographic);
-      }
-    }, 200);
+    if (config.log) {
+      cameraPositionLog = setInterval(function () {
+        if (!Cesium.Cartographic.equals(previousLogged, camera.positionCartographic)) {
+          log.info(camera.positionCartographic);
+          previousLogged = Cesium.Cartographic.clone(camera.positionCartographic, scratchCartographic);
+        }
+      }, 200);
+    }
   });
 
   camera.moveEnd.addEventListener(function () {
     cameraMoving = false;
-    clearInterval(cameraPositionLog);
+    if (config.log) {
+      clearInterval(cameraPositionLog);
+    }
   });
 
   //Initial drawing of points

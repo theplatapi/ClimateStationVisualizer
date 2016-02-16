@@ -37,7 +37,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      config: path.join(__dirname, 'config', process.env.npm_lifecycle_event === 'start' ? 'development' : 'production')
+      config: path.join(__dirname, 'config', process.env.npm_lifecycle_event === 'debug' ? 'development' : 'production')
     }
   }
 };
