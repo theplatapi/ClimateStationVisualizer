@@ -176,8 +176,9 @@
         * [x] Allow POST to be done before client is connected
             * [x] Fix toastr style not appearing
         * [x] Show if send was successful
-        * [ ] Hide before all CSS is loaded
         * [ ] Show start loading wheel until first latency toggle comes in
+        * [ ] Have server log file name configured in admin panel
+        * [ ] Hide before all CSS is loaded
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
