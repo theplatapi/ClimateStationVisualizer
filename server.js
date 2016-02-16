@@ -50,6 +50,7 @@ app.post('/admin', upload.array(), function (req, res) {
   if (fps) {
     if (clientConnected) {
       webSocket.send(fps);
+      winston.info(fps);
     }
     else {
       res.send('fail');
@@ -58,7 +59,7 @@ app.post('/admin', upload.array(), function (req, res) {
   else if (logname) {
     winston
       .remove('fileLogger')
-      .log('info', logname)
+      .info(logname)
       .add(winston.transports.File, _.extend(fileSettings, {filename: logname}))
   }
 
@@ -77,7 +78,7 @@ wss.on("connection", function (ws) {
   webSocket = ws;
 
   ws.on("message", function (message) {
-    winston.log('info', message);
+    winston.info(message);
   });
 
   ws.on("close", function () {
