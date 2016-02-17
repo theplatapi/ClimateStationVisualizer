@@ -164,7 +164,7 @@
               * Have to take files off Heroku in case sleeping erases them
               * Stuck with UI latency toggle, which pollutes gaze data
 22. Design latency toggle
-    * [ ] Listen to a websocket for latency change
+    * [x] Listen to a websocket for latency change
         * [x] Serve project in current state with an express server
         * [x] Create a websocket on the server and client, and have client listen for hard coded signal
             * https://devcenter.heroku.com/articles/node-websockets
