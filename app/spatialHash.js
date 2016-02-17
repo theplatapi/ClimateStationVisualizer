@@ -1,3 +1,4 @@
+//From http://zufallsgenerator.github.io/2014/01/26/visually-comparing-algorithms/
 module.exports = (function () {
   'use strict';
 
