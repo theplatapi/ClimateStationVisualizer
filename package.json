@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "debug": "webpack-dev-server -d --progress",
+    "deploy": "git push heroku master",
     "postinstall": "bash ./postinstall.sh && webpack -p --progress"
   },
   "author": "Allen Korenevsky",
@@ -36,6 +37,7 @@
     "loglevel": "^1.4.0",
     "multer": "^1.1.0",
     "path": "^0.12.7",
+    "reconnectingwebsocket": "^1.0.0",
     "style-loader": "^0.13.0",
     "toastr": "^2.1.2",
     "url-loader": "^0.5.7",
