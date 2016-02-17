@@ -182,18 +182,24 @@
         * [x] Deploy to Heroku
         * [x] Try reconnecting to disconnected socket
 23. Fix minimum zoom bug
-    * [ ] Have camera.zoomTo respect minimumZoomDistance
+    * [x] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance
 24. Add latency to d3 transitions
     * [ ] See if previous stash was on to somthing
     * [ ] Research more into how tweening is done, and write custom tweener to act in a stepwise fashion
       * [ ] Perhaps functions must be monotonic
-25. Combine camera and gaze data
+25. Add temperature legend on bottom right
+26. Skip by month
+27. Show temperatures as difference from mean
+    * Decide on base period Ex. 1951 - 1980
+28. Combine camera and gaze data
     * [ ] Figure out raw timestamp for MiraMetrix
     * [ ] Plot a 3D scatterplot
     * [ ] Turn into a 3D heatmap
     * [ ] Figure out how to get R^2 between trials
-26. Rewrite in ES6
+    * [ ] New Cesium visualization - map gaze heatmap onto globe
+        * Constant size "pixels"
+29. Rewrite in ES6
     * This will make finding the memory leak much easier and "future proof" the project
     * [ ] Convert into modules.
         * [ ] Make event listeners modules
@@ -201,7 +207,7 @@
     * [ ] Replace var with let
     * [ ] Add onClockTick into setupEventListeners
     * [ ] Use new function declaration syntax
-27. Find memory leak
+30. Find memory leak
     * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
     * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
           p - 1 step and compare to p step to see differences.
@@ -227,3 +233,4 @@
 ###Questions
 1. Is the experiment design appropriate?
     * Having 3 question types, 4 of each and interchanging them.
+    * Answer: Yes
