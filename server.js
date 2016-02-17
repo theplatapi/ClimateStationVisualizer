@@ -75,8 +75,10 @@ winston
   .add(winston.transports.File, fileSettings);
 
 wss.on("connection", function (ws) {
-  clientConnected = true;
-  webSocket = ws;
+  if (!clientConnected) {
+    clientConnected = true;
+    webSocket = ws;
+  }
 
   ws.on("message", function (message) {
     winston.log('info', message);
