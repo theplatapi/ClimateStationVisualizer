@@ -38,6 +38,7 @@
     "multer": "^1.1.0",
     "path": "^0.12.7",
     "reconnectingwebsocket": "^1.0.0",
+    "serve-index": "^1.7.3",
     "style-loader": "^0.13.0",
     "toastr": "^2.1.2",
     "url-loader": "^0.5.7",

@@ -180,7 +180,7 @@
         * [x] Hide before all CSS is loaded
         * [x] When log is enabled, wait for first fps change to hide loading wheel
         * [x] Deploy to Heroku
-        * [ ] Try reconnecting to disconnected socket
+        * [x] Try reconnecting to disconnected socket
 23. Fix minimum zoom bug
     * [ ] Have camera.zoomTo respect minimumZoomDistance
     * [ ] Match scrolling behavior to default minimumZoomDistance

@@ -5,6 +5,7 @@ var server = http.createServer(app);
 var WebSocketServer = require("ws").Server;
 var wss = new WebSocketServer({server: server});
 var path = require('path');
+var serveIndex = require('serve-index');
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -18,9 +19,10 @@ var _ = require('lodash');
 
 var webSocket;
 var clientConnected = false;
+var logPath = path.join(__dirname, '/admin/log/');
 var fileSettings = {
   name: 'fileLogger',
-  filename: path.join(__dirname, 'trial1.log'),
+  filename: path.join(logPath, 'trial1.log'),
   json: false,
   formatter: function (options) {
     return new Date() + '; ' + options.message;
@@ -31,19 +33,20 @@ var auth = basicAuth(function (user, pass) {
   return (user == "allen" && pass == "thesis");
 }, 'Admin Login');
 
-app.use(express.static('public'));
-//app.use('/admin', express.static('admin'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 server.listen(port);
 console.log("http server listening on port %d", port);
 
-app.all('/admin', auth);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
+//Serve files
+app.use(express.static('public'));
+app.use('/admin/log', auth, express.static('admin/log'), serveIndex(logPath, {icons: true, view: 'details'}));
+
+app.all('/admin', auth);
 app.get('/admin', function (req, res) {
   res.sendFile('/public/admin.html', {root: __dirname});
 });
-
 app.post('/admin', upload.array(), function (req, res) {
   var fps = req.body.fps;
   var logname = req.body.logname;
@@ -61,7 +64,9 @@ app.post('/admin', upload.array(), function (req, res) {
     winston
       .remove('fileLogger')
       .log('info', logname)
-      .add(winston.transports.File, _.extend(fileSettings, {filename: path.join(__dirname, logname)}))
+      .add(winston.transports.File, _.extend(fileSettings, {
+        filename: path.join(logPath, logname)
+      }));
   }
 
   res.end();
