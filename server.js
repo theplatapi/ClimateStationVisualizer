@@ -22,7 +22,7 @@ var clientConnected = false;
 var logPath = path.join(__dirname, '/admin/log/');
 var fileSettings = {
   name: 'fileLogger',
-  filename: path.join(logPath, 'trial1.log'),
+  filename: path.join(logPath, 'test.log'),
   json: false,
   formatter: function (options) {
     return new Date() + '; ' + options.message;
