@@ -186,7 +186,7 @@
     * [ ] Match scrolling behavior to default minimumZoomDistance
 24. Add latency to d3 transitions
     * [x] Change with custom easing
-    * [ ] Have easing correspond with current fps
+    * [x] Have easing correspond with current fps
 25. Add temperature legend on bottom right
 26. Skip by month
 27. Show temperatures as difference from mean
