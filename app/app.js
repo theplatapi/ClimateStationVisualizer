@@ -314,7 +314,9 @@ function setupEventListeners(stationLocations) {
         rectangleCoordinates.west = Math.min(scratchCartographic.longitude, firstPoint.longitude);
         rectangleCoordinates.north = Math.max(scratchCartographic.latitude, firstPoint.latitude);
         rectangleCoordinates.south = Math.min(scratchCartographic.latitude, firstPoint.latitude);
-        selector.show = true;
+
+        //Don't draw if rectangle has 0 size. Will cause Cesium to throw an error.
+        selector.show = rectangleCoordinates.east !== rectangleCoordinates.west || rectangleCoordinates.north !== rectangleCoordinates.south;
         //Suspending and resuming events during batch update
         selectedStations.suspendEvents();
         selectedStations.removeAll();
@@ -360,8 +362,13 @@ function setupEventListeners(stationLocations) {
     return Cesium.Rectangle.clone(rectangleCoordinates, result);
   }, false);
 
+  var getSelectorHeight = new Cesium.CallbackProperty(function getSelectorHeight() {
+    return Cesium.CesiumMath.clamp(camera._positionCartographic.height - 100000, 0, 100000);
+  }, false);
+
   var selectorRectangle = {
-    coordinates: getSelectorLocation
+    coordinates: getSelectorLocation,
+    height: getSelectorHeight
   };
 
   if (config.fancySelector) {
