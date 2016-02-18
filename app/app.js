@@ -79,6 +79,7 @@ viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
 viewer.scene.screenSpaceCameraController.minimumZoomDistance = 100100;
 viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
+viewer.scene.screenSpaceCameraController._minimumZoomRate = 100;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 //Darken the earth so it's easier to see the stations
 viewer.imageryLayers.get(0).brightness = 0.7;
@@ -360,8 +361,7 @@ function setupEventListeners(stationLocations) {
   }, false);
 
   var selectorRectangle = {
-    coordinates: getSelectorLocation,
-    height: 100000
+    coordinates: getSelectorLocation
   };
 
   if (config.fancySelector) {
