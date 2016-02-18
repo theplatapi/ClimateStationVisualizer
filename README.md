@@ -183,7 +183,7 @@
         * [x] Try reconnecting to disconnected socket
 23. Fix minimum zoom bug
     * [x] Have camera.zoomTo respect minimumZoomDistance
-    * [ ] Match scrolling behavior to default minimumZoomDistance
+    * [x] Fix slow scroll when zooming out from max
 24. Add latency to d3 transitions
     * [x] Change with custom easing
     * [x] Have easing correspond with current fps
