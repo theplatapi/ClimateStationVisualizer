@@ -508,6 +508,24 @@ function createHistogram() {
   var tempHistogram = histogramFunc(d3.range(10).map(d3.random.bates(10)));
   var numBins = tempHistogram.length;
 
+  var toggleFps = function (fps) {
+    var ease = d3.ease('linear');
+    var latencyMs = 1 / fps;
+    var calculatedEase = 0;
+    var previousTime = 0;
+
+    return function (t) {
+      var delta = t - previousTime;
+
+      if (delta >= latencyMs || t >= 1) {
+        calculatedEase = ease(t);
+        previousTime = t;
+      }
+
+      return calculatedEase;
+    };
+  };
+
   //Create elements, but with no data
   svg.selectAll(".bar")
     .data(tempHistogram)
@@ -560,7 +578,8 @@ function createHistogram() {
     svg.selectAll(".bar")
       .data(histogram)
       .transition()
-      .duration(100)
+      .duration(200)
+      .ease(toggleFps(viewer.targetFrameRate))
       .attr("transform", function transformBar(d) {
         return "translate(" + x(d.x).toFixed(4) + "," + y(d.y) + ")";
       });
@@ -568,7 +587,8 @@ function createHistogram() {
     svg.selectAll("rect")
       .data(histogram)
       .transition()
-      .duration(100)
+      .duration(200)
+      .ease(toggleFps(viewer.targetFrameRate))
       .attr("height", function rectHeight(d) {
         return height - y(d.y);
       });
@@ -576,6 +596,7 @@ function createHistogram() {
     svg.select(".y.axis")
       .transition()
       .duration(200)
+      .ease(toggleFps(viewer.targetFrameRate))
       .call(yAxis);
   }
 }
