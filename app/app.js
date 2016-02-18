@@ -485,6 +485,7 @@ function createHistogram() {
   var margin = {top: 10, right: 30, bottom: 40, left: 55};
   var width = 300 - margin.left - margin.right;
   var height = 200 - margin.top - margin.bottom;
+  var transitionSpeed = 150;
 
   var svg = d3.select("#histogram")
     .append("svg")
@@ -578,7 +579,7 @@ function createHistogram() {
     svg.selectAll(".bar")
       .data(histogram)
       .transition()
-      .duration(200)
+      .duration(transitionSpeed)
       .ease(toggleFps(viewer.targetFrameRate))
       .attr("transform", function transformBar(d) {
         return "translate(" + x(d.x).toFixed(4) + "," + y(d.y) + ")";
@@ -587,7 +588,7 @@ function createHistogram() {
     svg.selectAll("rect")
       .data(histogram)
       .transition()
-      .duration(200)
+      .duration(transitionSpeed)
       .ease(toggleFps(viewer.targetFrameRate))
       .attr("height", function rectHeight(d) {
         return height - y(d.y);
@@ -595,7 +596,7 @@ function createHistogram() {
 
     svg.select(".y.axis")
       .transition()
-      .duration(200)
+      .duration(transitionSpeed)
       .ease(toggleFps(viewer.targetFrameRate))
       .call(yAxis);
   }
