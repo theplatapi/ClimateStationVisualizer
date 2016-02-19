@@ -189,6 +189,10 @@
     * [x] Have easing correspond with current fps
 25. Add temperature legend on bottom right
 26. Skip by month
+    * [ ] Add button for time forwarding mode
+    * [ ] Add exactly the time needed to the next month rather than a fixed time
+    * [ ] Change stop time to final month so we end at that month
+    * [ ] How to skip by month with fps? Just advance slower?
 27. Show temperatures as difference from mean
     * Decide on base period Ex. 1951 - 1980
 28. Combine camera and gaze data
