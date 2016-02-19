@@ -187,21 +187,21 @@
 24. Add latency to d3 transitions
     * [x] Change with custom easing
     * [x] Have easing correspond with current fps
-25. Add temperature legend on bottom right
-26. Skip by month
-    * [ ] Add button for time forwarding mode
-    * [ ] Add exactly the time needed to the next month rather than a fixed time
-    * [ ] Change stop time to final month so we end at that month
-    * [ ] How to skip by month with fps? Just advance slower?
-27. Show temperatures as difference from mean
+25. Show temperatures as difference from mean
     * Decide on base period Ex. 1951 - 1980
-28. Combine camera and gaze data
+26. Add temperature legend on bottom right
+27. Combine camera and gaze data
     * [ ] Figure out raw timestamp for MiraMetrix
     * [ ] Plot a 3D scatterplot
     * [ ] Turn into a 3D heatmap
     * [ ] Figure out how to get R^2 between trials
     * [ ] New Cesium visualization - map gaze heatmap onto globe
         * Constant size "pixels"
+28. Skip by month
+    * [ ] Add button for time forwarding mode
+    * [ ] Add exactly the time needed to the next month rather than a fixed time
+    * [ ] Change stop time to final month so we end at that month
+    * [ ] How to skip by month with fps? Just advance slower?
 29. Rewrite in ES6
     * This will make finding the memory leak much easier and "future proof" the project
     * [ ] Convert into modules.
