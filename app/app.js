@@ -31,7 +31,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
     clockRange: Cesium.ClockRange.CLAMPED,
     canAnimate: false,
     shouldAnimate: false,
-    multiplier: 31622400 //Fast forward 1 year a second
+    multiplier: 31557600 //Fast forward 1 year a second
   }),
   imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
     url: '//services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer',
