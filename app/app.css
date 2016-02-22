@@ -56,7 +56,6 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   position: absolute;
   top: 110px;
   right: 0;
-  /*background: rgba(255, 255, 255, 0.25);*/
   pointer-events: none;
 }
 
