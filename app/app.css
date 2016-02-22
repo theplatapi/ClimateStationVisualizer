@@ -54,9 +54,10 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
 
 #legend {
   position: absolute;
-  top: 150px;
+  top: 110px;
   right: 0;
-  width: 70px;
+  /*background: rgba(255, 255, 255, 0.25);*/
+  pointer-events: none;
 }
 
 #histogram {

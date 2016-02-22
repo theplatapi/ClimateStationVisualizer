@@ -611,12 +611,23 @@ function createHistogram() {
 }
 
 function createLegend() {
-  var svg = d3.select("#legend").append("svg");
+  var margin = {top: 10, right: 10, bottom: 10, left: 10};
+  var width = 90 - margin.left - margin.right;
+  var height = 130 - margin.top - margin.bottom;
+
+  var svg = d3.select("#legend")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   svg.append("g")
     .attr("class", "legendLinear");
 
   var legendLinear = legend.color()
+    .shapeWidth(30)
+    .cells([-20, -10, 0, 10, 20, 30, 40])
     .scale(temperatureScale);
 
   svg.select(".legendLinear")
