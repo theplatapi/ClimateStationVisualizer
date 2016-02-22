@@ -188,9 +188,12 @@
     * [x] Change with custom easing
     * [x] Have easing correspond with current fps
 25. Show temperatures as difference from mean
-    * Decide on base period Ex. 1951 - 1980
-    * Calculate the difference between temperature in a given month and the baseline average temperature for the same place
+    * Doesn't show climate change
+    * [x] Decide on base period Ex. 1951 - 1980
+    * [x] Calculate the difference between temperature in a given month and the baseline average temperature for the same place
 26. Add temperature legend on bottom right
+    * [x] Add color legend
+    * [ ] Add text specifying it's Celsius
 27. Combine camera and gaze data
     * [ ] Figure out raw timestamp for MiraMetrix
     * [ ] Plot a 3D scatterplot
