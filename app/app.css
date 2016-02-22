@@ -52,6 +52,13 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   margin-top: -0.5em;
 }
 
+#legend {
+  position: absolute;
+  top: 150px;
+  right: 0;
+  width: 70px;
+}
+
 #histogram {
   position: absolute;
   top: 0;

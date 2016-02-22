@@ -5,6 +5,7 @@ require('./serverSend.js');
 var _ = require("lodash");
 var $ = require("jquery");
 var d3 = require("d3");
+var legend = require('d3-svg-legend/no-extend');
 var ReconnectingWebSocket = require('reconnectingwebsocket');
 var ws;
 var log = require('loglevel');
@@ -123,10 +124,10 @@ function interpolateHsl(a, b) {
 }
 
 
-var hexColorGenerator = d3.scale.linear()
+var temperatureScale = d3.scale.linear()
   .domain([-40, -16, -4, 10, 25, 32, 40])
-  .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000'])
-  .interpolate(interpolateHsl);
+  .range(['#2c004d', '#4B0082', '#0000FF', '#FFFFFF', '#FF7F00', '#FF0000', '#990000']);
+var hexColorGenerator = temperatureScale.interpolate(interpolateHsl);
 var circle = require('./whiteShapes.png');
 
 var stationColorScale = function stationColorScale(temperature, cesiumColor) {
@@ -609,6 +610,19 @@ function createHistogram() {
   }
 }
 
+function createLegend() {
+  var svg = d3.select("#legend").append("svg");
+
+  svg.append("g")
+    .attr("class", "legendLinear");
+
+  var legendLinear = legend.color()
+    .scale(temperatureScale);
+
+  svg.select(".legendLinear")
+    .call(legendLinear);
+}
+
 function stationSelected(station, rectangleSelector, stationCartographic) {
   stationCartographic = Cesium.Cartographic.fromCartesian(station._position._value, Cesium.Ellipsoid.WGS84, stationCartographic);
 
@@ -657,6 +671,7 @@ function getModules() {
     asyncLoadJson(config.locations, function (stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson).then(function loadStations(stationLocations) {
         createHistogram();
+        createLegend();
         populateGlobe(stationTemperatures, stationLocations);
         setupEventListeners(stationLocations);
         dataLoaded = true;
