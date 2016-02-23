@@ -382,7 +382,7 @@ function setupEventListeners(stationLocations) {
       fill: false,
       outline: true,
       outlineColor: Cesium.Color.WHITE,
-      outlineWidth: 3
+      outlineWidth: 6
     })
   }
 
