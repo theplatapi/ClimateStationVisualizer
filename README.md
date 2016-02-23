@@ -201,6 +201,7 @@
     * [ ] Figure out how to get R^2 between trials
     * [ ] New Cesium visualization - map gaze heatmap onto globe
         * Constant size "pixels"
+        * Use imagery layer?
 28. Skip by month
     * [ ] Add button for time forwarding mode
     * [ ] Add exactly the time needed to the next month rather than a fixed time
