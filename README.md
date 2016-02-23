@@ -199,6 +199,7 @@
     * [ ] Plot a 3D scatterplot
     * [ ] Turn into a 3D heatmap
     * [ ] Figure out how to get R^2 between trials
+    * [ ] Record canvas size so we know what portion of the screen the visualization is on.
     * [ ] New Cesium visualization - map gaze heatmap onto globe
         * Constant size "pixels"
         * Use imagery layer?
