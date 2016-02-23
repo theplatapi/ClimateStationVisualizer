@@ -193,7 +193,7 @@
     * [x] Calculate the difference between temperature in a given month and the baseline average temperature for the same place
 26. Add temperature legend on bottom right
     * [x] Add color legend
-    * [ ] Add text specifying it's Celsius
+    * [x] Add text specifying it's Celsius
 27. Combine camera and gaze data
     * [ ] Figure out raw timestamp for MiraMetrix
     * [ ] Plot a 3D scatterplot
