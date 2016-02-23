@@ -611,9 +611,9 @@ function createHistogram() {
 }
 
 function createLegend() {
-  var margin = {top: 10, right: 10, bottom: 10, left: 10};
+  var margin = {top: 20, right: 10, bottom: 10, left: 10};
   var width = 90 - margin.left - margin.right;
-  var height = 130 - margin.top - margin.bottom;
+  var height = 140 - margin.top - margin.bottom;
 
   var svg = d3.select("#legend")
     .append("svg")
@@ -621,6 +621,13 @@ function createLegend() {
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("text")
+    .attr("class", "legend label")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", -5)
+    .text("Temperature (°C)");
 
   svg.append("g")
     .attr("class", "legendLinear");
