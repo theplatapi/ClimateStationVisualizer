@@ -1,7 +1,7 @@
 module.exports = {
   temperatures: './climateData/stationTemps.json',
   locations: './climateData/stationLocations.json',
-  debugShowFramesPerSecond: false,
+  debugShowFramesPerSecond: true,
   fancySelector: false,
   server: true
 };
