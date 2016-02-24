@@ -30,6 +30,10 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   opacity: 0.9;
 }
 
+.cesium-infoBox-description {
+  overflow: hidden;
+}
+
 .cesium-infoBox-defaultTable {
   border-color: #5a5a5a;
   padding: 0;
@@ -54,8 +58,8 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
 
 #legend {
   position: absolute;
-  top: 110px;
-  right: 0;
+  bottom: 75px;
+  right: 3px;
   pointer-events: none;
 }
 
