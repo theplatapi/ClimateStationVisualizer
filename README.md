@@ -194,6 +194,10 @@
 26. Add temperature legend on bottom right
     * [x] Add color legend
     * [x] Add text specifying it's Celsius
+27. Research Cesium time being on xxx9 cutoff instead of round number
+    * [ ] Dig in Cesium source
+    * [ ] Fix with prototype override if possible
+    * [ ] PR if necessary
 27. Combine camera and gaze data
     * [ ] Figure out raw timestamp for MiraMetrix
     * [ ] Plot a 3D scatterplot
