@@ -194,6 +194,10 @@
 26. Add temperature legend on bottom right
     * [x] Add color legend
     * [x] Add text specifying it's Celsius
+27. Pick question platform
+    * [ ] Prevent user mistakes as much as possible
+        * Going to previous questions
+        * Not answering required questions
 27. Research Cesium time being on ###9 cutoff instead of round number
     * [ ] Dig in Cesium source
     * [ ] Fix with prototype override if possible
