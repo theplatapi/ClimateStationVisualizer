@@ -194,60 +194,36 @@
 26. Add temperature legend on bottom right
     * [x] Add color legend
     * [x] Add text specifying it's Celsius
-27. Pick question platform
-    * [ ] Prevent user mistakes as much as possible
-        * Going to previous questions
-        * Not answering required questions
-27. Research Cesium time being on ###9 cutoff instead of round number
-    * [ ] Dig in Cesium source
-    * [ ] Fix with prototype override if possible
-    * [ ] PR if necessary
-27. Combine camera and gaze data
-    * [ ] Figure out raw timestamp for MiraMetrix
+27. Finalize question segment
+    * [ ] Replace question 10
+    * [ ] Remove Antarctica as an option
+    * [ ] Submit to human subjects committee
+28. Improve timeline
+    * [ ] Show date popup over cursor
+    * [ ] Research Cesium time being on ###9 cutoff instead of round number
+        * [ ] Dig in Cesium source
+        * [ ] Fix with prototype override if possible
+        * [ ] PR if necessary
+29. Send latency and timestamp to MiraMetrix
+    * [ ] Try through API
+    * [ ] Try local script to append info when signal is received
+30. Small fixes
+    * [ ] Reverse legend order
+    * [ ] Improve narrow screen culling rules. Height is too short.
+31. Combine camera and gaze data
+    * [ ] Synchronize feeds
     * [ ] Plot a 3D scatterplot
-    * [ ] Turn into a 3D heatmap
-    * [ ] Figure out how to get R^2 between trials
-    * [ ] Record canvas size so we know what portion of the screen the visualization is on.
-    * [ ] New Cesium visualization - map gaze heatmap onto globe
+    * [ ] Separate data by latency levels
+    * [ ] Figure out how to get R^2 between 3D scatterplots
+32. Gaze data visualization
+    * [ ] Map gaze heatmap onto globe
         * Constant size "pixels"
         * Use imagery layer?
-28. Skip by month
-    * [ ] Add button for time forwarding mode
-    * [ ] Add exactly the time needed to the next month rather than a fixed time
-    * [ ] Change stop time to final month so we end at that month
-    * [ ] How to skip by month with fps? Just advance slower?
-29. Rewrite in ES6
-    * This will make finding the memory leak much easier and "future proof" the project
+33. Rewrite in ES6
+    * This will make finding memory leaks much easier and "future proof" the project
     * [ ] Convert into modules.
         * [ ] Make event listeners modules
         * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
     * [ ] Replace var with let
     * [ ] Add onClockTick into setupEventListeners
     * [ ] Use new function declaration syntax
-30. Find memory leak
-    * Currently, only 1 major GC event for an entire run. Can get worse though when we load tiles on zoom
-    * [ ] For each step, run timeline to see if memory has upwards trend. if p is problem step, take heap snapshot of
-          p - 1 step and compare to p step to see differences.
-    * [ ] Test cesium no additions, running at our speed.
-    * [ ] Add entities all white
-    * [ ] Add randomly changing color entities
-    * [ ] Add color depending on temperature
-    * [ ] Show/hide entities if no temperature
-    * Ideas:
-        * [ ] See if entity.show=false makes Cesium allocate a new "node"
-        * [x] See if D3 color strings are the cause
-
-###Gaze Tracker
-1. Decide if we will operate it remotely
-    * Pros
-      * Easier to operate
-      * More to write about in thesis
-      * Possible to include extra variables in output with API
-    * Cons
-      * Difficult to figure out how to open port on school PC
-      * Have to write controller program
-
-###Questions
-1. Is the experiment design appropriate?
-    * Having 3 question types, 4 of each and interchanging them.
-    * Answer: Yes
