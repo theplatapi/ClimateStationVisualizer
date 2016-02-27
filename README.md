@@ -201,7 +201,7 @@
           adverse events/unanticipated problems and also if there will be any modifications to the project, and
           provide any modified documents.
 28. Improve timeline
-    * [ ] Show date popup over cursor
+    * [x] Show date popup over cursor
     * [ ] Research Cesium time being on ###9 cutoff instead of round number
         * [ ] Dig in Cesium source
         * [ ] Fix with prototype override if possible

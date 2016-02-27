@@ -48,10 +48,11 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   position: absolute;
   background-color: black;
   color: white;
+  font-family: sans-serif;
   bottom: 40px;
-  display: none;
   padding: 5px;
   border-radius: 5%;
+  display: none;
 }
 
 #loadingOverlay {
