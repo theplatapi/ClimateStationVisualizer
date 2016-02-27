@@ -198,6 +198,9 @@
     * [ ] Replace question 10
     * [ ] Remove Antarctica as an option
     * [ ] Submit to human subjects committee
+        * Send an email to Debbie Hart, dahart@calpoly.edu. In the email, state whether or not there have been any
+          adverse events/unanticipated problems and also if there will be any modifications to the project, and
+          provide any modified documents.
 28. Improve timeline
     * [ ] Show date popup over cursor
     * [ ] Research Cesium time being on ###9 cutoff instead of round number
@@ -208,7 +211,7 @@
     * [ ] Try through API
     * [ ] Try local script to append info when signal is received
 30. Small fixes
-    * [ ] Reverse legend order
+    * [x] Reverse legend order
     * [ ] Improve narrow screen culling rules. Height is too short.
 31. Combine camera and gaze data
     * [ ] Synchronize feeds

@@ -634,7 +634,7 @@ function createLegend() {
 
   var legendLinear = legend.color()
     .shapeWidth(30)
-    .cells([-20, -10, 0, 10, 20, 30, 40])
+    .cells([40, 30, 20, 10, 0, -10, -20])
     .scale(temperatureScale);
 
   svg.select(".legendLinear")
