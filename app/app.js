@@ -364,7 +364,6 @@ function setupEventListeners(stationLocations) {
   }, false);
 
   var getSelectorHeight = new Cesium.CallbackProperty(function getSelectorHeight() {
-    console.log(camera._positionCartographic.height, camera._positionCartographic.height - 1000000);
     return Cesium.CesiumMath.clamp(camera._positionCartographic.height - 3500000, 0, 100000);
   }, false);
 
