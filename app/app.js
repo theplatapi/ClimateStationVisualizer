@@ -100,7 +100,6 @@ var dateFormatter = function (date) {
 };
 
 Cesium.Timeline.prototype.makeLabel = dateFormatter;
-//Cesium.AnimationViewModel.prototype.dateFormatter
 viewer.animation.viewModel.dateFormatter = dateFormatter;
 viewer.animation.viewModel.timeFormatter = _.noop;
 
@@ -258,6 +257,7 @@ function setupEventListeners(stationLocations) {
 
   var cartesian = new Cesium.Cartesian3();
   var scratchCartographic = new Cesium.Cartographic();
+  var scratchJulian = new Cesium.JulianDate();
   var center = new Cesium.Cartographic();
   var firstPoint = new Cesium.Cartographic();
   var firstPointSet = false;
@@ -424,6 +424,21 @@ function setupEventListeners(stationLocations) {
       clearInterval(cameraPositionLog);
     }
   });
+
+  //SECTION - timeline callbacks
+  $('.cesium-viewer-timelineContainer')
+    .on('mousemove', function (e) {
+      var x = e.pageX - viewer.timeline._topDiv.getBoundingClientRect().left;
+      var hoverSeconds = x * viewer.timeline._timeBarSecondsSpan / viewer.timeline._topDiv.clientWidth;
+
+      $('#timeline-tooltip')
+        .fadeIn(200)
+        .text(dateFormatter(Cesium.JulianDate.addSeconds(viewer.timeline._startJulian, hoverSeconds, scratchJulian)))
+        .css({left: e.pageX - 35});
+    })
+    .on('mouseleave', function () {
+      $('#timeline-tooltip').fadeOut(200);
+    });
 
   //Initial drawing of points
   updateVisibleStations(stationLocations, spatialSelector);
