@@ -195,8 +195,7 @@
     * [x] Add color legend
     * [x] Add text specifying it's Celsius
 27. Finalize question segment
-    * [ ] Replace question 10
-    * [ ] Remove Antarctica as an option
+    * [x] Replace question 10
     * [ ] Submit to human subjects committee
         * Send an email to Debbie Hart, dahart@calpoly.edu. In the email, state whether or not there have been any
           adverse events/unanticipated problems and also if there will be any modifications to the project, and
