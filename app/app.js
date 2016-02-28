@@ -431,8 +431,6 @@ function setupEventListeners(stationLocations) {
       var timelineX = e.pageX - viewer.timeline._topDiv.getBoundingClientRect().left;
       var hoverSeconds = timelineX * viewer.timeline._timeBarSecondsSpan / viewer.timeline._topDiv.clientWidth;
 
-      console.log(viewer.scene.canvas.width);
-
       $('#timeline-tooltip')
         .fadeIn(200)
         .text(dateFormatter(Cesium.JulianDate.addSeconds(viewer.timeline._startJulian, hoverSeconds, scratchJulian)))
