@@ -428,13 +428,15 @@ function setupEventListeners(stationLocations) {
   //SECTION - timeline callbacks
   $('.cesium-viewer-timelineContainer')
     .on('mousemove', function (e) {
-      var x = e.pageX - viewer.timeline._topDiv.getBoundingClientRect().left;
-      var hoverSeconds = x * viewer.timeline._timeBarSecondsSpan / viewer.timeline._topDiv.clientWidth;
+      var timelineX = e.pageX - viewer.timeline._topDiv.getBoundingClientRect().left;
+      var hoverSeconds = timelineX * viewer.timeline._timeBarSecondsSpan / viewer.timeline._topDiv.clientWidth;
+
+      console.log(viewer.scene.canvas.width);
 
       $('#timeline-tooltip')
         .fadeIn(200)
         .text(dateFormatter(Cesium.JulianDate.addSeconds(viewer.timeline._startJulian, hoverSeconds, scratchJulian)))
-        .css({left: e.pageX - 35});
+        .css({left: Math.min(e.pageX, viewer.scene.canvas.width - 35) - 35});
     })
     .on('mouseleave', function () {
       $('#timeline-tooltip').fadeOut(200);

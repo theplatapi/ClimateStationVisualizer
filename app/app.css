@@ -48,6 +48,7 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   background-color: black;
   color: white;
   font-family: sans-serif;
+  white-space: nowrap;
   bottom: 40px;
   padding: 5px;
   border-radius: 5%;
