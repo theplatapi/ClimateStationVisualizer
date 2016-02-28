@@ -26,9 +26,9 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   baseLayerPicker: false,
   fullscreenButton: false,
   clock: new Cesium.Clock({
-    startTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
-    currentTime: Cesium.JulianDate.fromIso8601('1880-01-01'),
-    stopTime: Cesium.JulianDate.fromIso8601("2013-12-01"),
+    startTime: Cesium.JulianDate.fromIso8601('1880-01-01T00:00:00Z'),
+    currentTime: Cesium.JulianDate.fromIso8601('1880-01-01T00:00:00Z'),
+    stopTime: Cesium.JulianDate.fromIso8601("2013-12-01T00:00:00Z"),
     clockRange: Cesium.ClockRange.CLAMPED,
     canAnimate: false,
     shouldAnimate: false,
