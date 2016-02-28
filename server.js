@@ -16,6 +16,7 @@ var winston = require('winston');
 var papertrail = require('winston-papertrail').Papertrail;
 var port = process.env.PORT || 8080;
 var _ = require('lodash');
+var moment = require('moment');
 
 var webSocket;
 var clientConnected = false;
@@ -25,7 +26,7 @@ var fileSettings = {
   filename: path.join(logPath, 'test.log'),
   json: false,
   formatter: function (options) {
-    return new Date() + '; ' + options.message;
+    return moment().format('M/D/YYYY, h:mm:ss:SSS') + '; ' + options.message;
   }
 };
 
