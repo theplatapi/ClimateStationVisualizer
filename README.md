@@ -203,9 +203,8 @@
 28. Improve timeline
     * [x] Show date popup over cursor
     * [ ] Research Cesium time being on ###9 cutoff instead of round number
-        * [ ] Dig in Cesium source
-        * [ ] Fix with prototype override if possible
-        * [ ] PR if necessary
+        * Too involved. The JulianDate conversion is not accurate and the time interval added between ticks is not
+          consistent.
 29. Send latency and timestamp to MiraMetrix
     * [ ] Try through API
     * [ ] Try local script to append info when signal is received
