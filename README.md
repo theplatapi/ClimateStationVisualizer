@@ -220,6 +220,7 @@
     * [x] Improve narrow screen culling rules.
     * [x] Add tutorial script to admin panel
 31. Combine camera and gaze data
+    * [ ] Send timestamp to fps logger. Needed to "join" with camera data
     * [ ] Synchronize feeds
         * [ ] Combine fps feed with gaze feed
         * [ ] Combine gaze feed with camera feed
