@@ -18,6 +18,7 @@ var papertrail = require('winston-papertrail').Papertrail;
 var port = process.env.PORT || 8080;
 var _ = require('lodash');
 var moment = require('moment');
+var timeFormat = 'M/D/YYYY, h:mm:ss:SSS';
 
 var tcpSocket = new net.Socket();
 var webSocket;
@@ -28,7 +29,7 @@ var fileSettings = {
   filename: path.join(logPath, 'test.log'),
   json: false,
   formatter: function (options) {
-    return moment().format('M/D/YYYY, h:mm:ss:SSS') + '; ' + options.message;
+    return moment().format(timeFormat) + '; ' + options.message;
   }
 };
 
@@ -62,7 +63,7 @@ app.post('/admin', upload.array(), function (req, res) {
     if (clientConnected) {
       webSocket.send(fps);
       winston.log('info', fps);
-      tcpSocket.write(fps);
+      tcpSocket.write(moment.format(timeFormat) + ';' + fps);
       res.end();
     }
     else {
