@@ -227,9 +227,11 @@
         * Use the search bar to find any location on the map
 31. Combine camera and gaze data
     * [ ] Synchronize feeds
+        * [ ] Combine fps feed with gaze feed
+        * [ ] Combine gaze feed with camera feed
+        * [ ] Separate by latency levels
     * [ ] Plot a 3D scatterplot
-    * [ ] Separate data by latency levels
-    * [ ] Figure out how to get R^2 between 3D scatterplots
+    * [ ] Figure out how to calculate correlation between 3D scatterplots
 32. Gaze data visualization
     * [ ] Map gaze heatmap onto globe
         * Constant size "pixels"
