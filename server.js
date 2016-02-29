@@ -85,6 +85,7 @@ app.post('/admin', upload.array(), function (req, res) {
       })
       .on('error', function () {
         res.send('fail');
+        //Needed to try connecting again.
         tcpSocket = new net.Socket();
       });
   }
