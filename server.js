@@ -6,6 +6,7 @@ var WebSocketServer = require("ws").Server;
 var wss = new WebSocketServer({server: server});
 var path = require('path');
 var serveIndex = require('serve-index');
+var net = require('net');
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -18,6 +19,7 @@ var port = process.env.PORT || 8080;
 var _ = require('lodash');
 var moment = require('moment');
 
+var tcpSocket = new net.Socket();
 var webSocket;
 var clientConnected = false;
 var logPath = path.join(__dirname, '/admin/log/');
@@ -48,14 +50,19 @@ app.all('/admin', auth);
 app.get('/admin', function (req, res) {
   res.sendFile('/public/admin.html', {root: __dirname});
 });
+
+//Process admin panel commands
 app.post('/admin', upload.array(), function (req, res) {
   var fps = req.body.fps;
   var logname = req.body.logname;
+  var port = req.body.port;
+  var end = req.body.end;
 
   if (fps) {
     if (clientConnected) {
       webSocket.send(fps);
       winston.log('info', fps);
+      tcpSocket.write(fps);
     }
     else {
       res.send('fail');
@@ -69,6 +76,13 @@ app.post('/admin', upload.array(), function (req, res) {
         filename: path.join(logPath, logname)
       }));
   }
+  else if (port) {
+    tcpSocket.connect(port, '0.tcp.ngrok.io');
+  }
+  else if (end) {
+    tcpSocket.destroy();
+    winston.log('info', 'END');
+  }
 
   res.end();
 });
@@ -78,7 +92,8 @@ winston
     host: 'logs3.papertrailapp.com',
     port: '10066'
   })
-  .add(winston.transports.File, fileSettings);
+  .add(winston.transports.File, fileSettings)
+  .remove(winston.transports.Console);
 
 wss.on("connection", function (ws) {
   if (!clientConnected) {

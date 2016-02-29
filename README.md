@@ -210,15 +210,11 @@
         * Not working after hours of trying.
     * [x] Try local script to append info when signal is received
         * File is locked while writing. Forcing unlock makes Viewer crash.
-    * [ ] Run local python script to capture the data from server and timestamp it
+    * [x] Run local python script to capture the data from server and timestamp it
         * Have to sync data later
         * Sending delay won't matter since user will be looking at question side. Have a window to log change.
-    * [ ] Have the server act as a gaze client
-        * Most code needed
-        * Server load may be heavy - slow down commands
-        * Have to parse XML for custom format
-    * [ ] Add tcp port field for ngrok connection
-    * [ ] Add experiment start and stop buttons to add to both logs.
+    * [x] Add tcp port field for ngrok connection
+    * [x] Add experiment start and stop buttons to add to both logs.
 30. Small fixes
     * [x] Reverse legend order
     * [ ] Improve narrow screen culling rules. Height is too short.

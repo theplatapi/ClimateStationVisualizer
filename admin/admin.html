@@ -37,6 +37,33 @@
   <div class="row">
     <div class="col-md-6 col-md-push-3">
       <div class="info-box">
+        <form id="set-ngrok-port" class="form-horizontal" action="/admin" method="post">
+          <fieldset>
+
+            <!-- Form Name -->
+            <legend>Set Ngrok Port</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput2">Log Name</label>
+              <div class="col-md-4">
+                <input id="textinput2" name="port" type="text" placeholder="12345" class="form-control input-md"
+                       autocomplete="off">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <input class="btn btn-primary" type="submit" value="Send">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <div class="info-box">
         <form id="send-config" class="form-horizontal" action="/admin" method="post">
           <fieldset>
 
@@ -77,6 +104,29 @@
 
             <div class="col-md-4">
               <input class="btn btn-primary" type="submit" value="Send">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--TODO: Add a text box for scratch work. We'll use it to write down the current latency order-->
+
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <div class="info-box">
+        <form id="set-experiment-end" class="form-horizontal" action="/admin" method="post">
+          <fieldset>
+
+            <!-- Form Name -->
+            <legend>Mark Experiment End</legend>
+
+            <!-- Text input-->
+            <input type="hidden" name="end" value='end'>
+
+            <div class="col-md-4">
+              <input class="btn btn-primary" type="submit" value="End">
             </div>
           </fieldset>
         </form>

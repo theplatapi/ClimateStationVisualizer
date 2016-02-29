@@ -28,6 +28,7 @@ toastr.options = {
   "hideMethod": "fadeOut"
 };
 
+//TODO: For one time fields, make button green to show we already submitted.
 $('#send-config').on('submit', function () {
   $(this).ajaxSubmit({
     success: function (res) {
@@ -56,6 +57,36 @@ $('#send-log-name').on('submit', function () {
       else {
         toastr.success('Set log name.');
       }
+    },
+    error: function (e) {
+      toastr.error('Server Error', e);
+    }
+  });
+
+
+  // return false to prevent normal browser submit and page navigation
+  return false;
+});
+
+$('#set-ngrok-port').on('submit', function () {
+  $(this).ajaxSubmit({
+    success: function () {
+      toastr.success('Set port.');
+    },
+    error: function (e) {
+      toastr.error('Server Error', e);
+    }
+  });
+
+
+  // return false to prevent normal browser submit and page navigation
+  return false;
+});
+
+$('#set-experiment-end').on('submit', function () {
+  $(this).ajaxSubmit({
+    success: function () {
+      toastr.success('Experiment ended.');
     },
     error: function (e) {
       toastr.error('Server Error', e);
