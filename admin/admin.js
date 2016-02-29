@@ -10,6 +10,7 @@ require('./admin.css');
 require("jquery-form");
 require("toastr/build/toastr.min.css");
 var toastr = require('toastr');
+var sentColor = "#2ECC40";
 
 toastr.options = {
   "closeButton": false,
@@ -55,7 +56,7 @@ $('#send-log-name').on('submit', function () {
       }
       else {
         toastr.success('Set log name.');
-        $('#send-log-name').find('legend').css("background-color", "#2ECC40");
+        $('#send-log-name').find('legend').css("background-color", sentColor);
       }
     },
     error: function (e) {
@@ -76,7 +77,7 @@ $('#set-ngrok-port').on('submit', function () {
       }
       else {
         toastr.success('Set port.');
-        $('#set-ngrok-port').find('legend').css("background-color", "#2ECC40");
+        $('#set-ngrok-port').find('legend').css("background-color", sentColor);
       }
     },
     error: function (e) {
@@ -93,7 +94,7 @@ $('#set-experiment-end').on('submit', function () {
   $(this).ajaxSubmit({
     success: function () {
       toastr.success('Experiment ended.');
-      $('#set-experiment-end').find('legend').css("background-color", "#2ECC40");
+      $('#set-experiment-end').find('legend').css("background-color", sentColor);
     },
     error: function (e) {
       toastr.error('Server Error', e);
