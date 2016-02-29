@@ -63,6 +63,7 @@ app.post('/admin', upload.array(), function (req, res) {
       webSocket.send(fps);
       winston.log('info', fps);
       tcpSocket.write(fps);
+      res.end();
     }
     else {
       res.send('fail');
@@ -75,16 +76,23 @@ app.post('/admin', upload.array(), function (req, res) {
       .add(winston.transports.File, _.extend(fileSettings, {
         filename: path.join(logPath, logname)
       }));
+    res.end();
   }
   else if (port) {
-    tcpSocket.connect(port, '0.tcp.ngrok.io');
+    tcpSocket.connect(port, '0.tcp.ngrok.io')
+      .on('connect', function () {
+        res.end();
+      })
+      .on('error', function () {
+        res.send('fail');
+        tcpSocket = new net.Socket();
+      });
   }
   else if (end) {
     tcpSocket.destroy();
     winston.log('info', 'END');
+    res.end();
   }
-
-  res.end();
 });
 
 winston
