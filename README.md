@@ -218,13 +218,7 @@
 30. Small fixes
     * [x] Reverse legend order
     * [x] Improve narrow screen culling rules.
-    * [ ] Add tutorial script to admin panel
-        * Click and drag to turn the earth.
-        * Scroll to zoom in or out
-        * Holding shift, click and drag to select stations for the histogram
-        * Press play to move the time forward
-        * Dragging the timeline scrubber moves time forward as well
-        * Use the search bar to find any location on the map
+    * [x] Add tutorial script to admin panel
 31. Combine camera and gaze data
     * [ ] Synchronize feeds
         * [ ] Combine fps feed with gaze feed
