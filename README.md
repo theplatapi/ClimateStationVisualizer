@@ -217,7 +217,7 @@
     * [x] Add experiment start and stop buttons to add to both logs.
 30. Small fixes
     * [x] Reverse legend order
-    * [ ] Improve narrow screen culling rules. Height is too short.
+    * [x] Improve narrow screen culling rules.
     * [ ] Add tutorial script to admin panel
         * Click and drag to turn the earth.
         * Scroll to zoom in or out

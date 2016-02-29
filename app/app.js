@@ -448,7 +448,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
   inFrustumStations.suspendEvents();
   //Get the frustum height in degrees
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
-  var frustumWidth = frustumHeight * Math.max(viewer.camera.frustum.aspectRatio, 2);
+  var frustumWidth = frustumHeight * Math.max(viewer.camera.frustum.aspectRatio, 1.5);
 
   spatialSelector.x = convertLongitude(viewer.camera.positionCartographic.longitude);
   spatialSelector.y = convertLatitude(viewer.camera.positionCartographic.latitude);
