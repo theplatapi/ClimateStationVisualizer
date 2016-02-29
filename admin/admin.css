@@ -3,9 +3,17 @@ body {
   padding: 10px;
 }
 
+legend {
+  transition: all .2s ease-in;
+}
+
+textarea {
+  resize: vertical;
+}
+
 .info-box {
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
   padding: 5px;
   margin: 10px;
