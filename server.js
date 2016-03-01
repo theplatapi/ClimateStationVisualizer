@@ -63,7 +63,7 @@ app.post('/admin', upload.array(), function (req, res) {
     if (clientConnected) {
       webSocket.send(fps);
       winston.log('info', fps);
-      tcpSocket.write(moment.format(timeFormat) + ';' + fps);
+      tcpSocket.write(moment().format(timeFormat) + ';' + fps);
       res.end();
     }
     else {
