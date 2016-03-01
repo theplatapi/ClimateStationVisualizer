@@ -32,6 +32,7 @@ var fileSettings = {
     return moment().format(timeFormat) + '; ' + options.message;
   }
 };
+var ngrokSet = false;
 
 var auth = basicAuth(function (user, pass) {
   return (user == "allen" && pass == "thesis");
@@ -63,7 +64,9 @@ app.post('/admin', upload.array(), function (req, res) {
     if (clientConnected) {
       webSocket.send(fps);
       winston.log('info', fps);
-      tcpSocket.write(moment().format(timeFormat) + ';' + fps);
+      if (ngrokSet) {
+        tcpSocket.write(moment().format(timeFormat) + ';' + fps);
+      }
       res.end();
     }
     else {
@@ -82,6 +85,7 @@ app.post('/admin', upload.array(), function (req, res) {
   else if (port) {
     tcpSocket.connect(port, '0.tcp.ngrok.io')
       .on('connect', function () {
+        ngrokSet = true;
         res.end();
       })
       .on('error', function () {
