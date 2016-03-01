@@ -425,6 +425,11 @@ function setupEventListeners(stationLocations) {
     }
   });
 
+  //SECTION - Log fov to use in possible future calculations
+  if (config.server) {
+    log.info('fov: ' + viewer.camera.frustum.fov);
+  }
+
   //SECTION - timeline callbacks
   $('.cesium-viewer-timelineContainer')
     .on('mousemove', function (e) {
