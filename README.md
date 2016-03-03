@@ -219,6 +219,10 @@
     * [x] Reverse legend order
     * [x] Improve narrow screen culling rules.
     * [x] Add tutorial script to admin panel
+31. Experiment fixes
+    * [x] On End signal, have fps_logger output the windows performance time
+        * For 1st one we can correlate END in virtual camera with ms passed
+    * [ ] Design short tutorial. Should be 2 minutes max but will cut down on learner's effect
 31. Combine camera and gaze data
     * [x] Send timestamp to fps logger. Needed to "join" with camera data
     * [ ] Synchronize feeds
@@ -227,11 +231,6 @@
         * [ ] Separate by latency levels
     * [ ] Plot a 3D scatterplot
     * [ ] Figure out how to calculate correlation between 3D scatterplots
-32. Question & latency order randomization script
-    * [ ] Randomize question order
-        * Create question buckets
-        * Pick one randomly from each bucket
-    * [ ] Randomize latency order
 32. Gaze data visualization
     * [ ] Map gaze heatmap onto globe
         * Constant size "pixels"
