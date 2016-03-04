@@ -7,7 +7,7 @@
 <body style="display: none;">
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <legend>Procedure</legend>
         <h4>Before</h4>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <form id="send-log-name" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -64,15 +64,15 @@
 
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">Log Name</label>
-              <div class="col-md-4">
+              <label class="col-sm-4 control-label" for="textinput">Log Name</label>
+              <div class="col-sm-4">
                 <input id="textinput" name="logname" type="text" placeholder="test.log"
-                       class="form-control input-md" autocomplete="off">
+                       class="form-control input-sm" autocomplete="off">
 
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input class="btn btn-primary" type="submit" value="Send">
             </div>
           </fieldset>
@@ -80,7 +80,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <form id="set-ngrok-port" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -90,14 +90,14 @@
 
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput2">Log Name</label>
-              <div class="col-md-4">
-                <input id="textinput2" name="port" type="text" placeholder="12345" class="form-control input-md"
+              <label class="col-sm-4 control-label" for="textinput2">Log Name</label>
+              <div class="col-sm-4">
+                <input id="textinput2" name="port" type="text" placeholder="12345" class="form-control input-sm"
                        autocomplete="off">
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input class="btn btn-primary" type="submit" value="Send">
             </div>
           </fieldset>
@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <form id="send-config" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -122,8 +122,8 @@
 
             <!-- Multiple Radios -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="fps">Frames Per Second</label>
-              <div class="col-md-4">
+              <label class="col-sm-4 control-label" for="fps">Frames Per Second</label>
+              <div class="col-sm-4">
                 <div class="radio">
                   <label for="radios--0">
                     <input type="radio" name="fps" id="radios--0" value="60" checked="checked">
@@ -157,7 +157,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input class="btn btn-primary" type="submit" value="Send">
             </div>
           </fieldset>
@@ -167,7 +167,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <form id="set-experiment-end" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -178,7 +178,7 @@
             <!-- Text input-->
             <input type="hidden" name="end" value='end'>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input class="btn btn-primary" type="submit" value="End">
             </div>
           </fieldset>
@@ -186,7 +186,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <div class="form-group">
           <label for="notes">Notes</label>
@@ -197,7 +197,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="info-box">
         <legend>Logs</legend>
         <a class="btn btn-primary view-logs" href="/admin/log" target="_blank">View Logs</a>
