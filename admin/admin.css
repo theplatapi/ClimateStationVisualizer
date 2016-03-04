@@ -24,3 +24,7 @@ textarea {
 .view-logs {
   margin-left: 15px;
 }
+
+.checklist {
+  margin-right: 5px !important;
+}
