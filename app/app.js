@@ -242,7 +242,7 @@ function populateGlobe(stationTemperatures, stationLocations) {
       var selectedId = _.get(viewer, 'selectedEntity.properties.stationId');
 
       if (selectedId) {
-        var selectedTemperature = stationTemperatures[selectedId][timelineTime.year][timelineTime.month];
+        var selectedTemperature = _.get(stationTemperatures, [selectedId, timelineTime.year, timelineTime.month]);
         $infoBox.find('.cesium-infoBox-iframe').contents().find('tr:last td').text(selectedTemperature);
       }
     }
