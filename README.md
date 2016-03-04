@@ -222,17 +222,10 @@
 31. Experiment fixes
     * [x] On End signal, have fps_logger output the windows performance time
         * For 1st one we can correlate END in virtual camera with ms passed
-    * [ ] Design short tutorial.
-        * [ ] Add 60 fps option for tutorial
-        * [ ] Add script
-    * [ ] Clarify procedure steps on admin so we don't mess up again
-        * Remove unnecessary steps
-        * Remind users not to reveal purpose of experiment
-        * Remind users they don't heve to find the *exact* date
-        * Change at:
-          Question 4
-          Question 7
-          Question 10
+    * [x] Design short tutorial.
+        * [x] Add 60 fps option for tutorial
+        * [x] Add script
+    * [x] Clarify procedure steps on admin so we don't mess up again
 31. Combine camera and gaze data
     * [x] Send timestamp to fps logger. Needed to "join" with camera data
     * [ ] Synchronize feeds
