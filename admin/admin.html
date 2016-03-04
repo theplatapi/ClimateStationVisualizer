@@ -7,7 +7,53 @@
 <body style="display: none;">
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
+      <div class="info-box">
+        <legend>Procedure</legend>
+        <h4>Before</h4>
+        <ol>
+          <li>Change question order</li>
+          <li>Copy latency order</li>
+          <li>Start ngrok</li>
+          <li>Start fps_logger</li>
+          <li>Set log name</li>
+          <li>Set ngrok port number</li>
+        </ol>
+
+        <h4>Begin experiment</h4>
+        <ol>
+          <li>Show consent form</li>
+          <li>Calibrate gaze tracker</li>
+          <li><b>Start gaze recording</b></li>
+          <li>Start tutorial
+            <ol>
+              <li>Send 60fps</li>
+              <li>Find Australia</li>
+              <li>Go to the 1930s</li>
+              <li>Display temperatures in the histogram</li>
+              <li>Play time to 1940s</li>
+            </ol>
+          </li>
+          <li>Advice
+            <ul>
+              <li>Don't worry about finding exact dates. Within a month or two has same answer</li>
+              <li>Do your best on questions</li>
+            </ul>
+          </li>
+          <li>Start first question with real latency</li>
+        </ol>
+
+        <h4>After</h4>
+        <ol>
+          <li>Mark end of experiment</li>
+          <li>Show debriefing form</li>
+          <li>Download camera log</li>
+          <li>Copy Windows logs to usb drive</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="col-md-6">
       <div class="info-box">
         <form id="send-log-name" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -32,10 +78,8 @@
         </form>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
       <div class="info-box">
         <form id="set-ngrok-port" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -59,25 +103,35 @@
         </form>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
       <div class="info-box">
         <form id="send-config" class="form-horizontal" action="/admin" method="post">
           <fieldset>
 
             <!-- Form Name -->
             <legend>Toggle Latency</legend>
-            <small>Mark the start of each new question with the latency.</small>
+            <p>Change at
+            <ul>
+              <li>Question 4</li>
+              <li>Question 7</li>
+              <li>Question 10</li>
+            </ul>
+            </p>
 
             <!-- Multiple Radios -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="fps">Frames Per Second</label>
               <div class="col-md-4">
                 <div class="radio">
+                  <label for="radios--0">
+                    <input type="radio" name="fps" id="radios--0" value="60" checked="checked">
+                    60
+                  </label>
+                </div>
+                <div class="radio">
                   <label for="radios-0">
-                    <input type="radio" name="fps" id="radios-0" value="30" checked="checked">
+                    <input type="radio" name="fps" id="radios-0" value="30">
                     30
                   </label>
                 </div>
@@ -112,18 +166,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6 col-md-push-3">
-      <div class="info-box">
-        <div class="form-group">
-          <label for="notes">Notes</label>
-          <textarea class="form-control" rows="5" id="notes"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
       <div class="info-box">
         <form id="set-experiment-end" class="form-horizontal" action="/admin" method="post">
           <fieldset>
@@ -141,57 +184,22 @@
         </form>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
       <div class="info-box">
-        <legend>Logs</legend>
-        <a class="btn btn-primary view-logs" href="/admin/log" target="_blank">View Logs</a>
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea class="form-control" rows="1" id="notes"></textarea>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-6 col-md-push-3">
+    <div class="col-md-6">
       <div class="info-box">
-        <legend>Procedure</legend>
-        <h4>Before</h4>
-        <ol>
-          <li>Run script to generate question and latency order</li>
-          <li>Edit question order on Google Forms</li>
-          <li>Write down latency order in notes section here</li>
-          <li>Start up ngrok on Windows PC</li>
-          <li>Start script to record fps changes</li>
-          <li>Set log name</li>
-          <li>Set ngrok port number</li>
-        </ol>
-
-        <h4>Begin experiment</h4>
-        <ol>
-          <li>Show consent form</li>
-          <li>Calibrate gaze tracker</li>
-          <li>Start gaze recording</li>
-          <li>Give tutorial
-            <ul>
-              <li>Move globe</li>
-              <li>Zoom</li>
-              <li>Search for location</li>
-              <li>Histogram</li>
-              <li>Time Navigation</li>
-              <li>Do your best on questions</li>
-            </ul>
-          </li>
-          <li>Send first latency</li>
-        </ol>
-
-        <h4>After</h4>
-        <ol>
-          <li>Mark end of experiment</li>
-          <li>Show debriefing form</li>
-          <li>Download camera log</li>
-          <li>Copy Windows logs to usb drive</li>
-        </ol>
+        <legend>Logs</legend>
+        <a class="btn btn-primary view-logs" href="/admin/log" target="_blank">View Logs</a>
       </div>
     </div>
   </div>
