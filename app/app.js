@@ -348,10 +348,13 @@ function setupEventListeners(stationLocations) {
     mouseDown = true;
   }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.SHIFT);
 
-  screenSpaceEventHandler.setInputAction(function endClickShift() {
+  var endClickShift = function endClickShift() {
     mouseDown = false;
     firstPointSet = false;
-  }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
+  };
+
+  screenSpaceEventHandler.setInputAction(endClickShift, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.SHIFT);
+  screenSpaceEventHandler.setInputAction(endClickShift, Cesium.ScreenSpaceEventType.LEFT_UP);
 
   //Hide the selector by clicking anywhere
   screenSpaceEventHandler.setInputAction(function hideSelector() {
