@@ -255,3 +255,8 @@
   * Started the gaze recording late
   * Crashed part way through last question
   * Didn't use histogram
+####Experiment 4
+  * Fix issue where holding shift has old click for histogram selector
+  * Gaze tracker had accuracy issues
+  * Over-reliant on histogram
+
