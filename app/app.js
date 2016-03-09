@@ -243,6 +243,11 @@ function populateGlobe(stationTemperatures, stationLocations) {
 
       if (selectedId) {
         var selectedTemperature = _.get(stationTemperatures, [selectedId, timelineTime.year, timelineTime.month]);
+
+        if (selectedTemperature > 999) {
+          selectedTemperature = 'N/A';
+        }
+
         $infoBox.find('.cesium-infoBox-iframe').contents().find('tr:last td').text(selectedTemperature);
       }
     }
