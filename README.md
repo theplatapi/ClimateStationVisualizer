@@ -226,7 +226,7 @@
         * [x] Add 60 fps option for tutorial
         * [x] Add script
     * [x] Clarify procedure steps on admin so we don't mess up again
-31. Combine camera and gaze data
+32. Combine camera and gaze data
     * [x] Send timestamp to fps logger. Needed to "join" with camera data
     * [ ] Synchronize feeds
         * [ ] Combine fps feed with gaze feed
@@ -234,18 +234,10 @@
         * [ ] Separate by latency levels
     * [ ] Plot a 3D scatterplot
     * [ ] Figure out how to calculate correlation between 3D scatterplots
-32. Gaze data visualization
+33. Gaze data visualization
     * [ ] Map gaze heatmap onto globe
         * Constant size "pixels"
         * Use imagery layer?
-33. Rewrite in ES6
-    * This will make finding memory leaks much easier and "future proof" the project
-    * [ ] Convert into modules.
-        * [ ] Make event listeners modules
-        * [ ] Have one file with needed variables between all of them. Also create a setter so it can be modified.
-    * [ ] Replace var with let
-    * [ ] Add onClockTick into setupEventListeners
-    * [ ] Use new function declaration syntax
 
 
 ###Experiment notes
