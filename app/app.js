@@ -1,4 +1,5 @@
 require('cesium/Source/Widgets/widgets.css');
+require('../shared/loading.css');
 require('./app.css');
 require('./serverSend.js');
 
