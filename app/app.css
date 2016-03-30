@@ -55,23 +55,6 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   display: none;
 }
 
-#loadingOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.9;
-  width: 100%;
-  height: 100%;
-  display: none;
-}
-
-#loadingOverlay h1 {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  margin-top: -0.5em;
-}
-
 #legend {
   position: absolute;
   bottom: 75px;
