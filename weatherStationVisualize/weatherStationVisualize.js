@@ -1,6 +1,6 @@
 require('cesium/Source/Widgets/widgets.css');
 require('../shared/loading.css');
-require('./app.css');
+require('./weatherStationVisualize.css');
 require('./serverSend.js');
 
 var _ = require("lodash");

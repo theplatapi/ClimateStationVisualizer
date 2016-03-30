@@ -4,9 +4,9 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    stations: "./app/app.js",
-    admin: "./admin/admin.js",
-    gazeVisualize: './gazeVisualize/gazeVisualize.js'
+    weatherStationVisualize: "./weatherStationVisualize/weatherStationVisualize.js",
+    gazeVisualize: './gazeVisualize/gazeVisualize.js',
+    admin: "./admin/admin.js"
   },
   output: {
     path: path.join(__dirname, 'public'),
@@ -16,22 +16,22 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
-      filename: 'app.html',
-      template: 'app/app.html',
+      filename: 'weatherStationVisualize.html',
+      template: 'weatherStationVisualize/weatherStationVisualize.html',
       inject: true,
-      chunks: ['stations']
-    }),
-    new HtmlPlugin({
-      filename: 'admin.html',
-      template: 'admin/admin.html',
-      inject: true,
-      chunks: ['admin']
+      chunks: ['weatherStationVisualize']
     }),
     new HtmlPlugin({
       filename: 'index.html',
       template: 'gazeVisualize/gazeVisualize.html',
       inject: true,
       chunks: ['gazeVisualize']
+    }),
+    new HtmlPlugin({
+      filename: 'admin.html',
+      template: 'admin/admin.html',
+      inject: true,
+      chunks: ['admin']
     }),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
