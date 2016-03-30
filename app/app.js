@@ -17,7 +17,7 @@ var dataLoaded = false;
 var firstMessageLoaded = false;
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
-Cesium.BingMapsApi.defaultKey = 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv';
+Cesium.BingMapsApi.defaultKey = config.bingMapsKey;
 
 var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
