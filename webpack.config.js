@@ -16,13 +16,13 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
-      filename: 'weatherStationVisualize.html',
+      filename: 'index.html',
       template: 'weatherStationVisualize/weatherStationVisualize.html',
       inject: true,
       chunks: ['weatherStationVisualize']
     }),
     new HtmlPlugin({
-      filename: 'index.html',
+      filename: 'gazeVisualize.html',
       template: 'gazeVisualize/gazeVisualize.html',
       inject: true,
       chunks: ['gazeVisualize']
