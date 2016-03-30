@@ -1,7 +1,7 @@
 {
   "name": "weather-stations",
   "version": "1.0.0",
-  "description": "Shows 6000+ weather stations from 1800s to 2009",
+  "description": "Shows 6000+ weather stations from 1800s to 2009. Also has an admin panel for controlling latency experiments as well as a visualization of captured gaze data.",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -22,6 +22,7 @@
     "bootstrap-webpack": "0.0.5",
     "cesium": "^1.19.0",
     "css-loader": "^0.23.1",
+    "csv-parse": "^1.0.2",
     "d3": "^3.5.12",
     "d3-svg-legend": "^1.8.0",
     "exports-loader": "^0.6.2",

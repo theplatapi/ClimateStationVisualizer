@@ -4,8 +4,9 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    main: "./app/app.js",
-    admin: "./admin/admin.js"
+    stations: "./app/app.js",
+    admin: "./admin/admin.js",
+    gazeVisualize: './gazeVisualize/gazeVisualize.js'
   },
   output: {
     path: path.join(__dirname, 'public'),
@@ -15,16 +16,22 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
-      filename: 'index.html',
+      filename: 'app.html',
       template: 'app/app.html',
       inject: true,
-      chunks: ['main']
+      chunks: ['stations']
     }),
     new HtmlPlugin({
       filename: 'admin.html',
       template: 'admin/admin.html',
       inject: true,
       chunks: ['admin']
+    }),
+    new HtmlPlugin({
+      filename: 'index.html',
+      template: 'gazeVisualize/gazeVisualize.html',
+      inject: true,
+      chunks: ['gazeVisualize']
     }),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
@@ -33,7 +40,7 @@ module.exports = {
   devServer: {
     contentBase: './public'
   },
-  devtool: 'hidden-source-map',
+  devtool: 'source-map', //'hidden-source-map'
   module: {
     unknownContextCritical: false,
     loaders: [
