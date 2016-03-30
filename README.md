@@ -229,12 +229,13 @@
 32. Combine camera and gaze data
     * [x] Send timestamp to fps logger. Needed to "join" with camera data
     * [ ] Synchronize feeds
-        * [ ] Combine fps feed with gaze feed
-        * [ ] Combine gaze feed with camera feed
+        * [x] Combine fps feed with gaze feed
+        * [x] Combine gaze feed with camera feed
         * [ ] Separate by latency levels
-    * [ ] Plot a 3D scatterplot
-    * [ ] Figure out how to calculate correlation between 3D scatterplots
 33. Gaze data visualization
     * [ ] Map gaze heatmap onto globe
         * Constant size "pixels"
         * Use imagery layer?
+34. Statistical difference between plots
+    * [ ] Plot a 3D scatterplot
+    * [ ] Figure out how to calculate correlation between 3D scatterplots
