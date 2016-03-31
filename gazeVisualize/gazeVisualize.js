@@ -123,25 +123,5 @@ function getModules() {
     Cartesian3: require('cesium/Source/Core/Cartesian3'),
     ScreenSpaceEventType: require('cesium/Source/Core/ScreenSpaceEventType'),
     PointGraphics: require('cesium/Source/DataSources/PointGraphics')
-
-
-    // GeoJsonDataSource: require('cesium/Source/DataSources/GeoJsonDataSource'),
-    // Clock: require('cesium/Source/Core/Clock'),
-    // JulianDate: require('cesium/Source/Core/JulianDate'),
-    // GregorianDate: require('cesium/Source/Core/GregorianDate'),
-    // ClockRange: require('cesium/Source/Core/ClockRange'),
-    // Color: require('cesium/Source/Core/Color'),
-    // CallbackProperty: require('cesium/Source/DataSources/CallbackProperty'),
-    // VerticalOrigin: require('cesium/Source/Scene/VerticalOrigin'),
-    // NearFarScalar: require('cesium/Source/Core/NearFarScalar'),
-    // Rectangle: require('cesium/Source/Core/Rectangle'),
-    // ScreenSpaceEventHandler: require('cesium/Source/Core/ScreenSpaceEventHandler'),
-    // KeyboardEventModifier: require('cesium/Source/Core/KeyboardEventModifier'),
-    // Cartographic: require('cesium/Source/Core/Cartographic'),
-    // Ellipsoid: require('cesium/Source/Core/Ellipsoid'),
-    // CesiumMath: require('cesium/Source/Core/Math'),
-    // EntityCollection: require('cesium/Source/DataSources/EntityCollection'),
-    // Timeline: require('cesium/Source/Widgets/Timeline/Timeline'),
-    // GridMaterialProperty: require('cesium/Source/DataSources/GridMaterialProperty')
   };
 }
