@@ -52,12 +52,7 @@ function mapGazes(gazes) {
     .filter(function (gaze) {
       return gaze.gazeX <= 0.5;
     })
-    // .slice(0, 1000)
-    .forEach(function (gaze) {
-      //Create a camera with the x, y, and z provided. LookAt should be the same. (Camera rotation?)
-
-      //The camera is defined by a position, orientation, and view frustum.
-
+    .map(function (gaze) {
       var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
 
       //TODO: More accurate meters->degrees calculation
@@ -68,7 +63,6 @@ function mapGazes(gazes) {
         width: frustumHeight * aspectRatio
       };
 
-      // Convert gaze coordinates into longitude and latitude
       var gazeXMap = d3.scale.linear()
         .domain([0, 0.5])
         .range([frustum.x - frustum.width / 2, frustum.x + frustum.width / 2]);
@@ -80,22 +74,25 @@ function mapGazes(gazes) {
       var gazeX = Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
       var gazeY = Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
 
-      //Only plot if on globe
-      if (gazeX >= -180 && gazeX <= 180 && gazeY >= -90 && gazeY <= 90) {
-        viewer.entities.add({
-          position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gazeX, gazeY)),
-          point: new Cesium.PointGraphics({pixelSize: 4})
-        });
-        inRange++;
-      }
-      else {
-        outRange++;
-      }
+      return {x: gazeX, y: gazeY, camera: {x: gaze.cameraX, y: gaze.cameraY, z: gaze.cameraZ}};
     })
-    .tap(function () {
-      console.log("inRange", inRange);
-      console.log("outRange", outRange);
+    .filter(function (gaze) {
+      //TODO: Limit more. Gaze can only be on one side of the globe.
+      return gaze.x >= -180 && gaze.x <= 180 && gaze.y >= -90 && gaze.y <= 90;
     })
+    .slice(0, 20)
+    .forEach(function (gaze) {
+      viewer.entities.add({
+        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
+        point: new Cesium.PointGraphics({pixelSize: 5})
+      });
+
+      viewer.entities.add({
+        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.camera.x, gaze.camera.y, gaze.camera.z)),
+        point: new Cesium.PointGraphics({pixelSize: 10})
+      });
+    })
+    // .throttle(10)
     .value();
 }
 
