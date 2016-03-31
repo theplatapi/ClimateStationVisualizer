@@ -45,13 +45,19 @@ function mapGazes(gazes) {
   //TODO: Get aspect ratio
   //aspectRatio = canvas.clientWidth / canvas.clientHeight
   var aspectRatio = 1.5;
+  var inRange = 0;
+  var outRange = 0;
 
   _.chain(gazes)
     .filter(function (gaze) {
       return gaze.gazeX <= 0.5;
     })
-    // .slice(0, 4)
+    // .slice(0, 1000)
     .forEach(function (gaze) {
+      //Create a camera with the x, y, and z provided. LookAt should be the same. (Camera rotation?)
+
+      //The camera is defined by a position, orientation, and view frustum.
+
       var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
 
       //TODO: More accurate meters->degrees calculation
@@ -71,15 +77,26 @@ function mapGazes(gazes) {
         .domain([0, 1])
         .range([frustum.y - frustum.height / 2, frustum.y + frustum.height / 2]);
 
-      //TODO: Fix the gaze mapping so it works properly.
-      // console.log("frustum", frustum);
-      // console.log("gazeXMap(gaze.gazeX), gazeYMap(gaze.gazeY)", gazeXMap(gaze.gazeX), gazeYMap(gaze.gazeY));
-      // console.log("Degrees", Cesium.Cartesian3.fromDegrees(gazeXMap(gaze.gazeX), gazeYMap(gaze.gazeY)));
-      viewer.entities.add({
-        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gazeXMap(gaze.gazeX), gazeYMap(gaze.gazeY))),
-        point: new Cesium.PointGraphics({pixelSize: 2})
-      });
-    }).value();
+      var gazeX = Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
+      var gazeY = Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
+
+      //Only plot if on globe
+      if (gazeX >= -180 && gazeX <= 180 && gazeY >= -90 && gazeY <= 90) {
+        viewer.entities.add({
+          position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gazeX, gazeY)),
+          point: new Cesium.PointGraphics({pixelSize: 4})
+        });
+        inRange++;
+      }
+      else {
+        outRange++;
+      }
+    })
+    .tap(function () {
+      console.log("inRange", inRange);
+      console.log("outRange", outRange);
+    })
+    .value();
 }
 
 //Load in CSV
@@ -121,6 +138,7 @@ function getModules() {
     ConstantPositionProperty: require('cesium/Source/DataSources/ConstantPositionProperty'),
     Cartesian3: require('cesium/Source/Core/Cartesian3'),
     ScreenSpaceEventType: require('cesium/Source/Core/ScreenSpaceEventType'),
-    PointGraphics: require('cesium/Source/DataSources/PointGraphics')
+    PointGraphics: require('cesium/Source/DataSources/PointGraphics'),
+    CesiumMath: require('cesium/Source/Core/Math'),
   };
 }
