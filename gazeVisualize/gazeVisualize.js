@@ -40,6 +40,25 @@ viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpace
 
 viewer.imageryLayers.get(0).brightness = 0.7;
 
+//Gives bounds for a point being on the facing side of the globe. Points go outside when user is looking at 
+//space around the globe.
+function getGlobeLimits(gaze) {
+  //Linear translate into positive space, with smallest coordinate being (0, 0) rather than (-180, -90)
+  var cameraTranslated = {x: gaze.camera.x + 180, y: gaze.camera.y + 90};
+  var leftLimit = (cameraTranslated.x - 90) % 360;
+  var rightLimit = (cameraTranslated.x + 90) % 360;
+  var topLimit = (cameraTranslated.y + 45) % 180;
+  var bottomLimit = (cameraTranslated.y - 45) % 180;
+
+  //Translate back into cartographic space
+  return {
+    xMin: Math.min(leftLimit, rightLimit) - 180,
+    xMax: Math.max(leftLimit, rightLimit) - 180,
+    yMin: Math.min(topLimit, bottomLimit) - 90,
+    yMax: Math.max(topLimit, bottomLimit) - 90
+  }
+}
+
 function mapGazes(gazes) {
   var fov = 1.0471975511965976;
   //TODO: Get aspect ratio
@@ -74,13 +93,21 @@ function mapGazes(gazes) {
       var gazeX = Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
       var gazeY = Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
 
-      return {x: gazeX, y: gazeY, camera: {x: gaze.cameraX, y: gaze.cameraY, z: gaze.cameraZ}};
+      return {
+        x: gazeX,
+        y: gazeY,
+        camera: {
+          x: Cesium.CesiumMath.toDegrees(gaze.cameraX),
+          y: Cesium.CesiumMath.toDegrees(gaze.cameraY),
+          z: gaze.cameraZ
+        }
+      };
     })
     .filter(function (gaze) {
-      //TODO: Limit more. Gaze can only be on one side of the globe.
-      return gaze.x >= -180 && gaze.x <= 180 && gaze.y >= -90 && gaze.y <= 90;
+      var limits = getGlobeLimits(gaze);
+      return gaze.x >= limits.xMin && gaze.x <= limits.xMax && gaze.y >= limits.yMin && gaze.y <= limits.yMax;
     })
-    .slice(0, 20)
+    // .slice(100, 200)
     .forEach(function (gaze) {
       viewer.entities.add({
         position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
@@ -91,6 +118,8 @@ function mapGazes(gazes) {
         position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.camera.x, gaze.camera.y, gaze.camera.z)),
         point: new Cesium.PointGraphics({pixelSize: 10})
       });
+
+      // console.log('gaze', gaze);
     })
     // .throttle(10)
     .value();
