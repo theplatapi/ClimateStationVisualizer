@@ -72,9 +72,12 @@ function mapGazes(gazes) {
       return gaze.gazeX <= 0.5;
     })
     .map(function (gaze) {
-      var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
-
       //TODO: More accurate meters->degrees calculation
+      var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
+      
+      gaze.cameraX = Cesium.CesiumMath.toDegrees(gaze.cameraX);
+      gaze.cameraY = Cesium.CesiumMath.toDegrees(gaze.cameraY);
+
       var frustum = {
         x: gaze.cameraX,
         y: gaze.cameraY,
@@ -90,15 +93,15 @@ function mapGazes(gazes) {
         .domain([0, 1])
         .range([frustum.y - frustum.height / 2, frustum.y + frustum.height / 2]);
 
-      var gazeX = Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
-      var gazeY = Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
+      var gazeX = gazeXMap(gaze.gazeX);//Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
+      var gazeY = gazeYMap(gaze.gazeY);//Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
 
       return {
         x: gazeX,
         y: gazeY,
         camera: {
-          x: Cesium.CesiumMath.toDegrees(gaze.cameraX),
-          y: Cesium.CesiumMath.toDegrees(gaze.cameraY),
+          x: gaze.cameraX,
+          y: gaze.cameraY,
           z: gaze.cameraZ
         }
       };
@@ -107,7 +110,7 @@ function mapGazes(gazes) {
       var limits = getGlobeLimits(gaze);
       return gaze.x >= limits.xMin && gaze.x <= limits.xMax && gaze.y >= limits.yMin && gaze.y <= limits.yMax;
     })
-    // .slice(100, 200)
+    // .slice(100, 101)
     .forEach(function (gaze) {
       viewer.entities.add({
         position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
@@ -121,7 +124,6 @@ function mapGazes(gazes) {
 
       // console.log('gaze', gaze);
     })
-    // .throttle(10)
     .value();
 }
 
