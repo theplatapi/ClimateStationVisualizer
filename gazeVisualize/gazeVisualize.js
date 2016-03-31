@@ -112,7 +112,6 @@ function asyncLoadCsv(filename, cb) {
     });
 }
 
-
 function getModules() {
   return {
     BuildModuleUrl: require('cesium/Source/Core/buildModuleUrl'),
