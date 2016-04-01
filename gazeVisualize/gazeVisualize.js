@@ -33,15 +33,13 @@ viewer.scene.screenSpaceCameraController.enableTranslate = false;
 viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
-// viewer.scene.screenSpaceCameraController.minimumZoomDistance = 100100;
-// viewer.scene.screenSpaceCameraController.maximumZoomDistance = 160000000;
-// viewer.scene.screenSpaceCameraController._minimumZoomRate = 50000;
 viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
 viewer.imageryLayers.get(0).brightness = 0.7;
 
 //Gives bounds for a point being on the facing side of the globe. Points go outside when user is looking at 
 //space around the globe.
+//TODO: Fix points over China not appearing
 function getGlobeLimits(gaze) {
   //Linear translate into positive space, with smallest coordinate being (0, 0) rather than (-180, -90)
   var cameraTranslated = {x: gaze.camera.x + 180, y: gaze.camera.y + 90};
@@ -67,14 +65,14 @@ function mapGazes(gazes) {
   var inRange = 0;
   var outRange = 0;
 
-  _.chain(gazes)
+  var validGazes = _.chain(gazes)
     .filter(function (gaze) {
       return gaze.gazeX <= 0.5;
     })
     .map(function (gaze) {
       //TODO: More accurate meters->degrees calculation
       var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
-      
+
       gaze.cameraX = Cesium.CesiumMath.toDegrees(gaze.cameraX);
       gaze.cameraY = Cesium.CesiumMath.toDegrees(gaze.cameraY);
 
@@ -111,28 +109,38 @@ function mapGazes(gazes) {
       return gaze.x >= limits.xMin && gaze.x <= limits.xMax && gaze.y >= limits.yMin && gaze.y <= limits.yMax;
     })
     // .slice(100, 101)
-    .forEach(function (gaze) {
-      viewer.entities.add({
-        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
-        point: new Cesium.PointGraphics({pixelSize: 5})
-      });
-
-      viewer.entities.add({
-        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.camera.x, gaze.camera.y, gaze.camera.z)),
-        point: new Cesium.PointGraphics({pixelSize: 10})
-      });
-
-      // console.log('gaze', gaze);
-    })
     .value();
+
+  _.delay(addPoint, 0, validGazes);
+}
+
+function addPoint(validGazes) {
+  var gaze = validGazes.pop();
+
+  viewer.entities.add({
+    position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
+    point: new Cesium.PointGraphics({pixelSize: 5})
+  });
+
+  if (validGazes.length > 0) {
+    _.delay(addPoint, 0, validGazes);
+  }
+  else {
+    alert('Done!');
+  }
 }
 
 //Load in CSV
 //main
 (function main() {
-  asyncLoadCsv(config.gaze, function (gaze) {
-    //Create Cesium elements?
-    mapGazes(gaze);
+  asyncLoadCsv(config.gaze.five, function (five) {
+    // asyncLoadCsv(config.gaze.ten, function (ten) {
+    //   asyncLoadCsv(config.gaze.twenty, function (twenty) {
+    //     asyncLoadCsv(config.gaze.thirty, function (thirty) {
+          mapGazes(five);
+        // })
+      // })
+    // })
   });
 })();
 
@@ -167,6 +175,6 @@ function getModules() {
     Cartesian3: require('cesium/Source/Core/Cartesian3'),
     ScreenSpaceEventType: require('cesium/Source/Core/ScreenSpaceEventType'),
     PointGraphics: require('cesium/Source/DataSources/PointGraphics'),
-    CesiumMath: require('cesium/Source/Core/Math'),
+    CesiumMath: require('cesium/Source/Core/Math')
   };
 }
