@@ -39,7 +39,6 @@ viewer.imageryLayers.get(0).brightness = 0.7;
 
 //Gives bounds for a point being on the facing side of the globe. Points go outside when user is looking at 
 //space around the globe.
-//TODO: Fix points over China not appearing
 function getGlobeLimits(gaze) {
   //Linear translate into positive space, with smallest coordinate being (0, 0) rather than (-180, -90)
   var cameraTranslated = {x: gaze.camera.x + 180, y: gaze.camera.y + 90};
@@ -58,18 +57,16 @@ function getGlobeLimits(gaze) {
 }
 
 function mapGazes(gazes) {
-  var fov = 1.0471975511965976;
-  //TODO: Get aspect ratio
-  //aspectRatio = canvas.clientWidth / canvas.clientHeight
-  var aspectRatio = 1.5;
-  var inRange = 0;
-  var outRange = 0;
-
-  var validGazes = _.chain(gazes)
+  _.chain(gazes)
     .filter(function (gaze) {
-      return gaze.gazeX <= 0.5;
+      return gaze.gazeX >= 0 && gaze.gazeX <= 0.5 && gaze.gazeY >= 0 && gaze.gazeY <= 1;
     })
     .map(function (gaze) {
+      var fov = 1.0471975511965976;
+      //TODO: Get aspect ratio
+      //aspectRatio = canvas.clientWidth / canvas.clientHeight
+      var aspectRatio = 1.5;
+
       //TODO: More accurate meters->degrees calculation
       var frustumHeight = 2 * gaze.cameraZ * Math.tan(fov * 0.5) / 111111;
 
@@ -91,12 +88,9 @@ function mapGazes(gazes) {
         .domain([0, 1])
         .range([frustum.y - frustum.height / 2, frustum.y + frustum.height / 2]);
 
-      var gazeX = gazeXMap(gaze.gazeX);//Cesium.CesiumMath.toDegrees(gazeXMap(gaze.gazeX));
-      var gazeY = gazeYMap(gaze.gazeY);//Cesium.CesiumMath.toDegrees(gazeYMap(gaze.gazeY));
-
       return {
-        x: gazeX,
-        y: gazeY,
+        x: gazeXMap(gaze.gazeX),
+        y: gazeYMap(gaze.gazeY),
         camera: {
           x: gaze.cameraX,
           y: gaze.cameraY,
@@ -108,39 +102,19 @@ function mapGazes(gazes) {
       var limits = getGlobeLimits(gaze);
       return gaze.x >= limits.xMin && gaze.x <= limits.xMax && gaze.y >= limits.yMin && gaze.y <= limits.yMax;
     })
-    // .slice(100, 101)
+    .forEach(function (gaze) {
+      viewer.entities.add({
+        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
+        point: new Cesium.PointGraphics({pixelSize: 2})
+      });
+    })
     .value();
-
-  _.delay(addPoint, 0, validGazes);
 }
 
-function addPoint(validGazes) {
-  var gaze = validGazes.pop();
-
-  viewer.entities.add({
-    position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
-    point: new Cesium.PointGraphics({pixelSize: 5})
-  });
-
-  if (validGazes.length > 0) {
-    _.delay(addPoint, 0, validGazes);
-  }
-  else {
-    alert('Done!');
-  }
-}
-
-//Load in CSV
 //main
 (function main() {
-  asyncLoadCsv(config.gaze.five, function (five) {
-    // asyncLoadCsv(config.gaze.ten, function (ten) {
-    //   asyncLoadCsv(config.gaze.twenty, function (twenty) {
-    //     asyncLoadCsv(config.gaze.thirty, function (thirty) {
-          mapGazes(five);
-        // })
-      // })
-    // })
+  asyncLoadCsv(config.gaze.ex6, function (ex6) {
+    mapGazes(ex6);
   });
 })();
 
