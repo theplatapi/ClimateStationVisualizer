@@ -6,7 +6,9 @@ module.exports = {
     five: './staticData/latency5.csv',
     ten: './staticData/latency10.csv',
     twenty: './staticData/latency20.csv',
-    thirty: './staticData/latency30.csv'
+    thirty: './staticData/latency30.csv',
+    ex6: './staticData/ex6.csv',
+    ex6Proc: './staticData/processedEx6.csv'
   },
   debugShowFramesPerSecond: true,
   fancySelector: false,
