@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = {
   entry: {
     weatherStationVisualize: "./weatherStationVisualize/weatherStationVisualize.js",
-    gazeVisualize: './gazeVisualize/heatmapVisualize.js',
+    gazeVisualize: './gazeVisualize/gazeVisualize.js',
     admin: "./admin/admin.js"
   },
   output: {
