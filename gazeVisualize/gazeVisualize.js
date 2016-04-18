@@ -59,7 +59,7 @@ function getGlobeLimits(gaze) {
 function mapGazes(gazes) {
   _.chain(gazes)
     .filter(function (gaze) {
-      return gaze.gazeX >= 0 && gaze.gazeX <= 0.5 && gaze.gazeY >= 0 && gaze.gazeY <= 1;
+      return gaze.gazeX <= 0.5;
     })
     .map(function (gaze) {
       var fov = 1.0471975511965976;
@@ -104,9 +104,14 @@ function mapGazes(gazes) {
     })
     .forEach(function (gaze) {
       viewer.entities.add({
-        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
-        point: new Cesium.PointGraphics({pixelSize: 2})
+        position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.camera.x, gaze.camera.y)),
+        point: new Cesium.PointGraphics({pixelSize: 5})
       });
+      
+      // viewer.entities.add({
+      //   position: new Cesium.ConstantPositionProperty(Cesium.Cartesian3.fromDegrees(gaze.x, gaze.y)),
+      //   point: new Cesium.PointGraphics({pixelSize: 2})
+      // });
     })
     .value();
 }
