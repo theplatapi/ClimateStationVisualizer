@@ -5,7 +5,6 @@ var path = require('path');
 module.exports = {
   entry: {
     weatherStationVisualize: "./weatherStationVisualize/weatherStationVisualize.js",
-    gazeVisualize: './gazeVisualize/gazeVisualize.js',
     admin: "./admin/admin.js"
   },
   output: {
@@ -20,12 +19,6 @@ module.exports = {
       template: 'weatherStationVisualize/weatherStationVisualize.html',
       inject: true,
       chunks: ['weatherStationVisualize']
-    }),
-    new HtmlPlugin({
-      filename: 'gazeVisualize.html',
-      template: 'gazeVisualize/gazeVisualize.html',
-      inject: true,
-      chunks: ['gazeVisualize']
     }),
     new HtmlPlugin({
       filename: 'admin.html',
