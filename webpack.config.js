@@ -33,7 +33,7 @@ module.exports = {
   devServer: {
     contentBase: './public'
   },
-  devtool: 'source-map', //'hidden-source-map'
+  devtool: 'hidden-source-map',
   module: {
     unknownContextCritical: false,
     loaders: [
