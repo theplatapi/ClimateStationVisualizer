@@ -4,7 +4,7 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009. Also has an admin panel for controlling latency experiments as well as a visualization of captured gaze data.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "webpack -p --progress && node server.js",
     "debug": "webpack-dev-server -d --progress",
     "build": "webpack -p --progress",
     "deploy": "git push heroku master",
