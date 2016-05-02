@@ -4,17 +4,20 @@
   "description": "Shows 6000+ weather stations from 1800s to 2009. Also has an admin panel for controlling latency experiments as well as a visualization of captured gaze data.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -p --progress && node server.js",
+    "start": "node server.js",
     "debug": "webpack-dev-server -d --progress",
     "build": "webpack -p --progress",
     "deploy": "git push heroku master",
-    "postinstall": "bash ./postinstall.sh"
+    "postinstall": "bash ./postinstall.sh && webpack -p --progress "
   },
   "author": "Allen Korenevsky",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/theplatapi/ClimateStationVisualizer.git"
+  },
+  "engines": {
+    "node": "5.10.1"
   },
   "dependencies": {
     "basic-auth-connect": "1.0.0",
