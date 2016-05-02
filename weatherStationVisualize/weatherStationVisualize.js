@@ -63,6 +63,7 @@ if (config.server) {
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
 inFrustumStations.suspendEvents();
+selectedStations.suspendEvents();
 var selector;
 var redraw = false;
 var rectangleCoordinates = new Cesium.Rectangle();
@@ -203,7 +204,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
       lastTime.month = timelineTime.month;
       redraw = false;
       //Stop the callbacks since we can be adding and removing a lot of items
-      selectedStations.suspendEvents();
 
       for (var i = 0; i < inFrustumStations.values.length; i++) {
         var stationEntity = inFrustumStations.values[i];
@@ -230,9 +230,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
           selectedStations.remove(stationEntity);
         }
       }
-
-      //Done updating so we can fire the callbacks again
-      selectedStations.resumeEvents();
 
       //Update the stations in case no entities were added or removed. Call is throttled so can't double call.
       if (selector.show) {
@@ -323,8 +320,6 @@ function setupEventListeners(stationLocations) {
 
         //Don't draw if rectangle has 0 size. Will cause Cesium to throw an error.
         selector.show = rectangleCoordinates.east !== rectangleCoordinates.west || rectangleCoordinates.north !== rectangleCoordinates.south;
-        //Suspending and resuming events during batch update
-        selectedStations.suspendEvents();
         selectedStations.removeAll();
 
         //Get stations under selector
@@ -344,7 +339,7 @@ function setupEventListeners(stationLocations) {
           }
         }
 
-        selectedStations.resumeEvents();
+        updateHistogramThrottled(selectedStations);
       }
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.SHIFT);
@@ -365,6 +360,7 @@ function setupEventListeners(stationLocations) {
   screenSpaceEventHandler.setInputAction(function hideSelector() {
     selector.show = false;
     selectedStations.removeAll();
+    updateHistogramThrottled(selectedStations);
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
@@ -403,12 +399,6 @@ function setupEventListeners(stationLocations) {
   updateHistogramThrottled = _.throttle(function (collection) {
     updateHistogram(_.map(collection.values, 'properties.temperature'));
   }, 200);
-
-  //SECTION - bridge between selector and histogram
-  //Update histogram of temperatures whenever an item is added or removed from selection
-  selectedStations.collectionChanged.addEventListener(function selectedStationsChanged(collection) {
-    updateHistogramThrottled(collection);
-  });
 
   var cameraPositionLog;
   var previousLogged;
