@@ -62,6 +62,7 @@ if (config.server) {
 
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
+inFrustumStations.suspendEvents();
 var selector;
 var redraw = false;
 var rectangleCoordinates = new Cesium.Rectangle();
@@ -181,7 +182,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
   viewer.dataSources.add(stationLocations);
 
   viewer.clock.onTick.addEventListener(function onClockTick(clock) {
-    inFrustumStations.suspendEvents();
     timelineTime = Cesium.JulianDate.toGregorianDate(clock.currentTime, timelineTime);
 
     if (cameraMoving) {
@@ -252,7 +252,6 @@ function populateGlobe(stationTemperatures, stationLocations) {
         $infoBox.find('.cesium-infoBox-iframe').contents().find('tr:last td').text(selectedTemperature);
       }
     }
-    inFrustumStations.resumeEvents();
   });
 }
 
@@ -459,7 +458,6 @@ function setupEventListeners(stationLocations) {
 }
 
 function updateVisibleStations(stationLocations, spatialSelector) {
-  inFrustumStations.suspendEvents();
   //Get the frustum height in degrees
   var frustumHeight = 2 * viewer.camera.positionCartographic.height * Math.tan(viewer.camera.frustum.fov * 0.5) / 111111;
   var frustumWidth = frustumHeight * Math.max(viewer.camera.frustum.aspectRatio, 1.5);
@@ -486,7 +484,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
     spatialSelector.x = remainingRight / 2;
     secondarySelectedIds = spatialHash.retrieve(spatialSelector);
   }
-
+  
   inFrustumStations.removeAll();
 
   //Add visible stations to designated entity collection and hide all other entities
@@ -505,7 +503,6 @@ function updateVisibleStations(stationLocations, spatialSelector) {
     })
     .value();
 
-  inFrustumStations.resumeEvents();
   redraw = true;
 }
 
