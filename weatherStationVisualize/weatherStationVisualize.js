@@ -484,7 +484,7 @@ function updateVisibleStations(stationLocations, spatialSelector) {
     spatialSelector.x = remainingRight / 2;
     secondarySelectedIds = spatialHash.retrieve(spatialSelector);
   }
-  
+
   inFrustumStations.removeAll();
 
   //Add visible stations to designated entity collection and hide all other entities
