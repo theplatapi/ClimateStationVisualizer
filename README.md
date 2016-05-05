@@ -3,11 +3,13 @@
 ##How to install
 1. Install node.js. For a Mac with Homebrew just run `brew install node`.
 2. Create a keys.js file in the `/keys` folder. Fill in a Bing Maps key
- ```
+
+ ```javascript
  module.exports = {
-   bingMapsKey: 'Anh2J2QWeD7JxG5eHciCS_h30xZoNrLr_4FPfC9lIdZHrgEdEIYJ9HimBay17BDv'
+   bingMapsKey: 'ADD KEY'
  };
  ```
+
 3. Run `npm install`. If using Windows make sure that git bash is installed to run the postinstall script.
 4. Run `npm start`
 5. Go to `localhost:8080` in your browser to see the project. `http://localhost:8080/webpack-dev-server/` will
