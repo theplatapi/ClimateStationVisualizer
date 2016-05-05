@@ -17,7 +17,7 @@
 
 ##How to deploy
 * This assumes you were able to get it running locally.
-1. `npm run deploy`
+1. `npm run build`
 2. The `/public` directory has everything needed to run the site. Now find a server or service to deliver these files.
    Recommended setup is using AWS S3. Just copy the folder's contents into a bucket and configure it.
 
