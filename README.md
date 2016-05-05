@@ -10,8 +10,8 @@
  };
  ```
 
-3. Run `npm install`. If using Windows make sure that git bash is installed to run the postinstall script.
-4. Run `npm start`
+3. Type `npm install`. If using Windows make sure that git bash is installed to run the postinstall script.
+4. Type `npm run debug`
 5. Go to `localhost:8080` in your browser to see the project. `http://localhost:8080/webpack-dev-server/` will
    automatically recompile when code changes.
 
