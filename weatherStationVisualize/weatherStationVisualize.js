@@ -12,12 +12,13 @@ var ws;
 var log = require('loglevel');
 var SpatialHash = require('./spatialHash.js');
 var config = require('config');
+var keys = require('keys');
 var Cesium = getModules();
 var dataLoaded = false;
 var firstMessageLoaded = false;
 
 Cesium.BuildModuleUrl.setBaseUrl('./');
-Cesium.BingMapsApi.defaultKey = config.bingMapsKey;
+Cesium.BingMapsApi.defaultKey = keys.bingMapsKey;
 
 var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
