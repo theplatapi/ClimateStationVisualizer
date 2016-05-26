@@ -707,11 +707,9 @@ function getModules() {
 //main
 (function main() {
   //Replace content in help box
-  var navigationHelp = $(".cesium-navigation-help");
-  navigationHelp.empty();
-  $("#instructions").detach().appendTo(navigationHelp);
-
+  $("#instructions").detach().show().appendTo($(".cesium-navigation-help").empty());
   $("#copyrightYear").text(new Date().getFullYear());
+  
   asyncLoadJson(config.temperatures, function (stationTemperatures) {
     asyncLoadJson(config.locations, function (stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson).then(function loadStations(stationLocations) {
