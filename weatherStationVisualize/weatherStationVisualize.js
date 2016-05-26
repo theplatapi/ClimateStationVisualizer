@@ -302,6 +302,12 @@ function setupEventListeners(stationLocations) {
     }
   });
 
+  $(".cesium-navigation-help-button").on('keydown', function onKeydown(event) {
+    if (event.keyCode === 32) {
+      event.preventDefault();
+    }
+  });
+
   //Draw the selector while the user drags the mouse while holding shift
   screenSpaceEventHandler.setInputAction(function drawSelector(movement) {
     if (!mouseDown) {
@@ -709,6 +715,7 @@ function getModules() {
   //Replace content in help box
   $("#instructions").detach().show().appendTo($(".cesium-navigation-help").empty());
   $("#copyrightYear").text(new Date().getFullYear());
+  $(".cesium-navigationHelpButton-wrapper").blur();
   
   asyncLoadJson(config.temperatures, function (stationTemperatures) {
     asyncLoadJson(config.locations, function (stationLocationsGeoJson) {
