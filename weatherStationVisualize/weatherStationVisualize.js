@@ -24,7 +24,8 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   targetFrameRate: 60,
   homeButton: false,
   sceneModePicker: false,
-  navigationHelpButton: false,
+  navigationHelpButton: true,
+  navigationInstructionsInitiallyVisible: true,
   baseLayerPicker: false,
   fullscreenButton: false,
   clock: new Cesium.Clock({
@@ -60,6 +61,10 @@ if (config.server) {
     };
   };
 }
+
+//Makes it available in the browser console so we can demonstrate frame rate changes.
+//Ex: window.viewer.targetFrameRate = 60;
+window.viewer = viewer;
 
 var selectedStations = new Cesium.EntityCollection();
 var inFrustumStations = new Cesium.EntityCollection();
@@ -667,7 +672,6 @@ function stationSelected(station, rectangleSelector, stationCartographic) {
 
 function enableVisualization() {
   $('#loadingData').show().delay(1000).fadeOut();
-  $('.cesium-viewer-bottom').show().delay(1000).fadeOut();
   viewer.scene.screenSpaceCameraController.enableInputs = true;
 }
 
@@ -702,6 +706,12 @@ function getModules() {
 
 //main
 (function main() {
+  //Replace content in help box
+  var navigationHelp = $(".cesium-navigation-help");
+  navigationHelp.empty();
+  $("#instructions").detach().appendTo(navigationHelp);
+
+  $("#copyrightYear").text(new Date().getFullYear());
   asyncLoadJson(config.temperatures, function (stationTemperatures) {
     asyncLoadJson(config.locations, function (stationLocationsGeoJson) {
       Cesium.GeoJsonDataSource.load(stationLocationsGeoJson).then(function loadStations(stationLocations) {

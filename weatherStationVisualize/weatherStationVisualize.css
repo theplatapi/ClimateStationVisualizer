@@ -55,6 +55,15 @@ button.cesium-infoBox-camera, .cesium-infoBox-title {
   display: none;
 }
 
+a:link, a:visited {
+  color: yellow;
+}
+
+#instructions {
+  color: white;
+  padding: 2px;
+}
+
 #legend {
   position: absolute;
   bottom: 75px;
