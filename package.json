@@ -7,7 +7,6 @@
     "start": "node server.js",
     "debug": "webpack-dev-server -d --progress",
     "build": "webpack -p --progress",
-    "deploy": "git push heroku master",
     "postinstall": "bash ./postinstall.sh && webpack -p --progress "
   },
   "author": "Allen Korenevsky",
