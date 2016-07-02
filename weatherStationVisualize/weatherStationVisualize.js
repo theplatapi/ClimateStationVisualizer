@@ -714,7 +714,14 @@ function getModules() {
 (function main() {
   //Replace content in help box
   $("#instructions").detach().show().appendTo($(".cesium-navigation-help").empty());
-  $("#copyrightYear").text(new Date().getFullYear());
+  var copyText = 2016;
+  var curYear = new Date().getFullYear();
+
+  if (copyText !== curYear) {
+    copyText += " - " + curYear
+  }
+  
+  $("#copyrightYear").text(copyText);
   $(".cesium-navigationHelpButton-wrapper").blur();
   
   asyncLoadJson(config.temperatures, function (stationTemperatures) {
