@@ -64,6 +64,10 @@ a:link, a:visited {
   padding: 2px;
 }
 
+.cozy-list li {
+  margin-bottom: 0.3em;
+}
+
 #legend {
   position: absolute;
   bottom: 75px;
