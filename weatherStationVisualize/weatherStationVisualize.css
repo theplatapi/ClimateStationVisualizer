@@ -4,7 +4,7 @@ text {
 }
 
 .cesium-animation-shuttleRingPausePointer, .cesium-animation-shuttleRingPointer, .cesium-animation-shuttleRingSwoosh,
-.cesium-animation-shuttleRingBack, .cesium-animation-buttonDisabled, .cesium-animation-svgText:nth-of-type(3),
+.cesium-animation-shuttleRingBack, .cesium-animation-buttonDisabled, .cesium-animation-svgText:nth-of-type(n+2),
 .cesium-animation-knobOuter, .cesium-animation-buttonMain {
   display: none;
 }
