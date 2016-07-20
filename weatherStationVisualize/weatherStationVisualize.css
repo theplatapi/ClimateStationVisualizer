@@ -21,6 +21,10 @@ text {
   font-size: 16px;
 }
 
+.cesium-navigation-help {
+  z-index: 1;
+}
+
 button.cesium-infoBox-camera, .cesium-infoBox-title {
   display: none;
 }
