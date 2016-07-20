@@ -1,5 +1,9 @@
 #Climate Station Visualizer
 
+##Information
+This is developed as part of my Master's thesis to test the effects of latency on user comprehension. See the full work
+[here](http://digitalcommons.calpoly.edu/theses/1557).
+
 ##How to install
 1. Install node.js. For a Mac with Homebrew just run `brew install node`.
 2. Create a keys.js file in the `/keys` folder. Fill in a Bing Maps key
